@@ -1,21 +1,49 @@
 .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 10vh;
-    width: 100%;
-    color: white;
-    background-color: var(--midnight-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.25rem;
+  width: 100%;
+  background-color: var(--midnight-blue);
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    font-size: 1.25rem;
-    color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  color: var(--white);
+}
+
+.brand .explorer {
+  align-self: flex-end;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--font-xl);
 }
 
 .links {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.links span {
+  height: 1.125rem;
+  width: 5.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: var(--white);
+}
+
+.links span.active {
+  font-weight: bold;
+  color: var(--nexus-blue);
+  border-bottom: 0.125rem solid var(--nexus-blue);
+  border-radius: 0.125rem;
+  transition: color 250ms ease;
 }
