@@ -47,3 +47,11 @@
   border-radius: 0.125rem;
   transition: color 250ms ease;
 }
+
+/* mobile screen classes */
+@media only screen and (max-width: 628px) {
+  .nav {
+    flex-direction: column;
+    /* padding: 0.2rem; */
+  }
+}

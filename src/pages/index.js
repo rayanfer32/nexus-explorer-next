@@ -1,17 +1,17 @@
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div >
+    <div>
       <Head>
-        <title> Nexus Explorer V2 </title>{" "}
+        <title> Nexus Explorer V2 </title>{' '}
         <meta name="description" content="Nexus Blockchain Statistics" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main >
-          im main
+      <main>
+        <h1>Main tab</h1>
       </main>
     </div>
   );

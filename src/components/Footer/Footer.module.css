@@ -1,5 +1,5 @@
 .footer {
-    height: 8rem;
-    background-color: black;
-    color: white;
+  height: 8rem;
+  background: var(--radial-ocean-midnight);
+  color: white;
 }
