@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 20vh;
+    min-height: 15vh;
     width: 100%;
     color: white;
     background: var(--radial-ocean-midnight);
