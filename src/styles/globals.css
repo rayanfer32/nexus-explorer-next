@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato+bold&display=swap');
+
 :root {
   /* colors */
   --nexus-blue: #0ca4fb;
@@ -66,10 +69,13 @@
   --theme-gradient-linear: var(--linear-ocean-midnight);
 }
 
+
+
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: "Lato";
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
@@ -81,7 +87,7 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+
 }
 
 ::-webkit-scrollbar {

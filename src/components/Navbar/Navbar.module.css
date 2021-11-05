@@ -2,10 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 10vh;
+    min-height: 20vh;
     width: 100%;
     color: white;
-    background-color: var(--midnight-blue);
+    background: var(--radial-ocean-midnight);
 }
 
 .brand {
@@ -13,9 +13,19 @@
     align-items: center;
     font-size: 1.25rem;
     color: #eee;
+    filter: brightness(0) invert(1);
 }
 
 .links {
     display: flex;
     gap: 1rem;
 }
+
+
+/* mobile screen classes */
+@media only screen and (max-width: 628px) {
+    .nav {
+        flex-direction: column;
+        padding: 0.2rem;
+    }
+  }

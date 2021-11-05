@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <div className={styles.nav}>
       <div className={styles.brand}>
-        <Image width={200} height={48} layout="fixed" src={nexusLogo}></Image>
+        <Image width={145} height={32} layout="fixed" src={nexusLogo}></Image>
         <div className={styles.explorer}>Explorer</div>
       </div>
       <div className={styles.links}>
