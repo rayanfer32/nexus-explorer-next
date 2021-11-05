@@ -1,9 +1,77 @@
+:root {
+  /* colors */
+  --nexus-blue: #0ca4fb;
+  --sky-blue: #6dcefe;
+  --ocean-blue: #025e93;
+  --midnight-blue: #012235;
+  --white: #ffffff;
+  --dark-grey: #2e292f;
+  --market-green: #28a745;
+  --market-red: #dc3545;
+  --paper-white: #f8f9fa;
+
+  /* gradient */
+  --linear-ocean-midnight: linear-gradient(
+    175.94deg,
+    rgba(1, 34, 53, 0.7) 5.59%,
+    rgba(2, 94, 147, 0.7) 73.28%
+  );
+  --linear-sky-white: linear-gradient(
+    175.94deg,
+    rgba(12, 164, 251, 0.7) 5.59%,
+    rgba(109, 206, 254, 0.35) 73.28%
+  );
+  --radial-ocean-midnight: radial-gradient(
+    114.53% 197.34% at 25.54% -14.53%,
+    var(--ocean-blue) 26.66%,
+    var(--midnight-blue) 100%
+  );
+  --radial-sky-white: radial-gradient(
+    114.53% 197.34% at 25.54% -14.53%,
+    var(--white) 26.66%,
+    var(--sky-blue) 100%
+  );
+
+  /* fonts size*/
+  --font-xxxs: 6px;
+  --font-xxs: 8px;
+  --font-xs: 10px;
+  --font-s: 12px;
+  --font-normal: 14px;
+  --font-l: 16px;
+  --font-xl: 18px;
+  --font-xxl: 20px;
+  --font-xxxl: 24px;
+}
+
+.light {
+  --theme-color: var(--ocean-blue);
+  --theme-page-background: var(--white);
+  --theme-page-not-background: var(--midnight-blue);
+  --theme-page-text: var(--midnight-blue);
+  --theme-page-text-secondary: var(--ocean-blue);
+  --theme-gradient: var(--radial-sky-white);
+  --theme-gradient-radial: var(--radial-sky-white);
+  --theme-gradient-linear: var(--linear-sky-white);
+}
+
+.dark {
+  --theme-color: var(--dark-grey);
+  --theme-page-background: var(--midnight-blue);
+  --theme-page-not-background: var(--ocean-blue);
+  --theme-page-text: var(--white);
+  --theme-page-text-secondary: var(--sky-blue);
+  --theme-gradient: var(--radial-ocean-midnight);
+  --theme-gradient-radial: var(--radial-ocean-midnight);
+  --theme-gradient-linear: var(--linear-ocean-midnight);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
 a {
@@ -13,4 +81,131 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+::-webkit-scrollbar {
+  height: 0.5em;
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background: #e4e4e4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--midnight-blue);
+}
+
+.App {
+  /* font-size: 0.8rem; */
+}
+
+
+
+.slideRowAnim {
+  animation: slideIn 2s;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0%;
+    color: rgb(58, 119, 231);
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 100%;
+    color: blue;
+  }
+  100% {
+    color: black;
+  }
+}
+
+#infoCard {
+  margin-top: 10px;
+  color: #333;
+  /* box-shadow: -2px 0px 2px inset blue;*/
+  /* animation: flashShadow 0.5s linear infinite; */
+}
+
+/* 
+@keyframes flashShadow {
+    0% {
+        box-shadow: 0px 2px 2px inset var(--midnight-blue);
+    }
+    25% {
+        box-shadow: -2px 0px 2px inset var(--midnight-blue);
+    }
+    50% {
+        box-shadow: 0px -2px 2px inset var(--midnight-blue);
+    }
+    100% {
+        box-shadow: 2px 0px 2px inset var(--midnight-blue);
+    }
+} */
+
+#navbarComponent {
+  animation: slideDown 2s;
+}
+
+#richlist {
+  animation: slideDown 3s;
+  overflow: hidden;
+  scrollbar-width: 1px;
+}
+
+#trustlist {
+  animation: slideDown 3s;
+}
+
+#chartLeft {
+  animation: slideRight 3s;
+}
+
+#chartRight {
+  animation: slideLeft 3s;
+}
+
+@keyframes blueTinge {
+  0% {
+    box-shadow: 2px 2px 10px;
+  }
+  100% {
+    background-color: 2px 2px 20px;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }

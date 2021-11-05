@@ -1,7 +1,21 @@
 .nav {
-    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 10vh;
     width: 100%;
     color: white;
-    background-color: #333;
+    background-color: var(--midnight-blue);
 }
 
+.brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    color: #eee;
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+}
