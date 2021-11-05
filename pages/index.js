@@ -10,11 +10,9 @@ export default function Home() {
         <meta name="description" content="Nexus Blockchain Statistics" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>im header</header>
       <main >
           im main
       </main>
-      <footer>im footer</footer>
     </div>
   );
 }
