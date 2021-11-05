@@ -18,6 +18,52 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Getting Start to Code
+
+#### Branching
+
+Create a new branch under name
+
+- If feature change `feat/[featute-name]`
+- If bug fix `fix/[bug-name]`
+- If there major changes to dev env or prod env `chore/[change type]`
+
+#### Commit Messages
+
+```
+<type>(<scope?>): <description>
+
+<body?>
+
+<footer?>
+```
+
+A good commit message should describe what changed and why.
+
+#### Example of commit messages with semantic prefixes:
+
+```
+fix: don't overwrite prevent default
+feat(core): add restrict mode
+docs: update the molecule description
+```
+
+#### Common prefixes:
+
+```
+build       Affects the build system ot external dependencies
+chore       Other changes that don't modify src or test fiels
+ci          Changes CI configaration files and scripts.
+docs        Adds or alters documentation.
+feat        Adds a new feature
+fix         Solves a bug
+perf        Improves performance.
+refactor    Rewrites code without feature, performance or bug changes.
+revert      Reverts a previous commit.
+style       Improves code formatting, white-space.
+test        Add or modfies tests.
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
