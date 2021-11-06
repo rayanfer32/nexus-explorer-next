@@ -1,7 +1,8 @@
 import styles from './Navbar.module.css';
 import Image from 'next/image';
-import nexusLogo from '../../assets/icons/NexuslogoBlue1000.png';
+import nexusLogo from '../../assets/branding/NexusLogoWhite1000x225.png';
 import Link from 'next/link';
+import SearchBar from '../../components/atoms/SearchBar';
 
 function Navbar() {
   return (
@@ -15,6 +16,7 @@ function Navbar() {
           src={nexusLogo}></Image>
         <div className={styles.explorer}>Explorer</div>
       </div>
+      <div className={styles.spacing}></div>
       <div className={styles.links}>
         <Link href="/">Home</Link>
         <Link href="/trustlist">Trustlist</Link>
@@ -22,6 +24,7 @@ function Navbar() {
         <Link href="/network">Network</Link>
         <Link href="/about">About</Link>
       </div>
+      <SearchBar />
     </div>
   );
 }
