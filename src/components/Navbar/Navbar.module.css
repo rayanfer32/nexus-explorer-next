@@ -16,6 +16,17 @@
   color: var(--white);
 }
 
+.brand:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .brand .explorer {
   align-self: flex-end;
   font-family: 'Lato', sans-serif;
@@ -52,10 +63,18 @@
   text-shadow: 2px 2px 10px white;
 }
 
+.searchBar {
+  margin: 0.5rem;
+  width: 20rem;
+}
+
 /* mobile screen classes */
 @media only screen and (max-width: 628px) {
-  .nav {
+  .nav,
+  .navItem {
     flex-direction: column;
-    /* padding: 0.2rem; */
+  }
+  .searchBar {
+    width: 100%;
   }
 }
