@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 8.375rem;
     background: var(--radial-ocean-midnight);
+    box-shadow: 0px -2px 4px #333b;
 }
 
 .footer  section {
