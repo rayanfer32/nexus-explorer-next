@@ -1,5 +1,28 @@
 .footer {
-    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 8.375rem;
     background: var(--radial-ocean-midnight);
+}
+
+.footer  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: white;
 }
+
+.walletLinks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.125rem;
+    font-size: 0.7rem;
+    align-items: center;
+    justify-items: center;
+}
+.walletLinks > div {
+    text-align: center;
+}
+
