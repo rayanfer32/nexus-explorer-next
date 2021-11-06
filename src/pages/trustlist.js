@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function trustlist() {
-    return (
-        <h1>
-            trustlist tab
-        </h1>
-    )
+  return <h1>trustlist tab</h1>;
 }
 
-export default trustlist
+export default trustlist;

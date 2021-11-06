@@ -47,6 +47,10 @@
   border-radius: 0.125rem;
   transition: color 250ms ease;
 }
+.links > a:hover {
+  color: var(--sky-blue);
+  text-shadow: 2px 2px 10px white;
+}
 
 /* mobile screen classes */
 @media only screen and (max-width: 628px) {
