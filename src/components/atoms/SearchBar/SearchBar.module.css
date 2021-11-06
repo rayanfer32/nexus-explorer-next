@@ -1,0 +1,45 @@
+.searchbar {
+  /* Component 10 */
+  position: relative;
+  min-width: 18rem;
+  height: 2rem;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.button {
+  position: absolute;
+  left: 90.91%;
+  right: 2.27%;
+  top: 14.71%;
+  bottom: 14.71%;
+  cursor: pointer;
+}
+
+.clearBtn {
+  position: absolute;
+  /* left: 90.91%; */
+  right: 10%;
+  top: 25%;
+  /* bottom: 24.71%; */
+  cursor: pointer;
+}
+
+.text {
+  position: absolute;
+  left: 3.98%;
+  right: 10.23%;
+  top: 26.47%;
+  bottom: 23.53%;
+  font-family: Lato;
+  width: 80%;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  border: none;
+  outline: none;
+  /* identical to box height */
+  /* Ocean Blue */
+  color: var(--ocean-blue);
+}
