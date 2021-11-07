@@ -37,15 +37,15 @@
   );
 
   /* fonts size*/
-  --font-xxxs: 6px;
-  --font-xxs: 8px;
-  --font-xs: 10px;
-  --font-s: 12px;
-  --font-normal: 14px;
-  --font-l: 16px;
-  --font-xl: 18px;
-  --font-xxl: 20px;
-  --font-xxxl: 24px;
+  --font-xxxs: 0.375rem; /* 6px */
+  --font-xxs: 0.5rem; /* 8px */
+  --font-xs: 0.625rem; /* 10px */
+  --font-s: 0.75rem; /* 12px */
+  --font-normal: 0.875rem; /* 14px */
+  --font-l: 1rem; /* 16px */
+  --font-xl: 1.125rem; /* 18px */
+  --font-xxl: 1.25rem; /* 20px */
+  --font-xxxl: 1.5rem; /* 24px */
 }
 
 .light {
@@ -70,8 +70,6 @@
   --theme-gradient-linear: var(--linear-ocean-midnight);
 }
 
-
-
 html,
 body {
   padding: 0;
@@ -89,7 +87,6 @@ a {
 
 * {
   box-sizing: border-box;
-
 }
 
 ::-webkit-scrollbar {
@@ -108,8 +105,6 @@ a {
 .App {
   /* font-size: 0.8rem; */
 }
-
-
 
 .slideRowAnim {
   animation: slideIn 2s;

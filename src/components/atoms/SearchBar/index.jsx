@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styles from './SearchBar.module.css';
-import searchBtn from '../../../assets/icons/search.svg';
+import searchBtn from 'assets/icons/search.svg';
 import clearBtn from '../../../assets/icons/cross.svg';
 import Image from 'next/dist/client/image';
 

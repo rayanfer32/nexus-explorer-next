@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
 import Panel1 from '../components/Panel1/Panel1';
 
 export default function Home() {

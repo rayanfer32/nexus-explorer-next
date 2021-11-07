@@ -1,47 +1,85 @@
 .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 3rem;
-    gap: 1rem;
-    width: 100%;
-    color: #ffff;
-    background: var(--radial-ocean-midnight);
-    box-shadow: 0px 4px 8px #0003;
-    font-size: 1rem;
-    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.25rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--radial-ocean-midnight);
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
 .spacing {
-    display: flex;
-    width: 25%;
+  display: flex;
+  width: 25%;
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 500;
-    /* filter: brightness(0) invert(1); */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  color: var(--white);
+}
+
+.brand:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand .explorer {
+  align-self: flex-end;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--font-xl);
 }
 
 .links {
-    display: flex;
-    gap: 1rem;
-
+  display: flex;
+  /* gap: 1rem; */
 }
 
-.links > a:hover {
-    color: var(--sky-blue);
-    text-shadow: 2px 2px 10px white;
+.links span {
+  height: 1.125rem;
+  width: 5.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: var(--white);
 }
 
+.links span.active {
+  color: var(--sky-blue);
+  border-bottom: 0.125rem solid var(--sky-blue);
+  border-radius: 0.125rem;
+  transition: color 250ms ease;
+}
+.links span > a:hover {
+  color: var(--sky-blue);
+}
+
+.searchBar {
+  margin: 0.5rem;
+  width: 18rem;
+}
 
 /* mobile screen classes */
 @media only screen and (max-width: 628px) {
-    .nav {
-        flex-direction: column;
-        padding: 0.4rem;
-        gap: 0.5rem;
-    }
+  .nav,
+  .navItem {
+    flex-direction: column;
   }
+  .searchBar {
+    width: 100%;
+  }
+}
