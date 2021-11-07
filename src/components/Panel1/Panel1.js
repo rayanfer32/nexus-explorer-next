@@ -1,10 +1,11 @@
 import SmallCard from '../atoms/SmallCard';
 import Charts3 from 'components/Chart/Charts3';
+import styles from 'components/Panel1/Panel1.module.css';
 
 function Panel1() {
   return (
-    <div className="container">
-      <div className="cardsContainer">
+    <div className={styles.container}>
+      <div className={styles.cardsContainer}>
         <SmallCard
           label="ChainHeight"
           sublabel="(Blocks)"
@@ -31,22 +32,6 @@ function Panel1() {
         />
       </div>
       <Charts3 />
-      <style jsx>
-        {`
-          .container {
-            // background: grey;
-            display: flex;
-            gap: 0.2rem;
-          }
-
-          .cardsContainer {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 0.2rem;
-          }
-        `}
-      </style>
     </div>
   );
 }

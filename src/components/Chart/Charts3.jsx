@@ -2,6 +2,7 @@ import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import jsonData from 'assets/data/coingecko.json';
+import styles from './Charts3.module.css';
 
 export default function Charts3() {
   const priceChartOptions = {
@@ -11,6 +12,11 @@ export default function Charts3() {
     // subtitle: {
     //   text: 'Overview of Nexus Historical Prices',
     // },
+    chart: {
+      type: 'line',
+      //   borderRadius: '20px',
+      className: styles.container,
+    },
     series: [
       {
         name: '$',
@@ -56,30 +62,14 @@ export default function Charts3() {
   // }
 
   return (
-    <div className="container">
-      <div className="prices">Prices</div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        constructorType={'stockChart'}
-        options={priceChartOptions}
-      />
-      <style jsx>
-        {`
-          .prices {
-            font-size: 0.7rem;
-            font-weight: 600;
-          }
-
-          .container {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            background: var(--theme-page-background);
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 4px;
-          }
-        `}
-      </style>
-    </div>
+    // <div className={styles.container}>
+    //   <div className={styles.prices}>Prices</div>
+    <HighchartsReact
+      highcharts={Highcharts}
+      constructorType={'stockChart'}
+      options={priceChartOptions}
+      size={200}
+    />
+    // </div>
   );
 }
