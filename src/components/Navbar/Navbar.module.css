@@ -5,11 +5,10 @@
     min-height: 3rem;
     gap: 1rem;
     width: 100%;
-    color: #fffe;
+    color: #ffff;
     background: var(--radial-ocean-midnight);
     box-shadow: 0px 4px 8px #0003;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 1rem;
     /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
 }
 
@@ -21,7 +20,8 @@
 .brand {
     display: flex;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     /* filter: brightness(0) invert(1); */
 }
 
