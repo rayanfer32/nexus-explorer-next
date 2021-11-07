@@ -23,7 +23,7 @@ function Panel1() {
         />
         <SmallCard
           label="Total Ciculation"
-          //   sublabel="0.0000032BTC"
+          sublabel="0.0000032BTC"
           text="76546498"
           ticker="NXS"
         />
