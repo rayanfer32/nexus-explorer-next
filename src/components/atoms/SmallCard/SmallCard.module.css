@@ -1,14 +1,21 @@
 .smallcard {
   position: relative;
-  display: block;
-  width: 232px;
-  height: 100px;
+  width: 14.5rem; /* 232px */
+  height: 6.25rem; /* 100px */
   background: var(--theme-page-background);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.25rem;
+
+  display: grid;
+  display: -ms-grid;
+  grid-template-rows: auto 1fr;
+  -ms-grid-rows: auto 1fr;
+  padding: 0.75rem;
+
+  font-family: Lato, 'Lato';
 }
 
-.icon {
+.smallcard .icon {
   position: absolute;
   left: 71.55%;
   right: 12.93%;
@@ -18,67 +25,61 @@
   height: 38px;
 }
 
-.label {
-    /* Your balance */
-    position: absolute;
-    left: 5.17%;
-    right: 65.95%;
-    top: 12%;
-    bottom: 74%;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 14px;
-    /* Midnight Blue */
-    color: var(--theme-page-text);
+.smallcard .headerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-.sublabel {
-    /* Your balance */
-    position: absolute;
-    left: 5.17%;
-    right: 65.95%;
-    top: 25%;
-    bottom: 74%;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 14px;
-    /* Midnight Blue */
-    color: var(--theme-page-text);
-}
-
-.bodyText {
-  position: absolute;
-  left: 5.17%;
-  right: 45.69%;
-  top: 46%;
-  bottom: 30%;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
-  /* identical to box height */
-  /* Midnight Blue */
+.smallcard .headerContainer .label {
+  width: 100%;
+  height: var(--font-normal);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--font-s);
   color: var(--theme-page-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.tickerSymbol {
-  /* $ */
-  position: absolute;
-  left: 54.31%;
-  right: 43.1%;
-  top: 54%;
-  bottom: 34%;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 12px;
-  /* identical to box height */
-  /* Midnight Blue */
+.smallcard .headerContainer .sublabel {
+  width: 100%;
+  height: var(--font-s);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--font-xs);
+  color: var(--theme-page-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.smallcard .bodyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-self: flex-start;
+  width: 10rem;
+}
+.smallcard .bodyContainer .bodyText {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: var(--font-xxl);
+  color: var(--theme-page-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.smallcard .bodyContainer .tickerSymbol {
+  justify-self: start;
+  align-self: flex-end;
+  font-family: inherit;
+  font-size: var(--font-xs);
   color: var(--theme-page-text);
 }
