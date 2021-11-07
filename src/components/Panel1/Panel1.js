@@ -1,4 +1,6 @@
 import SmallCard from '../atoms/SmallCard';
+import Charts3 from 'components/Chart/Charts3';
+
 function Panel1() {
   return (
     <div className="container">
@@ -28,10 +30,13 @@ function Panel1() {
           ticker="NXS"
         />
       </div>
+      <Charts3 />
       <style jsx>
         {`
           .container {
-            background: grey;
+            // background: grey;
+            display: flex;
+            gap: 0.2rem;
           }
 
           .cardsContainer {
