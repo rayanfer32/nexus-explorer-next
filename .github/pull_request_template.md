@@ -2,7 +2,7 @@
 
 ## Description
 
-Please include a summary of the change or which issue is fixed.
+<!-- Please include a summary of the change or which issue is fixed. -->
 
 ## Type of change
 
@@ -30,19 +30,25 @@ Please include a summary of the change or which issue is fixed.
 
 ## Related Issue
 
-- issue goes here
+<!-- issue goes here -->
+
+- none
 
 ## Proposed Changes
 
-- change 1
-- change 2
+<!-- - change 1 -->
+<!-- - change 2 -->
+
+- none
 
 ## Additional Info
 
-- any additional information or context
+<!-- any additional information or context -->
+
+- none
 
 ## Screenshots
 
-|         Original          |         Updated          |
-| :-----------------------: | :----------------------: |
-| ** original screenshot ** | ** updated screenshot ** |
+|              Original              |              Updated              |
+| :--------------------------------: | :-------------------------------: |
+| <!-- ** original screenshot ** --> | <!-- ** updated screenshot ** --> |

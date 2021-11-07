@@ -1,3 +1,4 @@
+import DetailCard from 'components/atoms/DetailCard';
 import Head from 'next/head';
 import Panel1 from '../components/Panel1/Panel1';
 
@@ -11,6 +12,8 @@ export default function Home() {
       </Head>
       <main>
         <Panel1 />
+        <hr />
+        <DetailCard />
       </main>
     </div>
   );
