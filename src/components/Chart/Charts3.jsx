@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import jsonData from 'assets/data/coingecko.json';
 import styles from './Charts3.module.css';
 
-export default function Charts3() {
+export default function Charts3({ chartData }) {
   const priceChartOptions = {
     // title: {
     //   text: 'Prices',
@@ -20,7 +20,7 @@ export default function Charts3() {
     series: [
       {
         name: '$',
-        data: jsonData.prices,
+        data: chartData.prices,
         tooltip: {
           valueDecimals: 2,
         },

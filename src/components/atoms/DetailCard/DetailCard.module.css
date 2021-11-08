@@ -91,7 +91,7 @@
 .detailcard .header.two .heading {
   margin: 0;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
   overflow: hidden;
@@ -99,7 +99,7 @@
 }
 .detailcard .header.one span .sublabel,
 .detailcard .header.two span .sublabel {
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-xs);
   color: var(--theme-page-text-secondary);
   overflow: hidden;
@@ -131,7 +131,7 @@
 .detailcard .body.one .bodyText {
   margin: 0;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-xxxl);
   text-align: right;
   color: var(--theme-page-text);
@@ -160,7 +160,7 @@
 .detailcard .footer.two label {
   margin: 0;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-l);
   color: var(--theme-page-text-secondary);
 }
@@ -184,7 +184,7 @@
 .detailcard .body.two .bodyText {
   margin: 0;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-xxl);
   color: var(--theme-page-text);
 }
@@ -205,7 +205,7 @@
 .detailcard .body.two .transectionBlock .transectionUnit .transectionType {
   color: var(--theme-page-text-secondary);
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-s);
   text-overflow: ellipsis;
   overflow: hidden;

@@ -40,7 +40,7 @@
   width: 100%;
   height: var(--font-normal);
   font-family: inherit;
-  font-weight: 600;
+  font-weight: normal;
   font-size: var(--font-s);
   color: var(--theme-page-text);
   white-space: nowrap;
@@ -52,7 +52,7 @@
   width: 100%;
   height: var(--font-s);
   font-family: inherit;
-  font-weight: 600;
+  font-weight: normal;
   font-size: var(--font-xs);
   color: var(--theme-page-text);
   white-space: nowrap;
@@ -69,7 +69,7 @@
 }
 .smallcard .bodyContainer .bodyText {
   font-family: inherit;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-xxl);
   color: var(--theme-page-text);
   overflow: hidden;
@@ -78,8 +78,10 @@
 
 .smallcard .bodyContainer .tickerSymbol {
   justify-self: start;
-  align-self: flex-end;
+  padding-left: 0.25rem;
+  align-self: center;
+  font-weight: normal;
   font-family: inherit;
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   color: var(--theme-page-text);
 }
