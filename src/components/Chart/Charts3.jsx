@@ -2,8 +2,10 @@ import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import styles from './Charts3.module.css';
+// import './highcharts.css';
 
 // https://www.highcharts.com/docs/chart-design-and-style/style-by-css
+// https://api.highcharts.com/highstock/
 export default function Charts3({ chartData }) {
   const priceChartOptions = {
     // title: {
@@ -19,12 +21,13 @@ export default function Charts3({ chartData }) {
       type: 'line',
       //   borderRadius: '20px',
       // className: styles.container,
-      style: {
-        fontFamily: 'Lato',
-        background: 'var(--theme-page-background)',
-        boxShadow: '0px 4px 4px #0007',
-        borderRadius: '4px',
-      },
+      styledMode: true, // use css styles
+      // style: {
+      //   fontFamily: 'Lato',
+      //   backgroundColor: 'var(--theme-page-background)',
+      //   boxShadow: '0px 4px 4px #0007',
+      //   borderRadius: '4px',
+      // },
     },
     series: [
       {
@@ -36,6 +39,7 @@ export default function Charts3({ chartData }) {
       },
     ],
     rangeSelector: {
+      selected: 1,
       floating: true,
       y: 0,
       verticalAlign: 'top',

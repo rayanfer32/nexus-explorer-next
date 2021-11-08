@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Lato+bold&display=swap'); */
+@import 'https://code.highcharts.com/css/highcharts.css';
 
 :root {
   /* colors */
@@ -71,6 +72,33 @@
   --theme-gradient-linear: var(--linear-ocean-midnight);
   --theme-bg-under: var(--radial-ocean-midnight);
 }
+
+/* start css for highcharts  */
+.highcharts-background {
+  fill: var(--theme-page-background);
+}
+.highcharts-container text {
+  fill: var(--theme-page-text);
+}
+.highcharts-subtitle,
+.highcharts-credits,
+.highcharts-axis-title {
+  fill-opacity: 0.7;
+}
+.highcharts-grid-line {
+  stroke: var(--theme-page-text-secondary);
+  stroke-opacity: 0.2;
+}
+.highcharts-tooltip-box {
+  fill: var(--theme-page-background);
+}
+.highcharts-column-series rect.highcharts-point {
+  stroke: var(--theme-page-background);
+}
+.highcharts-color-2 {
+  fill: var(--theme-page-background);
+}
+/* end highchart css */
 
 html,
 body {

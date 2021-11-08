@@ -6,14 +6,21 @@ import { abbreviateNumber, intlNum } from 'utils/converter';
 
 function Panel2(props) {
   const { marketData, metricsData, miningData } = props;
-  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(50);
+  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(60);
 
-  //   useEffect(() => {
-  //     const t1 = setIn(set);
-  //     return () => {
-  //       cleanup;
-  //     };
-  //   }, [input]);
+  useEffect(() => {
+    const t1 = setInterval(() => {
+      setCardRefreshTimeout((prev) => {
+        if (prev === 0) {
+          prev = 59;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => {
+      clearInterval(t1);
+    };
+  }, []);
 
   return (
     <div className={styles.panelTwoContainer}>
@@ -27,7 +34,7 @@ function Panel2(props) {
         reward={`${intlNum(marketData.market_data.total_volume.usd)} $`}
         footerLabel="Market Cap:"
         footerValue={`${intlNum(marketData.market_data.market_cap.usd)} $`}
-        delayTime="60s"
+        delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
         type
@@ -40,7 +47,7 @@ function Panel2(props) {
         rewardLabel="Total"
         footerLabel="Fees"
         footerValue={`${miningData.stake.fees.toFixed(2)} NXS`}
-        delayTime="60s"
+        delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
         type
@@ -53,7 +60,7 @@ function Panel2(props) {
         reward={`${miningData.hash.reward.toFixed(2)} NXS`}
         footerLabel="Fees"
         footerValue={`${intlNum(miningData.hash.fees.toFixed(2))} NXS`}
-        delayTime="60s"
+        delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
         type
@@ -66,7 +73,7 @@ function Panel2(props) {
         reward={`${miningData.prime.reward.toFixed(2)} NXS`}
         footerLabel="Fees"
         footerValue={`${intlNum(miningData.prime.fees.toFixed(2))} NXS`}
-        delayTime="60s"
+        delayTime={`${cardRefreshTimeout}s`}
       />
     </div>
   );

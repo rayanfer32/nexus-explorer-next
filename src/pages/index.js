@@ -28,7 +28,7 @@ export default function Home(props) {
 }
 
 // export async function getStaticProps() //SSG
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     `${process.env.COINGECKO_BASE_URL}/coins/nexus/market_chart?vs_currency=usd&days=365`
   );
@@ -54,5 +54,6 @@ export async function getServerSideProps() {
       marketData: marketDataJson,
       miningData: miningDataJson.result,
     },
+    revalidate: 60,
   };
 }
