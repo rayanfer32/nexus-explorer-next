@@ -17,7 +17,7 @@
   left: 2%;
   bottom: 0;
   font-family: Lato;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-xs);
   text-transform: uppercase;
   color: var(--theme-page-text-secondary);
@@ -63,7 +63,7 @@
   max-width: 84px;
   height: 70%;
   font-family: Lato;
-  font-weight: bold;
+  font-weight: normal;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
 

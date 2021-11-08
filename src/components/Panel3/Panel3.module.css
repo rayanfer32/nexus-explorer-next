@@ -1,0 +1,5 @@
+.container {
+  display: flex;
+  min-height: 25rem;
+  gap: 2rem;
+}
