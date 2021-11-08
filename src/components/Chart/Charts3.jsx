@@ -1,9 +1,9 @@
 import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
-import jsonData from 'assets/data/coingecko.json';
 import styles from './Charts3.module.css';
 
+// https://www.highcharts.com/docs/chart-design-and-style/style-by-css
 export default function Charts3({ chartData }) {
   const priceChartOptions = {
     // title: {
@@ -12,10 +12,19 @@ export default function Charts3({ chartData }) {
     // subtitle: {
     //   text: 'Overview of Nexus Historical Prices',
     // },
+    credits: {
+      enabled: false,
+    },
     chart: {
       type: 'line',
       //   borderRadius: '20px',
-      className: styles.container,
+      // className: styles.container,
+      style: {
+        fontFamily: 'Lato',
+        background: 'var(--theme-page-background)',
+        boxShadow: '0px 4px 4px #0007',
+        borderRadius: '4px',
+      },
     },
     series: [
       {
@@ -69,6 +78,7 @@ export default function Charts3({ chartData }) {
       constructorType={'stockChart'}
       options={priceChartOptions}
       size={200}
+      className={styles.container}
     />
     // </div>
   );

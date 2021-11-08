@@ -14,13 +14,19 @@ function Panel2(props) {
   //       cleanup;
   //     };
   //   }, [input]);
-  console.log(props);
+
   return (
     <div className={styles.panelTwoContainer}>
       <DetailCard
         type
         label="Price"
         text={`${marketData.market_data.current_price.usd.toFixed(2)} $`}
+        reserveLabel="Change 24h"
+        reserve={`${marketData.market_data.price_change_percentage_24h} %`}
+        rewardLabel="Total Volume"
+        reward={`${intlNum(marketData.market_data.total_volume.usd)} $`}
+        footerLabel="Market Cap:"
+        footerValue={`${intlNum(marketData.market_data.market_cap.usd)} $`}
         delayTime="60s"
       />
       <DetailCard

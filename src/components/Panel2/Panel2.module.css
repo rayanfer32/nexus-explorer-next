@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0rem;
+  /* margin: 0rem 0; */
+  padding: 2rem 0;
   gap: 0.5rem;
   overflow-x: auto;
 }
