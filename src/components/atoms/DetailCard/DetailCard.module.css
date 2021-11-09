@@ -15,6 +15,16 @@
   padding: 0.5rem;
 
   overflow: hidden;
+  animation: flipCard 2s;
+}
+
+@keyframes flipCard {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 
 /* Triangle on right bottom */
@@ -34,6 +44,7 @@
   width: 2.5rem;
   height: 2.5rem;
   z-index: 6;
+  opacity: 80%;
 }
 .triangle1,
 .triangle2,

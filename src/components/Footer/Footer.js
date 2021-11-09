@@ -10,7 +10,7 @@ function Footer() {
     <div className={styles.footer}>
       <section className={styles.redirectIcon}>
         <Image width={176} height={32} src={nexusLogo} alt="nexus logo"></Image>
-        <div className={styles.walletLinks}>
+        <a className={styles.walletLinks} href="https://nexus.io/wallets">
           <div>
             <Image
               width="32"
@@ -37,13 +37,12 @@ function Footer() {
               alt="playstore logo"></Image>
             <div>Get it on Playstore</div>
           </div>
-        </div>
+        </a>
       </section>
       <section className={styles.support}>
-        <p>Support</p>
-        <p>Contact</p>
+        <p>Support-Contact</p>
         <p>|</p>
-        <a href="mailto:contact@nexus.io">contact@nexus.io</a>
+        <a href="mailto:contact@nexus.io">Contact@nexus.io</a>
       </section>
     </div>
   );

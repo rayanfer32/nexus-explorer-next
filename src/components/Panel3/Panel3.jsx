@@ -4,6 +4,7 @@ import RTTable from 'components/atoms/RTTable/RTTable';
 import RTTRow from 'components/atoms/RTTable/RTTRow';
 import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
 import axios from 'axios';
+import { intlNum, toTitleCase } from 'utils/converter';
 
 function Panel3(props) {
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
@@ -19,8 +20,8 @@ function Panel3(props) {
     const newRow = (
       <RTTRowBlock
         key={newRowData.height}
-        block={newRowData.height}
-        mint={newRowData.mint}
+        block={intlNum(newRowData.height)}
+        mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
         channel={`Channel: ${CHANNELS[newRowData.channel]}`}
@@ -50,8 +51,8 @@ function Panel3(props) {
           toId={txn?.contracts[0]?.to}
           txnId={txn?.txid}
           operation={txn?.contracts[0]?.OP}
-          txType={txn?.type}
-          amount={txn?.contracts[0]?.amount}
+          txType={toTitleCase(txn?.type)}
+          amount={intlNum(txn?.contracts[0]?.amount.toFixed(2))}
           confirmations={txn?.confirmations}
           contracts={txn?.contracts?.length}
         />
@@ -122,11 +123,3 @@ function Panel3(props) {
 }
 
 export default Panel3;
-
-/*
-TODO:
-* load 10 rows data on first page load
-* Fetch latestBlock from api in useEffect to load new rows
-* Clear the tableRows if it excees MAXROWS 
-
-*/

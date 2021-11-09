@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 
 function Layout({ children }) {
   return (
-    <div className="dark">
+    <div className="light">
       <Navbar></Navbar>
       <div className={styles.container}>
         <main className={styles.main}>{children}</main>

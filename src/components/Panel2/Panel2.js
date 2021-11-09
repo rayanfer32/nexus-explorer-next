@@ -46,7 +46,7 @@ function Panel2(props) {
         reward={`${metricsData.trust.total}`}
         rewardLabel="Total"
         footerLabel="Fees"
-        footerValue={`${miningData.stake.fees.toFixed(2)} NXS`}
+        footerValue={`${intlNum(miningData.stake.fees.toFixed(2))} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard

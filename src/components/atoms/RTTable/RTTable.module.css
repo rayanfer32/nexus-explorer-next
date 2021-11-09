@@ -27,14 +27,17 @@
   background: var(--theme-page-background);
   box-sizing: border-box;
   padding: 2px 32px;
+  font-size: var(--font-s);
   border-radius: 4px;
   cursor: pointer;
 }
 
 .button:hover {
-  filter: brightness(110%);
+  box-shadow: 0px 2px 4px var(--theme-page-text-secondary);
+  background: var(--theme-page-text);
+  color: var(--theme-page-background);
 }
 
 .rttDataList {
-  max-height: 50vh;
+  max-height: 100%;
 }

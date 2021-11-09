@@ -34,7 +34,7 @@ function RTTRow(props) {
         </div>
 
         <div className={styles.txnAmount}>
-          {amount}NXS<div className={styles.lowerThirdText}>amount</div>
+          {amount} NXS<div className={styles.lowerThirdText}>amount</div>
         </div>
         <div className={styles.confirmations}>
           Confirmations: {confirmations}

@@ -33,9 +33,9 @@ export default function TypeTwo(props) {
         <div className={styles.transectionBlock}>
           {/* Card bodt sub value with label */}
           <span className={styles.transectionUnit}>
-            <div className={styles.transection}>{reserve}</div>
+            <div className={styles.transection}>{reserveLabel}</div>
             <div className={styles.transectionType}>
-              {reserveLabel}
+              {reserve}
               <div className={styles.txnIcon}>
                 {/* If requried pass the props and icon will shown */}
                 {/* <Image src={} alt="" /> */}
@@ -44,9 +44,9 @@ export default function TypeTwo(props) {
           </span>
           {/* Card bodt sub value with label */}
           <span className={styles.transectionUnit}>
-            <div className={styles.transection}>{reward}</div>
+            <div className={styles.transection}>{rewardLabel}</div>
             <div className={styles.transectionType}>
-              {rewardLabel}
+              {reward}
               <div className={styles.txnIcon}>
                 {/* If requried pass the props and icon will shown */}
                 {/* <Image src={} alt=""/> */}

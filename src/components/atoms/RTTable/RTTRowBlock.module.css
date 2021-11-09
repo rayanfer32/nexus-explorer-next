@@ -55,7 +55,7 @@
 .cardTag .carTagName {
   color: var(--white);
 
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   text-align: center;
 }
 
@@ -78,7 +78,7 @@
 .dataCotainer .txns {
   position: relative;
   max-width: 84px;
-  height: 70%;
+  /* height: 70%; */
 
   font-weight: normal;
   font-size: var(--font-normal);
@@ -90,26 +90,26 @@
 }
 
 .dataCotainer .time {
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   align-self: flex-start;
   height: 100%;
 }
 
 .dataCotainer .time .timeInUTC,
 .dataCotainer .time .date {
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   display: flex;
   align-items: center;
   gap: 2px;
 }
 .dataCotainer .time .timeInUTC .timeUnit {
-  font-size: var(--font-xxxs);
+  font-size: var(--font-s);
   color: var(--theme-page-text-secondary);
 }
 
 .dataCotainer .mint,
 .dataCotainer .size {
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
 }
 .dataCotainer .size {
   max-width: 100%;
@@ -120,9 +120,9 @@
 }
 
 .labelUnit {
-  position: absolute;
+  /* position: absolute; */
   right: 0;
-  bottom: -16%;
+  /* bottom: 10%; */
   font-style: normal;
   font-weight: normal;
   font-size: var(--font-xxs);
