@@ -9,6 +9,23 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  animation: slideIn 2s;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0%;
+    color: rgb(58, 119, 231);
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 100%;
+    color: blue;
+  }
+  100% {
+    color: black;
+  }
 }
 
 .cardType {
