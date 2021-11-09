@@ -14,7 +14,6 @@
   grid-gap: 0.125rem;
   padding: 0.5rem;
 
-  font-family: Lato;
   overflow: hidden;
 }
 
@@ -90,7 +89,7 @@
 .detailcard .header.one .heading,
 .detailcard .header.two .heading {
   margin: 0;
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
@@ -130,7 +129,7 @@
 }
 .detailcard .body.one .bodyText {
   margin: 0;
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-xxxl);
   text-align: right;
@@ -142,7 +141,7 @@
 .detailcard .body.one .bodyTextUnit {
   justify-self: flex-end;
   text-align: right;
-  font-family: inherit;
+
   font-size: var(--font-s);
   color: var(--theme-page-text);
 }
@@ -159,7 +158,7 @@
 .detailcard .footer.two p,
 .detailcard .footer.two label {
   margin: 0;
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-l);
   color: var(--theme-page-text-secondary);
@@ -183,7 +182,7 @@
 }
 .detailcard .body.two .bodyText {
   margin: 0;
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-xxl);
   color: var(--theme-page-text);
@@ -204,7 +203,7 @@
 .detailcard .body.two .transectionBlock .transectionUnit .transection,
 .detailcard .body.two .transectionBlock .transectionUnit .transectionType {
   color: var(--theme-page-text-secondary);
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-s);
   text-overflow: ellipsis;

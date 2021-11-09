@@ -11,8 +11,6 @@
   grid-template-rows: auto 1fr;
   -ms-grid-rows: auto 1fr;
   padding: 0.75rem;
-
-  font-family: Lato, 'Lato';
 }
 
 .smallcard .icon {
@@ -39,7 +37,7 @@
 .smallcard .headerContainer .label {
   width: 100%;
   height: var(--font-normal);
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-s);
   color: var(--theme-page-text);
@@ -51,7 +49,7 @@
 .smallcard .headerContainer .sublabel {
   width: 100%;
   height: var(--font-s);
-  font-family: inherit;
+
   font-weight: normal;
   font-size: var(--font-xs);
   color: var(--theme-page-text);
@@ -68,7 +66,6 @@
   width: 10rem;
 }
 .smallcard .bodyContainer .bodyText {
-  font-family: inherit;
   font-weight: normal;
   font-size: var(--font-xxl);
   color: var(--theme-page-text);
@@ -81,7 +78,6 @@
   padding-left: 0.25rem;
   align-self: center;
   font-weight: normal;
-  font-family: inherit;
   font-size: var(--font-s);
   color: var(--theme-page-text);
 }

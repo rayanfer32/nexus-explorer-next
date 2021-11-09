@@ -33,7 +33,7 @@
   top: 0;
   left: 2%;
   bottom: 0;
-  font-family: Lato;
+
   font-weight: normal;
   font-size: var(--font-xs);
   text-transform: uppercase;
@@ -54,7 +54,7 @@
 
 .cardTag .carTagName {
   color: var(--white);
-  font-family: Lato;
+
   font-size: var(--font-xs);
   text-align: center;
 }
@@ -79,7 +79,7 @@
   position: relative;
   max-width: 84px;
   height: 70%;
-  font-family: Lato;
+
   font-weight: normal;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
@@ -123,7 +123,6 @@
   position: absolute;
   right: 0;
   bottom: -16%;
-  font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: var(--font-xxs);

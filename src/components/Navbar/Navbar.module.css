@@ -36,7 +36,6 @@
 
 .brand .explorer {
   /* align-self: flex-end; */
-  font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: lighter;
   font-size: var(--font-xl);
