@@ -8,7 +8,7 @@ function Panel1({ chartData, metricsData, infoData }) {
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
         <SmallCard
-          label="ChainHeight"
+          label="Chain Height"
           sublabel="Blocks"
           text={new Intl.NumberFormat('en-US').format(infoData.blocks)}
           ticker="^"

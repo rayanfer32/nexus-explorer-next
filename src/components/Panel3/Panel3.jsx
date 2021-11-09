@@ -35,23 +35,35 @@ function Panel3(props) {
   function addNewTxRow(newRowData) {
     //console.log('adding txn ');
     //console.log(newRowData);
+    // FIXME:
+    // TODO:
+    // Ignore the txs with type=tritium base
+    // If type=legacy user , then show the input field as from and output as to
+    // If type=tritium user, then show
+    // If the tx has from and to fields in the contracts and then display if they exist , otherwise ignore
 
-    const newRow = (
-      <RTTRow
-        fromId={newRowData[0]?.contracts[0].from}
-        toId={newRowData[0]?.contracts[0].to}
-        txnId={newRowData[0]?.txid}
-        operation={newRowData[0]?.contracts[0].OP}
-        txType={newRowData[0]?.type}
-        amount={newRowData[0]?.contracts[0].amount}
-        confirmations={newRowData[0]?.confirmations}
-        contracts={newRowData[0]?.contracts.length}
-      />
-    );
-    setTableTxRowElements((tableBlockRowElements) => [
-      newRow,
-      ...tableBlockRowElements.slice(0, MAX_ROWS - 1),
-    ]);
+    try {
+      const newRows = newRowData.map((txn, index) => (
+        <RTTRow
+          key={`${txn.txid}${index}`}
+          fromId={txn?.contracts[0]?.from}
+          toId={txn?.contracts[0]?.to}
+          txnId={txn?.txid}
+          operation={txn?.contracts[0]?.OP}
+          txType={txn?.type}
+          amount={txn?.contracts[0]?.amount}
+          confirmations={txn?.confirmations}
+          contracts={txn?.contracts?.length}
+        />
+      ));
+
+      setTableTxRowElements((tableBlockRowElements) => {
+        const rowUpdate = [...newRows, ...tableBlockRowElements];
+        return rowUpdate.slice(0, MAX_ROWS);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   async function handleAddRow() {
