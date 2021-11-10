@@ -6,7 +6,7 @@ import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
 import axios from 'axios';
 import { intlNum, toTitleCase } from 'utils/converter';
 
-function Panel3(props) {
+function Panel3() {
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
   const blockSpeed = 30 * 1000; // in seconds
@@ -17,10 +17,13 @@ function Panel3(props) {
   function addNewBlockRow(newRowData) {
     //console.log('adding block ' + newRowData.height);
     lastBlock = newRowData.height;
+    // console.log('inside addNewBlockRow');
+    // console.log(newRowData);
     const newRow = (
       <RTTRowBlock
         key={newRowData.height}
         block={intlNum(newRowData.height)}
+        date={new Date(newRowData.date).toLocaleTimeString()}
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
@@ -36,27 +39,37 @@ function Panel3(props) {
   function addNewTxRow(newRowData) {
     //console.log('adding txn ');
     //console.log(newRowData);
-    // FIXME:
+    // FIXME: When new block is fetched in 30s we lose a block sometimes , bcz the latestBlock fetches only the topmost block
+
     // TODO:
-    // Ignore the txs with type=tritium base
+    // DONE: (Main logic ) Iterate over the txns and inside the txn iterate over the contracts
+    // Ignore the txs with type=tritium base ( currently not ignored, for filling up the table.)
     // If type=legacy user , then show the input field as from and output as to
     // If type=tritium user, then show
     // If the tx has from and to fields in the contracts and then display if they exist , otherwise ignore
 
     try {
-      const newRows = newRowData.map((txn, index) => (
-        <RTTRow
-          key={`${txn.txid}${index}`}
-          fromId={txn?.contracts[0]?.from}
-          toId={txn?.contracts[0]?.to}
-          txnId={txn?.txid}
-          operation={txn?.contracts[0]?.OP}
-          txType={toTitleCase(txn?.type)}
-          amount={intlNum(txn?.contracts[0]?.amount.toFixed(2))}
-          confirmations={txn?.confirmations}
-          contracts={txn?.contracts?.length}
-        />
-      ));
+      let newRows = [];
+      // console.log(newRowData);
+      for (let txidx = 0; txidx < newRowData.length; txidx++) {
+        for (let cidx = 0; cidx < newRowData[txidx].contracts.length; cidx++) {
+          newRows.push(
+            <RTTRow
+              key={`${newRowData[txidx].txid}${txidx}${cidx}`}
+              fromId={newRowData[txidx]?.contracts[cidx]?.from}
+              toId={newRowData[txidx]?.contracts[cidx]?.to}
+              txnId={newRowData[txidx]?.txid}
+              operation={newRowData[txidx]?.contracts[cidx]?.OP}
+              txType={toTitleCase(newRowData[txidx]?.type)}
+              amount={intlNum(
+                newRowData[txidx]?.contracts[cidx]?.amount?.toFixed(2)
+              )}
+              confirmations={newRowData[txidx]?.confirmations}
+              contracts={newRowData[txidx]?.contracts?.length}
+            />
+          );
+        }
+      }
 
       setTableTxRowElements((tableBlockRowElements) => {
         const rowUpdate = [...newRows, ...tableBlockRowElements];
@@ -68,10 +81,10 @@ function Panel3(props) {
   }
 
   async function handleAddRow() {
-    const latestBlockUrl = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/latestBlock`;
+    const latestBlockUrl = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=1`;
     const latestBlockResp = await axios.get(latestBlockUrl);
-    const newRowData = latestBlockResp.data;
-    // FIXME: when using state for lastblock the if block fails (state out of sync) , currently fixed using let
+    const newRowData = latestBlockResp.data.result[0];
+    // FIXME: when using state for lastblock ,the if block fails (state out of sync) , currently fixed using let
     if (lastBlock != newRowData.height) {
       addNewBlockRow(newRowData);
       addNewTxRow(newRowData.tx);
@@ -82,12 +95,6 @@ function Panel3(props) {
     const recentBlocksUrl = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${limit}`;
     const resp = await axios.get(recentBlocksUrl);
     const newBlocksData = resp.data.result;
-    //console.log(newBlocksData);
-    // TODO:
-    // Ignore the txs with type=tritium base
-    // If type=legacy user , then show the input field as from and output as to
-    // If type=tritium user, then show
-    // If the tx has from and to fields in the contracts and then display if they exist , otherwise ignore
 
     newBlocksData.reverse().map((block) => {
       addNewBlockRow(block);

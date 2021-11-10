@@ -110,7 +110,7 @@
 .detailcard .header.one span .sublabel,
 .detailcard .header.two span .sublabel {
   font-weight: normal;
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   color: var(--theme-page-text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -124,7 +124,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--font-xxs);
+  font-size: var(--font-xs);
   color: var(--white);
   overflow: hidden;
 }
@@ -181,7 +181,7 @@
 }
 .detailcard .footer.two label {
   font-weight: normal;
-  font-size: var(--font-s);
+  font-size: var(--font-normal);
 }
 
 .detailcard .body.two {
@@ -216,7 +216,7 @@
   color: var(--theme-page-text-secondary);
 
   font-weight: normal;
-  font-size: var(--font-s);
+  font-size: var(--font-normal);
   text-overflow: ellipsis;
   overflow: hidden;
 }

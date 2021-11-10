@@ -37,10 +37,10 @@
 }
 .smallcard .headerContainer .label {
   width: 100%;
-  height: var(--font-normal);
+  /* height: var(--font-normal); */
 
   font-weight: normal;
-  font-size: var(--font-s);
+  font-size: var(--font-normal);
   color: var(--theme-page-text);
   white-space: nowrap;
   overflow: hidden;
@@ -49,10 +49,9 @@
 
 .smallcard .headerContainer .sublabel {
   width: 100%;
-  height: var(--font-s);
 
   font-weight: normal;
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   color: var(--theme-page-text);
   white-space: nowrap;
   overflow: hidden;
