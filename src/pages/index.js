@@ -32,22 +32,30 @@ export default function Home(props) {
 
 // export async function getStaticProps() //SSG
 export async function getStaticProps() {
-  const res = await fetch(
-    `${process.env.COINGECKO_BASE_URL}/coins/nexus/market_chart?vs_currency=usd&days=365`
-  );
-  const chartDataJson = await res.json();
+  const [chartRes, metricsRes, infoRes, marketRes, miningRes] =
+    await Promise.all([
+      fetch(
+        `${process.env.COINGECKO_BASE_URL}/coins/nexus/market_chart?vs_currency=usd&days=365`
+      ),
+      fetch(`${process.env.NEXUS_BASE_URL}/system/get/metrics`),
+      fetch(`${process.env.NEXUS_BASE_URL}/system/get/info`),
+      fetch(`${process.env.COINGECKO_BASE_URL}/coins/nexus`),
+      fetch(`${process.env.NEXUS_BASE_URL}/ledger/get/info`),
+    ]);
 
-  const res2 = await fetch(`${process.env.NEXUS_BASE_URL}/system/get/metrics`);
-  const metricsDataJson = await res2.json();
-
-  const res3 = await fetch(`${process.env.NEXUS_BASE_URL}/system/get/info`);
-  const infoDataJson = await res3.json();
-
-  const res4 = await fetch(`${process.env.COINGECKO_BASE_URL}/coins/nexus`);
-  const marketDataJson = await res4.json();
-
-  const res5 = await fetch(`${process.env.NEXUS_BASE_URL}/ledger/get/info`);
-  const miningDataJson = await res5.json();
+  const [
+    chartDataJson,
+    metricsDataJson,
+    infoDataJson,
+    marketDataJson,
+    miningDataJson,
+  ] = await Promise.all([
+    chartRes.json(),
+    metricsRes.json(),
+    infoRes.json(),
+    marketRes.json(),
+    miningRes.json(),
+  ]);
 
   return {
     props: {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import nexusLogo from 'assets/branding/NexusLogoWhite1000x225.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import SearchBar from 'components/SearchBar/SearchBar';
+import SearchBar from 'components/atoms/SearchBar/SearchBar';
 import darkBtn from 'assets/icons/dark_mode_black_24dp.svg';
 import lightBtn from 'assets/icons/light_mode_black_24dp.svg';
 
@@ -38,7 +38,9 @@ function Navbar() {
             return (
               <span
                 key={navItem.id}
-                className={router.pathname === navItem.path && styles.active}>
+                className={
+                  router.pathname === navItem.path ? styles.active : undefined
+                }>
                 <Link href={navItem.path}>{navItem.title}</Link>
               </span>
             );
