@@ -2,4 +2,5 @@
   display: flex;
   min-height: 25rem;
   gap: 2rem;
+  justify-content: center;
 }
