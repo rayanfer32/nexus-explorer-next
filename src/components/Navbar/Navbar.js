@@ -4,6 +4,8 @@ import nexusLogo from 'assets/branding/NexusLogoWhite1000x225.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SearchBar from 'components/SearchBar/SearchBar';
+import darkBtn from 'assets/icons/dark_mode_black_24dp.svg';
+import lightBtn from 'assets/icons/light_mode_black_24dp.svg';
 
 function Navbar() {
   const router = useRouter();
@@ -27,6 +29,9 @@ function Navbar() {
           alt="nexus logo"></Image>
         <div className={styles.explorer}>Explorer</div>
       </div>
+      <div className={styles.searchBar}>
+        <SearchBar />
+      </div>
       <div className={styles.navItem}>
         <div className={styles.links}>
           {navList.map((navItem) => {
@@ -39,8 +44,19 @@ function Navbar() {
             );
           })}
         </div>
-        <div className={styles.searchBar}>
-          <SearchBar />
+
+        <div
+          style={{ filter: 'invert(1)' }}
+          onClick={() => {
+            document.body.className =
+              document.body.className == 'dark' ? 'light' : 'dark';
+          }}>
+          <Image
+            width={32}
+            height={32}
+            layout="fixed"
+            src={darkBtn}
+            alt="Dark Mode Button"></Image>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@
   flex-direction: column;
   height: fit-content;
   max-height: max-content;
-  background: var(--radial-ocean-midnight);
+  background: var(--theme-layout-background);
   box-shadow: 0px -2px 4px #333b;
   /* padding-bottom: 1rem; */
 }

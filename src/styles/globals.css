@@ -59,6 +59,7 @@
   --theme-gradient-radial: var(--radial-sky-white);
   --theme-gradient-linear: var(--linear-sky-white);
   --theme-bg-under: var(--pale-white);
+  --theme-layout-background: var(--radial-ocean-midnight);
 }
 
 .dark {
@@ -71,6 +72,7 @@
   --theme-gradient-radial: var(--radial-ocean-midnight);
   --theme-gradient-linear: var(--linear-ocean-midnight);
   --theme-bg-under: var(--radial-ocean-midnight);
+  --theme-layout-background: var(--midnight-blue);
 }
 
 /* start css for highcharts  */

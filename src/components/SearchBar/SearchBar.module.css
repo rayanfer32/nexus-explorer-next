@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 .searchBar button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .searchBar button .searchIcon {
