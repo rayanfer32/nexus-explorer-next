@@ -1,3 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 4rem;
+  width: 100%;
+  background: var(--theme-layout-background);
+  box-shadow: 0 0.25rem 0.25rem #0007;
+  padding-bottom: 0.5rem;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -7,8 +19,6 @@
   padding: 0rem 1rem;
   font-size: var(--font-normal);
   font-weight: 500;
-  background: var(--theme-layout-background);
-  box-shadow: 0 0.25rem 0.25rem #0007;
 }
 
 .spacing {
@@ -69,8 +79,7 @@
 }
 
 .searchBar {
-  margin: 0.5rem;
-  width: 100%;
+  width: 98%;
 }
 
 /* mobile screen classes */
@@ -78,8 +87,5 @@
   .nav,
   .navItem {
     flex-direction: column;
-  }
-  .searchBar {
-    width: 100%;
   }
 }

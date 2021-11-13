@@ -1,0 +1,25 @@
+.container {
+  align-self: flex-end;
+  margin: 0.25rem 0;
+  width: 3.5rem;
+  height: 1.75rem;
+  border-radius: 3.5rem;
+  background: var(--nexus-blue);
+  outline-color: var(--nexus-blue);
+  border: none;
+  cursor: pointer;
+}
+
+.container .thumb {
+  width: 1.4rem;
+  height: 1.3125rem;
+  border-radius: 1.3125rem;
+  background: var(--sky-blue);
+  transition: all 300ms ease-in;
+}
+.container .thumb.right {
+  transform: translateX(100%);
+}
+.container .thumb.right .img {
+  filter: invert(1);
+}

@@ -60,6 +60,8 @@
   --theme-gradient-linear: var(--linear-sky-white);
   --theme-bg-under: var(--pale-white);
   --theme-layout-background: var(--radial-ocean-midnight);
+  --theme-search: var(--white);
+  --theme-search-text: var(--white);
 }
 
 .dark {
@@ -73,6 +75,8 @@
   --theme-gradient-linear: var(--linear-ocean-midnight);
   --theme-bg-under: var(--radial-ocean-midnight);
   --theme-layout-background: var(--midnight-blue);
+  --theme-search: var(--white);
+  --theme-search-text: var(--white);
 }
 
 /* start css for highcharts  */
@@ -110,6 +114,9 @@ body {
   background: var(--theme-bg-under);
 }
 
+input {
+  color: var(--midnight-blue);
+}
 a {
   color: inherit;
   text-decoration: none;
