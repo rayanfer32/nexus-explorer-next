@@ -16,6 +16,7 @@
   justify-content: space-between;
   min-height: 4rem;
   width: 100%;
+  max-width: var(--max-screen);
   padding: 0rem 1rem;
   font-size: var(--font-normal);
   font-weight: 500;
@@ -79,7 +80,9 @@
 }
 
 .searchBar {
-  width: 98%;
+  width: 100%;
+  max-width: var(--max-screen);
+  padding: 0rem 1rem;
 }
 
 /* mobile screen classes */

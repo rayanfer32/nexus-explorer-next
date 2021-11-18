@@ -5,16 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
+import { useDarkMode } from 'hooks';
+import TYPES from 'types';
 
 function Navbar() {
   const router = useRouter();
-  const navList = [
-    { id: 1, title: 'Home', path: '/' },
-    { id: 2, title: 'Trustlist', path: '/trustlist' },
-    { id: 3, title: 'Richlist', path: '/richlist' },
-    { id: 4, title: 'Network', path: '/network' },
-    { id: 5, title: 'About', path: '/about' },
-  ];
+  const [isDarkMode, setDarkMode] = useDarkMode();
+  const navList = TYPES.navList;
   const onClickBrand = () => router.push('/');
 
   return (
@@ -45,10 +42,8 @@ function Navbar() {
           </div>
 
           <ThemeMode
-            onClick={() => {
-              document.body.className =
-                document.body.className == 'dark' ? 'light' : 'dark';
-            }}
+            onClick={() => setDarkMode((prevMode) => !prevMode)}
+            isDark={isDarkMode}
           />
         </div>
       </div>

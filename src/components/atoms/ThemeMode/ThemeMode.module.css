@@ -10,16 +10,18 @@
   cursor: pointer;
 }
 
-.container .thumb {
+.container .thumb-left,
+.container .thumb-right {
   width: 1.4rem;
   height: 1.3125rem;
   border-radius: 1.3125rem;
   background: var(--sky-blue);
   transition: all 300ms ease-in;
 }
-.container .thumb.right {
+.container .thumb-right {
   transform: translateX(100%);
 }
-.container .thumb.right .img {
+.container .thumb-left .img {
   filter: invert(1);
+  -webkit-filter: invert(1);
 }

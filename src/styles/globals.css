@@ -47,8 +47,12 @@
   --font-xl: 1.125rem; /* 18px */
   --font-xxl: 1.25rem; /* 20px */
   --font-xxxl: 1.5rem; /* 24px */
+
+  /* screen sizes */
+  --max-screen: 1440px;
 }
 
+:root,
 .light {
   --theme-color: var(--ocean-blue);
   --theme-page-background: var(--white);
