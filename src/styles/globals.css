@@ -87,6 +87,18 @@
 .highcharts-background {
   fill: var(--theme-page-background);
 }
+.highcharts-container {
+  font-family: Lato;
+  /* font-size: var(--font-s); */
+  margin: 0.5rem;
+  /* overflow: visible; */
+  /* background: var(--theme-page-background); */
+}
+.highcharts-root {
+  box-shadow: 0 0.25rem 0.25rem #0003;
+  background: var(--theme-page-background);
+}
+
 .highcharts-container text {
   fill: var(--theme-page-text);
 }
@@ -99,14 +111,34 @@
   stroke: var(--theme-page-text-secondary);
   stroke-opacity: 0.2;
 }
-.highcharts-tooltip-box {
-  fill: var(--theme-page-background);
+.highcharts-tooltip {
+  fill: var(--theme-page-not-background);
 }
+/* .highcharts-tooltip-box {
+  fill: var(--theme-page-not-background);
+} */
 .highcharts-column-series rect.highcharts-point {
   stroke: var(--theme-page-background);
 }
+.highcharts-tooltip-box .highcharts-label-box {
+  fill: var(--theme-page-background);
+}
 .highcharts-color-2 {
   fill: var(--theme-page-background);
+}
+.highcharts-button {
+  fill: var(--theme-page-background);
+}
+
+.highcharts-scrollbar-track {
+  fill: var(--theme-page-background);
+  stroke: none;
+}
+.highcharts-scrollbar-thumb {
+  fill: var(--theme-page-background);
+}
+.highcharts-scrollbar-button {
+  opacity: 0;
 }
 /* end highchart css */
 

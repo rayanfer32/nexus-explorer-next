@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function richlist() {
-    return (
-        <h1>
-            richlist tab
-        </h1>
-    )
+  return <h1>richlist tab</h1>;
 }
 
-export default richlist
+export default richlist;
