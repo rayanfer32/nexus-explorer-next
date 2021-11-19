@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import useMediaQuery from '../16-useMediaQuery/useMediaQuery';
-import { useLocalStorage } from '../8-useStorage/useStorage';
+import TYPES from 'types';
+import { useMediaQuery } from '../useMediaQuery/useMediaQuery';
+import { useLocalStorage } from '../useStorage/useStorage';
 
-export default function useDarkMode() {
-  const [darkMode, setDarkMode] = useLocalStorage('useDarkMode');
+export function useDarkMode() {
+  const [darkMode, setDarkMode] = useLocalStorage('theme');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const enabled = darkMode ?? prefersDarkMode;
 
   useEffect(() => {
-    document.body.classList.toggle('dark-mode', enabled);
+    document.body.classList.toggle(TYPES.theme.dark, enabled);
   }, [enabled]);
 
   return [enabled, setDarkMode];

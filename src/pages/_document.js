@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import TYPES from 'types';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -10,7 +11,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body className="dark">
+        <body className={TYPES.theme.light}>
           <Main />
           <NextScript />
         </body>

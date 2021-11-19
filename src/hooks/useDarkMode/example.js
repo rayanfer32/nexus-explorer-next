@@ -1,7 +1,7 @@
 import useDarkMode from './useDarkMode';
-import './body.css';
+import './example.css';
 
-export default function DarkModeComponent() {
+export function DarkModeComponent() {
   const [darkMode, setDarkMode] = useDarkMode();
 
   return (
