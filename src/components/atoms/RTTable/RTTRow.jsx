@@ -8,7 +8,7 @@ function RTTRow(props) {
     operation = '',
     txType = '',
     amount = '',
-    amountUnit = '',
+    amountUnit = 'NXS',
     confirmations = '',
     contracts = '',
   } = props;

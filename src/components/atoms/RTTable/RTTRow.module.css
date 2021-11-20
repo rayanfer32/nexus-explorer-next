@@ -1,15 +1,14 @@
 .rttrow {
   position: relative;
-  width: 524px;
-  height: 52px;
+  width: 32.75rem;
+  height: 3.25rem;
   background: var(--theme-page-background);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  margin-bottom: 2px;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.25rem;
+  margin-bottom: 0.125rem;
   display: flex;
-  /* flex-direction: column; */
   overflow: hidden;
-  animation: slideIn 2s;
+  animation: slideIn 1.5s ease;
 }
 
 .rttrow .rttrowName {
@@ -21,6 +20,7 @@
   text-transform: uppercase;
   margin-left: 0.125rem;
   width: var(--font-normal);
+  letter-spacing: 0.125rem;
   animation: scrollDown 4s linear infinite;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .rttrowDetail .rttrowTop {
-  height: 18px;
+  height: 1.125rem;
   display: flex;
   justify-content: space-between;
   margin-right: var(--font-normal);
@@ -95,7 +95,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 99%;
+  max-width: 100%;
 }
 .lowerThirdText {
   font-size: var(--font-xxs);
@@ -105,7 +105,7 @@
 .txnId .txnIdValue,
 .txnAmount .txnAmountText {
   /* truncate text */
-  width: 100px;
+  width: 6.25rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -113,6 +113,7 @@
 
 .txnAmount .txnAmountText {
   max-width: 100%;
+  width: fit-content;
 }
 
 .confirmations,
@@ -135,7 +136,7 @@
     color: rgb(58, 119, 231);
   }
   70% {
-    transform: translateX(0px);
+    transform: translateX(0rem);
     opacity: 100%;
     color: blue;
   }
@@ -146,9 +147,9 @@
 
 @keyframes scrollDown {
   from {
-    transform: translateY(-52px) rotate(180deg);
+    transform: translateY(-3.25rem) rotate(180deg);
   }
   to {
-    transform: translateY(52px) rotate(180deg);
+    transform: translateY(3.25rem) rotate(180deg);
   }
 }
