@@ -6,8 +6,7 @@
   min-height: 4rem;
   width: 100%;
   background: var(--theme-layout-background);
-  box-shadow: 0 0.25rem 0.25rem #0007;
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
 }
 
 .nav {
@@ -82,7 +81,8 @@
 .searchBar {
   width: 100%;
   max-width: var(--max-screen);
-  padding: 0rem 1rem;
+  padding: 0.5rem 3rem;
+  box-shadow: 0 0.25rem 0.25rem #0003;
 }
 
 /* mobile screen classes */

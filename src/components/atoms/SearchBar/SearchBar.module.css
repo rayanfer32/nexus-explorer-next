@@ -80,7 +80,8 @@
   height: 2.625rem;
   color: var(--midnight-blue);
   border-radius: 0.125rem;
-  font-size: 1.1rem;
+  font-size: var(--font-normal);
+  font-weight: normal;
 }
 .searchBarLong input[type='search']:focus {
   outline: solid 0.125rem var(--nexus-blue);

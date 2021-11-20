@@ -1,7 +1,6 @@
 import SmallCard from '../atoms/SmallCard';
-import Charts3 from 'components/Chart/Charts3';
 import styles from 'components/Panel1/Panel1.module.css';
-
+import ChartsApex from 'components/Chart/ChartsApex';
 function Panel1({ chartData, metricsData, infoData }) {
   //   console.log(infoData);
   return (
@@ -24,7 +23,7 @@ function Panel1({ chartData, metricsData, infoData }) {
         <SmallCard
           label="Account Registers"
           sublabel="Users"
-          text={new Intl.NumberFormat().format(metricsData.registers.total)}
+          text={new Intl.NumberFormat().format(metricsData.registers.account)}
           ticker=""
         />
         <SmallCard
@@ -34,7 +33,7 @@ function Panel1({ chartData, metricsData, infoData }) {
           ticker="%"
         />
       </div>
-      <Charts3 chartData={chartData} />
+      <ChartsApex />
     </div>
   );
 }

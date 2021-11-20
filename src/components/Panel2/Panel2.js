@@ -27,6 +27,7 @@ function Panel2(props) {
       <DetailCard
         type
         label="Price"
+        sublabel={`${marketData.market_data.current_price.btc} BTC`}
         text={`${marketData.market_data.current_price.usd.toFixed(2)} $`}
         reserveLabel="Change 24h"
         reserve={`${marketData.market_data.price_change_percentage_24h} %`}

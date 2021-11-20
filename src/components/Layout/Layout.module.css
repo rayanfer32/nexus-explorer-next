@@ -1,11 +1,11 @@
 .container {
-  min-height: 100vh;
+  min-height: 100vmin;
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   padding: 0 2rem;
   background: var(--theme-bg-under);
 }

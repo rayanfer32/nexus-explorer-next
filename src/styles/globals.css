@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Lato+bold&display=swap'); */
-@import 'https://code.highcharts.com/css/highcharts.css';
+/* @import 'https://code.highcharts.com/css/highcharts.css'; */
 
 :root {
   /* colors */
@@ -82,65 +82,6 @@
   --theme-search: var(--white);
   --theme-search-text: var(--white);
 }
-
-/* start css for highcharts  */
-.highcharts-background {
-  fill: var(--theme-page-background);
-}
-.highcharts-container {
-  font-family: Lato;
-  /* font-size: var(--font-s); */
-  margin: 0.5rem;
-  /* overflow: visible; */
-  /* background: var(--theme-page-background); */
-}
-.highcharts-root {
-  box-shadow: 0 0.25rem 0.25rem #0003;
-  background: var(--theme-page-background);
-}
-
-.highcharts-container text {
-  fill: var(--theme-page-text);
-}
-.highcharts-subtitle,
-.highcharts-credits,
-.highcharts-axis-title {
-  fill-opacity: 0.7;
-}
-.highcharts-grid-line {
-  stroke: var(--theme-page-text-secondary);
-  stroke-opacity: 0.2;
-}
-.highcharts-tooltip {
-  fill: var(--theme-page-not-background);
-}
-/* .highcharts-tooltip-box {
-  fill: var(--theme-page-not-background);
-} */
-.highcharts-column-series rect.highcharts-point {
-  stroke: var(--theme-page-background);
-}
-.highcharts-tooltip-box .highcharts-label-box {
-  fill: var(--theme-page-background);
-}
-.highcharts-color-2 {
-  fill: var(--theme-page-background);
-}
-.highcharts-button {
-  fill: var(--theme-page-background);
-}
-
-.highcharts-scrollbar-track {
-  fill: var(--theme-page-background);
-  stroke: none;
-}
-.highcharts-scrollbar-thumb {
-  fill: var(--theme-page-background);
-}
-.highcharts-scrollbar-button {
-  opacity: 0;
-}
-/* end highchart css */
 
 html,
 body {
@@ -285,3 +226,67 @@ a {
     transform: scale3d(1, 1, 1);
   }
 }
+
+/* start css for apexcharts  */
+
+/* end css for apexcharts */
+
+/* start css for highcharts  */
+
+.highcharts-background {
+  fill: var(--theme-page-background);
+}
+.highcharts-container {
+  font-family: Lato;
+  /* font-size: var(--font-s); */
+  margin: 0.5rem;
+  /* overflow: visible; */
+  /* background: var(--theme-page-background); */
+}
+.highcharts-root {
+  box-shadow: 0 0.25rem 0.25rem #0003;
+  background: var(--theme-page-background);
+}
+
+.highcharts-container text {
+  fill: var(--theme-page-text);
+}
+.highcharts-subtitle,
+.highcharts-credits,
+.highcharts-axis-title {
+  fill-opacity: 0.7;
+}
+.highcharts-grid-line {
+  stroke: var(--theme-page-text-secondary);
+  stroke-opacity: 0.2;
+}
+.highcharts-tooltip {
+  fill: var(--theme-page-not-background);
+}
+/* .highcharts-tooltip-box {
+  fill: var(--theme-page-not-background);
+} */
+.highcharts-column-series rect.highcharts-point {
+  stroke: var(--theme-page-background);
+}
+.highcharts-tooltip-box .highcharts-label-box {
+  fill: var(--theme-page-background);
+}
+.highcharts-color-2 {
+  fill: var(--theme-page-background);
+}
+.highcharts-button {
+  fill: var(--theme-page-background);
+}
+
+.highcharts-scrollbar-track {
+  fill: var(--theme-page-background);
+  stroke: none;
+}
+.highcharts-scrollbar-thumb {
+  fill: var(--theme-page-background);
+}
+.highcharts-scrollbar-button {
+  opacity: 0;
+}
+/* end highchart css */
