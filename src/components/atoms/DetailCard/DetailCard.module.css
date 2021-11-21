@@ -16,6 +16,8 @@
 
   overflow: hidden;
   animation: flipCard 2s;
+
+  filter: var(--theme-hue-rotate);
 }
 
 @keyframes flipCard {

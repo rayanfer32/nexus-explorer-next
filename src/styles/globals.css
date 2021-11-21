@@ -66,6 +66,7 @@
   --theme-layout-background: var(--radial-ocean-midnight);
   --theme-search: var(--white);
   --theme-search-text: var(--white);
+  --theme-hue-rotate: hue-rotate(20deg);
 }
 
 .dark {
@@ -81,6 +82,7 @@
   --theme-layout-background: var(--midnight-blue);
   --theme-search: var(--white);
   --theme-search-text: var(--white);
+  --theme-hue-rotate: hue-rotate(0deg);
 }
 
 html,

@@ -13,15 +13,17 @@
 
 .rttrow .rttrowName {
   font-weight: normal;
-  font-size: var(--font-xs);
+  font-size: calc(var(--font-xs) - 0.03rem);
   /* Ocean Blue */
   color: var(--theme-page-text-secondary);
   writing-mode: vertical-rl;
   text-transform: uppercase;
   margin-left: 0.125rem;
   width: var(--font-normal);
-  letter-spacing: 0.125rem;
-  animation: scrollDown 4s linear infinite;
+  text-align: center;
+  transform: rotateZ(180deg);
+  /* letter-spacing: 0.125rem; */
+  /* animation: scrollDown 4s linear infinite; */
 }
 
 .rttrow .rttrowDetail {

@@ -7,6 +7,9 @@
   width: 100%;
   background: var(--theme-layout-background);
   /* padding-bottom: 0.5rem; */
+  margin-bottom: 1rem;
+  box-shadow: 0 0.25rem 0.25rem #0003;
+  /* filter: var(--theme-hue-rotate);   */
 }
 
 .nav {
@@ -81,8 +84,8 @@
 .searchBar {
   width: 100%;
   max-width: var(--max-screen);
-  padding: 0.5rem 1rem;
-  box-shadow: 0 0.25rem 0.25rem #0003;
+  margin: 0.5rem;
+  padding: 0rem 4rem;
 }
 
 /* mobile screen classes */
