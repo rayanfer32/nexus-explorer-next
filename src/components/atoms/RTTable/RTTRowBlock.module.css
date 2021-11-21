@@ -1,17 +1,132 @@
-.container {
+.rttBlockRow {
   position: relative;
-  width: 524px;
-  height: 52px;
+  width: 32.75rem;
+  height: 3.25rem;
   background: var(--theme-page-background);
-  border-radius: 4px;
-  margin-bottom: 2px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.25rem;
+  margin-bottom: 0.125rem;
   display: flex;
-  align-items: center;
-  animation: slideIn 2s;
+  overflow: hidden;
+  animation: slideIn 1.5s ease-in;
 }
 
+.rttBlockRow .rttrowBlockName {
+  font-weight: normal;
+  font-size: var(--font-xs);
+  /* Ocean Blue */
+  color: var(--theme-page-text-secondary);
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  margin-left: 0.125rem;
+  width: var(--font-normal);
+  /* mirror text */
+  transform: rotate(180deg);
+  text-align: center;
+  /* letter-spacing: 0.125rem; */
+  /* animation: scrollDown 4s linear infinite; */
+}
+
+.rttBlockRow .rttrowBlockDetail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rttrowBlockDetail .rttBlockRowTop {
+  height: 1.125rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: var(--font-normal);
+}
+.rttrowBlockDetail .rttBlockRowBottom {
+  height: 100%;
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: repeat(5, 1fr);
+  -ms-grid-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-content: start;
+  grid-gap: 0.25rem;
+}
+
+.rttBlockRowTop .cardTag {
+  /* Midnight Blue */
+  background: var(--theme-page-not-background);
+  border-radius: 0.125rem 0.125rem 0.5rem 0.5rem;
+  width: 11.125rem;
+  max-height: var(--font-l);
+  /* truncate text  */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* font property */
+  font-size: var(--font-xs);
+  text-align: left;
+  color: var(--white);
+  padding: 0 0.125rem;
+}
+
+.cardTag .carTagName {
+  font-size: var(--font-xs);
+  text-align: center;
+  line-height: 1.6;
+  color: var(--white);
+  margin-left: 0.125rem;
+}
+
+.rttBlockRowBottom .blockNumber {
+  margin-left: 0.125rem;
+  font-weight: normal;
+  font-size: var(--font-normal);
+  color: var(--theme-page-text);
+}
+
+.rttBlockRowBottom .time {
+  font-size: var(--font-s);
+}
+.rttBlockRowBottom .time .timeInUTC,
+.rttBlockRowBottom .time .date {
+  font-size: var(--font-s);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.rttBlockRowBottom .time .timeInUTC .timeUnit {
+  font-size: var(--font-xs);
+  color: var(--theme-page-text-secondary);
+}
+
+.rttBlockRowBottom .mint,
+.rttBlockRowBottom .txns,
+.rttBlockRowBottom .size {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+
+  font-size: var(--font-s);
+  color: var(--theme-page-text);
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+}
+.rttBlockRowBottom .mint .mintText,
+.rttBlockRowBottom .txns .txnsText,
+.rttBlockRowBottom .size .sizeText {
+  /* truncate text  */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.lowerThirdText {
+  font-size: var(--font-xxs);
+  text-align: right;
+}
+
+/* animations */
 @keyframes slideIn {
   0% {
     transform: translateX(-20%);
@@ -28,104 +143,11 @@
   }
 }
 
-.cardType {
-  position: absolute;
-  top: 0;
-  left: 2%;
-  bottom: 0;
-
-  font-weight: normal;
-  font-size: var(--font-xs);
-  text-transform: uppercase;
-  color: var(--theme-page-text-secondary);
-  transform: rotate(-90deg);
-}
-
-.cardTag {
-  position: absolute;
-  right: 18px;
-  top: 0;
-  height: 18px;
-  width: 124px;
-  border-radius: 2px;
-  background: var(--theme-page-not-background);
-  overflow: hidden;
-}
-
-.cardTag .carTagName {
-  color: var(--white);
-
-  font-size: var(--font-s);
-  text-align: center;
-}
-
-.dataCotainer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 66px repeat(3, 1fr);
-  display: -ms-grid;
-  -ms-grid-columns: 1fr 66px repeat(3, 1fr);
-  align-items: flex-end;
-  justify-items: center;
-  gap: 4px;
-  margin: auto 18px;
-}
-
-.dataCotainer .blockNumber,
-.dataCotainer .time,
-.dataCotainer .mint,
-.dataCotainer .size,
-.dataCotainer .txns {
-  position: relative;
-  max-width: 84px;
-  /* height: 70%; */
-
-  font-weight: normal;
-  font-size: var(--font-normal);
-  color: var(--theme-page-text);
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dataCotainer .time {
-  font-size: var(--font-s);
-  align-self: flex-start;
-  height: 100%;
-}
-
-.dataCotainer .time .timeInUTC,
-.dataCotainer .time .date {
-  font-size: var(--font-s);
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-.dataCotainer .time .timeInUTC .timeUnit {
-  font-size: var(--font-s);
-  color: var(--theme-page-text-secondary);
-}
-
-.dataCotainer .mint,
-.dataCotainer .size {
-  font-size: var(--font-s);
-}
-.dataCotainer .size {
-  max-width: 100%;
-}
-
-.dataCotainer .txns {
-  max-width: 86px;
-}
-
-.labelUnit {
-  /* position: absolute; */
-  right: 0;
-  /* bottom: 10%; */
-  font-style: normal;
-  font-weight: normal;
-  font-size: var(--font-xxs);
-  color: var(--theme-page-text-secondary);
-  text-align: right;
+@keyframes scrollDown {
+  from {
+    transform: translateY(-3.25rem) rotate(180deg);
+  }
+  to {
+    transform: translateY(3.25rem) rotate(180deg);
+  }
 }
