@@ -18,6 +18,7 @@
   animation: flipCard 2s;
 
   filter: var(--theme-hue-rotate);
+  /* filter:  saturate(0.7); */
 }
 
 @keyframes flipCard {

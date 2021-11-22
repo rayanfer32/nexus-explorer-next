@@ -71,7 +71,7 @@
   font-size: var(--font-xs);
   text-align: center;
   line-height: 1.6;
-  color: var(--white);
+  color: var(--theme-page-text);
   margin-left: 0.125rem;
 }
 
@@ -80,6 +80,8 @@
   font-weight: normal;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
+  position: relative;
+  bottom: 0.5rem;
 }
 
 .rttBlockRowBottom .time {
@@ -89,6 +91,7 @@
 .rttBlockRowBottom .time .date {
   font-size: var(--font-s);
   display: flex;
+  color: var(--theme-page-text);
   align-items: center;
   gap: 2px;
 }

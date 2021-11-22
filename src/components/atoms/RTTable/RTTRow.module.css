@@ -13,7 +13,7 @@
 
 .rttrow .rttrowName {
   font-weight: normal;
-  font-size: calc(var(--font-xs) - 0.03rem);
+  font-size: calc(var(--font-xs));
   /* Ocean Blue */
   color: var(--theme-page-text-secondary);
   writing-mode: vertical-rl;
@@ -21,7 +21,9 @@
   margin-left: 0.125rem;
   width: var(--font-normal);
   text-align: center;
+  /* font-weight: bold; */
   transform: rotateZ(180deg);
+  /* font-family: 'Roboto Condensed'; */
   /* letter-spacing: 0.125rem; */
   /* animation: scrollDown 4s linear infinite; */
 }
