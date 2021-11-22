@@ -7,12 +7,17 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
+import { useState } from 'react';
+import { useAppContext } from 'contexts/AppContext';
 
 function Navbar() {
   const router = useRouter();
   const [isDarkMode, setDarkMode] = useDarkMode();
   const navList = TYPES.navList;
   const onClickBrand = () => router.push('/');
+  const [searchInput, setSearchInput] = useState('');
+
+  const { sharedState, setSharedState } = useAppContext();
 
   return (
     <div className={styles.container}>
@@ -42,13 +47,28 @@ function Navbar() {
           </div>
 
           <ThemeMode
-            onClick={() => setDarkMode((prevMode) => !prevMode)}
+            onClick={() =>
+              setDarkMode((prevMode) => {
+                setSharedState({
+                  ...sharedState,
+                  theme: prevMode ? 'light' : 'dark',
+                });
+                return !prevMode;
+              })
+            }
             isDark={isDarkMode}
           />
         </div>
       </div>
       <div className={styles.searchBar}>
-        <Search long />
+        <Search
+          long
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onSearch={() => {
+            router.push(`/scan/${searchInput}`);
+          }}
+        />
       </div>
     </div>
   );

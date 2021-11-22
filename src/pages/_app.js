@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import '../styles/globals.css';
+import { ContextWrapper } from 'contexts/AppContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ContextWrapper>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ContextWrapper>
   );
 }
 

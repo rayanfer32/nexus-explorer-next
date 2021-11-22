@@ -4,11 +4,18 @@ import styles from './ChartsApex.module.css';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
+import { useDarkMode } from 'hooks';
+import { useAppContext } from 'contexts/AppContext';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
+import { AppContext } from 'contexts/AppContext';
+
 function ChartsApex() {
-  const [chartTheme, setChartTheme] = useState('light');
+  const { sharedState, setSharedState } = useAppContext();
+
+  const [isDarkMode, setDarkMode] = useDarkMode();
   let apexChartRef = useRef();
+
   // const series = [
   //   118, 111, 99, 116, 113, 92, 109, 161, 179, 164, 174, 128, 477, 104, 85, 101,
   //   116, 109, 86, 119, 80, 112, 480, 82,
@@ -38,13 +45,13 @@ function ChartsApex() {
         background: 'rgba(0, 0, 0, 0)',
       },
       theme: {
-        mode: chartTheme,
+        mode: isDarkMode ? 'dark' : 'light',
       },
       grid: {
         show: false,
       },
       title: {
-        text: 'Transaction History',
+        text: 'Transaction History - 24H',
         align: 'left',
         style: {
           fontFamily: 'Lato',
@@ -79,14 +86,6 @@ function ChartsApex() {
     ],
   });
 
-  useEffect(() => {
-    try {
-      setChartTheme(document.body.className);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
   const updateChart = () => {
     const newSeries = [];
     const step = Math.floor(contracts24h.contracts.length / 24);
@@ -104,6 +103,15 @@ function ChartsApex() {
   useEffect(() => {
     updateChart();
   }, []);
+
+  // check appcontext update
+  useEffect(() => {
+    // update chart theme mode
+    setChartState((prev) => {
+      prev.options.theme.mode = sharedState.theme;
+      return { ...prev };
+    });
+  }, [sharedState]);
 
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
