@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import Layout from '../components/Layout/Layout';
-import '../styles/globals.css';
+import Layout from 'components/Layout/Layout';
+import 'styles/globals.css';
 import { ContextWrapper } from 'contexts/AppContext';
 
 function MyApp({ Component, pageProps }) {
