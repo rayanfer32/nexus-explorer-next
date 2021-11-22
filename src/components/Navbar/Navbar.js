@@ -8,7 +8,6 @@ import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useState } from 'react';
-import { useAppContext } from 'contexts/AppContext';
 
 function Navbar() {
   const router = useRouter();
@@ -16,8 +15,6 @@ function Navbar() {
   const navList = TYPES.navList;
   const onClickBrand = () => router.push('/');
   const [searchInput, setSearchInput] = useState('');
-
-  const { sharedState, setSharedState } = useAppContext();
 
   return (
     <div className={styles.container}>
@@ -47,15 +44,7 @@ function Navbar() {
           </div>
 
           <ThemeMode
-            onClick={() =>
-              setDarkMode((prevMode) => {
-                setSharedState({
-                  ...sharedState,
-                  theme: prevMode ? 'light' : 'dark',
-                });
-                return !prevMode;
-              })
-            }
+            onClick={() => setDarkMode((prevMode) => !prevMode)}
             isDark={isDarkMode}
           />
         </div>
