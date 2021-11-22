@@ -5,11 +5,14 @@ import RTTRow from 'components/atoms/RTTable/RTTRow';
 import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
 import axios from 'axios';
 import { intlNum, toTitleCase } from 'utils/converter';
+import { useRouter } from 'next/router';
 
 function Panel3() {
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
   const blockSpeed = 30 * 1000; // in seconds
+  const router = useRouter();
+
   let lastBlock = 0;
   const MAX_ROWS = 6;
   const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
@@ -123,8 +126,23 @@ function Panel3() {
 
   return (
     <div className={styles.container}>
-      <RTTable label="Recent Blocks">{tableBlockRowElements}</RTTable>
-      <RTTable label="Recent Transactions">{tableTxRowElements}</RTTable>
+      {/* blocks RTT table */}
+      <RTTable
+        label="Recent Blocks"
+        onClick={() => {
+          router.push(`/blocks`);
+        }}>
+        {tableBlockRowElements}
+      </RTTable>
+
+      {/* transctions RTT table */}
+      <RTTable
+        label="Recent Transactions"
+        onClick={() => {
+          router.push(`/transactions`);
+        }}>
+        {tableTxRowElements}
+      </RTTable>
     </div>
   );
 }
