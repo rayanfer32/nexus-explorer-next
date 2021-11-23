@@ -1,7 +1,7 @@
 .rttrow {
   position: relative;
   width: 32.75rem;
-  height: 3.25rem;
+  height: 3.5rem;
   background: var(--theme-page-background);
   box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
