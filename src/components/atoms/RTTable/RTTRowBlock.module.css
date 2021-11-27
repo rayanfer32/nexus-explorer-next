@@ -1,7 +1,7 @@
 .rttBlockRow {
   position: relative;
   width: 32.75rem;
-  height: 3.25rem;
+  height: 3.5rem;
   background: var(--theme-page-background);
   box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
@@ -46,7 +46,7 @@
   grid-template-columns: repeat(5, 1fr);
   -ms-grid-columns: repeat(5, 1fr);
   align-items: center;
-  justify-content: start;
+  justify-items: center;
   grid-gap: 0.25rem;
 }
 
