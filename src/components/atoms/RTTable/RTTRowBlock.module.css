@@ -68,11 +68,13 @@
 }
 
 .cardTag .carTagName {
-  font-size: var(--font-xs);
+  font-size: var(--font-s);
   text-align: center;
   line-height: 1.6;
-  color: var(--theme-page-text);
+  color: var(--white);
   margin-left: 0.125rem;
+  position: relative;
+  bottom: 2px;
 }
 
 .rttBlockRowBottom .blockNumber {

@@ -105,8 +105,14 @@ function ChartsApex() {
         contracts24h.contracts.slice(i, i + step).reduce((a, b) => a + b, 0)
       );
     }
+    const newXAxisData = [];
+    for (let i = 0; i < contracts24h.datestamps.length - step; i += step) {
+      newXAxisData.push(contracts24h.datestamps[i]);
+    }
+
     setChartState((prev) => {
       prev.series[0].data = newSeries;
+      prev.options.xaxis.categories = newXAxisData;
       return { ...prev };
     });
   };

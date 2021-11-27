@@ -30,10 +30,13 @@ export const FooterTypes = {
       src: appleLogo,
     },
     supportEmail: {
-      href: 'mailto:contact@nexus.io',
+      href: 'https://github.com/rayanfer32/nexus-explorer-next',
       target: '_self',
-      label: 'contact@nexus.io',
+      label: 'Github',
       src: '',
+    },
+    nexusSite: {
+      href: 'https://nexus.io',
     },
   },
 };
