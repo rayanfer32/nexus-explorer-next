@@ -3,6 +3,7 @@ import styles from './Panel2.module.css';
 import DetailCard from 'components/atoms/DetailCard';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
+import Rail from 'components/atoms/Rail';
 
 function Panel2(props) {
   const { marketData, metricsData, miningData } = props;
@@ -23,7 +24,7 @@ function Panel2(props) {
   }, []);
 
   return (
-    <div className={styles.panelTwoContainer}>
+    <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
       <DetailCard
         type
         label="Price"
@@ -76,7 +77,7 @@ function Panel2(props) {
         footerValue={`${intlNum(miningData.prime.fees.toFixed(2))} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
-    </div>
+    </Rail>
   );
 }
 
