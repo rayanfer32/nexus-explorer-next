@@ -12,6 +12,7 @@ function SearchBarLong(props) {
         onChange={props?.onChange}
         placeholder="Search by Address / Tx ID / Block Hash"
         className={styles.searchLong}
+        onKeyDown={props?.onKeyDown}
       />
       <button
         type="submit"

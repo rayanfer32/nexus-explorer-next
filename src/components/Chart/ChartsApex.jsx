@@ -107,7 +107,7 @@ function ChartsApex() {
     }
     const newXAxisData = [];
     for (let i = 0; i < contracts24h.datestamps.length - step; i += step) {
-      newXAxisData.push(contracts24h.datestamps[i]);
+      newXAxisData.push(contracts24h.datestamps[Math.floor(i + step / 2)]);
     }
 
     setChartState((prev) => {
