@@ -1,6 +1,14 @@
 .container {
-  display: flex;
+  display: none;
   min-height: 25rem;
-  gap: 2rem;
+  gap: var(--space-xl);
+  flex-direction: column;
   justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
 }
