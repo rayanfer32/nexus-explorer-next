@@ -4,8 +4,8 @@ import ChartsApex from 'components/Chart/ChartsApex';
 function Panel1({ chartData, metricsData, infoData }) {
   //   console.log(infoData);
   return (
-    <div className={styles.container}>
-      <div className={styles.cardsContainer}>
+    <article className={styles.container}>
+      <section className={styles.cardsContainer}>
         <SmallCard
           label="Chain Height"
           sublabel="Blocks"
@@ -32,9 +32,11 @@ function Panel1({ chartData, metricsData, infoData }) {
           text={`${metricsData.supply.inflationrate.toFixed(2)}`}
           ticker="%"
         />
-      </div>
-      <ChartsApex />
-    </div>
+      </section>
+      <section className={styles.chartContainer}>
+        <ChartsApex />
+      </section>
+    </article>
   );
 }
 

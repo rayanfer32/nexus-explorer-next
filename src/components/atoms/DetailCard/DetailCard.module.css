@@ -1,7 +1,8 @@
 /* Default style to card */
 .detailcard {
   position: relative;
-  width: 17.5rem; /* 280px */
+  width: 100%;
+  min-width: 17.5rem; /* 280px */
   height: 10.75rem; /* 175px */
   background: var(--theme-gradient-radial);
   box-shadow: 0 4px 4px #0003;
