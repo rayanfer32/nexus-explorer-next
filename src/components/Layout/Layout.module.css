@@ -6,12 +6,14 @@
   align-items: center;
   /* justify-content: center; */
   /* align-items: center; */
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   background: var(--theme-bg-under);
 }
 
 .main {
   /* padding-top: 0.5rem; */
+  width: 100%;
+  max-width: var(--screen-xl);
 }
 
 .footer {
