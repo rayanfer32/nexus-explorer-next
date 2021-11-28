@@ -8,6 +8,7 @@ import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useState } from 'react';
+import Portal from 'components/HOC/Portal';
 
 function Navbar() {
   const router = useRouter();
@@ -15,6 +16,34 @@ function Navbar() {
   const navList = TYPES.navList;
   const onClickBrand = () => router.push('/');
   const [searchInput, setSearchInput] = useState('');
+
+  const DesktopNavItem = () => <div className={styles.navItem}>
+    <div className={styles.links}>
+      {navList.map((navItem) => {
+        return (
+          <span
+            key={navItem.id}
+            className={
+              router.pathname === navItem.path ? styles.active : undefined
+            }>
+            <Link href={navItem.path}>{navItem.title}</Link>
+          </span>
+        );
+      })}
+    </div>
+
+    <ThemeMode
+      onClick={() => setDarkMode((prevMode) => !prevMode)}
+      isDark={isDarkMode}
+    />
+  </div>
+
+  const MobileNavItem = () => <div className={styles.mNavItem}>
+    <div className={styles.hamIcon}></div>
+    <Portal >
+      <section className={styles.mPortal}><div className={styles.hamMenu}></div></section>
+    </Portal>
+  </div>
 
   return (
     <div className={styles.container}>
@@ -28,26 +57,8 @@ function Navbar() {
             alt="nexus logo"></Image>
           <div className={styles.explorer}>Explorer</div>
         </div>
-        <div className={styles.navItem}>
-          <div className={styles.links}>
-            {navList.map((navItem) => {
-              return (
-                <span
-                  key={navItem.id}
-                  className={
-                    router.pathname === navItem.path ? styles.active : undefined
-                  }>
-                  <Link href={navItem.path}>{navItem.title}</Link>
-                </span>
-              );
-            })}
-          </div>
-
-          <ThemeMode
-            onClick={() => setDarkMode((prevMode) => !prevMode)}
-            isDark={isDarkMode}
-          />
-        </div>
+        <DesktopNavItem />
+        <MobileNavItem />
       </div>
       <div className={styles.searchBar}>
         <Search
