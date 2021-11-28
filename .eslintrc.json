@@ -4,6 +4,7 @@
     "no-unused-vars": "warn",
     "no-undef": "warn",
     "no-console": "warn",
-    "no-empty-function": "warn"
+    "no-empty-function": "warn",
+    "react-hooks/exhaustive-deps":"off"
   }
 }
