@@ -47,7 +47,22 @@
   --font-xxxl: 1.5rem; /* 24px */
 
   /* screen sizes */
-  --max-screen: 1440px;
+  --screen-xs: 576px;
+  --screen-sm: 768px;
+  --screen-md: 992px;
+  --screen-lg: 1200px;
+  --screen-xl: 1440px;
+
+  /* spaces */
+  --space-xxxs: 0.25rem; /* 4px */
+  --space-xxs: 0.5rem; /* 8px */
+  --space-xs: 0.75rem; /* 12px */
+  --space-s: 1rem; /* 16px */
+  --space-m: 1.25rem; /* 24px */
+  --space-l: 1.5rem; /* 32px */
+  --space-xl: 2rem; /* 48px */
+  --space-xxl: 3rem; /* 72px */
+  --space-xxxl: 4rem; /* 96px */
 }
 
 :root,
