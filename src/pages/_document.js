@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <Head />
         <body className={TYPES.theme.light}>
           <Main />
+          <div id='__portal' />
           <NextScript />
         </body>
       </Html>
