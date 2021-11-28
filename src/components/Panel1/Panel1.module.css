@@ -12,17 +12,24 @@
 .chartContainer {
   width: 100%;
   padding: 0.5rem 0rem;
+  overflow: hidden;
 }
 
-/* hide scroll */
+/* for small screen */
 @media (max-width: 768px) {
+  /* hide scroll */
   .cardsContainer {
     overflow: visible;
     overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: var(--space-xs);
   }
   .cardsContainer::-webkit-scrollbar {
     display: none;
     scrollbar-width: none;
+    width: 0;
+    background: transparent;
   }
 }
 
