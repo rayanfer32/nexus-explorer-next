@@ -59,7 +59,7 @@ export default function Home(props) {
   }, []);
 
   return (
-    <div>
+    <>
       <Head>
         <title> Nexus Explorer V2 </title>
         <meta name="description" content="Nexus Blockchain Statistics" />
@@ -70,7 +70,7 @@ export default function Home(props) {
           chartData={propState?.chartData}
           metricsData={propState.metricsData}
           infoData={propState.infoData}
-          // marketData={props.marketData}
+        // marketData={props.marketData}
         />
         <Panel2
           metricsData={propState.metricsData}
@@ -79,7 +79,7 @@ export default function Home(props) {
         />
         <Panel3 />
       </main>
-    </div>
+    </>
   );
 }
 
