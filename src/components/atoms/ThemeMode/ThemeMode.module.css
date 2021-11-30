@@ -4,9 +4,9 @@
   width: 3.5rem;
   height: 1.75rem;
   border-radius: 3.5rem;
-  background: var(--nexus-blue);
+  background: var(--linear-nav-bg);
   outline-color: var(--nexus-blue);
-  border: none;
+  border: 0.125rem solid var(--nexus-blue);
   cursor: pointer;
 }
 

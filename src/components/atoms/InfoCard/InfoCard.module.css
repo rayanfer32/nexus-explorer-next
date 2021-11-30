@@ -1,0 +1,30 @@
+.container {
+  background: var(--theme-bg-under);
+  padding: 1rem;
+  border-radius: 0.25rem 0.25rem;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  font-size: var(--font-normal);
+  color: var(--theme-page-text);
+}
+
+.row {
+  display: flex;
+  background: var(--theme-page-background);
+  padding: 1rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem 0.25rem;
+  box-shadow: -0.125rem 0.125rem 0.125rem #0003;
+}
+
+.rowKey,
+.rowValue {
+  /* box-shadow: -0.125rem 0.125rem 0.5rem #0003; */
+  margin: 0rem 1rem;
+  text-overflow: ellipsis;
+}
+
+.rowValue {
+  display: inline-block;
+  word-break: break-all;
+}

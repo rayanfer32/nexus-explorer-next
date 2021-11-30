@@ -5,10 +5,11 @@
   flex-direction: column;
   min-height: 4rem;
   width: 100%;
-  background: var(--theme-layout-background);
+  color: var(--theme-page-text);
+  background: var(--theme-nav-bg);
   /* padding-bottom: 0.5rem; */
   margin-bottom: 1rem;
-  box-shadow: 0 0.25rem 0.25rem #0003;
+  box-shadow: 0 0.25rem 0.25rem #0002;
   /* filter: var(--theme-hue-rotate);   */
 }
 
@@ -34,7 +35,8 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 1.25rem;
-  color: var(--white);
+  color: var(--theme-nav-brand);
+  filter: drop-shadow(0 0 1rem var(--nexus-blue));
 }
 
 .brand:hover {
@@ -56,6 +58,7 @@
 }
 
 .links {
+  filter: drop-shadow(0 0 0.9rem var(--nexus-blue));
   display: flex;
   /* gap: 1rem; */
 }
@@ -68,11 +71,10 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  color: var(--white);
 }
 
 .links span.active {
-  color: var(--sky-blue);
+  color: var(--theme-page-text-secondary);
   border-bottom: 0.125rem solid var(--sky-blue);
   border-radius: 0.125rem;
   transition: color 250ms ease;

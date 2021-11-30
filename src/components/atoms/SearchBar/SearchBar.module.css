@@ -17,7 +17,7 @@
   color: var(--midnight-blue);
   border: none;
   border-radius: 0.125rem 0 0 0.125rem;
-  box-shadow: 0 0 0.25rem #0003;
+  box-shadow: var(--card-shadow);
   box-sizing: border-box;
   outline: none;
   font-size: var(--font-normal);

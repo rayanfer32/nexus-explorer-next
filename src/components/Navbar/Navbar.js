@@ -1,6 +1,7 @@
 import styles from './Navbar.module.css';
 import Image from 'next/image';
-import nexusLogo from 'assets/branding/NexusLogoWhite1000x225.png';
+import nexusLogoWhite from 'assets/branding/NexusLogoWhite1000x225.png';
+import nexusLogoBlue from 'assets/branding/nexusLogoBlue1000x225.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ThemeMode from 'components/atoms/ThemeMode';
@@ -24,7 +25,7 @@ function Navbar() {
             width={142}
             height={32}
             layout="fixed"
-            src={nexusLogo}
+            src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
             alt="nexus logo"></Image>
           <div className={styles.explorer}>Explorer</div>
         </div>

@@ -1,16 +1,41 @@
 import axios from 'axios';
+import { InfoCard } from 'components/atoms/InfoCard';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function Scan(props) {
   const router = useRouter();
   const { addr } = router.query;
+  const [showRawResponse, setShowRawResponse] = useState(false);
+
+  function inferCardType() {
+    const method = props.response.info.method;
+    console.log('method', method);
+    if (method?.includes('block')) {
+      return 'block';
+    } else if (method?.includes('transaction')) {
+      return 'tx';
+    }
+    return 'block';
+  }
+
+  const cardType = inferCardType();
 
   return (
     <div>
-      <pre style={{ marginLeft: 800 }}>
-        {JSON.stringify(props.response, null, 2)}
-      </pre>
+      <InfoCard type={cardType} data={props.response.result} />
+      <div style={{ margin: '1rem' }}>
+        <button
+          variant="contained"
+          onClick={() => setShowRawResponse((prev) => !prev)}>
+          Show RAW Response
+        </button>
+        {showRawResponse ? (
+          <pre style={{ color: 'var(--theme-page-text)' }}>
+            {JSON.stringify(props.response, null, 2)}
+          </pre>
+        ) : null}
+      </div>
     </div>
   );
 }
