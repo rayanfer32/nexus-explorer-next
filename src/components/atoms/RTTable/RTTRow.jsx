@@ -1,5 +1,19 @@
 import styles from './RTTRow.module.css';
 
+import PropTypes from 'prop-types';
+
+RTTRow.propTypes = {
+  fromId: PropTypes.string,
+  toId: PropTypes.string,
+  txnId: PropTypes.string,
+  operation: PropTypes.string,
+  txType: PropTypes.string,
+  amount: PropTypes.number,
+  amountUnit: PropTypes.string,
+  confirmations: PropTypes.number,
+  contracts: PropTypes.number,
+};
+
 function RTTRow(props) {
   const {
     fromId = '',
