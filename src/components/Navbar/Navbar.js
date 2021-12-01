@@ -9,7 +9,6 @@ import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useState } from 'react';
-import Portal from 'components/HOC/Portal';
 
 function Navbar() {
   const router = useRouter();
@@ -21,15 +20,6 @@ function Navbar() {
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
-      <div className={styles.brand} onClick={onClickBrand}>
-        <Image
-          width={142}
-          height={32}
-          layout="fixed"
-          src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
-          alt="nexus logo"></Image>
-        <div className={styles.explorer}>Explorer</div>
-      </div>
       <div className={styles.links}>
         {navList.map((navItem) => {
           return (
@@ -64,11 +54,9 @@ function Navbar() {
                 isDark={isDarkMode}
               />
             </div>
-
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
-
             <div className={styles.mlinks}>
               {navList.map((navItem) => {
                 return (
@@ -91,26 +79,33 @@ function Navbar() {
   );
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <div className={styles.header}>
         <div className={styles.nav}>
-          {/* <div className={styles.navItem}> */}
+          <div className={styles.brand} onClick={onClickBrand}>
+            <Image
+              width={142}
+              height={32}
+              layout="fixed"
+              src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
+              alt="nexus logo"></Image>
+            <div className={styles.explorer}>Explorer</div>
+          </div>
           <DesktopNavItem />
           <MobileNavItem />
-          {/* </div> */}
-          <div className={styles.searchBar}>
-            <Search
-              long
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onSearch={() => {
-                router.push(`/scan/${searchInput}`);
-              }}
-            />
-          </div>
+        </div>
+        <div className={styles.searchBar}>
+          <Search
+            long
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            onSearch={() => {
+              router.push(`/scan/${searchInput}`);
+            }}
+          />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
