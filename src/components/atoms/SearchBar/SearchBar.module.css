@@ -82,6 +82,7 @@
   border-radius: 0.125rem;
   font-size: var(--font-normal);
   font-weight: normal;
+  width: 100%;
 }
 .searchBarLong input[type='search']:focus {
   outline: solid 0.125rem var(--nexus-blue);

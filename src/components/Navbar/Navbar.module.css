@@ -6,10 +6,11 @@
   margin: 0 auto;
   width: 100%;
   color: var(--theme-page-text);
-  background: var(--theme-nav-bg);
+  background: var(--theme-page-background);
   /* padding-bottom: 0.5rem; */
   margin-bottom: 1rem;
   box-shadow: 0 0.25rem 0.25rem #0002;
+  /* box-shadow: var(--card-shadow); */
   /* filter: var(--theme-hue-rotate);   */
 }
 
@@ -29,7 +30,7 @@
   justify-content: flex-start;
   font-size: 1.25rem;
   color: var(--theme-nav-brand);
-  filter: drop-shadow(0 0 1rem var(--nexus-blue));
+  /* filter: drop-shadow(0 0 1rem var(--nexus-blue)); */
 }
 
 .nav .brand:hover {
@@ -53,7 +54,7 @@
 }
 
 .links {
-  filter: drop-shadow(0 0 0.9rem var(--nexus-blue));
+  /* filter: drop-shadow(0 0 0.9rem var(--nexus-blue)); */
   display: flex;
 }
 
@@ -80,7 +81,6 @@
 /* search section */
 .header .searchBar {
   width: 100%;
-  padding: var(--space-xxs) var(--space-xxxl);
 }
 
 .mNavItem,
@@ -91,7 +91,7 @@
 /* mobile screen classes */
 @media (max-width: 768px) {
   .header .searchBar {
-    padding: var(--space-xxs) var(--space-l);
+    /* padding: var(--space-xxs) var(--space-l); */
   }
   .nav {
     flex-direction: row;
@@ -171,7 +171,7 @@
     right: 0;
     min-height: 100%;
     width: 90%;
-    background-color: var(--midnight-blue);
+    background-color: var(--theme-page-background);
   }
   .mlinks {
     margin-top: 4rem;
@@ -181,7 +181,7 @@
     flex-direction: column;
     gap: var(--space-l);
     padding: var(--space-xs);
-    color: white;
+    color: var(--theme-page-text);
     font-size: larger;
   }
   .themeIcon {
