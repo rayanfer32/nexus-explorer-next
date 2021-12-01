@@ -69,7 +69,7 @@
 }
 
 .searchBarLong {
-  box-shadow: 0 0.25rem 0.25rem #0003;
+  box-shadow: var(--card-shadow);
   max-height: 3.25rem;
 }
 .searchBarLong:focus-within {
