@@ -21,6 +21,15 @@ function Navbar() {
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
+      <div className={styles.brand} onClick={onClickBrand}>
+        <Image
+          width={142}
+          height={32}
+          layout="fixed"
+          src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
+          alt="nexus logo"></Image>
+        <div className={styles.explorer}>Explorer</div>
+      </div>
       <div className={styles.links}>
         {navList.map((navItem) => {
           return (
@@ -55,9 +64,11 @@ function Navbar() {
                 isDark={isDarkMode}
               />
             </div>
+
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
+
             <div className={styles.mlinks}>
               {navList.map((navItem) => {
                 return (
@@ -83,15 +94,6 @@ function Navbar() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.nav}>
-          <div className={styles.brand} onClick={onClickBrand}>
-            <Image
-              width={142}
-              height={32}
-              layout="fixed"
-              src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
-              alt="nexus logo"></Image>
-            <div className={styles.explorer}>Explorer</div>
-          </div>
           {/* <div className={styles.navItem}> */}
           <DesktopNavItem />
           <MobileNavItem />
