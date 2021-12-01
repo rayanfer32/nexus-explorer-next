@@ -5,13 +5,17 @@
   flex-direction: column;
   margin: 0 auto;
   width: 100%;
+  background: var(--theme-layout-background);
+  padding-bottom: var(--space-xxs);
+  margin-bottom: var(--space-xs);
+  box-shadow: 0 0.25rem 0.25rem #0003;
   color: var(--theme-page-text);
   background: var(--theme-page-background);
-  /* padding-bottom: 0.5rem; */
-  margin-bottom: 1rem;
-  box-shadow: 0 0.25rem 0.25rem #0002;
-  /* box-shadow: var(--card-shadow); */
-  /* filter: var(--theme-hue-rotate);   */
+}
+.container .header {
+  width: 100%;
+  max-width: var(--screen-lg);
+  /* padding: 0 var(--space-xs); */
 }
 
 .header .nav {
@@ -30,7 +34,12 @@
   justify-content: flex-start;
   font-size: 1.25rem;
   color: var(--theme-nav-brand);
-  /* filter: drop-shadow(0 0 1rem var(--nexus-blue)); */
+  padding: var(--space-xs);
+}
+.nav .brand .explorer {
+  font-style: normal;
+  font-weight: lighter;
+  font-size: var(--font-xl);
 }
 
 .nav .brand:hover {
@@ -46,15 +55,7 @@
   padding: var(--space-xs);
 }
 
-.brand .explorer {
-  /* align-self: flex-end; */
-  font-style: normal;
-  font-weight: lighter;
-  font-size: var(--font-xl);
-}
-
-.links {
-  /* filter: drop-shadow(0 0 0.9rem var(--nexus-blue)); */
+.navItem .links {
   display: flex;
 }
 
@@ -68,7 +69,8 @@
   padding: 1rem;
 }
 
-.links span.active {
+.navItem .links span.active {
+  font-weight: bold;
   color: var(--theme-page-text-secondary);
   border-bottom: 0.125rem solid var(--sky-blue);
   border-radius: 0.125rem;
@@ -81,6 +83,7 @@
 /* search section */
 .header .searchBar {
   width: 100%;
+  padding: var(--space-xxs) var(--space-xxxl);
 }
 
 .mNavItem,
@@ -91,7 +94,7 @@
 /* mobile screen classes */
 @media (max-width: 768px) {
   .header .searchBar {
-    /* padding: var(--space-xxs) var(--space-l); */
+    padding: var(--space-xxs) var(--space-l);
   }
   .nav {
     flex-direction: row;
@@ -171,7 +174,7 @@
     right: 0;
     min-height: 100%;
     width: 90%;
-    background-color: var(--theme-page-background);
+    background-color: var(--midnight-blue);
   }
   .mlinks {
     margin-top: 4rem;
@@ -181,7 +184,7 @@
     flex-direction: column;
     gap: var(--space-l);
     padding: var(--space-xs);
-    color: var(--theme-page-text);
+    color: white;
     font-size: larger;
   }
   .themeIcon {
