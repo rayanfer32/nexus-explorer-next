@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css';
 import Image from 'next/image';
 import nexusLogoWhite from 'assets/branding/NexusLogoWhite1000x225.png';
-import nexusLogoBlue from 'assets/branding/nexusLogoBlue1000x225.png';
+import nexusLogoBlue from 'assets/branding/NexusLogoBlue1000x225.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ThemeMode from 'components/atoms/ThemeMode';
