@@ -6,9 +6,10 @@ function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <div className={styles.container}>
-        <main className={styles.main}>{children}</main>
-      </div>
+      {/* <div className={styles.container}> */}
+      {/* <main className={styles.main}>{children}</main> */}
+      <section className={styles.container}>{children}</section>
+      {/* </div> */}
       <Footer />
     </>
   );

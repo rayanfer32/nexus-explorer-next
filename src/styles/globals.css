@@ -169,6 +169,10 @@ a {
   }
 }
 
+#__portal {
+  all: unset;
+}
+
 #infoCard {
   margin-top: 10px;
   color: #333;
