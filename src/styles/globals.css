@@ -79,6 +79,7 @@
 
   /* shadows */
   --card-shadow: 0rem 0.25rem 0.5rem #0002;
+  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
 }
 
 :root,

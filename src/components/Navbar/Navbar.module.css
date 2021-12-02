@@ -7,7 +7,7 @@
   width: 100%;
   padding-bottom: var(--space-xxs);
   margin-bottom: var(--space-xs);
-  box-shadow: 0 0.25rem 0.25rem #0003;
+  box-shadow: 0 0.25rem 0.25rem #0002;
   color: var(--theme-page-text);
   background: var(--theme-nav-bg);
 }

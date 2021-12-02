@@ -2,6 +2,38 @@ export function intlNum(num) {
   return new Intl.NumberFormat().format(num);
 }
 
+export function timeConverter(UNIX_timestamp) {
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  // var year = a.getFullYear();
+  // var month = months[a.getMonth()];
+  // var date = a.getDate();
+  var hour = appendZero(a.getHours());
+  var min = appendZero(a.getMinutes());
+  var sec = appendZero(a.getSeconds());
+  // var time =
+  //   date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+  // // return time;
+  return hour + ':' + min + ':' + sec;
+}
+
+export function appendZero(num) {
+  return num > 9 ? `${num}` : `0${num}`;
+}
+
 export function toTitleCase(str) {
   return str.replace('_', ' ').replace(/\w\S*/g, function (txt) {
     return (

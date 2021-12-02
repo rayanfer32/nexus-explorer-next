@@ -17,7 +17,7 @@
   color: var(--midnight-blue);
   border: none;
   border-radius: 0.125rem 0 0 0.125rem;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-shadow-subtle);
   box-sizing: border-box;
   outline: none;
   font-size: var(--font-normal);
@@ -45,7 +45,7 @@
 .searchBar button {
   height: 2.125rem;
   background: var(--theme-search);
-  box-shadow: 0 0 0.25rem #0003;
+  box-shadow: var(--card-shadow-subtle);
   border-radius: 0 0.25rem 0.25rem 0;
   border: none;
   /* position: relative; */
@@ -69,7 +69,7 @@
 }
 
 .searchBarLong {
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-shadow-subtle);
   max-height: 3.25rem;
 }
 .searchBarLong:focus-within {
@@ -84,7 +84,7 @@
   font-family: inherit;
   font-weight: normal;
   width: 100%;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow-subtle);
 }
 .searchBarLong input[type='search']:focus {
   outline: solid 0.125rem var(--nexus-blue);
@@ -96,7 +96,7 @@
   margin-left: 0.25rem;
   border-radius: 0.125rem;
   width: 2.625rem;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow-subtle);
 }
 .searchBarLong .searchLongBtn:focus {
   outline: solid 0.125rem var(--nexus-blue);

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@mui/x-data-grid": "^5.0.1",
+    "antd": "^4.17.2",
     "apexcharts": "^3.30.0",
     "axios": "^0.24.0",
     "next": "12.0.2",
