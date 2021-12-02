@@ -65,7 +65,7 @@ function ChartsApex() {
         text: 'Transaction History - 24H',
         align: 'left',
         style: {
-          fontFamily: 'Lato',
+          fontFamily: 'inherit',
           fontWeight: 'normal',
         },
       },

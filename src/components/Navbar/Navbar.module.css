@@ -5,12 +5,11 @@
   flex-direction: column;
   margin: 0 auto;
   width: 100%;
-  background: var(--theme-layout-background);
   padding-bottom: var(--space-xxs);
   margin-bottom: var(--space-xs);
   box-shadow: 0 0.25rem 0.25rem #0003;
   color: var(--theme-page-text);
-  background: var(--theme-page-background);
+  background: var(--theme-nav-bg);
 }
 .container .header {
   width: 100%;

@@ -4,7 +4,7 @@
   justify-content: center;
   margin: 0 auto;
   width: 100%;
-  background: var(--theme-page-background);
+  background: var(--theme-footer-bg);
   box-shadow: 0 -0.25rem 0.25rem #0003;
 }
 
