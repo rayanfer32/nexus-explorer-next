@@ -1,5 +1,14 @@
 import styles from './RTTable.module.css';
 
+import PropTypes from 'prop-types';
+
+RTTable.propTypes = {
+  onClick: PropTypes.func,
+  children: PropTypes.any,
+  label: PropTypes.string,
+  buttonLabel: PropTypes.string,
+};
+
 function RTTable(props) {
   const { label = 'Latest Blocks', buttonLabel: btnTxt = 'View All' } = props;
   return (

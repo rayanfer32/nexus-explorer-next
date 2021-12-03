@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Google+Sans&display=swap');
 
 :root {
   /* colors */
@@ -17,6 +17,12 @@
   /* gradient */
   --linear-frost-white: linear-gradient(
     180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    #daebf4 100%
+  );
+
+  --linear-frost-white-reverse: linear-gradient(
+    0deg,
     rgba(255, 255, 255, 0.5) 0%,
     #daebf4 100%
   );
@@ -72,7 +78,8 @@
   --space-xxxl: 4rem; /* 96px */
 
   /* shadows */
-  --card-shadow: 0rem 0rem 0.5rem #0001;
+  --card-shadow: 0rem 0.25rem 0.5rem #0002;
+  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
 }
 
 :root,
@@ -91,6 +98,7 @@
   --theme-search-text: var(--white);
   --theme-hue-rotate: hue-rotate(20deg);
   --theme-nav-bg: var(--linear-frost-white);
+  --theme-footer-bg: var(--linear-frost-white-reverse);
   --theme-nav-brand: var(--nexus-blue);
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
 }
@@ -110,7 +118,8 @@
   --theme-search-text: var(--white);
   --theme-hue-rotate: hue-rotate(0deg);
   --theme-nav-bg: var(--theme-layout-background);
-  --theme-nav-brand: var(--white);
+  --theme-footer-bg: var(--theme-layout-background);
+  --theme-nav-brand: var(--paper-white);
   --theme-invert: invert(0);
 }
 
@@ -118,7 +127,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Lato;
+  font-family: Google Sans;
   background: var(--theme-bg-under);
 }
 

@@ -1,5 +1,22 @@
 import styles from './RTTRowBlock.module.css';
 
+import PropTypes from 'prop-types';
+
+RTTRowBlock.propTypes = {
+  block: PropTypes.string,
+  channel: PropTypes.string,
+  utc: PropTypes.string,
+  date: PropTypes.string,
+  mint: PropTypes.string,
+  mintUnit: PropTypes.string,
+  size: PropTypes.string,
+  sizeUnit: PropTypes.string,
+  txns: PropTypes.string,
+  txnsUnit: PropTypes.string,
+  type: PropTypes.string,
+  timeUnit: PropTypes.string,
+};
+
 function RTTRowBlock(props) {
   const {
     block = '00',

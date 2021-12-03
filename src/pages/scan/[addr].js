@@ -25,13 +25,11 @@ function Scan(props) {
     <div>
       <InfoCard type={cardType} data={props.response.result} />
       <div style={{ margin: '1rem' }}>
-        <button
-          variant="contained"
-          onClick={() => setShowRawResponse((prev) => !prev)}>
+        <button onClick={() => setShowRawResponse((prev) => !prev)}>
           Show RAW Response
         </button>
         {showRawResponse ? (
-          <pre style={{ color: 'var(--theme-page-text)' }}>
+          <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
             {JSON.stringify(props.response, null, 2)}
           </pre>
         ) : null}

@@ -3,6 +3,12 @@ import lightBtn from 'assets/icons/light_mode_black_24dp.svg';
 import darkBtn from 'assets/icons/dark_mode_black_24dp.svg';
 import Image from 'next/image';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
+ThemeMode.propTypes = {
+  isDark: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 export default function ThemeMode(props) {
   const [toggle, setToggle] = useState(() => {
