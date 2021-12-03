@@ -1,20 +1,27 @@
+/* for mobile devices */
 .container {
   /* display: none; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   overflow: scroll;
   gap: var(--space-xl);
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .container > div {
   min-height: 22rem;
+  /* padding-bottom: 1rem; */
 }
 
-@media (min-width: 1024px) {
+/* for desktops  */
+@media (min-width: 768px) {
   .container {
     display: flex;
     flex-direction: row;
+    min-height: 25rem;
+    overflow: hidden;
+    margin-bottom: 0;
   }
 }
