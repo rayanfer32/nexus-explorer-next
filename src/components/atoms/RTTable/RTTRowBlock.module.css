@@ -21,6 +21,7 @@
   margin-left: 0.125rem;
   width: var(--font-normal);
   /* mirror text */
+
   transform: rotate(180deg);
   text-align: center;
   /* letter-spacing: 0.125rem; */
@@ -84,6 +85,7 @@
   color: var(--theme-page-text);
   position: relative;
   bottom: 0.5rem;
+  cursor: pointer;
 }
 
 .rttBlockRowBottom .time {

@@ -13,12 +13,15 @@ function richlist() {
       title: 'Balance',
       dataIndex: 'balance',
       key: 'balance',
+      sorter: (a, b) => parseFloat(a.balance) - parseFloat(b.balance),
+      defaultSortOrder: 'descend',
+      sortDirections: ['descend', 'ascend'],
     },
   ];
   const newData = data.map((item, index) => ({
     key: index,
     address: item[0],
-    balance: `${parseInt(item[1]).toFixed(2)} NXS`,
+    balance: `${parseFloat(item[1]).toFixed(2)} NXS`,
   }));
 
   return (

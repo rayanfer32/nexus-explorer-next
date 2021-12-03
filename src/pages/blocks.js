@@ -19,21 +19,28 @@ export default function Blocks(props) {
       title: 'Mint',
       dataIndex: 'mint',
       key: 'mint',
+      sorter: (a, b) => a.mint - b.mint,
     },
     {
       title: 'TXNs',
       dataIndex: 'tx',
       render: (tx) => tx.length,
+      sorter: (a, b) => a.tx.length - b.tx.length,
     },
     {
       title: 'Channel',
       dataIndex: 'channel',
       key: 'channel',
+      render: (chanId) => {
+        const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
+        return CHANNELS[chanId];
+      },
+      sorter: (a, b) => a.channel - b.channel,
     },
   ];
 
   return (
-    <div>
+    <div style={{ overflow: 'scroll' }}>
       <Table columns={columns} dataSource={data} />
     </div>
   );

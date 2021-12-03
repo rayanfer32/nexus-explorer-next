@@ -1,9 +1,15 @@
 .container {
-  display: none;
-  min-height: 25rem;
+  /* display: none; */
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
   gap: var(--space-xl);
   flex-direction: column;
   justify-content: center;
+}
+
+.container > div {
+  min-height: 22rem;
 }
 
 @media (min-width: 1024px) {

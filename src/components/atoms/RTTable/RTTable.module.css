@@ -5,6 +5,7 @@
   background: var(--theme-page-background);
   box-shadow: var(--card-shadow);
   border-radius: 4px;
+
   /* filter: contrast(0.98); */
 }
 
@@ -31,6 +32,7 @@
   font-size: var(--font-s);
   border-radius: 4px;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .button:hover {

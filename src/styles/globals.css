@@ -148,16 +148,16 @@ a {
 }
 
 ::-webkit-scrollbar {
-  height: 0.5em;
-  width: 0.5em;
+  height: 0.3rem;
+  width: 0.3rem;
 }
 
 ::-webkit-scrollbar-track {
-  background: #e4e4e4;
+  background: var(--theme-page-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--midnight-blue);
+  background: var(--theme-bg-under);
 }
 
 .slideRowAnim {

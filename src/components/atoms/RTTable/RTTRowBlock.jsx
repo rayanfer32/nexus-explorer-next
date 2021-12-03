@@ -15,6 +15,7 @@ RTTRowBlock.propTypes = {
   txnsUnit: PropTypes.string,
   type: PropTypes.string,
   timeUnit: PropTypes.string,
+  link: PropTypes.string,
 };
 
 function RTTRowBlock(props) {
@@ -31,6 +32,7 @@ function RTTRowBlock(props) {
     txnsUnit = 'txns',
     type = 'BLOCK',
     timeUnit = 'UTC',
+    link,
   } = props;
 
   return (
@@ -45,7 +47,9 @@ function RTTRowBlock(props) {
         </div>
         {/* row bottom */}
         <div className={styles.rttBlockRowBottom}>
-          <div className={styles.blockNumber}>{block}</div>
+          <div className={styles.blockNumber}>
+            <a href={link}>{block}</a>
+          </div>
           {/* time */}
           <div className={styles.time}>
             <div className={styles.timeInUTC}>

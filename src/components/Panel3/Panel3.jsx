@@ -31,6 +31,7 @@ function Panel3() {
         txns={newRowData.tx.length}
         size={newRowData.size}
         channel={`Channel: ${CHANNELS[newRowData.channel]}`}
+        link={`/scan/${newRowData.height}`}
       />
     );
     setTableBlockRowElements((tableBlockRowElements) => [

@@ -2,28 +2,32 @@ export function intlNum(num) {
   return new Intl.NumberFormat().format(num);
 }
 
+export function middleElipsis(text, sliceAt) {
+  return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
+}
+
 export function timeConverter(UNIX_timestamp) {
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  let a = new Date(UNIX_timestamp * 1000);
+  // var months = [
+  //   'Jan',
+  //   'Feb',
+  //   'Mar',
+  //   'Apr',
+  //   'May',
+  //   'Jun',
+  //   'Jul',
+  //   'Aug',
+  //   'Sep',
+  //   'Oct',
+  //   'Nov',
+  //   'Dec',
+  // ];
   // var year = a.getFullYear();
   // var month = months[a.getMonth()];
   // var date = a.getDate();
-  var hour = appendZero(a.getHours());
-  var min = appendZero(a.getMinutes());
-  var sec = appendZero(a.getSeconds());
+  let hour = appendZero(a.getHours());
+  let min = appendZero(a.getMinutes());
+  let sec = appendZero(a.getSeconds());
   // var time =
   //   date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
   // // return time;
@@ -43,22 +47,17 @@ export function toTitleCase(str) {
   });
 }
 
-var SI_SYMBOL = ['', 'k', 'M', 'G', 'T', 'P', 'E'];
-
 export function abbreviateNumber(number) {
+  let SI_SYMBOL = ['', 'k', 'M', 'G', 'T', 'P', 'E'];
   // what tier? (determines SI symbol)
-  var tier = (Math.log10(Math.abs(number)) / 3) | 0;
-
+  let tier = (Math.log10(Math.abs(number)) / 3) | 0;
   // if zero, we don't need a suffix
   if (tier == 0) return number;
-
   // get suffix and determine scale
-  var suffix = SI_SYMBOL[tier];
-  var scale = Math.pow(10, tier * 3);
-
+  let suffix = SI_SYMBOL[tier];
+  let scale = Math.pow(10, tier * 3);
   // scale the number
-  var scaled = number / scale;
-
+  let scaled = number / scale;
   // format number and add suffix
   return scaled.toFixed(2) + ' ' + suffix;
 }
