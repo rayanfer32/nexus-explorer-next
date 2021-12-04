@@ -1,4 +1,4 @@
-import styles from './SmallCard.module.css';
+import styles from './SmallCard.module.scss';
 // import svgLogo from "assets/icons/icon.svg"
 import pngLogo from 'assets/icons/nexusblue.png';
 import Image from 'next/dist/client/image';
