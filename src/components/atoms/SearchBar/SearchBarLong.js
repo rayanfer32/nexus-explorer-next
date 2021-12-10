@@ -18,7 +18,13 @@ function SearchBarLong(props) {
         type="submit"
         onClick={props?.onSearch}
         className={styles.searchLongBtn}>
-        <Image src={SearchIcon} alt="search" className={styles.searchIcon} />
+        <Image
+          src={SearchIcon}
+          alt="search"
+          className={styles.searchIcon}
+          width="24"
+          height="24"
+        />
       </button>
     </div>
   );
