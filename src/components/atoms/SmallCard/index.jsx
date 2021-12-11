@@ -29,7 +29,7 @@ export default function SmallCard(props) {
       </div>
       {/* nexus icon */}
       <div className={styles.icon}>
-        <Image src={pngLogo} alt="icon"></Image>
+        <Image src={pngLogo} alt="icon" layout="fill"></Image>
       </div>
     </div>
   );
