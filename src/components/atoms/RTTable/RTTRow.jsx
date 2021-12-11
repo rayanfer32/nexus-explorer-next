@@ -1,5 +1,5 @@
 import styles from './RTTRow.module.css';
-
+import { middleElipsis } from 'utils/converter';
 import PropTypes from 'prop-types';
 
 RTTRow.propTypes = {
@@ -53,7 +53,9 @@ function RTTRow(props) {
           <div className={styles.txnId}>
             {!!txnId && (
               <>
-                <div className={styles.txnIdValue}>{txnId}</div>
+                <div className={styles.txnIdValue}>
+                  <a href={`/scan/${txnId}`}>{middleElipsis(txnId, 7)}</a>
+                </div>
                 <div className={styles.lowerThirdText}>txn_id</div>
               </>
             )}

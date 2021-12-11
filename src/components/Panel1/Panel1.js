@@ -11,6 +11,7 @@ function Panel1({ chartData, metricsData, infoData }) {
           sublabel="Blocks"
           text={new Intl.NumberFormat('en-US').format(infoData.blocks)}
           ticker="^"
+          link={`/scan/${infoData.blocks}`}
         />
         <SmallCard
           label="Total Supply"

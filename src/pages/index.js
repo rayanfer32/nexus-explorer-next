@@ -77,7 +77,9 @@ export default function Home(props) {
           miningData={propState.miningData}
           marketData={propState.marketData}
         />
-        <Panel3 />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Panel3 />
+        </div>
       </main>
     </>
   );

@@ -9,6 +9,7 @@ SmallCard.propTypes = {
   sublabel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   ticker: PropTypes.any,
+  link: PropTypes.string,
 };
 
 export default function SmallCard(props) {
@@ -21,7 +22,9 @@ export default function SmallCard(props) {
       </div>
       {/* card body value and unit */}
       <div className={styles.bodyContainer}>
-        <span className={styles.bodyText}>{props.text}</span>
+        <span className={styles.bodyText}>
+          <a href={props.link}>{props.text}</a>
+        </span>
         <span className={styles.tickerSymbol}>{props.ticker}</span>
       </div>
       {/* nexus icon */}
