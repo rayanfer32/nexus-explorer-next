@@ -1,7 +1,4 @@
-import nexusLogo from 'assets/branding/NexusLogoWhite1250x225.png';
-import walletLogo from 'assets/icons/wallet.png';
-import appleLogo from 'assets/icons/apple.png';
-import playstoreLogo from 'assets/icons/playstore.png';
+import ASSESTS from 'assets';
 
 export const FooterTypes = {
   footerItems: {
@@ -9,25 +6,26 @@ export const FooterTypes = {
       href: 'https://nexus.io/',
       target: '_blank',
       label: 'Nexus.io',
-      src: nexusLogo,
+      src: ASSESTS.BRAND.DEFAULT.WHITE,
+      brand: ASSESTS.BRAND.DEFAULT,
     },
     desktopWallet: {
       href: 'https://nexus.io/wallets',
       target: '_blank',
       label: 'Desktop Wallet',
-      src: walletLogo,
+      src: ASSESTS.ICON.WALLET,
     },
     playstore: {
       href: 'https://play.google.com/store/apps/details?id=io.nexus.wallet',
       target: '_blank',
       label: 'Get it on Playstore',
-      src: playstoreLogo,
+      src: ASSESTS.ICON.PLAY_STORE,
     },
     appStore: {
       href: 'https://testflight.apple.com/join/dJLBiKzt',
       target: '_blank',
       label: 'Download from IOS store',
-      src: appleLogo,
+      src: ASSESTS.ICON.APPLE,
     },
     supportEmail: {
       href: 'https://github.com/rayanfer32/nexus-explorer-next',

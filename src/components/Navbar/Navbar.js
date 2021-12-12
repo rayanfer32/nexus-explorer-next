@@ -1,7 +1,5 @@
 import styles from './Navbar.module.css';
 import Image from 'next/image';
-import nexusLogoWhite from 'assets/branding/NexusLogoWhite1000x225.png';
-import nexusLogoBlue from 'assets/branding/NexusLogoBlue1000x225.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ThemeMode from 'components/atoms/ThemeMode';
@@ -13,7 +11,6 @@ import { useState } from 'react';
 function Navbar() {
   const router = useRouter();
   const [isDarkMode, setDarkMode] = useDarkMode();
-  const navList = TYPES.navList;
   const onClickBrand = () => router.push('/');
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -21,7 +18,7 @@ function Navbar() {
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
       <div className={styles.links}>
-        {navList.map((navItem) => {
+        {TYPES.navbar.NAVLIST.map((navItem) => {
           return (
             <span
               key={navItem.id}
@@ -58,7 +55,7 @@ function Navbar() {
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
             <div className={styles.mlinks}>
-              {navList.map((navItem) => {
+              {TYPES.navbar.NAVLIST.map((navItem) => {
                 return (
                   <span
                     key={navItem.id}
@@ -87,7 +84,9 @@ function Navbar() {
               width={142}
               height={32}
               layout="fixed"
-              src={isDarkMode ? nexusLogoWhite : nexusLogoBlue}
+              src={
+                isDarkMode ? TYPES.navbar.brand.WHITE : TYPES.navbar.brand.BLUE
+              }
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
