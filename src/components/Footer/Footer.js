@@ -1,10 +1,11 @@
 import styles from './Footer.module.css';
 import Image from 'next/image';
 import TYPES from 'types';
+import { useDarkMode } from 'hooks';
 
 function Footer() {
   const footerItems = TYPES.footerItems;
-
+  const [isDarkMode] = useDarkMode();
   return (
     <section className={styles.container}>
       <div className={styles.footer}>
@@ -13,7 +14,11 @@ function Footer() {
             <Image
               width={176}
               height={32}
-              src={footerItems.nexus.src}
+              src={
+                !isDarkMode
+                  ? footerItems.nexus.brand.WHITE
+                  : footerItems.nexus.brand.BLUE
+              }
               alt={footerItems.nexus.label}
             />
           </a>
