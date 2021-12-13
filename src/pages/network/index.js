@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function network() {
-    return (
-        <h1>
-            network tab
-        </h1>
-    )
+  return <h1>network tab</h1>;
 }
 
-export default network
+export default network;

@@ -1,4 +1,4 @@
-import Loader from 'components/atoms/Loader';
+import Loader from 'components/atoms/NE_Loader';
 import TYPES from 'types';
 
 export default {
@@ -6,5 +6,14 @@ export default {
   component: Loader,
 };
 
-export const Circular = () => <Loader />;
-export const Dot = () => <Loader type={TYPES.loaderType.dot} />;
+const Template = (args) => <Loader {...args} />;
+
+export const Circular = Template.bind({});
+Circular.args = {
+  type: TYPES.loaderType.circle,
+};
+
+export const Dot = Template.bind({});
+Dot.args = {
+  type: TYPES.loaderType.dot,
+};

@@ -20,7 +20,7 @@ const Dot = () => <div className={styles.dot} />;
 
 export default DotLoader;
 
-DotLoader.prototype = {
+DotLoader.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
 };
