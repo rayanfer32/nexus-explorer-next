@@ -1,3 +1,4 @@
+import Button from 'components/atoms/NE_Button';
 import Card from 'components/atoms/NE_Card';
 import Loader from 'components/atoms/NE_Loader';
 import Text from 'components/atoms/NE_Text';
@@ -10,6 +11,7 @@ function test() {
     <Loader type={TYPES.loaderType.dot} />,
     <Card type="small" />,
     <Text type="primary">Hello World</Text>,
+    <Button type="primary" />,
   ];
   return (
     <div style={{ minWidth: '700px' }}>
