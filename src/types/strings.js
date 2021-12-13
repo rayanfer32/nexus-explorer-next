@@ -3,4 +3,8 @@ export const Strings = {
     circle: 'circle',
     dot: 'dot',
   },
+  textType: {
+    primary: 'primary',
+    secondary: 'secondary',
+  },
 };

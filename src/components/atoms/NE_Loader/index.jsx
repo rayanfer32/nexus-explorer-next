@@ -8,8 +8,14 @@ export default function Loader({ type, ...props }) {
   return <CircleLoader {...props} />;
 }
 
-Loader.prototype = {
-  type: PropTypes.oneOf([TYPES.loaderType.circle, TYPES.loaderType.dot]),
+Loader.propTypes = {
+  type: PropTypes.oneOf(['circle', 'dot']),
   size: PropTypes.string,
   color: PropTypes.string,
+};
+
+Loader.defaultProps = {
+  type: TYPES.loaderType.circle,
+  size: '3rem',
+  color: TYPES.colors.nexusBlue,
 };

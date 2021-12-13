@@ -21,7 +21,7 @@ const CircleLoader = ({
 
 export default CircleLoader;
 
-CircleLoader.prototype = {
+CircleLoader.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
 };

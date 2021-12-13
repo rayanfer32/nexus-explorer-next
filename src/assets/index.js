@@ -11,18 +11,25 @@ import NexusLogoBlue1250x225 from './branding/NexusLogoBlue1250x225.png';
 import NexusLogoWhite1250x225 from './branding/NexusLogoWhite1250x225.png';
 // ICONS
 import applceIcon from './icons/apple.png';
-import walletIcon from './icons/wallet.png';
+import nexusBlue from './icons/nexus_blue64.png';
+import nexusWhite from './icons/nexus_white64.png';
 import playstoreIcon from './icons/playstore.png';
+import walletIcon from './icons/wallet.png';
 // IMAGES
 
 export const ASSESTS = {
   BRAND: {
-    DEFAULT: { WHITE: NexusLogoWhite1250x225, BLUE: NexusLogoBlue1250x225 },
-    PRIMARY: { WHITE: NexusLogoWhite1000x225, BLUE: NexusLogoBlue1000x225 },
-    SECONDARY: { WHITE: GlobeWhite1200x1000, BLUE: GlobeBlue1200x1000 },
-    TERTIARY: { WHITE: GlobeWhite1000x1000, BLUE: GlobeBlue1000x1000 },
+    DEFAULT: { BLUE: NexusLogoBlue1250x225, WHITE: NexusLogoWhite1250x225 },
+    PRIMARY: { BLUE: NexusLogoBlue1000x225, WHITE: NexusLogoWhite1000x225 },
+    SECONDARY: { BLUE: GlobeBlue1200x1000, WHITE: GlobeWhite1200x1000 },
+    TERTIARY: { BLUE: GlobeBlue1000x1000, WHITE: GlobeWhite1000x1000 },
   },
-  ICON: { APPLE: applceIcon, WALLET: walletIcon, PLAY_STORE: playstoreIcon },
+  ICON: {
+    APPLE: applceIcon,
+    NEXUS: { BLUE: nexusBlue, WHITE: nexusWhite },
+    PLAY_STORE: playstoreIcon,
+    WALLET: walletIcon,
+  },
   IMAGE: {},
 };
 

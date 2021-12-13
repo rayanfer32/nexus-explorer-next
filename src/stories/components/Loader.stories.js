@@ -6,5 +6,14 @@ export default {
   component: Loader,
 };
 
-export const Circular = () => <Loader />;
-export const Dot = () => <Loader type={TYPES.loaderType.dot} />;
+const Template = (args) => <Loader {...args} />;
+
+export const Circular = Template.bind({});
+Circular.args = {
+  type: TYPES.loaderType.circle,
+};
+
+export const Dot = Template.bind({});
+Dot.args = {
+  type: TYPES.loaderType.dot,
+};

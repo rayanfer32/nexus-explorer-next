@@ -1,0 +1,73 @@
+.card {
+  &-small {
+    width: 100%;
+    min-width: 14.5rem; /* 232px */
+    height: 6.25rem; /* 100px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+  }
+  &-body {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+
+    h1,
+    h4,
+    label {
+      margin: 0;
+      text-align: left;
+      color: var(--theme-page-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &-above {
+      display: flex;
+      flex-direction: column;
+      width: 99%;
+    }
+    &-below {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-start;
+      width: 99%;
+      label {
+        font-size: var(--font-xs);
+        &[data-left] {
+          margin-left: var(--space-xxxs);
+        }
+        &[data-right] {
+          margin-right: var(--space-xxxs);
+        }
+      }
+      h1 {
+        max-width: 100%;
+        margin-top: var(--space-xs);
+        font-size: var(--font-xxl);
+      }
+    }
+
+    .hover {
+      &:hover {
+        text-decoration: underline;
+      }
+      &:active {
+        transform: scale(1.01);
+      }
+      transition: all 350ms ease-out;
+      cursor: pointer;
+    }
+  }
+  &-icon {
+    // position: static;
+    border: 0.0625rem solid var(--nexus-blue);
+    border-radius: 50%;
+    min-width: var(--space-xl);
+    width: var(--space-xl);
+    min-height: var(--space-xl);
+    height: var(--space-xl);
+    // right: 0;
+  }
+}
