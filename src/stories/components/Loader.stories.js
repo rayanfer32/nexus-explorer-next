@@ -1,4 +1,4 @@
-import Loader from 'components/atoms/Loader';
+import Loader from 'components/atoms/NE_Loader';
 import TYPES from 'types';
 
 export default {

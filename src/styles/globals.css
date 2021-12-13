@@ -89,6 +89,7 @@
   --theme-page-not-background: var(--midnight-blue);
   --theme-page-text: var(--midnight-blue);
   --theme-page-text-secondary: var(--ocean-blue);
+  --theme-page-border: var(--nexus-blue);
   --theme-gradient: var(--radial-sky-white);
   --theme-gradient-radial: var(--radial-sky-white);
   --theme-gradient-linear: var(--linear-sky-white);
@@ -109,6 +110,7 @@
   --theme-page-not-background: var(--ocean-blue);
   --theme-page-text: var(--white);
   --theme-page-text-secondary: var(--sky-blue);
+  --theme-page-border: var(--ocean-blue);
   --theme-gradient: var(--radial-ocean-midnight);
   --theme-gradient-radial: var(--radial-ocean-midnight);
   --theme-gradient-linear: var(--linear-ocean-midnight);
