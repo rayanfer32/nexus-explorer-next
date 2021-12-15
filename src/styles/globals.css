@@ -58,6 +58,8 @@
   --font-xl: 1.125rem; /* 18px */
   --font-xxl: 1.25rem; /* 20px */
   --font-xxxl: 1.5rem; /* 24px */
+  --font-xxxxl: 2rem; /* 32px */
+  --font-xxxxxl: 3rem; /* 48px */
 
   /* screen sizes */
   --screen-xs: 576px;

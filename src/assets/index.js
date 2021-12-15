@@ -17,6 +17,7 @@ import nexusWhite from './icons/nexus_white64.png';
 import playstoreIcon from './icons/playstore.png';
 import walletIcon from './icons/wallet.png';
 // IMAGES
+import error from './images/error.svg';
 
 export const ASSESTS = {
   BRAND: {
@@ -34,7 +35,9 @@ export const ASSESTS = {
     PLAY_STORE: playstoreIcon,
     WALLET: walletIcon,
   },
-  IMAGE: {},
+  IMAGE: {
+    GENRAL_ERROR: error,
+  },
 };
 
 export default ASSESTS;
