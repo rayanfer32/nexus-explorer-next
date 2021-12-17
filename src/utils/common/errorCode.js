@@ -31,9 +31,9 @@ export const errorCode = (errCode) => {
   return /^[4-5]/g.test(errCode)
     ? {
         code: errCode,
-        type: err?.type,
-        detail: err?.msg,
-        msg: err?.code[`${errCode}`],
+        type: err?.type || '',
+        detail: err?.msg || '',
+        msg: err?.code[`${errCode}`] || 'Something went Wrong!!',
       }
     : {
         code: errCode,

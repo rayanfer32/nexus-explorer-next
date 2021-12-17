@@ -1,5 +1,5 @@
 // import Table from 'components/atoms/Table';
-import { Table, Tag, Space } from 'antd';
+import { Table } from 'antd';
 import data from 'assets/data/trustlist.json';
 
 function trustlist() {

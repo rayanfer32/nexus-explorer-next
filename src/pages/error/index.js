@@ -5,10 +5,8 @@ import Link from 'next/link';
 import Router from 'next/router';
 import styles from './error.module.scss';
 import TYPES from 'types';
-import { errorCode } from './errorCode';
 
-export const CustomError = ({ statusCode }) => {
-  const errInfo = errorCode(statusCode);
+const CustomError = ({ statusCode }) => {
   return (
     <article className={styles.container}>
       <section className={styles.errorText}>
@@ -17,7 +15,9 @@ export const CustomError = ({ statusCode }) => {
             {`ERROR`} <strong>{statusCode}</strong>
           </p>
         )}
-        <h1>{errInfo.msg}</h1>
+        <h1>
+          {statusCode == 404 ? 'Page not Found' : 'Something went Wrong!!'}
+        </h1>
         <div className={styles['cta']}>
           {/* back to prevo=ious page */}
           <Button
@@ -36,7 +36,11 @@ export const CustomError = ({ statusCode }) => {
           </Link>
         </div>
         {/* provide err detail */}
-        <p className={styles.detail}>{errInfo.detail}</p>
+        <p className={styles.detail}>
+          {
+            'Request contains bad syntax or the server cannot fulfill the request'
+          }
+        </p>
       </section>
       <aside className={styles.errorImage}>
         <Image
@@ -49,3 +53,5 @@ export const CustomError = ({ statusCode }) => {
     </article>
   );
 };
+
+export default CustomError;
