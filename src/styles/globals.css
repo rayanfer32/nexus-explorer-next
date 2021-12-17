@@ -103,6 +103,8 @@
   --theme-nav-bg: var(--linear-frost-white);
   --theme-footer-bg: var(--linear-frost-white-reverse);
   --theme-nav-brand: var(--nexus-blue);
+  --theme-btn-background: var(--ocean-blue);
+  --theme-btn-text: var(--white);
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
 }
 
@@ -125,6 +127,8 @@
   --theme-footer-bg: var(--theme-layout-background);
   --theme-nav-brand: var(--paper-white);
   --theme-invert: invert(0);
+  --theme-btn-background: var(--midnight-blue);
+  --theme-btn-text: var(--white-blue);
 }
 
 html,

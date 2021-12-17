@@ -1,3 +1,4 @@
+import { ButtonTypes } from './button';
 import { colors } from './colors';
 import { FooterTypes } from './footer';
 import { navbar } from './navbar';
@@ -6,6 +7,7 @@ import { Theme } from './theme';
 
 export const TYPES = {
   ...colors,
+  ...ButtonTypes,
   ...FooterTypes,
   ...navbar,
   ...Strings,

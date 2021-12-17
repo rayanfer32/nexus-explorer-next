@@ -19,13 +19,28 @@
       color: var(--theme-page-text);
       font-size: var(--font-xxxxxl);
     }
-    .cta {
-      background: var(--nexus-blue);
-    }
-    h3 {
+    .detail {
+      margin-top: var(--space-xxl);
       color: var(--theme-page-text);
-      margin: 0.75rem 1rem;
-      font-size: var(--font-xl);
+      font-size: var(--font-s);
+    }
+    .cta {
+      display: flex;
+      gap: 2rem;
+      &-back {
+        background: var(--theme-btn-background);
+        h3 {
+          color: var(--theme-btn-text);
+          margin: 0.5rem 1rem;
+        }
+      }
+      &-home {
+        border-color: var(--theme-btn-background);
+        h3 {
+          color: var(--theme-page-text-secondary);
+          margin: 0.5rem 1rem;
+        }
+      }
     }
   }
   .errorImage {
@@ -46,6 +61,7 @@
     }
     .cta {
       margin: auto;
+      justify-content: center;
       h3 {
         margin: 0.5rem;
       }
