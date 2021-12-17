@@ -8,6 +8,35 @@ import { Fragment } from 'react';
 
 function test() {
   const testComponent = [
+    <Card
+      type="basic"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
+    <Card
+      type="detail"
+      type="basic"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
+    <Card
+      type="market"
+      type="basic"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
     <ChartsApex key={Math.random()} />,
     <Loader key={Math.random()} />,
     <Loader key={Math.random()} type={TYPES.loaderType.dot} />,
