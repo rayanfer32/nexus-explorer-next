@@ -24,10 +24,10 @@ async function fetchLatestData() {
     miningDataJson,
   ] = await Promise.all([
     // chartRes.json(),
-    metricsRes.json(),
-    infoRes.json(),
-    marketRes.json(),
-    miningRes.json(),
+    metricsRes?.json(),
+    infoRes?.json(),
+    marketRes?.status === 200 ? marketRes.json() : null,
+    miningRes?.json(),
   ]);
 
   return {
@@ -88,6 +88,7 @@ export default function Home(props) {
 // export async function getStaticProps() //SSG
 export async function getStaticProps() {
   const newProps = await fetchLatestData();
+
   return {
     props: {
       ...newProps,

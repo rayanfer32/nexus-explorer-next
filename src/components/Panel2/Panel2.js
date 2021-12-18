@@ -28,14 +28,14 @@ function Panel2(props) {
       <DetailCard
         type
         label="Price"
-        sublabel={`${marketData.market_data.current_price.btc} BTC`}
-        text={`${marketData.market_data.current_price.usd.toFixed(2)} $`}
+        sublabel={`${marketData?.market_data.current_price.btc} BTC`}
+        text={`${marketData?.market_data.current_price.usd.toFixed(2)} $`}
         reserveLabel="Change 24h"
-        reserve={`${marketData.market_data.price_change_percentage_24h} %`}
+        reserve={`${marketData?.market_data.price_change_percentage_24h} %`}
         rewardLabel="Total Volume"
-        reward={`${intlNum(marketData.market_data.total_volume.usd)} $`}
+        reward={`${intlNum(marketData?.market_data.total_volume.usd)} $`}
         footerLabel="Market Cap:"
-        footerValue={`${intlNum(marketData.market_data.market_cap.usd)} $`}
+        footerValue={`${intlNum(marketData?.market_data.market_cap.usd)} $`}
         delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
