@@ -10,10 +10,7 @@ const navList = [
 
 export const navbar = {
   navbar: {
-    NAVLIST:
-      process.env.NODE_ENV == 'development'
-        ? [...navList, { id: 6, title: 'Test', path: '/test' }]
-        : [...navList],
+    NAVLIST: [...navList],
     brand: ASSESTS.BRAND.PRIMARY,
   },
 };
