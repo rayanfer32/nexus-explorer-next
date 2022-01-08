@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import contracts24h from 'assets/data/contracts24h';
 import styles from './ChartsApex.module.css';
+import axios from 'axios';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
@@ -9,11 +10,26 @@ import { useAppContext } from 'contexts/AppContext';
 import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
+import { useQuery } from 'react-query';
+
 function ChartsApex() {
   const { sharedState } = useAppContext();
 
   const [isDarkMode] = useDarkMode();
   let apexChartRef = useRef();
+
+  const { isLoading, data, error } = useQuery('contracts24h', () => {
+    return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/chart`);
+  });
+
+  useEffect(() => {
+    // console.log(data)
+    try {
+      contracts24h = data.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }, [data]);
 
   // const series = [
   //   118, 111, 99, 116, 113, 92, 109, 161, 179, 164, 174, 128, 477, 104, 85, 101,
@@ -37,7 +53,7 @@ function ChartsApex() {
   let [chartState, setChartState] = useState({
     options: {
       chart: {
-        id: 'tx',
+        id: 'tx_chart',
         zoom: {
           enabled: false,
         },
@@ -62,7 +78,7 @@ function ChartsApex() {
         show: false,
       },
       title: {
-        text: 'Transaction History - 24H',
+        text: 'Transaction History',
         align: 'left',
         style: {
           fontFamily: 'inherit',

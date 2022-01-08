@@ -4,24 +4,21 @@ import DetailCard from 'components/atoms/DetailCard';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/atoms/Rail';
+import { useQuery } from 'react-query';
 
 function Panel2(props) {
-  const { marketData, metricsData, miningData } = props;
-  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(60);
+  const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
 
-  useEffect(() => {
-    const t1 = setInterval(() => {
-      setCardRefreshTimeout((prev) => {
-        if (prev === 0) {
-          prev = 59;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => {
-      clearInterval(t1);
-    };
-  }, []);
+  if (marketRQ.isLoading) return <p>Loading...</p>;
+  if (marketRQ.isError) return <p>Error...</p>;
+  if (marketRQ.data) {
+    // console.log(marketRQ.data);
+    return <pre>{JSON.stringify(marketRQ.data.data.result, null, 2)}</pre>;
+  }
+  if (marketRQ.error) {
+    // console.log(marketRQ.error);
+    return <pre>{JSON.stringify(marketRQ.error, null, 2)}</pre>;
+  }
 
   return (
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
