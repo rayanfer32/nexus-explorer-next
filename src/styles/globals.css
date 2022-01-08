@@ -37,6 +37,12 @@
     rgba(12, 164, 251, 0.7) 5.59%,
     rgba(109, 206, 254, 0.35) 73.28%
   );
+  --linear-nexus-sky: linear-gradient(
+    328deg,
+    rgba(12, 164, 251, 1) 0%,
+    rgba(109, 206, 254, 1) 80%,
+    rgba(255, 255, 255, 1) 100%
+  );
   --radial-ocean-midnight: radial-gradient(
     114.53% 197.34% at 25.54% -14.53%,
     var(--ocean-blue) 26.66%,
@@ -58,6 +64,8 @@
   --font-xl: 1.125rem; /* 18px */
   --font-xxl: 1.25rem; /* 20px */
   --font-xxxl: 1.5rem; /* 24px */
+  --font-xxxxl: 2rem; /* 32px */
+  --font-xxxxxl: 3rem; /* 48px */
 
   /* screen sizes */
   --screen-xs: 576px;
@@ -101,9 +109,12 @@
   --theme-nav-bg: var(--linear-frost-white);
   --theme-footer-bg: var(--linear-frost-white-reverse);
   --theme-nav-brand: var(--nexus-blue);
+  --theme-btn-background: var(--ocean-blue);
+  --theme-btn-text: var(--white);
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
+  --them-detail-card: var(--linear-nexus-sky);
 }
-
+[data-color-theme='dark'],
 .dark {
   --theme-color: var(--dark-grey);
   --theme-page-background: var(--midnight-blue);
@@ -123,6 +134,9 @@
   --theme-footer-bg: var(--theme-layout-background);
   --theme-nav-brand: var(--paper-white);
   --theme-invert: invert(0);
+  --theme-btn-background: var(--midnight-blue);
+  --theme-btn-text: var(--white-blue);
+  --them-detail-card: var(--radial-ocean-midnight);
 }
 
 html,
@@ -130,7 +144,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: Google Sans;
-  background: var(--theme-bg-under);
+  background: var(--theme-bg-under) no-repeat;
 }
 
 .themeText {

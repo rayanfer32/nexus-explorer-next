@@ -10,7 +10,7 @@
   color: var(--white);
   font-weight: bold;
   outline-color: var(--sky-blue);
-  transition: all 250ms ease-out;
+  transition: all 100ms ease-out;
   cursor: pointer;
 
   &:active {
@@ -42,7 +42,7 @@
   padding-right: 0.5rem;
   &:hover {
     .icon {
-      transition: all 250ms ease-in;
+      transition: all 100ms ease-in;
       transform: translateX(4px);
     }
   }

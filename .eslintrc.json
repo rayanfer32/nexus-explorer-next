@@ -5,7 +5,9 @@
     "no-undef": "warn",
     "no-console": "warn",
     "no-empty-function": "warn",
-    "react-hooks/exhaustive-deps":"off"
+    "react-hooks/exhaustive-deps":"off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
   },
   "overrides": [
     {
@@ -15,7 +17,7 @@
         // example of overriding a rule
         "storybook/hierarchy-separator": "error",
         // example of disabling a rule
-        "storybook/default-exports": "off",
+        "storybook/default-exports": "off"
       }
     }
   ]
