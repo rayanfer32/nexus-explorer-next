@@ -19,7 +19,6 @@ function test() {
     />,
     <Card
       type="detail"
-      type="basic"
       label="Label"
       sublabel="Sub-Label"
       title="999999999999"
@@ -29,7 +28,6 @@ function test() {
     />,
     <Card
       type="market"
-      type="basic"
       label="Label"
       sublabel="Sub-Label"
       title="999999999999"
