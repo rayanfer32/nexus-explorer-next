@@ -37,5 +37,5 @@ yarn-error.log*
 .backend/
 
 # dump
-.vscode/
+# .vscode/
 .dev/
