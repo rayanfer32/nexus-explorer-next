@@ -5,6 +5,7 @@ import Text from 'components/atoms/NE_Text';
 import InfoCard from 'components/atoms/InfoCard';
 import TYPES from 'types';
 import { middleElipsis } from 'utils/converter';
+import { Fragment } from 'react';
 
 function test() {
   const blockData = {
@@ -35,14 +36,68 @@ function test() {
   });
 
   const testComponent = [
-    <Loader />,
-    <Loader type={TYPES.loaderType.dot} />,
-    <Card type="small" />,
-    <Text type="primary">Hello World</Text>,
-    <Button type="primary">Open</Button>,
-    <InfoCard type="block" data={normalizedBlockData}></InfoCard>,
+    <Loader key={Math.random()} />,
+    <Loader type={TYPES.loaderType.dot} key={Math.random()} />,
+    <Card type="small" key={Math.random()} />,
+    <Text type="primary" key={Math.random()}>
+      Hello World
+    </Text>,
+    <Button type="primary" key={Math.random()}>
+      Open
+    </Button>,
+    <InfoCard
+      type="block"
+      data={normalizedBlockData}
+      key={Math.random()}></InfoCard>,
+    // ];
+    // return <div style={{ minWidth: '700px' }}>{testComponent}</div>;
+    <Card
+      type="basic"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
+    <Card
+      type="detail"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
+    <Card
+      type="market"
+      label="Label"
+      sublabel="Sub-Label"
+      title="999999999999"
+      unit="unit"
+      ticker="60s"
+      key={Math.random()}
+    />,
+    // <ChartsApex key={Math.random()} />,
+    <Loader key={Math.random()} />,
+    <Loader key={Math.random()} type={TYPES.loaderType.dot} />,
+    <Card key={Math.random()} type="small" />,
+    <Text key={Math.random()} type="primary">
+      Hello World
+    </Text>,
+    <Button key={Math.random()} type="primary" />,
   ];
-  return <div style={{ minWidth: '700px' }}>{testComponent}</div>;
+  return (
+    <div style={{ minWidth: '700px' }}>
+      <h4>Total Test Components:{(testComponent || []).length}</h4>
+      {(testComponent || []).map((component, idx) => (
+        <Fragment key={idx}>
+          {component}
+          {testComponent.length - (idx + 1) ? <hr /> : <></>}
+        </Fragment>
+      ))}
+    </div>
+  );
 }
 
 export default test;

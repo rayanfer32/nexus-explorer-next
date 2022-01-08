@@ -9,7 +9,8 @@
     "lint": "next lint",
     "format": "prettier -w ./src",
     "prepare": "husky install",
-    "clean": "rm -rf .next",
+    "clean": "rimraf node_modules",
+    "clean:deep":"rimraf .next && rimraf node_modules && rimraf dist",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public"
   },
@@ -45,7 +46,9 @@
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "prettier": "2.4.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^12.4.0",
+    "storybook-theme-toggle": "file:dependencies/storybook-theme-toggle",
     "style-loader": "^3.3.1"
   },
   "lint-staged": {

@@ -1,0 +1,44 @@
+.basic {
+  position: relative;
+  border-radius: var(--space-xxxs); //4px
+  box-shadow: var(--card-shadow);
+  height: 10.75rem;
+  width: 17.625rem;
+  max-width: 20.375rem; //326px
+  overflow: hidden;
+  background: var(--them-detail-card);
+  border: solid 0.0625rem var(--theme-page-border);
+  padding: 0;
+
+  .imgBg {
+    width: 100%;
+    height: 100%;
+    padding: var(--space-xs); // 12px
+    background: url('../../../../../assets//images/nexus_water_mark.png')
+      no-repeat;
+    background-repeat: no-repeat;
+    background-position: top left;
+  }
+
+  .container {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    .header {
+    }
+    .body {
+    }
+  }
+}
+
+.card_header {
+}
+
+.card_body {
+  display: flex;
+  opacity: 1;
+  p {
+  }
+  label {
+  }
+}

@@ -7,9 +7,4 @@ export const Strings = {
     primary: 'primary',
     secondary: 'secondary',
   },
-  buttonType: {
-    primary: 'primary',
-    secondary: 'secondary',
-    tertiary: 'tertiary',
-  },
 };
