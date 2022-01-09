@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import contracts24h from 'assets/data/contracts24h';
+// import contracts24h from 'assets/data/contracts24h';
 import styles from './ChartsApex.module.css';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
+import Loader from 'components/atoms/NE_Loader';
 import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
@@ -18,36 +19,18 @@ function ChartsApex() {
   const [isDarkMode] = useDarkMode();
   let apexChartRef = useRef();
 
-  const { isLoading, data, error } = useQuery('contracts24h', () => {
-    return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/chart`);
-  });
-
-  useEffect(() => {
-    // console.log(data)
-    try {
-      contracts24h = data.data;
-    } catch (err) {
-      console.log(err);
-    }
-  }, [data]);
-
-  // const series = [
-  //   118, 111, 99, 116, 113, 92, 109, 161, 179, 164, 174, 128, 477, 104, 85, 101,
-  //   116, 109, 86, 119, 80, 112, 480, 82,
-  // ];
-
   const series = [];
-  const generatePrevTimes = () => {
-    const _prevTimes = [];
-    for (let i = 24; i > 0; i--) {
-      let d = new Date(new Date().getTime() - i * 60 * 60 * 1000).toString();
-      // console.log(d);
-      _prevTimes.push(d);
-    }
-    return _prevTimes;
-  };
-
-  let prevTimes = generatePrevTimes();
+  const prevTimes = [];
+  // const generatePrevTimes = () => {
+  //   const _prevTimes = [];
+  //   for (let i = 24; i > 0; i--) {
+  //     let d = new Date(new Date().getTime() - i * 60 * 60 * 1000).toString();
+  //     // console.log(d);
+  //     _prevTimes.push(d);
+  //   }
+  //   return _prevTimes;
+  // };
+  // let prevTimes = generatePrevTimes();
   // console.log(prevTimes);
 
   let [chartState, setChartState] = useState({
@@ -112,6 +95,23 @@ function ChartsApex() {
       },
     ],
   });
+  const [contracts24h, setContracts24h] = useState([]);
+
+  const { isLoading, data, error } = useQuery('contracts24h', () => {
+    return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/chart`);
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log("Setting chart data")
+      setContracts24h(data.data);
+    }
+  }, [data]);
+
+  // const series = [
+  //   118, 111, 99, 116, 113, 92, 109, 161, 179, 164, 174, 128, 477, 104, 85, 101,
+  //   116, 109, 86, 119, 80, 112, 480, 82,
+  // ];
 
   const updateChart = () => {
     const newSeries = [];
@@ -134,8 +134,11 @@ function ChartsApex() {
   };
 
   useEffect(() => {
-    updateChart();
-  }, []);
+    if (contracts24h?.contracts?.length > 0) {
+      console.log('updating chart');
+      updateChart();
+    }
+  }, [contracts24h]);
 
   // check appcontext update
   useEffect(() => {
@@ -155,6 +158,19 @@ function ChartsApex() {
       return { ...prev };
     });
   }, [sharedState.theme]);
+
+  if (isLoading) {
+     return (
+      <div
+        style={{
+          display: 'grid',
+          placeItems: 'center',
+          minHeight: '200px',
+          margin: 'auto',
+        }}>
+        <Loader type="circle" size="5rem" />
+      </div>)
+  }
 
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90

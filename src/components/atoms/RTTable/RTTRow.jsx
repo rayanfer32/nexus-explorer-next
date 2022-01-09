@@ -8,7 +8,7 @@ RTTRow.propTypes = {
   txnId: PropTypes.string,
   operation: PropTypes.string,
   txType: PropTypes.string,
-  amount: PropTypes.number,
+  amount: PropTypes.string,
   amountUnit: PropTypes.string,
   confirmations: PropTypes.number,
   contracts: PropTypes.number,

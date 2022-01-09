@@ -85,7 +85,7 @@ function Panel2(props) {
   }, [marketRQ.data, miningRQ.data, metricsRQ.data]);
 
   //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
-  if (metricsRQ.isLoading)
+  if (miningRQ.isLoading)
     return (
       <div
         style={{
@@ -109,7 +109,7 @@ function Panel2(props) {
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
       <DetailCard
         type
-        icon = {<GiTwoCoins color='white' size="2.5rem"/>}
+        icon = {<GiTwoCoins color='white' size="2.25rem"/>}
         label="Price"
         sublabel={`${state.price?.sublabel} BTC`}
         text={`${state.price?.text} $`}
@@ -123,7 +123,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
-        icon={<AiFillBank color='white' size="2.5rem"/>}
+        icon={<AiFillBank color='white' size="2.25rem"/>}
         label="Stake"
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
         text={`${intlNum(state.stake?.text)} NXS`}
@@ -151,7 +151,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
-        icon={<BsFillCpuFill color='white' size="2.5rem"/>}
+        icon={<BsFillCpuFill color='white' size="2.25rem"/>}
         label="Prime"
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
         text={`${abbreviateNumber(state.prime?.text)}P/s`}
