@@ -79,6 +79,7 @@ function test() {
       key={Math.random()}
     />,
     // <ChartsApex key={Math.random()} />,
+    <ChartsApex key={Math.random()} />,
     <Loader key={Math.random()} />,
     <Loader key={Math.random()} type={TYPES.loaderType.dot} />,
     <Card key={Math.random()} type="small" />,
