@@ -9,6 +9,7 @@
     "lint": "next lint",
     "format": "prettier -w ./src",
     "prepare": "husky install",
+    "clean:cache": "rm -rf .next",
     "clean": "rimraf node_modules",
     "clean:deep": "rimraf .next && rimraf node_modules && rimraf dist",
     "storybook": "start-storybook -p 6006 -s ./public",

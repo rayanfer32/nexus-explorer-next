@@ -28,7 +28,7 @@ export default function DetailCard(props) {
         <div className={styles.triangle2} />
         <div className={styles.triangle3} />
         <div className={styles.logoIcon}>
-          <Image src={pngLogo} alt="nexus logo" />
+          {props.icon || <Image src={pngLogo} alt="nexus logo" />}
         </div>
       </div>
       {props?.type === 'secondary' || props?.type === true ? (

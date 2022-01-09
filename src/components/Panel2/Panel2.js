@@ -6,7 +6,10 @@ import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/atoms/Rail';
 import Loader from 'components/atoms/NE_Loader';
 // import { useQuery } from 'react-query';
-
+import {GiTwoCoins} from 'react-icons/gi';
+import {BsFillCpuFill} from 'react-icons/bs';
+import {AiFillBank} from 'react-icons/ai';
+import {MdSpeed} from 'react-icons/md';
 
 function Panel2(props) {
   const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
@@ -106,6 +109,7 @@ function Panel2(props) {
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
       <DetailCard
         type
+        icon = {<GiTwoCoins color='white' size="2.5rem"/>}
         label="Price"
         sublabel={`${state.price?.sublabel} BTC`}
         text={`${state.price?.text} $`}
@@ -119,6 +123,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
+        icon={<AiFillBank color='white' size="2.5rem"/>}
         label="Stake"
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
         text={`${intlNum(state.stake?.text)} NXS`}
@@ -132,6 +137,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
+        icon={<MdSpeed color='white' size="2.5rem"/>}
         label="Hash"
         sublabel={`Difficulty : ${state.hash?.sublabel}`}
         text={`${abbreviateNumber(state.hash?.text)}H/s`}
@@ -145,6 +151,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
+        icon={<BsFillCpuFill color='white' size="2.5rem"/>}
         label="Prime"
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
         text={`${abbreviateNumber(state.prime?.text)}P/s`}

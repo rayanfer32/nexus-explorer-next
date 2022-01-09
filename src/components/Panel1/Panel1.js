@@ -6,6 +6,9 @@ import Loader from 'components/atoms/NE_Loader';
 // import { useQuery } from 'react-query';
 // import axios from 'axios';
 import {GrStackOverflow} from 'react-icons/gr';
+import {BsPersonCheckFill} from 'react-icons/bs';
+import {AiOutlineStock} from 'react-icons/ai';
+import {FaCoins} from 'react-icons/fa';
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
@@ -54,27 +57,6 @@ function Panel1(props) {
     return <pre>{JSON.stringify(miningRQ.error, null, 2)}</pre>;
   }
 
-  // if (infoRQ.data) {
-  //   setState((prev) => ({
-  //     ...prev,
-  //     blocks: infoRQ.data.data.result.blocks,
-  //   }));
-  // }
-
-  // debugger;
-
-  // if (metricsRQ.isData) {
-  //   // debugger;
-  //   console.log(metricsRQ.data);
-  //   setState((prev) => ({
-  //     ...prev,
-  //     totalSupply: metricsRQ.data.data.result?.supply?.total?.toFixed(0),
-  //     accountRegisters: metricsRQ.data.data.result?.registers?.account,
-  //     inflationRate:
-  //       metricsRQ.data.data.result?.supply?.inflationrate?.toFixed(2),
-  //   }));
-  // }
-
   if (metricsRQ.data) {
     return (
       <article className={styles.container}>
@@ -92,18 +74,21 @@ function Panel1(props) {
             //   sublabel="in NXS"
             text={new Intl.NumberFormat('en-US').format(state.totalSupply)}
             ticker="NXS"
+            icon={<FaCoins/>}
           />
           <SmallCard
             label="Account Registers"
             sublabel="Users"
             text={new Intl.NumberFormat().format(state.accountRegisters)}
             ticker=""
+            icon={<BsPersonCheckFill/>}
           />
           <SmallCard
             label="Inflation Rate"
             sublabel="Annual"
             text={state.inflationRate}
             ticker="%"
+            icon={<AiOutlineStock/>}
           />
         </section>
         <section className={styles.chartContainer}>
