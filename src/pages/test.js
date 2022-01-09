@@ -4,6 +4,7 @@ import Loader from 'components/atoms/NE_Loader';
 import Text from 'components/atoms/NE_Text';
 import InfoCard from 'components/atoms/InfoCard';
 import TYPES from 'types';
+import ChartsApex from 'components/Chart/ChartsApex'
 import { middleElipsis } from 'utils/converter';
 import { Fragment } from 'react';
 
