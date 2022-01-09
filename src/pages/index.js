@@ -63,7 +63,7 @@ export default function Home(props) {
       <Head>
         <title> Nexus Explorer V2 </title>
         <meta name="description" content="Nexus Blockchain Statistics" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/nexus-nxs-logo.svg" />
       </Head>
       <main>
         <Panel1
