@@ -1,7 +1,10 @@
 import { Table } from 'antd';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import Loader from 'components/atoms/NE_Loader';
 
 export default function Blocks(props) {
-  const { data } = props;
+  // const { data } = props;
 
   const columns = [
     {
@@ -39,22 +42,41 @@ export default function Blocks(props) {
     },
   ];
 
+  const { isLoading, data, error } = useQuery('blocks', () =>
+    axios.get(
+      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
+    )
+  );
+
+  if (isLoading)
+  return (
+    <div
+      style={{
+        display: 'grid',
+        placeItems: 'center',
+        minHeight: '200px',
+        margin: 'auto',
+      }}>
+      <Loader type="circle" size="5rem" />
+    </div>
+  );
+
   return (
     <div style={{ overflow: 'scroll' }}>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data.data.result} />
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-  );
-  const data = await resp.json();
+// export async function getServerSideProps() {
+//   const resp = await fetch(
+//     `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
+//   );
+//   const data = await resp.json();
 
-  return {
-    props: {
-      data: data.result,
-    },
-  };
-}
+//   return {
+//     props: {
+//       data: data.result,
+//     },
+//   };
+// }

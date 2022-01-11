@@ -1,5 +1,6 @@
 .container {
   background: var(--theme-bg-under);
+  filter: brightness(1.03);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem 0.25rem;
   overflow: hidden;
@@ -19,7 +20,7 @@
 }
 
 .row:nth-of-type(odd) {
-  background: #aaa1;
+  /* background: #aaa1; */
 }
 
 /* .rowKey {

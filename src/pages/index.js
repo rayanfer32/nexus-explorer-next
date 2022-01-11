@@ -2,12 +2,11 @@ import Head from 'next/head';
 import Panel1 from 'components/Panel1/Panel1';
 import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
-import { useEffect, useState } from 'react';
 import { colors } from 'types/colors';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-export default function Home(props) {
+export default function Home() {
   const metricsRQ = useQuery('metrics', () => {
     return axios.get(
       `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`

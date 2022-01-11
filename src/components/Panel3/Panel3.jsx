@@ -6,6 +6,8 @@ import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
 import axios from 'axios';
 import { intlNum, toTitleCase } from 'utils/converter';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import Loader from 'components/atoms/NE_Loader'
 
 function Panel3() {
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
@@ -95,28 +97,27 @@ function Panel3() {
     }
   }
 
-  async function loadTable(limit) {
-    const recentBlocksUrl = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${limit}`;
-    const resp = await axios.get(recentBlocksUrl);
-    const newBlocksData = resp.data.result;
-
-    newBlocksData.reverse().map((block) => {
-      addNewBlockRow(block);
-      addNewTxRow(block.tx);
-      block.tx.forEach((txn) => {
-        // addNewContractRow(txn);
-        if (txn.type === 'tritium base') {
-          //console.log('tritium base txn');
-        }
-        // else if()
-      });
-    });
-  }
-
+  const { isLoading, data, error } = useQuery('RTTtable', () => {
+    return axios.get(
+      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
+    );
+  });
+  // * load data to the table
   useEffect(() => {
-    // TODO:  fetch  6 latest blocks using limit
-    loadTable(6);
-  }, []);
+    if (data) {
+      data.data.result.reverse().map((block) => {
+        addNewBlockRow(block);
+        addNewTxRow(block.tx);
+        block.tx.forEach((txn) => {
+          // addNewContractRow(txn);
+          if (txn.type === 'tritium base') {
+            //console.log('tritium base txn');
+          }
+          // else if()
+        });
+      });
+    }
+  }, [data]);
 
   useEffect(() => {
     const interval1 = setInterval(handleAddRow, blockSpeed);
@@ -124,6 +125,19 @@ function Panel3() {
       clearInterval(interval1);
     };
   }, []);
+
+  if(isLoading){
+    return (
+      <div
+        style={{
+          display: 'grid',
+          placeItems: 'center',
+          minHeight: '200px',
+          margin: 'auto',
+        }}>
+        <Loader type="circle" size="5rem" />
+      </div>)
+  }
 
   return (
     <div className={styles.container}>

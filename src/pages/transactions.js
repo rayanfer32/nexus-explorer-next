@@ -1,15 +1,31 @@
 import { Table } from 'antd';
 import { timeConverter, toTitleCase } from 'utils/converter';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import Loader from 'components/atoms/NE_Loader';
 
-export default function transactions(props) {
-  const { data } = props;
+export default function Transactions(props) {
+  // const { data } = props;
+  const [rows, setRows] = useState([]);
 
-  // console.log(data);
+  const { isLoading, data, error } = useQuery('transactions', () =>
+    axios.get(
+      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=20&verbose=summary`
+    )
+  );
 
-  let rows = [];
-  data.forEach((item) => {
-    item.forEach((i) => rows.push(i));
-  });
+  // prepare rows when data gets fetched
+  useEffect(() => {
+    if (data) {
+      const txns = data.data.result.map((item) => item.tx);
+      let _rows = [];
+      txns.forEach((item) => {
+        item.forEach((i) => _rows.push(i));
+      });
+      setRows(_rows);
+    }
+  }, [data]);
 
   const columns = [
     {
@@ -36,6 +52,19 @@ export default function transactions(props) {
     },
   ];
 
+  if (isLoading)
+    return (
+      <div
+        style={{
+          display: 'grid',
+          placeItems: 'center',
+          minHeight: '200px',
+          margin: 'auto',
+        }}>
+        <Loader type="circle" size="5rem" />
+      </div>
+    );
+
   return (
     <div style={{ overflow: 'scroll' }}>
       <Table columns={columns} dataSource={rows} />
@@ -43,17 +72,17 @@ export default function transactions(props) {
   );
 }
 
-export async function getServerSideProps() {
-  const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=20&verbose=summary`
-  );
-  const data = await resp.json();
+// export async function getServerSideProps() {
+//   const resp = await fetch(
+//     `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=20&verbose=summary`
+//   );
+//   const data = await resp.json();
 
-  const txns = data.result.map((item) => item.tx);
+//   const txns = data.result.map((item) => item.tx);
 
-  return {
-    props: {
-      data: txns,
-    },
-  };
-}
+//   return {
+//     props: {
+//       data: txns,
+//     },
+//   };
+// }
