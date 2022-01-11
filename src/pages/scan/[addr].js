@@ -2,6 +2,8 @@ import axios from 'axios';
 import { InfoCard } from 'components/atoms/InfoCard';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Button from 'components/atoms/NE_Button';
 
 function Scan(props) {
   const router = useRouter();
@@ -25,14 +27,17 @@ function Scan(props) {
     <div>
       <InfoCard type={cardType} data={props.response.result} />
       <div style={{ margin: '1rem' }}>
-        <button onClick={() => setShowRawResponse((prev) => !prev)}>
+        <Button type="tertiary" onClick={() => setShowRawResponse((prev) => !prev)}>
           Show RAW Response
-        </button>
-        {showRawResponse ? (
-          <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
-            {JSON.stringify(props.response, null, 2)}
-          </pre>
-        ) : null}
+        </Button>
+        {showRawResponse && (
+          <div style={{ overflow: 'scroll' }}>
+            <pre
+              style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
+              {JSON.stringify(props.response, null, 2)}
+            </pre>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -53,11 +58,11 @@ export const getServerSideProps = async (context) => {
   } else if (address.length === 256) {
     // console.log('its a blockhash');
     endpoint = 'ledger/get/block';
-    params = { hash: address };
+    params = { hash: address, verbose: 'detail' };
   } else {
     // console.log('its a block');
     endpoint = 'ledger/get/block';
-    params = { height: address };
+    params = { height: address, verbose: 'detail' };
   }
 
   console.log(endpoint, params);

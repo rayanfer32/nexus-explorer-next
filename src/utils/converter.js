@@ -3,6 +3,7 @@ export function intlNum(num) {
 }
 
 export function middleElipsis(text, sliceAt) {
+  text = text.toString();
   return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
 }
 

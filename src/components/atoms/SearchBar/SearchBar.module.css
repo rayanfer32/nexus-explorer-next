@@ -36,7 +36,8 @@
   cursor: pointer;
 }
 
-.searchBar input[type='search']::-webkit-input-placeholder,
+/* * This line cause placeholder to be invisible in chrome  */
+/* .searchBar input[type='search']::-webkit-input-placeholder, */
 .searchBar input[type='search']:-ms-input-placeholder,
 .searchBar input[type='search']::placeholder {
   color: var(--theme-search-text);
@@ -75,6 +76,7 @@
 .searchBarLong:focus-within {
   outline: none;
 }
+
 .searchBarLong input[type='search'],
 .searchBarLong .searchLong {
   height: 2.625rem;
@@ -86,11 +88,13 @@
   width: 100%;
   box-shadow: var(--card-shadow-subtle);
 }
+
 .searchBarLong input[type='search']:focus {
   outline: solid 0.125rem var(--nexus-blue);
   border-radius: 2pt;
   color: var(--midnight-blue);
 }
+
 .searchBarLong .searchLongBtn {
   height: 2.625rem;
   margin-left: 0.25rem;

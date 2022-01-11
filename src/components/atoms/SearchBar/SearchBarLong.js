@@ -10,7 +10,7 @@ function SearchBarLong(props) {
         results={5}
         value={props?.value}
         onChange={props?.onChange}
-        placeholder="Search by Address / Tx ID / Block Hash"
+        placeholder={'Search by Address / Tx ID / BlockHash'}
         className={styles.searchLong}
         onKeyDown={props?.onKeyDown}
       />

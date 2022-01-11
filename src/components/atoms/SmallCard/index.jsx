@@ -10,6 +10,7 @@ SmallCard.propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   ticker: PropTypes.any,
   link: PropTypes.string,
+  icon: PropTypes.any
 };
 
 export default function SmallCard(props) {
@@ -29,7 +30,7 @@ export default function SmallCard(props) {
       </div>
       {/* nexus icon */}
       <div className={styles.icon}>
-        <Image src={pngLogo} alt="icon" layout="fill"></Image>
+        {props.icon || <Image src={pngLogo} alt="icon" layout="fill"></Image>}
       </div>
     </div>
   );

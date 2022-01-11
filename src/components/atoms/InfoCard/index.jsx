@@ -1,6 +1,6 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
-
+import { middleElipsis } from 'utils/converter';
 // const data = {
 //   bits: '7c07227d',
 //   channel: 2,
@@ -30,10 +30,14 @@ export const InfoCard = (props) => {
         return (
           <div className={styles.row} key={Math.random()}>
             <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
-            <div className={styles.rowValue}>{`${value}`}</div>
+            <div className={styles.rowValue}>{`${
+              value.toString().length > 12 ? middleElipsis(value, 12) : value
+            }`}</div>
           </div>
         );
       })}
     </div>
   ) : null;
 };
+
+export default InfoCard;
