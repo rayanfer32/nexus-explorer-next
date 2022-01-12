@@ -6,9 +6,9 @@ import { useQuery } from 'react-query';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 
-function Scan(props) {
+function Scan({addr}) {
   const router = useRouter();
-  const { addr } = router.query;
+  // const { addr } = router.query;
   const [showRawResponse, setShowRawResponse] = useState(false);
 
   function getAPI(addr) {
@@ -69,6 +69,10 @@ function Scan(props) {
     );
   }
 
+  if(error){
+    return <div>Some Error Occured</div>
+  }
+
   return (
     <div>
       <InfoCard type={cardType} data={data.result} />
@@ -93,41 +97,11 @@ function Scan(props) {
 
 export default Scan;
 
-// export const getServerSideProps = async (context) => {
-//   // fetch transaction from hash
-//   let endpoint = '';
-//   let params = {};
-//   let address = context.params.addr;
-
-//   if (address.length === 128) {
-//     // console.log('its a transactions hash');
-//     endpoint = 'ledger/get/transaction';
-//     params = { hash: address };
-//   } else if (address.length === 256) {
-//     // console.log('its a blockhash');
-//     endpoint = 'ledger/get/block';
-//     params = { hash: address, verbose: 'detail' };
-//   } else {
-//     // console.log('its a block');
-//     endpoint = 'ledger/get/block';
-//     params = { height: address, verbose: 'detail' };
-//   }
-
-//   console.log(endpoint, params);
-//   const res = await axios.get(`${process.env.NEXUS_BASE_URL}/${endpoint}`, {
-//     params: params,
-//   });
-//   const data = await res.data;
-
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-//   //   console.log(data);
-//   return {
-//     props: {
-//       response: data,
-//     },
-//   };
-// };
+export const getServerSideProps = async (context) => {
+  let address = context.params.addr;
+  return {
+    props: {
+      addr: address,
+    },
+  };
+};
