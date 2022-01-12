@@ -11,7 +11,10 @@ const Rail = (props) => {
     const el = railRef.current;
     const onWheel = (e) => {
       if (e.deltaY == 0) return;
-      e.preventDefault();
+      if(window.innerWidth < 1180) {
+        e.preventDefault();
+      }
+      // if(window.innerWidth > 768) return;
       el.scrollTo({
         left: el.scrollLeft + e.deltaY * scrollSpeed,
         behavior: 'smooth', // "smooth" or "auto"
