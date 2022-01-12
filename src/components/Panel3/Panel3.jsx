@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import styles from './Panel3.module.css';
+import { useEffect, useState } from 'react';
 import RTTable from 'components/atoms/RTTable/RTTable';
 import RTTRow from 'components/atoms/RTTable/RTTRow';
-import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
-import axios from 'axios';
 import { intlNum, toTitleCase } from 'utils/converter';
-import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
-import Loader from 'components/atoms/NE_Loader'
+import Loader from 'components/atoms/NE_Loader';
+import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
+import { useQuery, useQueryClient } from 'react-query';
+import TYPES from 'types';
 
 function Panel3() {
+  // const queryClient = useQueryClient();
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
   const blockSpeed = 30 * 1000; // in seconds
@@ -17,13 +19,9 @@ function Panel3() {
 
   let lastBlock = 0;
   const MAX_ROWS = 6;
-  const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
 
   function addNewBlockRow(newRowData) {
-    //console.log('adding block ' + newRowData.height);
     lastBlock = newRowData.height;
-    // console.log('inside addNewBlockRow');
-    // console.log(newRowData);
     const newRow = (
       <RTTRowBlock
         key={newRowData.height}
@@ -32,7 +30,7 @@ function Panel3() {
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
-        channel={`Channel: ${CHANNELS[newRowData.channel]}`}
+        channel={TYPES.channels[newRowData.channel]}
         link={`/scan/${newRowData.height}`}
       />
     );
@@ -56,7 +54,6 @@ function Panel3() {
 
     try {
       let newRows = [];
-      // console.log(newRowData);
       for (let txidx = 0; txidx < newRowData.length; txidx++) {
         for (let cidx = 0; cidx < newRowData[txidx].contracts.length; cidx++) {
           newRows.push(
@@ -86,26 +83,24 @@ function Panel3() {
     }
   }
 
-  async function handleAddRow() {
-    const latestBlockUrl = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=1`;
-    const latestBlockResp = await axios.get(latestBlockUrl);
-    const newRowData = latestBlockResp.data.result[0];
-    // FIXME: when using state for lastblock ,the if block fails (state out of sync) , currently fixed using let
-    if (lastBlock != newRowData.height) {
-      addNewBlockRow(newRowData);
-      addNewTxRow(newRowData.tx);
+  // * fetch latest blocks
+  const { isLoading, data } = useQuery(
+    'blocks',
+    async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
+      );
+      return res.data.result;
+    },
+    {
+      refetchInterval: blockSpeed,
     }
-  }
+  );
 
-  const { isLoading, data, error } = useQuery('RTTtable', () => {
-    return axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
-    );
-  });
   // * load data to the table
   useEffect(() => {
     if (data) {
-      data.data.result.reverse().map((block) => {
+      data.reverse().map((block) => {
         addNewBlockRow(block);
         addNewTxRow(block.tx);
         block.tx.forEach((txn) => {
@@ -119,14 +114,8 @@ function Panel3() {
     }
   }, [data]);
 
-  useEffect(() => {
-    const interval1 = setInterval(handleAddRow, blockSpeed);
-    return () => {
-      clearInterval(interval1);
-    };
-  }, []);
 
-  if(isLoading){
+  if (isLoading) {
     return (
       <div
         style={{
@@ -136,7 +125,8 @@ function Panel3() {
           margin: 'auto',
         }}>
         <Loader type="circle" size="5rem" />
-      </div>)
+      </div>
+    );
   }
 
   return (

@@ -42,28 +42,29 @@ export default function Blocks(props) {
     },
   ];
 
-  const { isLoading, data, error } = useQuery('blocks', () =>
-    axios.get(
+  const { isLoading, data, error } = useQuery('blocks', async () => {
+    const res = await axios.get(
       `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-    )
-  );
+    );
+    return res.data.result;
+  });
 
   if (isLoading)
-  return (
-    <div
-      style={{
-        display: 'grid',
-        placeItems: 'center',
-        minHeight: '200px',
-        margin: 'auto',
-      }}>
-      <Loader type="circle" size="5rem" />
-    </div>
-  );
+    return (
+      <div
+        style={{
+          display: 'grid',
+          placeItems: 'center',
+          minHeight: '200px',
+          margin: 'auto',
+        }}>
+        <Loader type="circle" size="5rem" />
+      </div>
+    );
 
   return (
     <div style={{ overflow: 'scroll' }}>
-      <Table columns={columns} dataSource={data.data.result} />
+      <Table columns={columns} dataSource={data} />
     </div>
   );
 }
