@@ -10,8 +10,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
-
+        <Head>
+          <link rel="icon" href="/nexus-nxs-logo.svg" />
+        </Head>
         <body className={TYPES.theme.light}>
           <Main />
           <div id="__portal" />

@@ -7,4 +7,5 @@ export const Strings = {
     primary: 'primary',
     secondary: 'secondary',
   },
+  channels: { 0: 'Stake', 1: 'Prime', 2: 'Hash' },
 };
