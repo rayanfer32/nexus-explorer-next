@@ -9,6 +9,7 @@ import { middleElipsis } from 'utils/converter';
 import { Fragment } from 'react';
 import Table from 'components/Table/Table';
 import blocks100 from 'assets/data/ledger.list.blocks100.json';
+import Shimmer from 'components/atoms/NE_Shimmer';
 
 function test() {
   const blockData = {
@@ -62,7 +63,7 @@ function test() {
       accessor: 'channel',
       Cell: (row) => {
         // console.log(row);
-        return "channel";
+        return 'channel';
         // const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
         // return CHANNELS[chanId];
       },
@@ -76,6 +77,12 @@ function test() {
       columns={blocksColumns}
       data={blocks100.result}
     />,
+    <Shimmer
+      key={Math.random()}
+      width={'30rem'}
+      height={'10rem'}
+      animateWidth={'30rem'}
+    />,
     <Loader key={Math.random()} />,
     <Loader type={TYPES.loaderType.dot} key={Math.random()} />,
     <Card type="small" key={Math.random()} />,
@@ -85,12 +92,7 @@ function test() {
     <Button type="primary" key={Math.random()}>
       Open
     </Button>,
-    <InfoCard
-      type="block"
-      data={blockData}
-      key={Math.random()}></InfoCard>,
-    // ];
-    // return <div style={{ minWidth: '700px' }}>{testComponent}</div>;
+    <InfoCard type="block" data={blockData} key={Math.random()}></InfoCard>,
     <Card
       type="basic"
       label="Label"

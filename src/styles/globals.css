@@ -93,6 +93,7 @@
 
 :root,
 .light {
+  --theme-shimmer: var(--paper-white);
   --theme-color: var(--ocean-blue);
   --theme-page-background: var(--white);
   --theme-page-not-background: var(--midnight-blue);
@@ -119,6 +120,7 @@
 }
 [data-color-theme='dark'],
 .dark {
+  --theme-shimmer: var(--ocean-blue);
   --theme-color: var(--dark-grey);
   --theme-page-background: var(--midnight-blue);
   --theme-page-not-background: var(--ocean-blue);
