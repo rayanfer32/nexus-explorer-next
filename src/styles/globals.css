@@ -113,7 +113,9 @@
   --theme-btn-background: var(--ocean-blue);
   --theme-btn-text: var(--white);
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
-  --them-detail-card: var(--linear-nexus-sky);
+  --theme-detail-card: var(--linear-nexus-sky);
+  --theme-tab-bg: var(--frost-white);
+  --theme-tab-text: var(--dark);
 }
 [data-color-theme='dark'],
 .dark {
@@ -137,7 +139,9 @@
   --theme-invert: invert(0);
   --theme-btn-background: var(--midnight-blue);
   --theme-btn-text: var(--white-blue);
-  --them-detail-card: var(--radial-ocean-midnight);
+  --theme-detail-card: var(--radial-ocean-midnight);
+  --theme-tab-text: var(--frost-white);
+  --theme-tab-bg: var(--ocean-blue);
 }
 
 html,

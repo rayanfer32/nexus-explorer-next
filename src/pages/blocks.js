@@ -1,38 +1,38 @@
-import { Table } from 'antd';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
+import Table from 'components/Table/Table';
 
 export default function Blocks(props) {
   // const { data } = props;
 
   const columns = [
     {
-      title: 'Block',
-      dataIndex: 'height',
+      Header: 'Block',
+      accessor: 'height',
       key: 'height',
     },
     {
-      title: 'Date',
-      dataIndex: 'date',
+      Header: 'Date',
+      accessor: 'date',
       key: 'date',
       // render: (val) => new Date(val).toDateString,
     },
     {
-      title: 'Mint',
-      dataIndex: 'mint',
+      Header: 'Mint',
+      accessor: 'mint',
       key: 'mint',
       sorter: (a, b) => a.mint - b.mint,
     },
+    // {
+    //   Header: 'TXNs',
+    //   accessor: 'tx',
+    //   render: (tx) => tx.length,
+    //   sorter: (a, b) => a.tx.length - b.tx.length,
+    // },
     {
-      title: 'TXNs',
-      dataIndex: 'tx',
-      render: (tx) => tx.length,
-      sorter: (a, b) => a.tx.length - b.tx.length,
-    },
-    {
-      title: 'Channel',
-      dataIndex: 'channel',
+      Header: 'Channel',
+      accessor: 'channel',
       key: 'channel',
       render: (chanId) => {
         const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
@@ -62,9 +62,13 @@ export default function Blocks(props) {
       </div>
     );
 
+  if (error) return <pre>{error}</pre>;
+
+  // return <pre >{JSON.stringify(data, null, 2)}</pre>;
+
   return (
-    <div style={{ overflow: 'scroll' }}>
-      <Table columns={columns} dataSource={data} />
+    <div style={{ overflow: 'visible' }}>
+      <Table columns={columns} data={data} />
     </div>
   );
 }

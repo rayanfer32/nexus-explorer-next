@@ -4,9 +4,11 @@ import Loader from 'components/atoms/NE_Loader';
 import Text from 'components/atoms/NE_Text';
 import InfoCard from 'components/atoms/InfoCard';
 import TYPES from 'types';
-import ChartsApex from 'components/Chart/ChartsApex'
+import ChartsApex from 'components/Chart/ChartsApex';
 import { middleElipsis } from 'utils/converter';
 import { Fragment } from 'react';
+import Table from 'components/Table/Table';
+import blocks100 from 'assets/data/ledger.list.blocks100.json';
 
 function test() {
   const blockData = {
@@ -30,13 +32,50 @@ function test() {
     timestamp: 1433373803,
   };
 
-  const normalizedBlockData = {};
-  Object.entries(blockData).forEach(([key, value]) => {
-    normalizedBlockData[key] =
-      value.toString().length > 8 ? middleElipsis(value, 7) : value;
-  });
+  // const normalizedBlockData = {};
+  // Object.entries(blockData).forEach(([key, value]) => {
+  //   normalizedBlockData[key] =
+  //     value.toString().length > 8 ? middleElipsis(value, 7) : value;
+  // });
+
+  const blocksColumns = [
+    {
+      Header: 'Block',
+      accessor: 'height',
+    },
+    {
+      Header: 'Date',
+      accessor: 'date',
+      key: 'date',
+      // render: (val) => new Date(val).toDateString,
+    },
+    {
+      Header: 'Mint',
+      accessor: 'mint',
+    },
+    // {
+    //   Header: 'TXNs',
+    //   accessor: 'tx',
+    // },
+    {
+      Header: 'Channel',
+      accessor: 'channel',
+      Cell: (row) => {
+        // console.log(row);
+        return "channel";
+        // const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
+        // return CHANNELS[chanId];
+      },
+      // sorter: (a, b) => a.channel - b.channel,
+    },
+  ];
 
   const testComponent = [
+    <Table
+      key={Math.random()}
+      columns={blocksColumns}
+      data={blocks100.result}
+    />,
     <Loader key={Math.random()} />,
     <Loader type={TYPES.loaderType.dot} key={Math.random()} />,
     <Card type="small" key={Math.random()} />,
@@ -48,7 +87,7 @@ function test() {
     </Button>,
     <InfoCard
       type="block"
-      data={normalizedBlockData}
+      data={blockData}
       key={Math.random()}></InfoCard>,
     // ];
     // return <div style={{ minWidth: '700px' }}>{testComponent}</div>;
@@ -98,6 +137,7 @@ function test() {
           {testComponent.length - (idx + 1) ? <hr /> : <></>}
         </Fragment>
       ))}
+      {/* {testComponent} */}
     </div>
   );
 }
