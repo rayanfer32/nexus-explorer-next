@@ -7,7 +7,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
-import Loader from 'components/atoms/NE_Loader';
+import Shimmer from 'components/atoms/NE_Shimmer';
 import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
@@ -103,7 +103,7 @@ function ChartsApex() {
 
   useEffect(() => {
     if (data) {
-      console.log("Setting chart data")
+      console.log('Setting chart data');
       setContracts24h(data.data);
     }
   }, [data]);
@@ -159,18 +159,7 @@ function ChartsApex() {
     });
   }, [sharedState.theme]);
 
-  if (isLoading) {
-     return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>)
-  }
+  if (isLoading) return <Shimmer width="100%" height="12.5rem" />;
 
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90

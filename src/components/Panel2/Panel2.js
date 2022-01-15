@@ -4,20 +4,19 @@ import DetailCard from 'components/atoms/DetailCard';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/atoms/Rail';
-import Loader from 'components/atoms/NE_Loader';
+import Shimmer from 'components/atoms/NE_Shimmer';
 // import { useQuery } from 'react-query';
-import {GiTwoCoins} from 'react-icons/gi';
-import {BsFillCpuFill} from 'react-icons/bs';
-import {AiFillBank} from 'react-icons/ai';
-import {MdSpeed} from 'react-icons/md';
+import { GiTwoCoins } from 'react-icons/gi';
+import { BsFillCpuFill } from 'react-icons/bs';
+import { AiFillBank } from 'react-icons/ai';
+import { MdSpeed } from 'react-icons/md';
 
 function Panel2(props) {
   const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
 
   const [state, setState] = useState({});
 
-  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(30)
-
+  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(30);
 
   // * initialize state when RQ has data
   useEffect(() => {
@@ -87,15 +86,11 @@ function Panel2(props) {
   //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
   if (miningRQ.isLoading)
     return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '175px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>
+      <Rail className={styles.panelTwoContainer}>
+        {[...'four'].map((_, idx) => (
+          <Shimmer key={idx} minWidth="17.5rem" height="10.75rem" />
+        ))}
+      </Rail>
     );
 
   if (marketRQ.isError) return <p>Error...</p>;
@@ -109,7 +104,7 @@ function Panel2(props) {
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
       <DetailCard
         type
-        icon = {<GiTwoCoins color='white' size="2.25rem"/>}
+        icon={<GiTwoCoins color="white" size="2.25rem" />}
         label="Price"
         sublabel={`${state.price?.sublabel} BTC`}
         text={`${state.price?.text} $`}
@@ -123,7 +118,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
-        icon={<AiFillBank color='white' size="2.25rem"/>}
+        icon={<AiFillBank color="white" size="2.25rem" />}
         label="Stake"
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
         text={`${intlNum(state.stake?.text)} NXS`}
@@ -137,7 +132,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
-        icon={<MdSpeed color='white' size="2.5rem"/>}
+        icon={<MdSpeed color="white" size="2.5rem" />}
         label="Hash"
         sublabel={`Difficulty : ${state.hash?.sublabel}`}
         text={`${abbreviateNumber(state.hash?.text)}H/s`}
@@ -151,7 +146,7 @@ function Panel2(props) {
       />
       <DetailCard
         type
-        icon={<BsFillCpuFill color='white' size="2.25rem"/>}
+        icon={<BsFillCpuFill color="white" size="2.25rem" />}
         label="Prime"
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
         text={`${abbreviateNumber(state.prime?.text)}P/s`}

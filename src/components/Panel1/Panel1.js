@@ -2,7 +2,7 @@ import SmallCard from '../atoms/SmallCard';
 import styles from 'components/Panel1/Panel1.module.css';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { useState, useEffect } from 'react';
-import Loader from 'components/atoms/NE_Loader';
+import Shimmer from 'components/atoms/NE_Shimmer';
 import { GrStackOverflow } from 'react-icons/gr';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
@@ -35,15 +35,16 @@ function Panel1(props) {
   //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
   if (miningRQ.isLoading)
     return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>
+      <article className={styles.container}>
+        <section className={styles.cardsContainer}>
+          {[...'four'].map((_, idx) => (
+            <Shimmer key={idx} minWidth="14.5rem" minHeight="6.25rem" />
+          ))}
+        </section>
+        <section className={styles.chartContainer}>
+          <Shimmer height="12.4rem" />
+        </section>
+      </article>
     );
 
   if (metricsRQ.isError) return <p>Error...</p>;
