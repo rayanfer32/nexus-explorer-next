@@ -1,9 +1,9 @@
-import { Table } from 'antd';
 import { timeConverter, toTitleCase } from 'utils/converter';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
+import Table from 'components/Table/Table';
 
 export default function Transactions(props) {
   // const { data } = props;
@@ -29,27 +29,27 @@ export default function Transactions(props) {
 
   const columns = [
     {
-      title: 'Transaction ID',
-      dataIndex: 'txid',
-      key: 'txid',
-      render: (txid) => `${txid.substring(0, 10)}...${txid.slice(-10)}`,
+      Header: 'Transaction ID',
+      accessor: 'txid',
+      // key: 'txid',
+      // render: (txid) => `${txid.substring(0, 10)}...${txid.slice(-10)}`,
     },
     {
-      title: 'Type',
-      dataIndex: 'type',
+      Header: 'Type',
+      accessor: 'type',
       render: (text) => toTitleCase(text),
     },
     {
-      title: 'Timestamp',
-      dataIndex: 'timestamp',
+      Header: 'Timestamp',
+      accessor: 'timestamp',
       key: 'timestamp',
       render: (val) => timeConverter(val),
     },
-    {
-      title: 'Contracts',
-      dataIndex: 'contracts',
-      render: (contracts) => contracts?.length,
-    },
+    // {
+    //   Header: 'Contracts',
+    //   accessor: 'contracts',
+    //   render: (contracts) => contracts?.length,
+    // },
   ];
 
   if (isLoading)
@@ -66,8 +66,8 @@ export default function Transactions(props) {
     );
 
   return (
-    <div style={{ overflow: 'scroll' }}>
-      <Table columns={columns} dataSource={rows} />
+    <div>
+      <Table columns={columns} data={rows} />
     </div>
   );
 }

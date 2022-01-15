@@ -1,6 +1,8 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
 import { middleElipsis } from 'utils/converter';
+import { BiCopy } from 'react-icons/bi';
+
 // const data = {
 //   bits: '7c07227d',
 //   channel: 2,
@@ -23,6 +25,12 @@ import { middleElipsis } from 'utils/converter';
 // };
 
 export const InfoCard = (props) => {
+  
+  function handleCopy(value){
+    navigator.clipboard.writeText(value);
+    alert("Copied the text: " + value);
+  }
+
   return props.type === 'block' ? (
     <div className={styles.container}>
       <h3>Block Details</h3>
@@ -30,9 +38,12 @@ export const InfoCard = (props) => {
         return (
           <div className={styles.row} key={Math.random()}>
             <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
-            <div className={styles.rowValue}>{`${
-              value.toString().length > 12 ? middleElipsis(value, 12) : value
-            }`}</div>
+            <span className={styles.rowValue}>
+              {`${
+                value.toString().length > 12 ? middleElipsis(value, 12) : value
+              }`}{' '}
+              <BiCopy onClick={() => handleCopy(value)} />
+            </span>
           </div>
         );
       })}

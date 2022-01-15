@@ -1,35 +1,27 @@
-// import Table from 'components/atoms/Table';
-import { Table } from 'antd';
+import Table from 'components/Table/Table';
+// import { Table } from 'antd';
 import data from 'assets/data/trustlist.json';
 
 function trustlist() {
   const columns = [
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
+      Header: 'Address',
+      accessor: 'address',
     },
     {
-      title: 'Balance',
-      dataIndex: 'balance',
-      key: 'balance',
-      // defaultSortOrder: "descend",
-      sorter: (a, b) => parseFloat(a.balance) - parseFloat(b.balance),
+      Header: 'Balance',
+      accessor: 'balance',
     },
     {
-      title: 'Stake',
-      dataIndex: 'stake',
-      key: 'stake',
-      defaultSortOrder: 'descend',
-      sorter: (a, b) => parseFloat(a.stake) - parseFloat(b.stake),
+      Header: 'Stake',
+      accessor: 'stake',
     },
     {
-      title: 'Stake Rate',
-      dataIndex: 'stakerate',
-      key: 'stakerate',
-      sorter: (a, b) => parseFloat(a.stakerate) - parseFloat(b.stakerate),
+      Header: 'Stake Rate',
+      accessor: 'stakerate',
     },
   ];
+
   const newData = data.result.map((item, index) => ({
     key: index,
     ...item,
@@ -38,9 +30,8 @@ function trustlist() {
   }));
 
   return (
-    <div style={{ overflow: 'scroll' }}>
-      {/* <pre className="themeText">{JSON.stringify(data.result, null, 2)}</pre> */}
-      <Table columns={columns} dataSource={newData} />
+    <div style={{marginBottom: "1rem"}}>
+      <Table columns={columns} data={newData} />
     </div>
   );
 }

@@ -4,7 +4,10 @@ export function intlNum(num) {
 
 export function middleElipsis(text, sliceAt) {
   text = text.toString();
-  return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
+  if (text.length > (sliceAt * 2)) {
+    return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
+  }
+  return text;
 }
 
 export function timeConverter(UNIX_timestamp) {

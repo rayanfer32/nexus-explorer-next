@@ -7,6 +7,8 @@ import TYPES from 'types';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { middleElipsis } from 'utils/converter';
 import { Fragment } from 'react';
+import Table from 'components/Table/Table';
+import blocks100 from 'assets/data/ledger.list.blocks100.json';
 import Shimmer from 'components/atoms/NE_Shimmer';
 
 function test() {
@@ -31,13 +33,50 @@ function test() {
     timestamp: 1433373803,
   };
 
-  const normalizedBlockData = {};
-  Object.entries(blockData).forEach(([key, value]) => {
-    normalizedBlockData[key] =
-      value.toString().length > 8 ? middleElipsis(value, 7) : value;
-  });
+  // const normalizedBlockData = {};
+  // Object.entries(blockData).forEach(([key, value]) => {
+  //   normalizedBlockData[key] =
+  //     value.toString().length > 8 ? middleElipsis(value, 7) : value;
+  // });
+
+  const blocksColumns = [
+    {
+      Header: 'Block',
+      accessor: 'height',
+    },
+    {
+      Header: 'Date',
+      accessor: 'date',
+      key: 'date',
+      // render: (val) => new Date(val).toDateString,
+    },
+    {
+      Header: 'Mint',
+      accessor: 'mint',
+    },
+    // {
+    //   Header: 'TXNs',
+    //   accessor: 'tx',
+    // },
+    {
+      Header: 'Channel',
+      accessor: 'channel',
+      Cell: (row) => {
+        // console.log(row);
+        return 'channel';
+        // const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
+        // return CHANNELS[chanId];
+      },
+      // sorter: (a, b) => a.channel - b.channel,
+    },
+  ];
 
   const testComponent = [
+    <Table
+      key={Math.random()}
+      columns={blocksColumns}
+      data={blocks100.result}
+    />,
     <Shimmer
       key={Math.random()}
       width={'30rem'}
@@ -53,10 +92,7 @@ function test() {
     <Button type="primary" key={Math.random()}>
       Open
     </Button>,
-    <InfoCard
-      type="block"
-      data={normalizedBlockData}
-      key={Math.random()}></InfoCard>,
+    <InfoCard type="block" data={blockData} key={Math.random()}></InfoCard>,
     <Card
       type="basic"
       label="Label"
@@ -103,6 +139,7 @@ function test() {
           {testComponent.length - (idx + 1) ? <hr /> : <></>}
         </Fragment>
       ))}
+      {/* {testComponent} */}
     </div>
   );
 }
