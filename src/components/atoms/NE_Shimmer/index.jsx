@@ -11,6 +11,7 @@ import styles from './Shimmer.module.scss';
  * @returns {Component}
  */
 const Shimmer = ({
+  type = 'default',
   width = '100%',
   height = '100%',
   animate = '1s',
@@ -26,9 +27,21 @@ const Shimmer = ({
     '--animate': animate,
     '--animate-width': animateWidth,
   };
+  if (type === 'small-card') return <Small style={style} width={width} />;
   return <Shine style={style} />;
 };
 
 const Shine = ({ style }) => <div className={styles.glare} style={style} />;
+
+const Small = (props) => {
+  const style = { ...props.style, height: '1rem' };
+  return (
+    <div className={styles.smallTextShimmer} style={{ width: props.width }}>
+      <Shine style={{ ...style, width: '80%' }} />
+      <Shine style={{ ...style, width: '82%' }} />
+      <Shine style={{ ...style, width: '90%' }} />
+    </div>
+  );
+};
 
 export default Shimmer;
