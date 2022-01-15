@@ -4,9 +4,10 @@ import Loader from 'components/atoms/NE_Loader';
 import Text from 'components/atoms/NE_Text';
 import InfoCard from 'components/atoms/InfoCard';
 import TYPES from 'types';
-import ChartsApex from 'components/Chart/ChartsApex'
+import ChartsApex from 'components/Chart/ChartsApex';
 import { middleElipsis } from 'utils/converter';
 import { Fragment } from 'react';
+import Shimmer from 'components/atoms/NE_Shimmer';
 
 function test() {
   const blockData = {
@@ -37,6 +38,12 @@ function test() {
   });
 
   const testComponent = [
+    <Shimmer
+      key={Math.random()}
+      width={'30rem'}
+      height={'10rem'}
+      animateWidth={'30rem'}
+    />,
     <Loader key={Math.random()} />,
     <Loader type={TYPES.loaderType.dot} key={Math.random()} />,
     <Card type="small" key={Math.random()} />,
@@ -50,8 +57,6 @@ function test() {
       type="block"
       data={normalizedBlockData}
       key={Math.random()}></InfoCard>,
-    // ];
-    // return <div style={{ minWidth: '700px' }}>{testComponent}</div>;
     <Card
       type="basic"
       label="Label"
