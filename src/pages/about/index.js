@@ -1,4 +1,4 @@
-import styles from './about.module.css';
+import styles from './about.module.scss';
 
 function about() {
   return (
