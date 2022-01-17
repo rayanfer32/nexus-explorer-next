@@ -6,6 +6,7 @@ import { QueryClient, useQuery } from 'react-query';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
+import AccountInfo from 'components/AccountInfo';
 
 function Scan({ addr }) {
   const queryClient = new QueryClient();
@@ -106,24 +107,29 @@ function Scan({ addr }) {
     return <ErrorMessage error={data.error} />;
   }
 
+  const rawInfo = (
+    <div style={{ margin: '1rem' }}>
+      <Button
+        type="tertiary"
+        onClick={() => setShowRawResponse((prev) => !prev)}>
+        Show RAW Response
+      </Button>
+      {showRawResponse && (
+        <div style={{ overflow: 'scroll' }}>
+          <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
+            {JSON.stringify(data, null, 2)}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div>
-      <InfoCard type={cardType} data={data?.result} />
-      <div style={{ margin: '1rem' }}>
-        <Button
-          type="tertiary"
-          onClick={() => setShowRawResponse((prev) => !prev)}>
-          Show RAW Response
-        </Button>
-        {showRawResponse && (
-          <div style={{ overflow: 'scroll' }}>
-            <pre
-              style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
-              {JSON.stringify(data, null, 2)}
-            </pre>
-          </div>
-        )}
-      </div>
+      {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
+      {cardType === 'user' && <AccountInfo data={data?.result} />}
+      {/* {cardType === 'trust' && <TrustInfo data={data?.result} />} */}
+      {rawInfo}
     </div>
   );
 }
