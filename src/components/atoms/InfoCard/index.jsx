@@ -26,9 +26,13 @@ import { BiCopy } from 'react-icons/bi';
 
 export const InfoCard = (props) => {
   
-  function handleCopy(value){
-    navigator.clipboard.writeText(value);
-    alert("Copied the text: " + value);
+  // https://rawcdn.githack.com/sitepoint-editors/clipboardapi/a8dfad6a1355bbb79381e61a2ae68394af144cc2/demotext.html
+  function handleCopy(value) {
+    // doesnt support copy on mobile yet
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(value);
+      alert('Copied: ' + value);
+    }
   }
 
   return props.type === 'block' ? (
@@ -38,10 +42,10 @@ export const InfoCard = (props) => {
         return (
           <div className={styles.row} key={Math.random()}>
             <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
-            <span className={styles.rowValue}>
+            <span data-copy={value} className={styles.rowValue}>
               {`${
                 value.toString().length > 12 ? middleElipsis(value, 12) : value
-              }`}{' '}
+              }`}
               <BiCopy onClick={() => handleCopy(value)} />
             </span>
           </div>
