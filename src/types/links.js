@@ -7,6 +7,7 @@ export const Links = {
         url: 'https://github.com/rayanfer32',
         icon: '',
         alt: 'rayan_github',
+        target: '_blank',
       },
       shrivatsa: {
         id: '002',
@@ -14,6 +15,7 @@ export const Links = {
         url: 'https://github.com/shrivatsabhat',
         icon: '',
         alt: 'shri_github',
+        target: '_blank',
       },
     },
     twitter: {
