@@ -1,4 +1,4 @@
-import styles from './Navbar.module.css';
+import styles from './Navbar.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -45,7 +45,6 @@ function Navbar() {
         <section className={styles.mPortal}>
           <div className={styles.hamMenu}>
             <div className={styles.themeIcon}>
-              {' '}
               <ThemeMode
                 onClick={() => setDarkMode((prevMode) => !prevMode)}
                 isDark={isDarkMode}
@@ -63,7 +62,8 @@ function Navbar() {
                       router.pathname === navItem.path
                         ? styles.mactive
                         : undefined
-                    }>
+                    }
+                    onClick={() => setToggle(!toggle)}>
                     <Link href={navItem.path}>{navItem.title}</Link>
                   </span>
                 );
