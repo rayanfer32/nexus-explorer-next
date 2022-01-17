@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
 import { QueryClient, useQuery } from 'react-query';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
+import ErrorMessage from 'components/atoms/ErrorMessage';
 
 function Scan({ addr }) {
   const queryClient = new QueryClient();
   // const router = useRouter();
   // const { addr } = router.query;
-  const [showRawResponse, setShowRawResponse] = useState(true);
+  const [showRawResponse, setShowRawResponse] = useState(false);
   // const [endpoint, setEndpoint] = useState('');
   // const [params, setParams] = useState({});
   const [cardType, setCardType] = useState();
@@ -70,8 +71,8 @@ function Scan({ addr }) {
       return res.data;
     },
     {
-      refetchOnWindowFocus: false,
-      enabled: false,
+      refetchOnWindowFocus: true,
+      enabled: true,
     }
   );
 
@@ -82,23 +83,6 @@ function Scan({ addr }) {
     refetch();
     // queryClient.removeQueries('scan', { exact: true });
   }, [addr]);
-
-  // set cardType based on data
-  // useEffect(() => {
-  //   function inferCardType() {
-  //     if (data) {
-  //       const method = data.info.method;
-  //       if (method?.includes('block')) {
-  //         return 'block';
-  //       } else if (method?.includes('transaction')) {
-  //         return 'tx';
-  //       } else if (data?.result?.hasOwnProperty('trust')) {
-  //         return 'trust';
-  //       }
-  //       return 'account';
-  //     }
-  //   }
-  // }, [data]);
 
   if (isLoading) {
     return (
@@ -118,9 +102,13 @@ function Scan({ addr }) {
     return <div>Some Error Occured</div>;
   }
 
+  if (data.error) {
+    return <ErrorMessage error={data.error} />;
+  }
+
   return (
     <div>
-      <InfoCard type={cardType} data={data.result} />
+      <InfoCard type={cardType} data={data?.result} />
       <div style={{ margin: '1rem' }}>
         <Button
           type="tertiary"
