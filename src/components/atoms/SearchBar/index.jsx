@@ -15,7 +15,6 @@ SearchBar.propTypes = {
 export default function Search(props) {
   function handleOnKeyDown(e) {
     if (e.key === 'Enter') {
-      console.log(e.target.value);
       props.onSearch();
     }
   }

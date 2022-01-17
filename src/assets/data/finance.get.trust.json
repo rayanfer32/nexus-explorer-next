@@ -1,0 +1,24 @@
+{
+  "result": {
+    "owner": "a1599ccb2e41d33156e73b15b057495c3c3517b2ca88e566e06680a9aab7da7c",
+    "version": 1,
+    "created": 1615127641,
+    "modified": 1639902905,
+    "type": "OBJECT",
+    "balance": 0,
+    "stake": 0,
+    "token": "0",
+    "ticker": "NXS",
+    "trust": 0,
+    "age": "0 days, 0 hours, 0 minutes",
+    "rate": 0.5,
+    "address": "8FtRviR1YoUdFscVTb1jv1fGHHNWPpqbJJfcfqcHdF1Kqj8AzdX",
+    "name": "~trust"
+  },
+  "info": {
+    "method": "finance/get",
+    "status": "active",
+    "address": "103.89.232.85:27253",
+    "latency": "0.513694 ms"
+  }
+}
