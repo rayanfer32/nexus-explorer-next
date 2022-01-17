@@ -172,19 +172,34 @@
     position: fixed;
     right: 0;
     min-height: 100%;
-    width: 90%;
+    width: 80%;
     background-color: var(--midnight-blue);
   }
   .mlinks {
-    margin-top: 4rem;
+    margin-top: var(--space-s);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: var(--space-l);
+    gap: var(--space-xxs);
     padding: var(--space-xs);
     color: white;
     font-size: larger;
+
+    span {
+      padding: 1rem;
+      width: 100%;
+      display: grid;
+      display: -ms-grid;
+      justify-items: center;
+      align-items: center;
+      border-radius: var(--space-xxxs);
+    }
+
+    .mactive {
+      background-color: var(--ocean-blue);
+      font-weight: bold;
+    }
   }
   .themeIcon {
     padding: 1rem;
