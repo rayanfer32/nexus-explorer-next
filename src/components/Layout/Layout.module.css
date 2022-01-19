@@ -11,3 +11,12 @@
   min-height: 100vh;
   padding: 0 var(--space-xs);
 }
+
+/* mobile classes */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+}

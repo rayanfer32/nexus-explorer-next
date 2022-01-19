@@ -37,8 +37,6 @@ export default function Home() {
       <Head>
         <title> Nexus Explorer V2 </title>
         <meta name="description" content="Nexus Blockchain Statistics" />
-        <meta name="theme-color" content={colors.colors.skyBlue} />
-       
       </Head>
       <main>
         <Panel1

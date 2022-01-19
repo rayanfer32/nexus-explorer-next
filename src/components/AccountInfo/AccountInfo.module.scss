@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  max-width: 100vw;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: var(--space-xxs);
+  padding: 0rem;
+}
+
+.chartContainer {
+  width: 100%;
+  padding: 0.5rem 0rem;
+  overflow: hidden;
+}
+
+/* for small screen */
+@media (max-width: 768px) {
+  /* hide scroll */
+  .cardsContainer {
+    overflow: visible;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: var(--space-xs);
+  }
+  .cardsContainer::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+    width: 0;
+    background: transparent;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem 0;
+  padding: 1rem;
+  background: #eee;
+  border-radius: 0.5rem;
+
+  .details__text {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+    gap: 0.5rem;
+    div {
+      border-radius: 0.2rem;
+      background: #fff;
+      padding: 0.2rem 0;
+    }
+  }
+
+  .qrCode {
+    background: white;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* style for desktop */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-xxxs);
+    padding: 0.5rem 0;
+  }
+}
