@@ -6,7 +6,8 @@ import { QueryClient, useQuery } from 'react-query';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
-import AccountInfo from 'components/AccountInfo';
+import AccountInfo from 'components/AccountInfo/AccountInfo';
+import TrustInfo from 'components/TrustInfo/TrustInfo';
 
 function Scan({ addr }) {
   const queryClient = new QueryClient();
@@ -21,8 +22,20 @@ function Scan({ addr }) {
     let endpoint = '';
     let params = {};
     let type = '';
-
-    if (addr.length === 51) {
+    
+    if (addr.includes(':trust')) {
+      endpoint = 'finance/get/trust';
+      params = {
+        name: addr,
+      };
+      type = 'trust';
+    } else if (addr.includes(':')) {
+      endpoint = 'finance/get/account';
+      params = {
+        name: addr,
+      };
+      type = 'user';
+    } else if (addr.length === 51) {
       // might be trust acc or user acc address, so query for both and identify which one is correct
       endpoint = 'finance/get/account';
       params = { address: addr };
@@ -128,7 +141,7 @@ function Scan({ addr }) {
     <div>
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && <AccountInfo data={data?.result} />}
-      {/* {cardType === 'trust' && <TrustInfo data={data?.result} />} */}
+      {cardType === 'trust' && <TrustInfo data={data?.result} />}
       {rawInfo}
     </div>
   );
