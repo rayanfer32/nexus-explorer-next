@@ -1,12 +1,12 @@
-.container {
-  width: 100%;
-  max-width: 100vw;
+.page {
+  color: var(--theme-page-text)
 }
 
 .cardsContainer {
   display: flex;
   gap: var(--space-xxs);
   padding: 0rem;
+  color: var(--theme-page-text);
 }
 
 .chartContainer {

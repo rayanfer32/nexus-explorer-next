@@ -1,10 +1,39 @@
+import React, { useEffect } from 'react';
 import styles from './AccountInfo.module.scss';
 import SmallCard from 'components/atoms/SmallCard';
-import React from 'react';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 export default function AccountInfo({ data }) {
+  const accountTransactionsRQ = useQuery(
+    'accountTransactions',
+    async () => {
+      console.log("running account transactions query");
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/account`,
+        {
+          params: {
+            address: data?.address,
+            limit: 100,
+          },
+        }
+      );
+      return res.data;
+    },
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      enable: false,
+    }
+  );
+
+  useEffect(() => {
+    // temp fix for the issue where the query is not re-run when the component is re-rendered
+    setTimeout(() => accountTransactionsRQ.refetch(), 2000);
+  }, []);
+
   return (
-    <div>
+    <div className={styles.page}>
       <h1>Account Info</h1>
       <section className={styles.cardsContainer}>
         <SmallCard
@@ -58,7 +87,10 @@ export default function AccountInfo({ data }) {
         </section>
       </div>
 
-      {/* {JSON.stringify(data, null, 2)} */}
+      <h1>Transaction Details</h1>
+      <pre style={{ height: '10rem', overflow: 'scroll' }}>
+        {JSON.stringify(accountTransactionsRQ.data, null, 2)}
+      </pre>
     </div>
   );
 }
