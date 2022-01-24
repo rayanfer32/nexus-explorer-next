@@ -18,6 +18,11 @@ function Scan({ addr }) {
   // const [params, setParams] = useState({});
   const [cardType, setCardType] = useState();
 
+  /**
+   * identify the endpoint to use from the scan
+   * @param {*} addr pass the address to scan
+   * @returns {*} the {endpoint, params, type} to use
+   */
   async function getAPI(addr) {
     let endpoint = '';
     let params = {};

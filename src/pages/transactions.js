@@ -42,7 +42,6 @@ export default function Transactions(props) {
     {
       Header: 'Timestamp',
       accessor: 'timestamp',
-      key: 'timestamp',
       render: (val) => timeConverter(val),
     },
     // {
@@ -64,6 +63,10 @@ export default function Transactions(props) {
         <Loader type="circle" size="5rem" />
       </div>
     );
+
+  if (error) {
+    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  }
 
   return (
     <div>

@@ -21,7 +21,7 @@
 
 .footer::before {
   content: '';
-  background: var(--white);
+  background: var(--theme-tab-bg);
   height: 0.125rem;
   width: 95%;
   border-radius: 0.25rem;

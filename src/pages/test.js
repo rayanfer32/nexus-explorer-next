@@ -10,6 +10,7 @@ import { Fragment } from 'react';
 import Table from 'components/Table/Table';
 import blocks100 from 'assets/data/ledger.list.blocks100.json';
 import Shimmer from 'components/atoms/NE_Shimmer';
+import BlockEstimator from '../pages/TestComponents/BlockEstimator';
 
 function test() {
   const blockData = {
@@ -130,6 +131,15 @@ function test() {
     </Text>,
     <Button key={Math.random()} type="primary" />,
   ];
+
+
+  return(
+    <div>
+      <BlockEstimator />
+    </div>
+  )
+
+  // show all components
   return (
     <div style={{ minWidth: '700px' }}>
       <h4>Total Test Components:{(testComponent || []).length}</h4>
