@@ -1,14 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AccountInfo.module.scss';
 import SmallCard from 'components/atoms/SmallCard';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import Table from 'components/Table/Table';
+import Button from 'components/atoms/NE_Button';
+import { middleElipsis } from 'utils/converter';
+import Loader from 'components/atoms/NE_Loader';
 
 export default function AccountInfo({ data }) {
+  const [showRawTxns, setShowRawTxns] = useState(false);
+  const [tableData, setTableData] = useState([]);
+
   const accountTransactionsRQ = useQuery(
     'accountTransactions',
     async () => {
-      console.log("running account transactions query");
+      console.log('running account transactions query');
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/account`,
         {
@@ -31,6 +38,54 @@ export default function AccountInfo({ data }) {
     // temp fix for the issue where the query is not re-run when the component is re-rendered
     setTimeout(() => accountTransactionsRQ.refetch(), 2000);
   }, []);
+
+  // columns for the txns table
+  const columns = [
+    {
+      Header: 'Time',
+      accessor: 'timestamp',
+      Cell: (props) => {
+        return <div>{new Date(props.value * 1000).toLocaleString()}</div>;
+      },
+    },
+    {
+      Header: 'TXID',
+      accessor: 'txid',
+      Cell: (props) => {
+        return <div>{middleElipsis(props.value, 15)}</div>;
+      },
+    },
+    {
+      Header: 'Amount',
+      accessor: 'amount',
+    },
+  ];
+
+  useEffect(() => {
+    if (accountTransactionsRQ.data) {
+      let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
+        return {
+          txid: txn.txid,
+          timestamp: txn.timestamp,
+          amount: txn.contracts[0].amount,
+        };
+      });
+
+      setTableData(_tableData);
+    }
+  }, [accountTransactionsRQ.data]);
+
+  const LoaderDiv = () => (
+    <div
+      style={{
+        display: 'grid',
+        placeItems: 'center',
+        minHeight: '200px',
+        margin: 'auto',
+      }}>
+      <Loader type="circle" size="5rem" />
+    </div>
+  );
 
   return (
     <div className={styles.page}>
@@ -88,9 +143,19 @@ export default function AccountInfo({ data }) {
       </div>
 
       <h1>Transaction Details</h1>
-      <pre style={{ height: '10rem', overflow: 'scroll' }}>
-        {JSON.stringify(accountTransactionsRQ.data, null, 2)}
-      </pre>
+      {accountTransactionsRQ.isLoading ? (
+        <LoaderDiv />
+      ) : (
+        <Table columns={columns} data={tableData} />
+      )}
+      <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
+        Show RAW Transactions
+      </Button>
+      {showRawTxns && (
+        <pre style={{ height: '10rem', overflow: 'scroll' }}>
+          {JSON.stringify(accountTransactionsRQ.data, null, 2)}
+        </pre>
+      )}
     </div>
   );
 }

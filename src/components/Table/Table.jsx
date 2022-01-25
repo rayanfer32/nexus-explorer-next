@@ -2,15 +2,11 @@ import React from 'react';
 import { useTable, useSortBy } from 'react-table';
 import styles from './Table.module.css';
 
-export default function Table(props) {
-  const { columns, data } = props;
-
+export default function Table({ columns, data }) {
   const tableInstance = useTable({ data, columns }, useSortBy);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
-
-
   return (
     // apply the table props
     <table className={styles.table} {...getTableProps()}>
@@ -26,7 +22,9 @@ export default function Table(props) {
                 headerGroup.headers.map((column) => (
                   // Apply the header cell props
                   // eslint-disable-next-line react/jsx-key
-                  <th className={styles.th} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <th
+                    className={styles.th}
+                    {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {
                       // Render the header
                       column.render('Header')
