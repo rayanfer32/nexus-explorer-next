@@ -27,7 +27,7 @@ export const FooterTypes = {
       label: 'Download from IOS store',
       src: ASSESTS.ICON.APPLE,
     },
-    supportEmail: {
+    repoUrl: {
       href: 'https://github.com/rayanfer32/nexus-explorer-next',
       target: '_self',
       label: 'Github',

@@ -10,7 +10,23 @@ const About = () => {
   const {
     sharedState: { theme },
   } = useAppContext();
-  console.log(theme);
+
+  let ThemedVscLogo = () => {
+    return (theme == TYPES.theme.dark) ? (
+      <VscGithub
+        style={{
+          color: 'white',
+        }}
+      />
+    ) : (
+      <VscGithubInverted
+        style={{
+          color: 'black',
+        }}
+      />
+    );
+  };
+
   return (
     <main className={styles.main}>
       <article>
@@ -19,37 +35,27 @@ const About = () => {
           <p>A Redesigned Explorer for the nexus blockchain.</p>
         </div>
         <p>
-          The main motive of the new explorer is to be visually modern by design
+          Nexus Explorer V2 is aims to be visually modern by design, 
           and present the user with realtime statistics with graphically
           illustrated data to inspect the nexus blockchain as deeply as
           possible.
         </p>
         <p>
-          After many weekends spent by me and my friend to come up with the
-          design from scratch , the projects outcome is a result of the
-          dedication to learning design standards and coding it in react+next.js
-          completely, along with pieces of backend stiched together.
+          After many iterations over the design, we came up with the new look for
+          the explorer, We made sure the project is built with the all the
+          latest tech in the the web development space, The frontend is crafted
+          with next.js and for the backend we have used python. For
+          contributions and suggestions please feel free to reach out to us on
+          our github page.
         </p>
+        <a href={TYPES.footerItems.repoUrl}> <ThemedVscLogo/> Github </a>
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
             {ObjectToArray(TYPES.links.github).map((ele) => (
               <span key={ele.id} className={styles.links}>
                 <a href={ele.url} target={ele.target} className={styles.link}>
-                  {theme == TYPES.theme.dark ? (
-                    <VscGithub
-                      style={{
-                        color: 'white',
-                      }}
-                    />
-                  ) : (
-                    <VscGithubInverted
-                      style={{
-                        color: 'black',
-                      }}
-                    />
-                  )}
-
+                  <ThemedVscLogo />
                   {ele.label}
                 </a>
               </span>
