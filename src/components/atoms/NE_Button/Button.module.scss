@@ -13,11 +13,16 @@
   transition: all 100ms ease-out;
   cursor: pointer;
 
+  &:disabled {
+    background: #999a;
+    cursor: default;
+  }
+
   &:active {
     transform: scale(0.995);
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     border-color: var(--sky-blue);
     outline: 0.125rem solid var(--sky-blue);
   }
@@ -32,7 +37,7 @@
 }
 
 .secondary {
-  background: none;
+  background: var(--theme-page-background);
   border-color: var(--ocean-blue);
   color: var(--ocean-blue);
 }

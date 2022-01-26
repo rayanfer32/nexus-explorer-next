@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from '../styles/richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
+import { intlNum, middleElipsis } from 'utils/converter';
 
 export default function Richlist() {
   const { isLoading, data, error } = useQuery(
@@ -17,17 +18,19 @@ export default function Richlist() {
         {
           params: {
             // limit: 100,
-            // sort: 'desc',
+            // sort: 'total',
+            // order: 'desc',
           },
         }
       );
 
       const trustResponse = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust?where=object.token=0 AND object.trust>10000`,
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust?where=object.token=0 AND object.balance>10000`,
         {
           params: {
             // limit: 100,
-            // sort: 'desc',
+            // sort: 'trust',
+            // order: 'desc',  
           },
         }
       );
@@ -47,10 +50,12 @@ export default function Richlist() {
     {
       Header: 'Owner',
       accessor: 'address',
+      Cell: (props) => <div>{middleElipsis(props.value, 50)}</div>
     },
     {
       Header: 'Balance',
-      accessor: 'balance',
+      accessor: 'total',
+      Cell: (props) => intlNum(props.value) + " NXS",
     },
   ];
 
@@ -78,20 +83,23 @@ export default function Richlist() {
     const accountData = data.accounts.result.map((item, index) => ({
       key: index,
       address: item.owner,
-      balance: `${parseFloat(item.total).toFixed(2)} ${item.ticker}`,
+      total: item.total,
     }));
 
     const trustData = data.trust.result.map((item, index) => ({
       key: index,
       address: item.owner,
-      balance: `${parseFloat(item.total).toFixed(2)} ${item.ticker}`,
+      total: item.total,
     }));
 
     const combinedData = [...accountData, ...trustData];
 
+    // filter top 100 by total from combinedData
+    const top100 = combinedData.sort((a, b) => b.total - a.total).slice(0, 100);
+
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        <Table columns={columns} data={combinedData} />
+        <Table columns={columns} data={top100} />
       </div>
     );
   }

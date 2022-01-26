@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from '../styles/trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
+import { intlNum } from 'utils/converter';
 
 export default function Trustlist() {
   const { isLoading, data, error } = useQuery(
@@ -14,7 +15,8 @@ export default function Trustlist() {
         {
           params: {
             // limit: 100,
-            // sort: 'desc',
+            sort: 'trust',
+            order: 'desc',
           },
         }
       );
@@ -34,10 +36,12 @@ export default function Trustlist() {
     {
       Header: 'Balance',
       accessor: 'balance',
+      Cell: (props) => intlNum(props.value) + " NXS",
     },
     {
       Header: 'Stake',
       accessor: 'stake',
+      Cell: (props) => intlNum(props.value) + " NXS",
     },
     {
       Header: 'Stake Rate',
@@ -46,6 +50,7 @@ export default function Trustlist() {
     {
       Header: 'Trust',
       accessor: 'trust',
+      Cell: (props) => intlNum(props.value),
     },
   ];
 
@@ -71,8 +76,8 @@ export default function Trustlist() {
     const newData = data.result.map((item, index) => ({
       key: index,
       ...item,
-      stake: `${item.stake.toFixed(2)} NXS`,
-      balance: `${item.balance.toFixed(2)} NXS`,
+      stake: item.stake,
+      balance: item.balance,
     }));
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>

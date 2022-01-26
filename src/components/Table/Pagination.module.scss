@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+  color: var(--theme-page-text);
+  background: var(--theme-tab-bg);
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.0625rem 0.125rem 0 #0003;
+  gap: 0.5rem;
+  justify-content: flex-end;
+
+}

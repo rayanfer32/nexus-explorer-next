@@ -48,7 +48,7 @@ const About = () => {
           contributions and suggestions please feel free to reach out to us on
           our github page.
         </p>
-        <a href={TYPES.footerItems.repoUrl}> <ThemedVscLogo/> Github </a>
+        <a className={styles.link} href={TYPES.footerItems.repoUrl.href} target={TYPES.footerItems.repoUrl.target}>  <ThemedVscLogo/> {TYPES.footerItems.repoUrl.label} </a>
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
