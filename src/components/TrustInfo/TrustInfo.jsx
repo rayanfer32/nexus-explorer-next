@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import SmallCard from 'components/atoms/SmallCard';
-import styles from './TrustInfo.module.scss';
+import styles from '../AccountInfo/AccountInfo.module.scss';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loader from 'components/atoms/NE_Loader';
 import Button from 'components/atoms/NE_Button';
 import Table from 'components/Table/Table';
 import { middleElipsis } from 'utils/converter';
+import QRCode from "react-qr-code";
 
 export default function TrustInfo({ data }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
@@ -40,6 +41,11 @@ export default function TrustInfo({ data }) {
     setTimeout(() => trustTransactionsRQ.refetch(), 2000);
   }, []);
 
+  useEffect(() => {
+    // temp fix for the issue where the query is not re-run when the component is re-rendered
+    trustTransactionsRQ.refetch();
+  }, [data.address]);
+
    // columns for the txns table
    const columns = [
     {
@@ -68,7 +74,7 @@ export default function TrustInfo({ data }) {
         return {
           txid: txn.txid,
           timestamp: txn.timestamp,
-          amount: txn.contracts[0].amount,
+          amount: `${txn.contracts[0].amount || 0} NXS`,
         };
       });
 
@@ -122,11 +128,41 @@ export default function TrustInfo({ data }) {
           // icon={<AiOutlineStock />}
         />
       </section>
+
+      {/* account details */}
+      <h1>Account Details</h1>
+      <div className={styles.details}>
+        <section className={styles.details__text}>
+          <div>Address: {data.address}</div>
+          <div>Owner: {data.owner}</div>
+          <div>
+            Created On: {new Date(data.created * 1000).toLocaleString()}
+          </div>
+          <div>
+            Last Modified: {new Date(data.modified * 1000).toLocaleString()}
+          </div>
+          <div>Name: {data.name}</div>
+          <div>Token Name: {data.token}</div>
+          <div>Ticker: {data.ticker}</div>
+        </section>
+        <section>
+          <div className={styles.qrCode}>
+            <QRCode
+              fgColor="#0ca4fb"
+              title={data.address}
+              value={data.address}
+              level="L"
+              size={200}
+            />
+          </div>
+        </section>
+      </div>
+
       <h1>Transaction Details</h1>
       {trustTransactionsRQ.isLoading ? (
         <LoaderDiv />
       ) : (
-        <Table columns={columns} data={tableData} />
+        <Table columns={columns} data={tableData || []} />
       )}
       <Button type="tertiary" onClick={() => setShowRawResponse((prev) => !prev)}>
         Show RAW Transactions

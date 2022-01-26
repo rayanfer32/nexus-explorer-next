@@ -7,6 +7,8 @@ import Table from 'components/Table/Table';
 import Button from 'components/atoms/NE_Button';
 import { middleElipsis } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
+import QRCode from 'react-qr-code';
+import TYPES from 'types';
 
 export default function AccountInfo({ data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
@@ -39,6 +41,11 @@ export default function AccountInfo({ data }) {
     setTimeout(() => accountTransactionsRQ.refetch(), 2000);
   }, []);
 
+  useEffect(() => {
+    // temp fix for the issue where the query is not re-run when the component is re-rendered
+    accountTransactionsRQ.refetch();
+  }, [data.address]);
+
   // columns for the txns table
   const columns = [
     {
@@ -56,8 +63,28 @@ export default function AccountInfo({ data }) {
       },
     },
     {
+      Header: 'Operation',
+      accessor: 'operation',
+    },
+    {
       Header: 'Amount',
       accessor: 'amount',
+      Cell: (props) => {
+        let fontColor = 'var(--theme-page-text)';
+        let sign = '+';
+        if (['CREDIT',"CREATE"].includes(props.row.values.operation)) {
+          fontColor = TYPES.colors.marketGreen;
+          sign = '+';
+        } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
+          fontColor = 'red';
+          sign = '-';
+        }
+        return (
+          <div className={styles.amount} style={{ background: fontColor }}>
+            {sign} {props.value}
+          </div>
+        );
+      },
     },
   ];
 
@@ -67,7 +94,8 @@ export default function AccountInfo({ data }) {
         return {
           txid: txn.txid,
           timestamp: txn.timestamp,
-          amount: txn.contracts[0].amount,
+          operation: txn.contracts[0].OP,
+          amount: `${txn.contracts[0].amount || 0} NXS`,
         };
       });
 
@@ -122,6 +150,7 @@ export default function AccountInfo({ data }) {
         />
       </section>
 
+      {/* account detials */}
       <h1>Account Details</h1>
       <div className={styles.details}>
         <section className={styles.details__text}>
@@ -138,7 +167,15 @@ export default function AccountInfo({ data }) {
           <div>Ticker: {data.ticker}</div>
         </section>
         <section>
-          <div className={styles.qrCode}>QR code</div>
+          <div className={styles.qrCode}>
+            <QRCode
+              fgColor={TYPES.colors.nexusBlue}
+              title={data.address}
+              value={data.address}
+              level="L"
+              size={200}
+            />
+          </div>
         </section>
       </div>
 
@@ -146,7 +183,7 @@ export default function AccountInfo({ data }) {
       {accountTransactionsRQ.isLoading ? (
         <LoaderDiv />
       ) : (
-        <Table columns={columns} data={tableData} />
+        <Table columns={columns} data={tableData || []} />
       )}
       <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
         Show RAW Transactions

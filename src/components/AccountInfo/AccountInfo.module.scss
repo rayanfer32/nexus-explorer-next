@@ -1,5 +1,5 @@
 .page {
-  color: var(--theme-page-text)
+  color: var(--theme-page-text);
 }
 
 .cardsContainer {
@@ -8,10 +8,48 @@
   padding: 0rem;
 }
 
-.chartContainer {
-  width: 100%;
-  padding: 0.5rem 0rem;
-  overflow: hidden;
+.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem 0;
+  padding: 1rem;
+  background: var(--theme-page-background);
+  border-radius: 0.5rem;
+  font-size: var(--font-normal);
+  box-shadow: var(--card-shadow);
+
+  .details__text {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+    gap: 0.5rem;
+    div {
+      border-radius: 0.2rem;
+      color: var(--theme-page-text);
+      background: var(--theme-tab-bg);
+      padding: 0.3rem 1rem;
+    }
+  }
+
+  .qrCode {
+    background: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+  }
+}
+
+.amount {
+  color: white;
+  font-weight: 'bold';
+  border-radius: 0.2rem;
+  // width: fit-content;
+  padding: 0.3rem;
 }
 
 /* for small screen */
@@ -30,56 +68,10 @@
     width: 0;
     background: transparent;
   }
-}
 
-.details {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1rem 0;
-  padding: 1rem;
-  background: var(--theme-page-background);
-  border-radius: 0.5rem;
-
-  .details__text {
-    display: flex;
+  .details {
     flex-direction: column;
-    padding: 0.2rem;
-    gap: 0.5rem;
-    div {
-      border-radius: 0.2rem;
-      color: var(--theme-page-text);
-      background: var(--theme-tab-bg);
-      padding: 0.2rem 0;
-    }
-  }
-
-  .qrCode {
-    background: white;
-    width: 10rem;
-    height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5rem;
-  }
-}
-
-/* style for desktop */
-@media (min-width: 768px) {
-  .container {
-    display: flex;
-    gap: 0.25rem;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cardsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: var(--space-xxxs);
-    padding: 0.5rem 0;
+    overflow: scroll;
+    align-items: flex-start;
   }
 }
