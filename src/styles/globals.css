@@ -116,7 +116,7 @@
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
   --theme-detail-card: var(--linear-nexus-sky);
   --theme-tab-bg: var(--frost-white);
-  --theme-tab-text: var(--dark);
+  --theme-tab-text: var(--dark-grey);
 }
 [data-color-theme='dark'],
 .dark {
@@ -171,8 +171,8 @@ a {
 }
 
 ::-webkit-scrollbar {
-  height: 0.3rem;
-  width: 0.3rem;
+  height: 0.5rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -180,7 +180,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--theme-bg-under);
+  background: var(--theme-page-text);
 }
 
 .slideRowAnim {

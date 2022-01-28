@@ -1,4 +1,4 @@
-import { timeConverter, toTitleCase } from 'utils/converter';
+import { toTitleCase, middleElipsis } from 'utils/converter';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -31,19 +31,17 @@ export default function Transactions(props) {
     {
       Header: 'Transaction ID',
       accessor: 'txid',
-      // key: 'txid',
-      // render: (txid) => `${txid.substring(0, 10)}...${txid.slice(-10)}`,
+      Cell: (props) => <span>{middleElipsis(props.value, 15)}</span>
     },
     {
       Header: 'Type',
       accessor: 'type',
-      render: (text) => toTitleCase(text),
+      Cell: (props) => <span>{toTitleCase(props.value)}</span>,
     },
     {
       Header: 'Timestamp',
       accessor: 'timestamp',
-      key: 'timestamp',
-      render: (val) => timeConverter(val),
+      Cell: (props) => <span>{new Date(props.value * 1000).toLocaleTimeString()}</span>,
     },
     // {
     //   Header: 'Contracts',
@@ -64,6 +62,10 @@ export default function Transactions(props) {
         <Loader type="circle" size="5rem" />
       </div>
     );
+
+  if (error) {
+    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  }
 
   return (
     <div>
