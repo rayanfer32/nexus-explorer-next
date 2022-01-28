@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from '../styles/richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum, middleElipsis } from 'utils/converter';
+import ApexPie from 'components/Chart/ApexPie';
 
 export default function Richlist() {
   const { isLoading, data, error } = useQuery(
@@ -30,7 +31,7 @@ export default function Richlist() {
           params: {
             // limit: 100,
             // sort: 'trust',
-            // order: 'desc',  
+            // order: 'desc',
           },
         }
       );
@@ -50,12 +51,12 @@ export default function Richlist() {
     {
       Header: 'Owner',
       accessor: 'address',
-      Cell: (props) => <div>{middleElipsis(props.value, 50)}</div>
+      Cell: (props) => <div>{middleElipsis(props.value, 50)}</div>,
     },
     {
       Header: 'Balance',
       accessor: 'total',
-      Cell: (props) => intlNum(props.value) + " NXS",
+      Cell: (props) => intlNum(props.value) + ' NXS',
     },
   ];
 
@@ -96,9 +97,22 @@ export default function Richlist() {
 
     // filter top 100 by total from combinedData
     const top100 = combinedData.sort((a, b) => b.total - a.total).slice(0, 100);
+    const top10 = top100.slice(0, 10);
+    const top1 = top100.slice(0, 1);
 
+    const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
+    const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
+    const sumTop1 = top1.reduce((acc, cur) => acc + cur.total, 0);
+
+    const maxSupply = 72586439.41;
+    const pieData = [sumTop1, sumTop10, sumTop100, maxSupply - sumTop100];
+    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
+        <div className={styles.chartContainer}>
+        <h3>NXS Distrubution</h3>
+        <ApexPie series={pieData} labels={labels} />
+        </div>
         <Table columns={columns} data={top100} />
       </div>
     );

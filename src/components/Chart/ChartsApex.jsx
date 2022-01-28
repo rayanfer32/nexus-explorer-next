@@ -21,17 +21,6 @@ function ChartsApex() {
 
   const series = [];
   const prevTimes = [];
-  // const generatePrevTimes = () => {
-  //   const _prevTimes = [];
-  //   for (let i = 24; i > 0; i--) {
-  //     let d = new Date(new Date().getTime() - i * 60 * 60 * 1000).toString();
-  //     // console.log(d);
-  //     _prevTimes.push(d);
-  //   }
-  //   return _prevTimes;
-  // };
-  // let prevTimes = generatePrevTimes();
-  // console.log(prevTimes);
 
   let [chartState, setChartState] = useState({
     options: {
