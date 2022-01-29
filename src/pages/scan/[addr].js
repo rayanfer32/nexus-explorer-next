@@ -8,6 +8,7 @@ import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 import AccountInfo from 'components/AccountInfo/AccountInfo';
 import TrustInfo from 'components/TrustInfo/TrustInfo';
+import Table from 'components/Table/Table';
 
 function Scan({ addr }) {
   const queryClient = new QueryClient();
@@ -147,6 +148,7 @@ function Scan({ addr }) {
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && <AccountInfo data={data?.result} />}
       {cardType === 'trust' && <TrustInfo data={data?.result} />}
+      {cardType === 'transaction' && <InfoCard type={cardType} data={data?.result} />}
       {rawInfo}
     </div>
   );

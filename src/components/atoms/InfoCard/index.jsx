@@ -35,9 +35,9 @@ export const InfoCard = (props) => {
     }
   }
 
-  return props.type === 'block' ? (
+  return ['block', 'transaction'].includes(props.type) ? (
     <div className={styles.container}>
-      <h3>Block Details</h3>
+      <h3>{toTitleCase(props.type)} Details</h3>
       {Object.entries(props?.data).map(([key, value]) => {
         return (
           <div className={styles.row} key={Math.random()}>
