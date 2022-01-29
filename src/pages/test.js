@@ -11,6 +11,8 @@ import Table from 'components/Table/Table';
 import blocks100 from 'assets/data/ledger.list.blocks100.json';
 import Shimmer from 'components/atoms/NE_Shimmer';
 import BlockEstimator from '../pages/TestComponents/BlockEstimator';
+import ApexTest from 'components/Chart/ApexTest';
+import ApexPie from 'components/Chart/ApexPie';
 
 function test() {
   const blockData = {
@@ -33,12 +35,6 @@ function test() {
     size: 812,
     timestamp: 1433373803,
   };
-
-  // const normalizedBlockData = {};
-  // Object.entries(blockData).forEach(([key, value]) => {
-  //   normalizedBlockData[key] =
-  //     value.toString().length > 8 ? middleElipsis(value, 7) : value;
-  // });
 
   const blocksColumns = [
     {
@@ -132,12 +128,13 @@ function test() {
     <Button key={Math.random()} type="primary" />,
   ];
 
-
-  return(
+  return (
     <div>
-      <BlockEstimator />
+      <ApexTest />
+      <ApexPie series={[10, 20, 30, 50, 20,30]} />
+      {/* <BlockEstimator /> */}
     </div>
-  )
+  );
 
   // show all components
   return (

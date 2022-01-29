@@ -14,13 +14,30 @@ export function useDarkMode() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const enabled = darkMode ?? prefersDarkMode;
 
-  useEffect(() => {
+  const isDarkTheme = sharedState.theme === TYPES.theme.dark ? true : false;
+
+  const setGlobalDarkMode = (enabled) => {
     setSharedState({
       ...sharedState,
       theme: enabled ? TYPES.theme.dark : TYPES.theme.light,
     });
     document.body.classList.toggle(TYPES.theme.dark, enabled);
-  }, [enabled]);
+    return (isDarkTheme) => isDarkTheme
+  }
 
-  return [enabled, setDarkMode];
+  useEffect(() => {
+    setGlobalDarkMode(enabled)
+  }, [enabled]);
+  // * problem with the hook not updating state is
+  // * this hook creates a new instance of the state inside the child component
+  // * so the global theme state is not updated
+
+  // * refer the theme state from the sharedState
+  
+
+  return [isDarkTheme, setDarkMode, setGlobalDarkMode];
+
+  // * this will create state instances for each child component and
+  // * hence does not update with the global theme state
+  // return [enabled, setDarkMode];
 }

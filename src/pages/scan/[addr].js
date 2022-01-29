@@ -8,6 +8,7 @@ import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 import AccountInfo from 'components/AccountInfo/AccountInfo';
 import TrustInfo from 'components/TrustInfo/TrustInfo';
+import Table from 'components/Table/Table';
 
 function Scan({ addr }) {
   const queryClient = new QueryClient();
@@ -27,7 +28,7 @@ function Scan({ addr }) {
     let endpoint = '';
     let params = {};
     let type = '';
-    
+
     if (addr.includes(':trust')) {
       endpoint = 'finance/get/trust';
       params = {
@@ -133,11 +134,9 @@ function Scan({ addr }) {
         Show RAW Response
       </Button>
       {showRawResponse && (
-        <div style={{ overflow: 'scroll' }}>
-          <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        </div>
+        <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
+          {JSON.stringify(data, null, 2)}
+        </pre>
       )}
     </div>
   );
@@ -147,6 +146,9 @@ function Scan({ addr }) {
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && <AccountInfo data={data?.result} />}
       {cardType === 'trust' && <TrustInfo data={data?.result} />}
+      {cardType === 'transaction' && (
+        <InfoCard type={cardType} data={data?.result} />
+      )}
       {rawInfo}
     </div>
   );

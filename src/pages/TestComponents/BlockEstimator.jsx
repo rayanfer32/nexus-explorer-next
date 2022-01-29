@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Loader from 'components/atoms/NE_Loader';
 import axios from 'axios';
+import {useDarkMode} from 'hooks';
 
 export default function BlockEstimator() {
   // https://nx1.rayanfer32.repl.co/blockFromTimestamp/1642153560
@@ -11,6 +12,7 @@ export default function BlockEstimator() {
   const [block, setBlock] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const [isDarkMode] = useDarkMode();
 
   useEffect(async () => {
     const estimatedBlock = await fetch(
@@ -63,6 +65,7 @@ export default function BlockEstimator() {
         <span>timestamp: {timestamp}</span>
         <span>block: {block}</span>
         <span>error: {error} seconds</span>
+        <span>DARK MODE: {JSON.stringify(isDarkMode)} </span>
       </div>
       {loading ? (
         <div

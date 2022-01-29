@@ -6,7 +6,7 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Navbar() {
   const router = useRouter();
@@ -14,6 +14,8 @@ function Navbar() {
   const onClickBrand = () => router.push('/');
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
+
+
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
