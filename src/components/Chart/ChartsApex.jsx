@@ -79,7 +79,7 @@ function ChartsApex() {
     },
     series: [
       {
-        name: 'Transactions',
+        name: 'Contracts',
         data: series,
       },
     ],
