@@ -28,10 +28,16 @@ function fetchMarket() {
 }
 
 export async function getStaticProps() {
-  const metrics = await fetchMetrics();
-  const info = await fetchInfo();
-  const mining = await fetchMining();
-  const market = await fetchMarket();
+  const responses = await Promise.all([
+    fetchMetrics(),
+    fetchInfo(),
+    fetchMining(),
+    fetchMarket(),
+  ]);
+  const metrics = responses[0];
+  const info = responses[1];
+  const mining = responses[2];
+  const market = responses[3];
 
   return {
     props: {
@@ -40,13 +46,12 @@ export async function getStaticProps() {
       mining: { data: mining.data },
       market: { data: market.data },
     },
-    
+
     revalidate: refetchIntervals.regenerateSSG,
   };
 }
 
 export default function Home(props) {
-
   const metricsRQ = useQuery('metrics', fetchMetrics, {
     initialData: props.metrics,
     refetchInterval: refetchIntervals.metrics,

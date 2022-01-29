@@ -5,9 +5,9 @@ import Image from 'next/dist/client/image';
 import PropTypes from 'prop-types';
 
 SmallCard.propTypes = {
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   sublabel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   ticker: PropTypes.any,
   link: PropTypes.string,
   icon: PropTypes.any
