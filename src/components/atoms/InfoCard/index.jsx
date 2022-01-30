@@ -1,7 +1,9 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
 import { middleElipsis } from 'utils/converter';
-import { BiCopy } from 'react-icons/bi';
+import { BiCopy, BiClipboard } from 'react-icons/bi';
+import Toast from '../../Toast';
+import { useState } from 'react';
 
 // const data = {
 //   bits: '7c07227d',
@@ -25,33 +27,42 @@ import { BiCopy } from 'react-icons/bi';
 // };
 
 export const InfoCard = (props) => {
-  
+  const [toastList, setToastList] = useState([]);
   // https://rawcdn.githack.com/sitepoint-editors/clipboardapi/a8dfad6a1355bbb79381e61a2ae68394af144cc2/demotext.html
   function handleCopy(value) {
     // doesnt support copy on mobile yet
     if (navigator.clipboard) {
       navigator.clipboard.writeText(value);
-      alert('Copied: ' + value);
+      // alert('Copied: ' + value);
+      setToastList([
+        ...toastList,
+        { icon: <BiClipboard />, message: `Copied: ${value}` },
+      ]);
     }
   }
 
   return ['block', 'transaction'].includes(props.type) ? (
-    <div className={styles.container}>
-      <h3>{toTitleCase(props.type)} Details</h3>
-      {Object.entries(props?.data).map(([key, value]) => {
-        return (
-          <div className={styles.row} key={Math.random()}>
-            <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
-            <span data-copy={value} className={styles.rowValue}>
-              {`${
-                value.toString().length > 12 ? middleElipsis(value, 12) : value
-              }`}
-              <BiCopy onClick={() => handleCopy(value)} />
-            </span>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className={styles.container}>
+        <h3>{toTitleCase(props.type)} Details</h3>
+        {Object.entries(props?.data).map(([key, value]) => {
+          return (
+            <div className={styles.row} key={Math.random()}>
+              <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
+              <span data-copy={value} className={styles.rowValue}>
+                {`${
+                  value.toString().length > 12
+                    ? middleElipsis(value, 12)
+                    : value
+                }`}
+                <BiCopy onClick={() => handleCopy(value)} />
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <Toast toastList={toastList} />
+    </>
   ) : null;
 };
 
