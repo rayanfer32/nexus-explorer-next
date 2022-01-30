@@ -4,32 +4,80 @@ import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { refetchIntervals } from 'types/constants';
 
-export default function Home() {
-  const metricsRQ = useQuery('metrics', () => {
-    return axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
-    );
+// * SSG with initial data
+// * https://react-query.tanstack.com/guides/ssr
+
+function fetchMetrics() {
+  return axios.get(
+    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
+  );
+}
+
+function fetchInfo() {
+  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`);
+}
+
+function fetchMining() {
+  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`);
+}
+
+function fetchMarket() {
+  return axios.get(`${process.env.NEXT_PUBLIC_COINGECKO_BASE_URL}/coins/nexus`);
+}
+
+export async function getStaticProps() {
+  const responses = await Promise.all([
+    fetchMetrics(),
+    fetchInfo(),
+    fetchMining(),
+    fetchMarket(),
+  ]);
+  const metrics = responses[0];
+  const info = responses[1];
+  const mining = responses[2];
+  const market = responses[3];
+
+  return {
+    props: {
+      metrics: { data: metrics.data },
+      info: { data: info.data },
+      mining: { data: mining.data },
+      market: { data: market.data },
+    },
+
+    revalidate: refetchIntervals.regenerateSSG,
+  };
+}
+
+export default function Home(props) {
+  const metricsRQ = useQuery('metrics', fetchMetrics, {
+    initialData: props.metrics,
+    refetchInterval: refetchIntervals.metrics,
   });
 
-  const infoRQ = useQuery('info', () => {
-    return axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`
-    );
+  const infoRQ = useQuery(
+    'info',
+    () => {
+      return axios.get(
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`
+      );
+    },
+    {
+      refetchIntervals: refetchIntervals.info,
+    }
+  );
+
+  const marketRQ = useQuery('market', fetchMarket, {
+    initialData: props.market,
+    refetchIntervals: refetchIntervals.market,
   });
 
-  const marketRQ = useQuery('market', () => {
-    return axios.get(
-      `${process.env.NEXT_PUBLIC_COINGECKO_BASE_URL}/coins/nexus`
-    );
+  const miningRQ = useQuery('mining', fetchMining, {
+    initialData: props.mining,
+    refetchIntervals: refetchIntervals.mining,
   });
-
-  const miningRQ = useQuery('mining', () => {
-    return axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`
-    );
-  });
-
 
   return (
     <>
@@ -50,9 +98,7 @@ export default function Home() {
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
         />
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Panel3 />
-        </div>
+        <Panel3 />
       </main>
     </>
   );

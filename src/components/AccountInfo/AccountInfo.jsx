@@ -9,6 +9,8 @@ import { middleElipsis } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import QRCode from 'react-qr-code';
 import TYPES from 'types';
+import { handleCopy } from 'utils/helper';
+import { BiCopy } from 'react-icons/bi';
 
 export default function AccountInfo({ data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
@@ -59,7 +61,9 @@ export default function AccountInfo({ data }) {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <div>{middleElipsis(props.value, 15)}</div>;
+        return <div data-value={props.value}>{middleElipsis(props.value, 15)}
+          <BiCopy onClick={() => handleCopy(props.value)} />
+        </div>;
       },
     },
     {
@@ -171,7 +175,7 @@ export default function AccountInfo({ data }) {
             <QRCode
               fgColor={TYPES.colors.nexusBlue}
               title={data.address}
-              value={data.address}
+              value={data.address || ""}
               level="L"
               size={200}
             />

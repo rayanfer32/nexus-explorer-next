@@ -141,13 +141,15 @@ function Scan({ addr }) {
     </div>
   );
 
+
+
   return (
     <div>
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && <AccountInfo data={data?.result} />}
       {cardType === 'trust' && <TrustInfo data={data?.result} />}
       {cardType === 'transaction' && (
-        <InfoCard type={cardType} data={data?.result} />
+          <InfoCard type={cardType} data={data?.result} />
       )}
       {rawInfo}
     </div>
