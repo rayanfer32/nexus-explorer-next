@@ -15,8 +15,6 @@ function Navbar() {
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
 
-
-
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
       <div className={styles.links}>
@@ -100,8 +98,10 @@ function Navbar() {
             long
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+            placeholder={"Search for a username:account / block / transaction / address"}
             onSearch={() => {
               router.push(`/scan/${searchInput}`);
+              setTimeout(() => setSearchInput(''), 3000);
             }}
           />
         </div>
