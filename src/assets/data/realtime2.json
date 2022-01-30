@@ -1,0 +1,71 @@
+{
+  "block": {
+    "bits": "04d1f029",
+    "channel": 1,
+    "date": "2021-11-04 11:25:59 UTC",
+    "difficulty": 8.0867369,
+    "hash": "0268dac36b23e955d814d732d940b5236293cda59944f0518a6df50b10e4ed3ec0f5b536e677f124024d756f305c8576cfcda97c03ed293c8a46dd51fc410e759e993c07cef41d1688eadb0e0c6d2c6be4c98caddbc9a7a3dd6e42b4522293e4d6609bf93334c8d251e4dc45f11f8a30ef56b7da1f827706b87a03614fdc7be5",
+    "height": 4122033,
+    "merkleroot": "9bd2d330e23f3e1418a3ed45c5fa9aa1cf7d48c4a465f69ec9cf51f6a1c0d3e5a3a14dea94a6a3ed38d396e39a83af52b716402bde9185a2ef857b9eb78990ba",
+    "mint": 2.269256,
+    "nonce": 9952281436155553238,
+    "previousblockhash": "23ef3bed6a0409dd101606c88e752d3df61949bcafd5539a2c48d14d5848a03ca193355fc06b243eff43ef99a014d4364b96e2d8428ec942874b71888f6f9336b2a209093a853a1d018d128787eef531f623fd65ae76b489d9be3be0859a7ae61693813198ba4564b17b7687fa25d27d0333f85ef6dffb36fc5c8b912b4b2ead",
+    "proofhash": "f892d775d3c7a7af495340f798d56df4931f661c100274c922115deba326e4a4e497e43479b2f3d12dc719385990d79e1e3cb562ccd181c4a0472d3ecc988db2ea32a160d3bdc7751f6a6484dabec57850a52072a76b404190e50bb86e1b0ed2220b47926e5dbe2fed01ba831045ddc27082e11ae0c8da8e10cc7d0cada1cdab",
+    "size": 872,
+    "timestamp": 1636025159,
+    "tx": [
+      {
+        "txid": "0105190b022e4e8677b31d94ace90ac5b88cdc91ab713aaa8dd82ed4fd5e70b6de2d75d6441dd9da17fea4a1979d11b426b63fba9afdbf397a6d065345650fb3"
+      },
+      {
+        "txid": "01b7eb214203bd86e2bd276748c7c8ea8da76c52aefeb36493e00f4a0812977622a1bcf094a3ea918b0ab1fad6136b036192279bc0ef787f53ceed54f6b16cef"
+      }
+    ],
+    "version": 8
+  },
+  "transactions": [
+    {
+      "blockhash": "0268dac36b23e955d814d732d940b5236293cda59944f0518a6df50b10e4ed3ec0f5b536e677f124024d756f305c8576cfcda97c03ed293c8a46dd51fc410e759e993c07cef41d1688eadb0e0c6d2c6be4c98caddbc9a7a3dd6e42b4522293e4d6609bf93334c8d251e4dc45f11f8a30ef56b7da1f827706b87a03614fdc7be5",
+      "confirmations": 1,
+      "contracts": [
+        {
+          "OP": "CREDIT",
+          "amount": 2.269736,
+          "contract": 0,
+          "for": "COINBASE",
+          "id": 0,
+          "proof": "a10caf37dad49e09df9aaca1e3c982cfacdaff26e654a67bb4e3c92320a1d415",
+          "ticker": "NXS",
+          "to": "8BfQEws91PMVaNG44DxYfr9B825W2MVdvdynyhtTYr6z5JQ2SPC",
+          "token": "0",
+          "txid": "019ca25a2a895d75c423ca0980f31a6d13eccb044a7bbb8ff7a808ca912d059f04509f21d21d41fb3935ad9e11e3ed4c3564760b2356bc36c5fb41168593e2e2"
+        }
+      ],
+      "sequence": 13887,
+      "timestamp": 1636025098,
+      "txid": "0105190b022e4e8677b31d94ace90ac5b88cdc91ab713aaa8dd82ed4fd5e70b6de2d75d6441dd9da17fea4a1979d11b426b63fba9afdbf397a6d065345650fb3",
+      "type": "tritium user",
+      "version": 4
+    },
+    {
+      "blockhash": "0268dac36b23e955d814d732d940b5236293cda59944f0518a6df50b10e4ed3ec0f5b536e677f124024d756f305c8576cfcda97c03ed293c8a46dd51fc410e759e993c07cef41d1688eadb0e0c6d2c6be4c98caddbc9a7a3dd6e42b4522293e4d6609bf93334c8d251e4dc45f11f8a30ef56b7da1f827706b87a03614fdc7be5",
+      "confirmations": 1,
+      "contracts": [
+        {
+          "OP": "COINBASE",
+          "amount": 2.269256,
+          "genesis": "a160368f27f7bed202651213fc46c616b0d9331b632b9df6e0a71e2a57097788",
+          "id": 0,
+          "nonce": 3507,
+          "ticker": "NXS",
+          "token": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "sequence": 126089,
+      "timestamp": 1636025097,
+      "txid": "01b7eb214203bd86e2bd276748c7c8ea8da76c52aefeb36493e00f4a0812977622a1bcf094a3ea918b0ab1fad6136b036192279bc0ef787f53ceed54f6b16cef",
+      "type": "tritium base",
+      "version": 4
+    }
+  ]
+}

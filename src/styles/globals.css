@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css?family=Google+Sans&display=swap');
+
+:root {
+  /* colors */
+  --nexus-blue: #0ca4fb;
+  --sky-blue: #6dcefe;
+  --ocean-blue: #025e93;
+  --midnight-blue: #012235;
+  --white: #ffffff;
+  --dark-grey: #2e292f;
+  --market-green: #28a745;
+  --market-red: #dc3545;
+  --market-yellow: #d9bb26;
+  --paper-white: #f8f9fa;
+  --pale-white: #f5f7f9;
+  --frost-white: #daebf4;
+
+  /* gradient */
+  --linear-frost-white: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    #daebf4 100%
+  );
+
+  --linear-frost-white-reverse: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    #daebf4 100%
+  );
+
+  --linear-ocean-midnight: linear-gradient(
+    175.94deg,
+    #012235b3 5.59%,
+    #025e93b3 73.28%
+  );
+  --linear-sky-white: linear-gradient(
+    175.94deg,
+    rgba(12, 164, 251, 0.7) 5.59%,
+    rgba(109, 206, 254, 0.35) 73.28%
+  );
+  --linear-nexus-sky: linear-gradient(
+    328deg,
+    rgba(12, 164, 251, 1) 0%,
+    rgba(109, 206, 254, 1) 80%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  --radial-ocean-midnight: radial-gradient(
+    circle,
+    rgba(6, 35, 52, 1) 0%,
+    rgba(3, 45, 70, 1) 100%
+  );
+
+  --radial-sky-white: radial-gradient(
+    114.53% 197.34% at 25.54% -14.53%,
+    var(--white) 26.66%,
+    var(--sky-blue) 100%
+  );
+
+  /* fonts size*/
+  --font-xxxs: 0.375rem; /* 6px */
+  --font-xxs: 0.5rem; /* 8px */
+  --font-xs: 0.625rem; /* 10px */
+  --font-s: 0.75rem; /* 12px */
+  --font-normal: 0.875rem; /* 14px */
+  --font-l: 1rem; /* 16px */
+  --font-xl: 1.125rem; /* 18px */
+  --font-xxl: 1.25rem; /* 20px */
+  --font-xxxl: 1.5rem; /* 24px */
+  --font-xxxxl: 2rem; /* 32px */
+  --font-xxxxxl: 3rem; /* 48px */
+
+  /* screen sizes */
+  --screen-xs: 576px;
+  --screen-sm: 768px;
+  --screen-md: 992px;
+  --screen-lg: 1200px;
+  --screen-xl: 1440px;
+
+  /* spaces */
+  --space-xxxs: 0.25rem; /* 4px */
+  --space-xxs: 0.5rem; /* 8px */
+  --space-xs: 0.75rem; /* 12px */
+  --space-s: 1rem; /* 16px */
+  --space-m: 1.25rem; /* 24px */
+  --space-l: 1.5rem; /* 32px */
+  --space-xl: 2rem; /* 48px */
+  --space-xxl: 3rem; /* 72px */
+  --space-xxxl: 4rem; /* 96px */
+
+  /* shadows */
+  --card-shadow: 0rem 0.25rem 0.5rem #0002;
+  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
+}
+
+:root,
+.light {
+  --theme-shimmer: var(--paper-white);
+  --theme-color: var(--ocean-blue);
+  --theme-page-background: var(--white);
+  --theme-page-not-background: var(--midnight-blue);
+  --theme-page-text: var(--midnight-blue);
+  --theme-page-text-secondary: var(--ocean-blue);
+  --theme-page-border: var(--nexus-blue);
+  --theme-gradient: var(--radial-sky-white);
+  --theme-gradient-radial: var(--radial-sky-white);
+  --theme-gradient-linear: var(--linear-sky-white);
+  --theme-bg-under: var(--pale-white);
+  --theme-layout-background: var(--radial-ocean-midnight);
+  --theme-search: var(--white);
+  --theme-search-text: var(--white);
+  --theme-hue-rotate: hue-rotate(20deg);
+  --theme-nav-bg: var(--linear-frost-white);
+  --theme-footer-bg: var(--linear-frost-white-reverse);
+  --theme-nav-brand: var(--nexus-blue);
+  --theme-btn-background: var(--ocean-blue);
+  --theme-btn-text: var(--white);
+  --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
+  --theme-detail-card: var(--linear-nexus-sky);
+  --theme-tab-bg: var(--frost-white);
+  --theme-tab-text: var(--dark-grey);
+  --theme-toast-bg: hsl(220, 10%, 16%);
+}
+[data-color-theme='dark'],
+.dark {
+  --theme-shimmer: var(--ocean-blue);
+  --theme-color: var(--dark-grey);
+  --theme-page-background: var(--midnight-blue);
+  --theme-page-not-background: var(--ocean-blue);
+  --theme-page-text: var(--white);
+  --theme-page-text-secondary: var(--sky-blue);
+  --theme-page-border: var(--ocean-blue);
+  --theme-gradient: var(--radial-ocean-midnight);
+  --theme-gradient-radial: var(--radial-ocean-midnight);
+  --theme-gradient-linear: var(--linear-ocean-midnight);
+  --theme-bg-under: var(--radial-ocean-midnight);
+  --theme-layout-background: var(--midnight-blue);
+  --theme-search: var(--white);
+  --theme-search-text: var(--white);
+  --theme-hue-rotate: hue-rotate(0deg);
+  --theme-nav-bg: var(--theme-layout-background);
+  --theme-footer-bg: var(--theme-layout-background);
+  --theme-nav-brand: var(--paper-white);
+  --theme-invert: invert(0);
+  --theme-btn-background: var(--midnight-blue);
+  --theme-btn-text: var(--white-blue);
+  --theme-detail-card: var(--radial-ocean-midnight);
+  --theme-tab-text: var(--frost-white);
+  --theme-tab-bg: var(--ocean-blue);
+  --theme-toast-bg: hsl(220, 10%, 16%);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Google Sans;
+  background: var(--theme-bg-under) no-repeat;
+}
+
+.themeText {
+  color: var(--theme-page-text);
+}
+
+input {
+  color: var(--midnight-blue);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-page-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-page-text);
+}
+
+.slideRowAnim {
+  animation: slideIn 2s;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0%;
+    color: rgb(58, 119, 231);
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 100%;
+    color: blue;
+  }
+  100% {
+    color: black;
+  }
+}
+
+#__portal {
+  all: unset;
+}
+
+#infoCard {
+  margin-top: 10px;
+  color: #333;
+  /* box-shadow: -2px 0px 2px inset blue;*/
+  /* animation: flashShadow 0.5s linear infinite; */
+}
+
+#navbarComponent {
+  animation: slideDown 2s;
+}
+
+#richlist {
+  animation: slideDown 3s;
+  overflow: hidden;
+  scrollbar-width: 1px;
+}
+
+#trustlist {
+  animation: slideDown 3s;
+}
+
+#chartLeft {
+  animation: slideRight 3s;
+}
+
+#chartRight {
+  animation: slideLeft 3s;
+}
+
+@keyframes blueTinge {
+  0% {
+    box-shadow: 2px 2px 10px;
+  }
+  100% {
+    background-color: 2px 2px 20px;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

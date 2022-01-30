@@ -1,0 +1,46 @@
+.rttable {
+  position: relative;
+  width: 524px;
+  box-shadow: var(--card-shadow);
+  border-radius: 4px;
+  /* overflow: scroll; */
+  min-height: 20rem;
+  /* filter: contrast(0.98); */
+}
+
+.header {
+  width: inherit;
+  height: 32px;
+  display: flex;
+  padding: 0 12px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--theme-page-background);
+  font-weight: normal;
+  font-size: var(--font-normal);
+  color: var(--theme-page-text);
+  margin-bottom: 4px;
+}
+
+.button {
+  border: 1px solid var(--theme-page-text);
+  color: var(--theme-page-text);
+  background: var(--theme-page-background);
+  box-sizing: border-box;
+  padding: 2px 32px;
+  font-size: var(--font-s);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.button:hover {
+  box-shadow: var(--card-shadow);
+  background: var(--theme-page-text);
+  color: var(--theme-page-background);
+}
+
+.rttDataList {
+  /* max-height: 100%; */
+  /* background: red; */
+}

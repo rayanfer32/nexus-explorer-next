@@ -1,0 +1,54 @@
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0.0625rem solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  color: var(--white);
+  font-weight: bold;
+  outline-color: var(--sky-blue);
+  transition: all 100ms ease-out;
+  cursor: pointer;
+
+  &:disabled {
+    background: #999a;
+    cursor: default;
+  }
+
+  &:active {
+    transform: scale(0.995);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--sky-blue);
+    outline: 0.125rem solid var(--sky-blue);
+  }
+  .body {
+    width: 100%;
+  }
+}
+
+.primary {
+  background-color: var(--ocean-blue);
+  padding: 0.25rem 0.75rem;
+}
+
+.secondary {
+  background: var(--theme-page-background);
+  border-color: var(--ocean-blue);
+  color: var(--ocean-blue);
+}
+
+.tertiary {
+  background-color: var(--ocean-blue);
+  padding-right: 0.5rem;
+  &:hover {
+    .icon {
+      transition: all 100ms ease-in;
+      transform: translateX(4px);
+    }
+  }
+}

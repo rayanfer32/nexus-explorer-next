@@ -1,0 +1,48 @@
+{
+  "result": {
+    "registers": {
+      "total": 172706,
+      "account": 85048,
+      "append": 0,
+      "crypto": 28973,
+      "name": 57734,
+      "name_global": 16,
+      "name_namespaced": 29,
+      "namespace": 13,
+      "object": 64,
+      "object_tokenized": 22,
+      "raw": 0,
+      "readonly": 289,
+      "token": 89
+    },
+    "sig_chains": 28973,
+    "trust": {
+      "total": 496,
+      "stake": 27796785,
+      "trust": 7627039762
+    },
+    "supply": {
+      "total": 71922264.829179,
+      "target": 69665961.342034,
+      "inflationrate": 3.238745929403578,
+      "minute": 4.241984,
+      "hour": 254.516018,
+      "day": 6106.725196,
+      "week": 42674.56423,
+      "month": 169694.149848
+    },
+    "reserves": {
+      "ambassador": 482.156542,
+      "developer": 91.082273,
+      "fee": 57461.488,
+      "hash": 118.713489,
+      "prime": 38.663667
+    }
+  },
+  "info": {
+    "method": "system/get/metrics",
+    "status": "active",
+    "address": "103.89.232.85:26889",
+    "latency": "4371.308552 ms"
+  }
+}

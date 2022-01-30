@@ -1,0 +1,283 @@
+{
+  "result": [
+    {
+      "txid": "014b65a20d9f5bea9ac5a785dbd9ffd9b24359fbe17f267cbcc48fd852b8eb62c91f44c3a59cf908400d45daa1b3c2a0b7314ee872b217e913a27ac7ba381a4e",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 18,
+      "timestamp": 1641200265,
+      "blockhash": "39119ed0a6b6f545cc20b1e51d71a1863148bd99aba69e44706603f306d65a6693e6d008b9b9737ceb6377e613089d609359932e9f2f11a79da47c105421e51e11aa442db31988ac8d3fbedbf4d42a48539953492e07b229625d52bae27929589bf40745477f72cdc16ad070be36bb36a232b897488dce74d40f576093085440",
+      "confirmations": 23616,
+      "contracts": [
+        {
+          "id": 2,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 1,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "01bd3c0e239c97a364b30fdc88db59914a1f16df49f28a69dbffeb5d968d689642aeaa67c996031648065752300c65c7a56a7a150f83b25d16a85f3a3f63d012",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 16,
+      "timestamp": 1640166376,
+      "blockhash": "c0d3b025ba47fd8f88622a7c323d33ccfcb98d362dd0d5d11033df9f235bbf4146e40d89088f139f1810dc6ebe9062265ca104cbbfc83a600225be906e6a596628c8a79160917cddc5897f628a7e4a330a6dd6697b32900a22d66ab56ff6f7ea1b756fc3294758a666abf8d91aa41e6e16ecc218ee962bbe5114128397cb6d34",
+      "confirmations": 43221,
+      "contracts": [
+        {
+          "id": 2,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 1,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "01080353414cc4c87cdbecc6ea37d144be355ed1c3248fcf6036c93afdaa78aa843355d31f00750a7ee3877162fc8d2ac4febb990c9723b5a5b3090eb7de885d",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 15,
+      "timestamp": 1640149419,
+      "blockhash": "dd416aa3cf2af5d0aceb9855b8214111869f9afc5e0d992c4f886f8cb79962bc033612503411cb2206e0ff561d6f0d5088736a2bf14b3b1cb5c561c5ba53e29b12a3c654caee7652e0adbb6313703968b95a886a5ca0e83ee7ed5903cb44269c1ba23f3d5f938db6e25103c4140596ad572294101a8035a3c6994f19ba5263f5",
+      "confirmations": 43553,
+      "contracts": [
+        {
+          "id": 2,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 1,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "0190e2a68d102f437a8782ba45d58b5a180db5f16f25d5c5f7fab6e5893ca6e93c6e09d3575a3c9242e3a6c130a27323ea5cacc9e620bf4b4b6bf0f16f41e61d",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 13,
+      "timestamp": 1639902948,
+      "blockhash": "e5f093657ac9f0825d27b4a316435da6be36c4944f1c762a162feb282398b350869c0f74d6bd06865ae39b09d6bf61c23baf4cee9cbb3a7236685c678d165c0bc174f5c07b42538ab27fab20fd81a48bf62e44f96fa044adbac991add9a3fff26377b0897318b1284ea77d4827c8483bc646c674f752d13fa9b30c49427bdf32",
+      "confirmations": 48267,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "CREDIT",
+          "for": "DEBIT",
+          "txid": "013a6bab3501cfee654f3d82c2c32605c7369a5683b8f117071fa652f837892502970974177d390a02f75f687ab5b7459037a85b362b4b8c2e3201145cd8c218",
+          "contract": 0,
+          "proof": "8FtRviR1YoUdFscVTb1jv1fGHHNWPpqbJJfcfqcHdF1Kqj8AzdX",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 0.06912,
+          "token": "0",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "013a6bab3501cfee654f3d82c2c32605c7369a5683b8f117071fa652f837892502970974177d390a02f75f687ab5b7459037a85b362b4b8c2e3201145cd8c218",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 12,
+      "timestamp": 1639902905,
+      "blockhash": "0833bc4349ae1b069f96dc7ad2d3d8edb68b535d1c5bdb85edcab0f874dd05da84d42718fd511ddfbdf1d7ac92c73094a0bda34f0de999d68b1994bc88f69cd46ae1c5bf7aa81aac38c3106ac88774897a0240a51a224e44bbb9014e6c97f8edb50546c960138945a449d9ea9b87ff1910b84d29c6660fda8223d16fa42d1abb",
+      "confirmations": 48268,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "DEBIT",
+          "from": "8FtRviR1YoUdFscVTb1jv1fGHHNWPpqbJJfcfqcHdF1Kqj8AzdX",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 0.06912,
+          "token": "0",
+          "ticker": "NXS",
+          "reference": 0
+        }
+      ]
+    },
+    {
+      "txid": "0132a92999eda8c541a3877ea98de044ef75805f7a11b6201192d460e7cc472c3c3b36dc1be3e069d457ac5e88a9c7395f5323bf30acbd0072b5286ceffe7d92",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 11,
+      "timestamp": 1639849622,
+      "blockhash": "b515fb9834f0b84d539da8eb485d98ad348d687c5af16938b0fd06b30739cb0fc6c94777ac4f50d483f96cedf60b64bc382a759ae39ad4eb260e6a486f472c5973e4e03c88faf304433247959921495def2a1591bb7855e48cc961a3636eccd2aeb88f8d518e239a425c17bb1ce76080dfa6a7f668c8b02c8e238f411586b5bc",
+      "confirmations": 49270,
+      "contracts": [
+        {
+          "id": 2,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 1,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "01ec4a6c8091511be67d52c3991e4becb42d4fa2cd31308e4f1a6b5238ba2d8a185933635903f0c959ab19bc23462ebaa8c74301bd0d49d76b7827131dbc9196",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 8,
+      "timestamp": 1639842035,
+      "blockhash": "c247f6792c1b75b1bef1318ba42bfc37bbf220dc5b57515a46d414c0f6560ac65973773ca9017e3c2f56304f2a259c13d2e525a2889baeca23c0b489a398cc26877ec8476ca6daaf47f4f35003d3f334dfe3d59f79355eed08e28be157f3d6888fadfab50122c91474891c17337d2869a7bebe9e6023aea582ff3e3b44224c3d",
+      "confirmations": 49406,
+      "contracts": [
+        {
+          "id": 2,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 1,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "01abd709b817cba98ab3ae3fd772f5adc3af73c9e2ad0e2a1b9bc80fe2b10f50ca6c40a43854580c3ad048b053414468097887527d955af3cf12dac91e148529",
+      "type": "tritium user",
+      "version": 4,
+      "sequence": 7,
+      "timestamp": 1635277259,
+      "blockhash": "9ac43034fbf8fe37aa053e2278cf3a72f6c4a0e7645f67621390db0ef3c56e4ed4ac1bc2d4fad75c2cf980e45f47233e1d42a0570f6f8130897bb7eeee49ddad9bb592edf0997c554362192448b2e67e8d86dcd1af4203903626bb6cf526cec8cf313dddf42aa0581d03e5e00b6a65e5ac01334fabf74648c68bbc7b2b6a56cc",
+      "confirmations": 136124,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "CREDIT",
+          "for": "DEBIT",
+          "txid": "019760406389086c6502a116c84d100cbc79b81a1af37d446ad41bb022dde5b67a7ce264118fdc1e2a0ff96afaddf17070776dcd61ea16349c61c48aa576b2f0",
+          "contract": 0,
+          "proof": "8C84myjEmHbXJu1H88cNv8UHhRxHHv9Zrvrsc6LYrpSboBfq2ru",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 150,
+          "token": "0",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "01a0ddc02c2eacb52214b47c20152567a04bae7e4134a8afa7fc8b6dbe02d42eb693fa14fda44bb9cdebafa4b01c499b34987091becdd948b42090f525df3699",
+      "type": "tritium user",
+      "version": 2,
+      "sequence": 6,
+      "timestamp": 1630999174,
+      "blockhash": "08a181e778cc7e420b04a7561278678210d36f1176c2b71b1aeb887afc7db65d3200d60503959000a103d58ecdbc5e5758ad4e879a8390b6e74a2e1db8a3dc4b760bfa02d1df252d65de5a121d420fe404b5f4b028114ff53190e7b541eceb07712d0d2560ea3fcd0176ccaae28050554db23164300c8e274c2bdc40eeb9fceb",
+      "confirmations": 212684,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "CREDIT",
+          "for": "DEBIT",
+          "txid": "014e3bd0bff501e024923f43a6c24da255eb17e4a994c35d1af43376eee4338f32473a9365aa0b901d4545a07d84fea5cb624ed63481be715dd2c15e25bf8a82",
+          "contract": 0,
+          "proof": "8BcFRN874sZUXCnys1eMp1j8NFaShcbsZpWDtqk7akwXygBvUdA",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 145.006,
+          "token": "0",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "0186fa21845bcb2d793c707bb1441e44fe002f149726bf326bd9ab36af9a709928622c6f00ab2d0f11fb1345e88de32703e6c6515723aaae635d2cf0fbb1fa00",
+      "type": "tritium user",
+      "version": 2,
+      "sequence": 4,
+      "timestamp": 1622531453,
+      "blockhash": "19cb50417044030e92b200f631e9b37c1f3b8d8e4001f7150d5fd981feff5bd14916d0673d71f96ffbd514ac32f469dc923fc9e98421193723162878eb29fa538e2435a959702474ccbf8f65a4e2a4175c029aec0ee465c220e706a8b6fce2b72a4066d71e48057db26b8085b5b0768d6661533a4a7f1f4a4f7e03485da3f35a",
+      "confirmations": 373505,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "CREDIT",
+          "for": "DEBIT",
+          "txid": "0169840abb3f6fa61b48ba0ef3996b9984771f95db49ab1c008b256ec8d71330255bac90e762cd3ee8f71fc36f5b0feec37ab9a4f0be1cd200eeebe5675c4c87",
+          "contract": 0,
+          "proof": "8BcFRN874sZUXCnys1eMp1j8NFaShcbsZpWDtqk7akwXygBvUdA",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 90.25,
+          "token": "0",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "0102f7f69f85d505b6dcd56bd75d3a90f6ed9aeb24cc51335f8a6f8cc958b52ebf9350ed43c7b1ec0bbb2b22cbca980fbffd37bb53d27a63a0e0649f30d0de77",
+      "type": "tritium user",
+      "version": 2,
+      "sequence": 3,
+      "timestamp": 1618552197,
+      "blockhash": "bb9aa202e53f6b0116a1dd14e823de93bfeb0dfab1626342f52ec6f928ba2cc9ee615e06ff1e9df878b1226feb0fc8414bca1aeea4bd6c091c5b419227d53a7308c782275aa6c9077bbed9c4ca26ccf911a7c6d16fc03cfee007660b628ac6490fc36bfab345be20146b1f54ace6189e08c347afbf0db150af55627b8903f7ab",
+      "confirmations": 449071,
+      "contracts": [
+        {
+          "id": 1,
+          "OP": "FEE",
+          "from": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 0.01,
+          "token": "0000000000000000000000000000000000000000000000000000000000000000",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "019676aa50f31599779f3d6713279c46798e2c148062a30557a08d66339ca7d8b14ca016f9c4f9e9ee7f35f033080da49e5f787da867b3cc4fac16c11eca851f",
+      "type": "tritium user",
+      "version": 2,
+      "sequence": 1,
+      "timestamp": 1615127994,
+      "blockhash": "dadfd81a047bf512e0e3160719a889ba2c077871b85fa7459f4e08d2fd5c22c436536ea588ae69d9ccdb77e509f744ba545d88d1307d44f1fe79ab42df4e902bf73c94084dffb3487c76d837adf02df3bc0893aa2170273a69dd65e0d10cfbd9c1939bb0fe171791e506dbe194945527126f2b849f267f37f9273c8412413f80",
+      "confirmations": 513991,
+      "contracts": [
+        {
+          "id": 0,
+          "OP": "CREDIT",
+          "for": "DEBIT",
+          "txid": "0135574e2647ce59874fe0310ae9ce909546ded21e660b4114f7278cebe7cd8722bd5b0097d6b3874cb94f2c19badf53b78617340bd4180b35b84847ce5b4f3d",
+          "contract": 0,
+          "proof": "8CkvRxKrQWTJoshLCwswHvdFHTsYprsMXm645nVSR41RrUCJ1Ck",
+          "to": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "amount": 5,
+          "token": "0",
+          "ticker": "NXS"
+        }
+      ]
+    },
+    {
+      "txid": "0116f94e7ca622bd0f04210a633a73a16d7ea9609dd0a034aa3b9b7a2f6a010c874108148965adbdd5b3a2f2c16b29475a49a3cb470009837e2255304be0e039",
+      "type": "tritium first",
+      "version": 2,
+      "sequence": 0,
+      "timestamp": 1615127641,
+      "blockhash": "17a7f82c46551b08462ce094a976ed46b9c1b5188a25660f5808236ad9bd8fc19c3b0e9d872e39180ae904b6a7b1d727d9fb0d36fa056a11bbb857bae36da7f30fe5ec581ae68df7205d7720de7786fa9d856526feee895d4b84f77d79c2a7b960e91909447bc6cb19c738ca1122bcb25d1b4f95b44707b68c52fc9b41b6ea0c",
+      "confirmations": 513996,
+      "contracts": [
+        {
+          "id": 3,
+          "OP": "CREATE",
+          "address": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+          "type": "OBJECT",
+          "standard": "ACCOUNT",
+          "object": {
+            "balance": 0,
+            "token": "0",
+            "ticker": "NXS"
+          }
+        }
+      ]
+    }
+  ],
+  "info": {
+    "method": "finance/transactions",
+    "status": "active",
+    "address": "103.89.232.85:27405",
+    "latency": "28.999768 ms"
+  }
+}

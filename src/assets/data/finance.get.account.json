@@ -1,0 +1,20 @@
+{
+  "result": {
+    "owner": "a1599ccb2e41d33156e73b15b057495c3c3517b2ca88e566e06680a9aab7da7c",
+    "version": 1,
+    "created": 1615127641,
+    "modified": 1641200265,
+    "type": "OBJECT",
+    "balance": 384.246,
+    "token": "0",
+    "ticker": "NXS",
+    "address": "8Bu4REDE5DBAvwb1b8vMKumNE32BCd3JUrh6FuPqb2BbsJ55wZ5",
+    "name": "~default"
+  },
+  "info": {
+    "method": "finance/get",
+    "status": "active",
+    "address": "103.89.232.85:27406",
+    "latency": "0.294632 ms"
+  }
+}

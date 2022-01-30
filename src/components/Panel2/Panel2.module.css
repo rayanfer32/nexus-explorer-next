@@ -1,0 +1,20 @@
+.panelTwoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* @media screen and (max-width: 768px) { */
+.panelTwoContainer {
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+
+/* hide scrollbar */
+.panelTwoContainer::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
+/* } */

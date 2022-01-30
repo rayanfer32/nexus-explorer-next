@@ -1,0 +1,21 @@
+{
+  "result": {
+    "version": "5.1.0-rc0 Tritium CLI [LLD][x64]",
+    "protocolversion": 3000000,
+    "walletversion": 10001,
+    "timestamp": 1635753612,
+    "hostname": "mail.nexus.io",
+    "ipaddress": "69.195.146.126",
+    "testnet": 0,
+    "private": false,
+    "multiuser": true,
+    "sessions": 22,
+    "clientmode": false,
+    "blocks": 4116870,
+    "synchronizing": false,
+    "synccomplete": 100,
+    "syncprogress": 100,
+    "txtotal": 0,
+    "connections": 88
+  }
+}

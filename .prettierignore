@@ -1,0 +1,11 @@
+# Ignore artifacts:
+build
+dist
+coverage
+.next
+node_modules
+
+# Ignore all HTML files:
+*.html
+
+next.config.js

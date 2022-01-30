@@ -1,0 +1,47 @@
+{
+  "result": {
+    "hash": "c0faaccc5dc49e9f56b735a15d2d04f02a33b129de09b0cabde5c47c5b8131ffaf2ce97c3fca952894f5f4bbfcdde41acc1b4642135094f249b2be364dc4cc2d83e08ff4c3f98d8c90ababd43120141ed5284ae618d4bb9ff21d0752ca1dbe6302f58a85d478cfc64849b996c3568ea7738da1cc5793e69690f7bfdd55d3e728",
+    "proofhash": "fc123ddf638efb9b9532d38f6eaa94c2f727175b389e31fae0d3f50c5d2da2e554b01d75688a4dad9cb34061e13543236d40af710ca5dbe28cd2bec00cc60804f6d3a91c1a8cbe9b00fca354ee5833ff39ae133c1485e3c25e123e1df11a28c54898ad1fa805e36183c53c8e95d05c3b0674a150c80774b9d4f8629aa08cefa0",
+    "size": 861,
+    "height": 4099168,
+    "channel": 0,
+    "version": 8,
+    "merkleroot": "910dd737106085eebc11cff1f003675872957bc8d42f6a905af3fdada60336eef67bba6b21ad9f9d1ab64d3345b316c230f73bebb3a8bc7069f318b500adc7e8",
+    "time": "2021-10-21 13:10:40 UTC",
+    "nonce": 5540,
+    "bits": "7e05e789",
+    "difficulty": 693.7053337227002,
+    "mint": 1.626809,
+    "previousblockhash": "5bc99311dcad6183415c5fe6d2e2401f02ebf5d9b33656a0af9980036fd63cde8afd4fe0886131b26cbd6aed1740c285d52c0b8a9ae33a03098ccf93e4403de15edec47293ec5542800d99fbe29173fcae5f8100f3b27e46a34d765d0d06a656fb1a0bd687ed95f8627519490ffb38d9808b164c1a510dac9f8be569eeb7ab52",
+    "nextblockhash": "2a623ed44f2b0fb687643e1043b842d35c01a142abf00780682257b8e67d70fd1681fa5812d8cc3a6b15432c92d711791f31360962011911c890f9da24bee119971815dd1f5c940d39ba3eb9ccd2e3bdb6c8215df62d538641db914691a77de330ba6b46f03f0d445cb81da0f8d0815280d528c70502d72fcc63c52e601049b7",
+    "tx": [
+      {
+        "txid": "026a1aa62e53b6661c6b111818d6d0b1c088cfa8d4846622301b80332b4c5ec6173ebdb14ed195293c8b4905a38f094f301da63b5a1a81a0ceeb3e83a8c493b3",
+        "type": "legacy user",
+        "timestamp": 1634821801,
+        "amount": 29872.570892,
+        "blockhash": "c0faaccc5dc49e9f56b735a15d2d04f02a33b129de09b0cabde5c47c5b8131ffaf2ce97c3fca952894f5f4bbfcdde41acc1b4642135094f249b2be364dc4cc2d83e08ff4c3f98d8c90ababd43120141ed5284ae618d4bb9ff21d0752ca1dbe6302f58a85d478cfc64849b996c3568ea7738da1cc5793e69690f7bfdd55d3e728",
+        "confirmations": 10,
+        "inputs": [
+          {
+            "address": "2QyMdUPiYfio4p4uLAB9roUKmrJFEzyQfwvHqCRTL1XmGv7dJn2",
+            "amount": 29872.580892
+          }
+        ],
+        "outputs": [
+          {
+            "address": "2QyMdUPiYfio4p4uLAB9roUKmrJFEzyQfwvHqCRTL1XmGv7dJn2",
+            "amount": 29871.895289
+          },
+          {
+            "address": "2R54n715zPt8h6dTArbyQ4dQTRCcNLeUHRNANKjo6t9QqaR1Xm6",
+            "amount": 0.675603
+          }
+        ]
+      },
+      {
+        "txid": "01370b22e0cb89894866923e532b1d7cd22416593859740e53ac1ba5b2da36339d90867cc2b3d0ea8e66a82bdff242ea953e0a3c1d8042dd5dda4393de0b8a0a"
+      }
+    ]
+  }
+}

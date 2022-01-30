@@ -14,6 +14,8 @@
 
 # production
 /build
+/dist
+/storybook-static
 
 # misc
 .DS_Store
@@ -32,3 +34,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#server
+.backend/
+
+# dump
+# .vscode/
+.dev/

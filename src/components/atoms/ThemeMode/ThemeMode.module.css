@@ -1,0 +1,31 @@
+.container {
+  align-self: flex-end;
+  margin: 0.25rem 0;
+  width: 3.25rem;
+  height: 1.75rem;
+  border-radius: 3.5rem;
+  background: var(--linear-nav-bg);
+  outline-color: var(--nexus-blue);
+  border: 0.125rem solid var(--nexus-blue);
+  cursor: pointer;
+  padding: 0;
+}
+
+.container .thumb-left,
+.container .thumb-right {
+  width: 1.4rem;
+  height: 1.3125rem;
+  border-radius: 1.3125rem;
+  background: var(--sky-blue);
+  transition: all 300ms ease-in;
+}
+.container .thumb-left {
+  margin-left: 0.125rem;
+}
+.container .thumb-right {
+  transform: translateX(105%);
+}
+.container .thumb-left .img {
+  filter: invert(1);
+  -webkit-filter: invert(1);
+}

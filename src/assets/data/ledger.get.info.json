@@ -1,0 +1,40 @@
+{
+  "result": {
+    "stake": {
+      "height": 1323911,
+      "weight": "00000000000000000001327fc3fc1124",
+      "timespan": 163,
+      "fees": 11555.458,
+      "difficulty": 698.699747
+    },
+    "prime": {
+      "height": 1439545,
+      "weight": "00000000000000000009938ef5cbd7c9",
+      "timespan": 150,
+      "fees": 20963.12,
+      "difficulty": 7.9816762,
+      "reserve": 305.894501,
+      "reward": 2.275802,
+      "primes": 4654129012
+    },
+    "hash": {
+      "height": 1351933,
+      "weight": "0000000000000000012f33c520343f24",
+      "timespan": 160,
+      "fees": 24938.57,
+      "difficulty": 3462.167406,
+      "reserve": 434.335051,
+      "reward": 2.275801,
+      "hashes": 5988646201341
+    },
+    "height": 4115386,
+    "timestamp": 1635675794,
+    "checkpoint": "b827b5b9eed5fa581bd9e13e3b70317ff19f5417119b85e951394241763f1f5a14496aff1583db4d80cf09d57a94f42a44bec49641919a69e325b2596fe546ad2072b7f09847cd50d103cf26dda2afd95ebafabeec411e8a12d451c6a230992776306b502836438c21a9f7885f5f8977a847ea2af2133c4a66d92f8f077a9c41"
+  },
+  "info": {
+    "method": "ledger/get/info",
+    "status": "active",
+    "address": "103.89.235.214:26560",
+    "latency": "207.325660 ms"
+  }
+}
