@@ -1,69 +1,94 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
 import { middleElipsis } from 'utils/converter';
-import { BiCopy, BiClipboard } from 'react-icons/bi';
-import Toast from '../../Toast';
-import { useState } from 'react';
-
-// const data = {
-//   bits: '7c07227d',
-//   channel: 2,
-//   date: '2015-06-03 23:23:23 UTC',
-//   difficulty: 8.970082,
-//   hash: '00000000032d124cd960338bd530bed9c659453c9b7f180c9dde696b0c93a65be00687b1debf907e719ebb4e9416e0c7f157d51cab305ccc1ee7195fc8b68b51aaf288fc70fd472db092cb5fe3f64640500ad0baf3f11b9b3f8c5b1a8ef1cca9743957d445224aff121903d1b1bba3571a2e025582e686f09fab8466ffa9bfa4',
-//   height: 283234,
-//   merkleroot:
-//     '47d90ee7aae286d375aedb8e533924ee681cec83affb41f127dad3d3021db87115f17f43b12f5a24298c5b531c5e6e9326cc42e6f04ffff1c429e8d5075b0b38',
-//   mint: 55.638687,
-//   nextblockhash:
-//     'b5afafc878af8b29c80decc82709b29699a5e9a04a37ace9207ee1b93d2b76bf58dd49ddf8683f2854731a8d3f24b38a21eb2ac63fc7d27c0ebc3c9f0f85ee9e7586ff42ecb59e19e3899852700d4c1290073ec54d8cf0a848a8e1dba5ac51a62396f2dca6f5f6de0b007c35eea006e32194486fea2317f82aede4973cb3de8a',
-//   nonce: 40059157,
-//   previousblockhash:
-//     '00000000042d662890e38b58d9fbc479cccc1d7bb2e237636ab4a318f493e33dbd023d0d74a6a6fd5a800cc910b673b5d1ebe358c795d206b62237b79ec82e770e530e961e96d4b56bd17c1d4fab82c9c31c1710007a9f8f0c0ea3b8d87f0440e8d8097853e1b16a6df161ecaf85e2462870118da9293a3f00823431baa21e49',
-//   proofhash:
-//     '00000000032d124cd960338bd530bed9c659453c9b7f180c9dde696b0c93a65be00687b1debf907e719ebb4e9416e0c7f157d51cab305ccc1ee7195fc8b68b51aaf288fc70fd472db092cb5fe3f64640500ad0baf3f11b9b3f8c5b1a8ef1cca9743957d445224aff121903d1b1bba3571a2e025582e686f09fab8466ffa9bfa4',
-//   size: 812,
-//   timestamp: 1433373803,
-// };
+import { BiClipboard, BiCopy, BiDownArrow, BiUpArrow } from 'react-icons/bi';
+import { handleCopy } from 'utils/helper';
+import { useState, useEffect } from 'react';
+import Toast from '../..//Toast';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 
 export const InfoCard = (props) => {
   const [toastList, setToastList] = useState([]);
-  // https://rawcdn.githack.com/sitepoint-editors/clipboardapi/a8dfad6a1355bbb79381e61a2ae68394af144cc2/demotext.html
-  function handleCopy(value) {
-    // doesnt support copy on mobile yet
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(value);
-      // alert('Copied: ' + value);
-      setToastList([
-        ...toastList,
-        { icon: <BiClipboard />, message: `Copied: ${value}` },
-      ]);
-    }
+  const [isCollapsed, setIsCollapsed] = useState(props.collapse);
+
+  function InfoRow({ label, value }) {
+    return (
+      <div className={styles.row}>
+        <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
+        <span data-copy={value} className={styles.rowValue}>
+          {`${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
+          <BiCopy
+            onClick={() => {
+              handleCopy(value);
+              setToastList((prev) => {
+                return [
+                  ...prev,
+                  {
+                    message: `Copied ${value}`,
+                    type: 'default',
+                    icon: <BiClipboard />,
+                  },
+                ];
+              });
+            }}
+          />
+        </span>
+      </div>
+    );
   }
 
-  return ['block', 'transaction'].includes(props.type) ? (
+  return (
     <>
-      <div className={styles.container}>
-        <h3>{toTitleCase(props.type)} Details</h3>
+      <div
+        style={{ maxHeight: isCollapsed ? '4rem' : '' }}
+        className={styles.container}>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <h3>{toTitleCase(props.type)} Details</h3>
+          {props.collapse && (
+            <span onClick={() => setIsCollapsed((prev) => !prev)}>
+              {isCollapsed ? <FaCaretDown /> : <FaCaretUp />}
+            </span>
+          )}
+        </div>
+
         {Object.entries(props?.data).map(([key, value]) => {
-          return (
-            <div className={styles.row} key={Math.random()}>
-              <div className={styles.rowKey}>{`${toTitleCase(key)}:`}</div>
-              <span data-copy={value} className={styles.rowValue}>
-                {`${
-                  value.toString().length > 12
-                    ? middleElipsis(value, 12)
-                    : value
-                }`}
-                <BiCopy onClick={() => handleCopy(value)} />
-              </span>
-            </div>
-          );
+          if (Array.isArray(value)) {
+            return value.map((item) => (
+              <InfoCard
+                collapse={true}
+                key={Math.random()}
+                type={key}
+                data={item}
+              />
+            ));
+          }
+
+          return <InfoRow key={Math.random()} label={key} value={value} />;
         })}
+
+        {/* contracts inside the transaction */}
+        <div style={{ display: 'none', flexDirection: 'row', gap: '1rem' }}>
+          <div>
+            {/* info cards of contracts */}
+            {props.data?.contracts?.map((contract, index) => (
+              <>
+                <hr />
+                <InfoCard
+                  key={`contract-${index}`}
+                  type="contract"
+                  data={contract}
+                />
+                {contract?.object && (
+                  <InfoCard type="object" data={contract?.object} />
+                )}
+              </>
+            ))}
+          </div>
+        </div>
       </div>
       <Toast toastList={toastList} />
     </>
-  ) : null;
+  );
 };
 
 export default InfoCard;

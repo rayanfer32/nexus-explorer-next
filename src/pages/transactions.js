@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
+import { BiCopy } from 'react-icons/bi';
+import { handleCopy } from 'utils/helper';
 
 export default function Transactions(props) {
   // const { data } = props;
@@ -31,7 +33,12 @@ export default function Transactions(props) {
     {
       Header: 'Transaction ID',
       accessor: 'txid',
-      Cell: (props) => <span>{middleElipsis(props.value, 15)}</span>
+      Cell: (props) => (
+        <span data-value={props.value}>
+          {middleElipsis(props.value, 15)}
+          <BiCopy onClick={() => handleCopy(props.value)} />
+        </span>
+      ),
     },
     {
       Header: 'Type',
@@ -41,7 +48,9 @@ export default function Transactions(props) {
     {
       Header: 'Timestamp',
       accessor: 'timestamp',
-      Cell: (props) => <span>{new Date(props.value * 1000).toLocaleTimeString()}</span>,
+      Cell: (props) => (
+        <span>{new Date(props.value * 1000).toLocaleTimeString()}</span>
+      ),
     },
     // {
     //   Header: 'Contracts',
