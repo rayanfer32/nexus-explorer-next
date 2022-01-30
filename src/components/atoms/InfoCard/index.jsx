@@ -25,8 +25,8 @@ export const InfoCard = (props) => {
                   ...prev,
                   {
                     message: `Copied ${value}`,
-                    type: 'default',
-                    icon: <BiClipboard />,
+                    type: 'success',
+                    icon: <BiClipboard color="inherit" />,
                   },
                 ];
               });
