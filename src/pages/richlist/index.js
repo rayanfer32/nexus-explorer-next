@@ -1,7 +1,7 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import styles from '../styles/richlist.module.scss';
+import styles from './richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum, middleElipsis } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';

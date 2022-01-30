@@ -35,7 +35,7 @@ const About = () => {
           <p>A Redesigned Explorer for the nexus blockchain.</p>
         </div>
         <p>
-          Nexus Explorer V2 is aims to be visually modern by design, 
+          Nexus Explorer V2 aims to be visually modern by design, 
           and present the user with realtime statistics with graphically
           illustrated data to inspect the nexus blockchain as deeply as
           possible.
