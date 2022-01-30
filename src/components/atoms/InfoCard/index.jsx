@@ -43,7 +43,7 @@ export const InfoCard = (props) => {
         style={{ maxHeight: isCollapsed ? '4rem' : '' }}
         className={styles.container}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <h3>{toTitleCase(props.type)} Details</h3>
+          <h3>{toTitleCase(props.type)}</h3>
           {props.collapse && (
             <span onClick={() => setIsCollapsed((prev) => !prev)}>
               {isCollapsed ? <FaCaretDown /> : <FaCaretUp />}
@@ -53,14 +53,28 @@ export const InfoCard = (props) => {
 
         {Object.entries(props?.data).map(([key, value]) => {
           if (Array.isArray(value)) {
-            return value.map((item) => (
+            return (
+              <InfoCard collapse={true} type={key} data={value}>
+                {value.map((item, index) => (
+                  <InfoCard
+                    collapse={true}
+                    key={Math.random()}
+                    type={(index + 1).toString()}
+                    data={item}
+                  />
+                ))}
+              </InfoCard>
+            );
+          } else if (typeof value === 'object') {
+            console.log()
+            return (
               <InfoCard
-                collapse={true}
                 key={Math.random()}
-                type={key}
-                data={item}
+                collapse={true}
+                type={isNaN(key) ? key : (parseInt(key) + 1).toString()}
+                data={value}
               />
-            ));
+            );
           }
 
           return <InfoRow key={Math.random()} label={key} value={value} />;
