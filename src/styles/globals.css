@@ -10,6 +10,7 @@
   --dark-grey: #2e292f;
   --market-green: #28a745;
   --market-red: #dc3545;
+  --market-yellow: #d9bb26;
   --paper-white: #f8f9fa;
   --pale-white: #f5f7f9;
   --frost-white: #daebf4;
@@ -117,6 +118,7 @@
   --theme-detail-card: var(--linear-nexus-sky);
   --theme-tab-bg: var(--frost-white);
   --theme-tab-text: var(--dark-grey);
+  --theme-toast-bg: hsl(220, 10%, 16%);
 }
 [data-color-theme='dark'],
 .dark {
@@ -144,6 +146,7 @@
   --theme-detail-card: var(--radial-ocean-midnight);
   --theme-tab-text: var(--frost-white);
   --theme-tab-bg: var(--ocean-blue);
+  --theme-toast-bg: hsl(220, 10%, 16%);
 }
 
 html,

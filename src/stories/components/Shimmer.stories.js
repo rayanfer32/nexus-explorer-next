@@ -16,3 +16,13 @@ Card.args = {
   animate: '1s',
   animateWidth: '100vw',
 };
+
+export const SmallCardText = Template.bind({});
+
+SmallCardText.args = {
+  type: 'small-card',
+  width: '50rem',
+  height: '10rem',
+  animate: '1s',
+  animateWidth: '100vw',
+};
