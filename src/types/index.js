@@ -5,6 +5,7 @@ import { Links } from './links';
 import { navbar } from './navbar';
 import { Strings } from './strings';
 import { Theme } from './theme';
+import { ToastmessageTypes } from './toastMessage';
 
 export const TYPES = {
   ...colors,
@@ -14,6 +15,7 @@ export const TYPES = {
   ...navbar,
   ...Strings,
   ...Theme,
+  ...ToastmessageTypes,
 };
 
 export default TYPES;
