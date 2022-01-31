@@ -7,7 +7,7 @@ import Loader from 'components/atoms/NE_Loader';
 import Button from 'components/atoms/NE_Button';
 import Table from 'components/Table/Table';
 import { middleElipsis } from 'utils/converter';
-import QRCode from "react-qr-code";
+import QRCode from 'react-qr-code';
 
 export default function TrustInfo({ data }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
@@ -16,7 +16,7 @@ export default function TrustInfo({ data }) {
   const trustTransactionsRQ = useQuery(
     'trustTransactions',
     async () => {
-      console.log("running trust transactions query");
+      console.log('running trust transactions query');
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/trust`,
         {
@@ -46,8 +46,8 @@ export default function TrustInfo({ data }) {
     trustTransactionsRQ.refetch();
   }, [data.address]);
 
-   // columns for the txns table
-   const columns = [
+  // columns for the txns table
+  const columns = [
     {
       Header: 'Time',
       accessor: 'timestamp',
@@ -164,7 +164,9 @@ export default function TrustInfo({ data }) {
       ) : (
         <Table columns={columns} data={tableData || []} />
       )}
-      <Button type="tertiary" onClick={() => setShowRawResponse((prev) => !prev)}>
+      <Button
+        type="tertiary"
+        onClick={() => setShowRawResponse((prev) => !prev)}>
         Show RAW Transactions
       </Button>
       {showRawResponse && (

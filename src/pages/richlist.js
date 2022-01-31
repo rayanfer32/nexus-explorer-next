@@ -110,8 +110,8 @@ export default function Richlist() {
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
         <div className={styles.chartContainer}>
-        <h3>NXS Distrubution</h3>
-        <ApexPie series={pieData} labels={labels} />
+          <h3>NXS Distrubution</h3>
+          <ApexPie series={pieData} labels={labels} />
         </div>
         <Table columns={columns} data={top100} />
       </div>

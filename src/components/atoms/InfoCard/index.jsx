@@ -40,7 +40,10 @@ export const InfoCard = (props) => {
   return (
     <>
       <div
-        style={{ maxHeight: isCollapsed ? '3.8rem' : '' , marginBottom: "0.25rem"}}
+        style={{
+          maxHeight: isCollapsed ? '3.8rem' : '',
+          marginBottom: '0.25rem',
+        }}
         className={styles.container}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <h3>{toTitleCase(props.type)}</h3>
@@ -66,7 +69,7 @@ export const InfoCard = (props) => {
               </InfoCard>
             );
           } else if (typeof value === 'object') {
-            console.log()
+            console.log();
             return (
               <InfoCard
                 key={Math.random()}
