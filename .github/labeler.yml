@@ -7,3 +7,7 @@
   - dependencies/**/*
   - public/**/*
   - package.json
+  - .github/**/*
+
+'⚠️BREAKING CHANGES!!!':
+  - src/assets/**/*
