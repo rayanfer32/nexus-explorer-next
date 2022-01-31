@@ -73,7 +73,7 @@ function ApexPie(props) {
 
   // * update chart on theme change
   useEffect(() => {
-    updateChart()
+    updateChart();
   }, [isDarkMode]);
 
   return (
@@ -85,7 +85,7 @@ function ApexPie(props) {
         type="pie"
         width={380}
       />
-      </div>
+    </div>
   );
 }
 

@@ -114,7 +114,6 @@ function Panel3() {
     }
   }, [data]);
 
-
   if (isLoading) {
     return (
       <div

@@ -61,9 +61,12 @@ export default function AccountInfo({ data }) {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <div data-value={props.value}>{middleElipsis(props.value, 15)}
-          <BiCopy onClick={() => handleCopy(props.value)} />
-        </div>;
+        return (
+          <div data-value={props.value}>
+            {middleElipsis(props.value, 15)}
+            <BiCopy onClick={() => handleCopy(props.value)} />
+          </div>
+        );
       },
     },
     {
@@ -76,7 +79,7 @@ export default function AccountInfo({ data }) {
       Cell: (props) => {
         let fontColor = 'var(--theme-page-text)';
         let sign = '+';
-        if (['CREDIT',"CREATE"].includes(props.row.values.operation)) {
+        if (['CREDIT', 'CREATE'].includes(props.row.values.operation)) {
           fontColor = TYPES.colors.marketGreen;
           sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
@@ -175,7 +178,7 @@ export default function AccountInfo({ data }) {
             <QRCode
               fgColor={TYPES.colors.nexusBlue}
               title={data.address}
-              value={data.address || ""}
+              value={data.address || ''}
               level="L"
               size={200}
             />
