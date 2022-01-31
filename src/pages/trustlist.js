@@ -36,12 +36,12 @@ export default function Trustlist() {
     {
       Header: 'Balance',
       accessor: 'balance',
-      Cell: (props) => intlNum(props.value) + " NXS",
+      Cell: (props) => intlNum(props.value) + ' NXS',
     },
     {
       Header: 'Stake',
       accessor: 'stake',
-      Cell: (props) => intlNum(props.value) + " NXS",
+      Cell: (props) => intlNum(props.value) + ' NXS',
     },
     {
       Header: 'Stake Rate',
