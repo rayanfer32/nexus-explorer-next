@@ -1,6 +1,7 @@
 # Storybook
 '📝documentation':
   - src/stories/**/*
+  - README.md
 
 # Chore
 'chore':
@@ -8,6 +9,8 @@
   - public/**/*
   - package.json
   - .github/**/*
+  - .vscode/**/*
+  - .storybook/**/*
 
 '⚠️BREAKING CHANGES!!!':
   - src/assets/**/*
