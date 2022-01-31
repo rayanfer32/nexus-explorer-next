@@ -3,7 +3,7 @@ on: pull_request
 
 jobs:
   dry_run:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
