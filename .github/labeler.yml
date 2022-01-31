@@ -1,0 +1,9 @@
+# Storybook
+'📝documentation':
+  - src/stories/**/*
+
+# Chore
+'chore':
+  - dependencies/**/*
+  - public/**/*
+  - package.json
