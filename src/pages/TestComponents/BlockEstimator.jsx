@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Loader from 'components/atoms/NE_Loader';
 import axios from 'axios';
-import {useDarkMode} from 'hooks';
+import { useDarkMode } from 'hooks';
 
 export default function BlockEstimator() {
   // https://nx1.rayanfer32.repl.co/blockFromTimestamp/1642153560

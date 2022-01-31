@@ -15,8 +15,6 @@ function Navbar() {
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
 
-
-
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
       <div className={styles.links}>
