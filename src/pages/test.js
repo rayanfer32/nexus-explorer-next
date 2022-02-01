@@ -131,7 +131,7 @@ function test() {
   return (
     <div>
       <ApexTest />
-      <ApexPie series={[10, 20, 30, 50, 20,30]} />
+      <ApexPie series={[10, 20, 30, 50, 20, 30]} />
       {/* <BlockEstimator /> */}
     </div>
   );

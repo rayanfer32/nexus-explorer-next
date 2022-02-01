@@ -1,6 +1,6 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
-import { useState} from 'react';
+import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import CopyText from '../CopyText/CopyText';
 
@@ -11,7 +11,7 @@ export const InfoCard = (props) => {
     return (
       <div className={styles.row}>
         <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
-       <CopyText value={value} />
+        <CopyText value={value} />
       </div>
     );
   }
@@ -19,7 +19,10 @@ export const InfoCard = (props) => {
   return (
     <>
       <div
-        style={{ maxHeight: isCollapsed ? '3.8rem' : '' , marginBottom: "0.25rem"}}
+        style={{
+          maxHeight: isCollapsed ? '3.8rem' : '',
+          marginBottom: '0.25rem',
+        }}
         className={styles.container}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <h3>{toTitleCase(props.type)}</h3>
@@ -45,7 +48,6 @@ export const InfoCard = (props) => {
               </InfoCard>
             );
           } else if (typeof value === 'object') {
-
             return (
               <InfoCard
                 key={Math.random()}

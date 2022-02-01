@@ -50,17 +50,17 @@ function ApexPie(props) {
 
   // * update chart on theme change
   useEffect(() => {
-    updateChart()
+    updateChart();
   }, [isDarkMode]);
 
   return (
-      <Chart
-        key={Math.random()}
-        options={options}
-        series={series}
-        type="donut"
-        width={380}
-      />
+    <Chart
+      key={Math.random()}
+      options={options}
+      series={series}
+      type="donut"
+      width={380}
+    />
   );
 }
 

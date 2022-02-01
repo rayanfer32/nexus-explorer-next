@@ -12,7 +12,7 @@ const About = () => {
   } = useAppContext();
 
   let ThemedVscLogo = () => {
-    return (theme == TYPES.theme.dark) ? (
+    return theme == TYPES.theme.dark ? (
       <VscGithub
         style={{
           color: 'white',
@@ -35,20 +35,25 @@ const About = () => {
           <p>A Redesigned Explorer for the nexus blockchain.</p>
         </div>
         <p>
-          Nexus Explorer V2 aims to be visually modern by design, 
-          and present the user with realtime statistics with graphically
-          illustrated data to inspect the nexus blockchain as deeply as
-          possible.
+          Nexus Explorer V2 aims to be visually modern by design, and present
+          the user with realtime statistics with graphically illustrated data to
+          inspect the nexus blockchain as deeply as possible.
         </p>
         <p>
-          After many iterations over the design, we came up with the new look for
-          the explorer, We made sure the project is built with the all the
+          After many iterations over the design, we came up with the new look
+          for the explorer, We made sure the project is built with the all the
           latest tech in the the web development space, The frontend is crafted
           with next.js and for the backend we have used python. For
           contributions and suggestions please feel free to reach out to us on
           our github page.
         </p>
-        <a className={styles.link} href={TYPES.footerItems.repoUrl.href} target={TYPES.footerItems.repoUrl.target}>  <ThemedVscLogo/> {TYPES.footerItems.repoUrl.label} </a>
+        <a
+          className={styles.link}
+          href={TYPES.footerItems.repoUrl.href}
+          target={TYPES.footerItems.repoUrl.target}>
+          {' '}
+          <ThemedVscLogo /> {TYPES.footerItems.repoUrl.label}{' '}
+        </a>
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
@@ -99,5 +104,5 @@ const About = () => {
     </main>
   );
 };
-// export default about;
+
 export default About;
