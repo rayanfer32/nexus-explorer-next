@@ -58,7 +58,7 @@ export default function AccountInfo({ data }) {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <CopyText value={props.value} />;
+        return <CopyText value={props.value} ellipsisAfter={15} />;
       },
     },
     {

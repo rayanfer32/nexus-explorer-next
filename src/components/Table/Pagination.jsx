@@ -18,16 +18,28 @@ function Pagination({ controls }) {
 
   return (
     <div className={styles.pagination}>
-      <Button type="secondary" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+      <Button
+        type="secondary"
+        onClick={() => gotoPage(0)}
+        disabled={!canPreviousPage}>
         {'<<'}
       </Button>{' '}
-      <Button  type="secondary" onClick={() => previousPage()} disabled={!canPreviousPage}>
+      <Button
+        type="secondary"
+        onClick={() => previousPage()}
+        disabled={!canPreviousPage}>
         {'<'}
       </Button>{' '}
-      <Button  type="secondary" onClick={() => nextPage()} disabled={!canNextPage}>
+      <Button
+        type="secondary"
+        onClick={() => nextPage()}
+        disabled={!canNextPage}>
         {'>'}
       </Button>{' '}
-      <Button  type="secondary" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+      <Button
+        type="secondary"
+        onClick={() => gotoPage(pageCount - 1)}
+        disabled={!canNextPage}>
         {'>>'}
       </Button>{' '}
       <span>

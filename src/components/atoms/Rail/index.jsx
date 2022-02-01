@@ -11,7 +11,7 @@ const Rail = (props) => {
     const el = railRef.current;
     const onWheel = (e) => {
       if (e.deltaY == 0) return;
-      if(window.innerWidth < 1180) {
+      if (window.innerWidth < 1180) {
         e.preventDefault();
       }
       // if(window.innerWidth > 768) return;
