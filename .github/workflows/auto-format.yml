@@ -30,9 +30,4 @@ jobs:
 
       - name: Run code format
         run: yarn run format
-        
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply formatting changes
   
