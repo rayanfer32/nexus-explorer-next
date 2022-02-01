@@ -6,6 +6,7 @@ import Loader from 'components/atoms/NE_Loader';
 import { intlNum, middleElipsis } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import { MAX_SUPPLY } from 'types/constants';
+import CopyText from 'components/atoms/CopyText/CopyText';
 
 export default function Richlist() {
   const { isLoading, data, error } = useQuery(
@@ -34,7 +35,7 @@ export default function Richlist() {
     {
       Header: 'Owner',
       accessor: 'owner',
-      Cell: (props) => <div>{middleElipsis(props.value, 50)}</div>,
+      Cell: (props) => <CopyText value={props.value}/>,
     },
     {
       Header: 'Balance',
@@ -72,31 +73,6 @@ export default function Richlist() {
   }
 
   if (data) {
-    // return <pre className={styles.page}>{JSON.stringify(data, null, 2)}</pre>;
-
-    // const accountData = data.accounts.result.map((item, index) => ({
-    //   key: index,
-    //   address: item.owner,
-    //   total: item.total,
-    // }));
-
-    // const trustData = data.trust.result.map((item, index) => ({
-    //   key: index,
-    //   address: item.owner,
-    //   total: item.total,
-    // }));
-
-    // const combinedData = [...data.page0, ...data.page1];
-
-    // const combinedData = data.page0.result.map((item, index) => ({
-    //   key: index,
-    //   owner: item.owner,
-    //   total: item.total,
-    //   trust: item.trust,
-    //   rate: item.rate,
-    // }));
-
-    // // filter top 100 by total from combinedData
     const sortedData = data.data.sort((a, b) => b.total - a.total);
     const top1 = sortedData.slice(0, 1);
     const top10 = sortedData.slice(1, 11);
