@@ -4,13 +4,13 @@ import { BiClipboard, BiCopy } from 'react-icons/bi';
 import { middleElipsis } from 'utils/converter';
 import { handleCopy } from 'utils/helper';
 
-export default function CopyText({ value }) {
+export default function CopyText({ value, ellipsisAfter }) {
   const [toastList, setToastList] = useState([]);
 
   return (
     <>
       <span data-copy={value}>
-        {value && `${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
+        {value && `${value.toString().length > 12 ? middleElipsis(value, ellipsisAfter || 12) : value}`}
         <BiCopy
           onClick={() => {
             handleCopy(value);
