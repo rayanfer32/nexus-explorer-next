@@ -6,7 +6,7 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 function ApexPie(props) {
   // const { sharedState } = useAppContext();
-  const [isDarkMode, setLocalDarkMode, setGlobalDarkMode] = useDarkMode();
+  const [isDarkMode] = useDarkMode();
   const [series, setSeries] = useState(props.series);
   const [options, setOptions] = useState(
     props.options || {
