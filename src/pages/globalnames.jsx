@@ -29,8 +29,8 @@ export default function GlobalNames() {
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
     {
-      Header: 'Namespace',
-      accessor: 'namespace',
+      Header: 'Name',
+      accessor: 'name',
     },
     {
       Header: 'Address',
@@ -70,8 +70,7 @@ export default function GlobalNames() {
   if (data) {
     return (
       <div>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        {/* <Table columns={columns} data={data.data.result} /> */}
+        <Table columns={columns} data={data.result} />
       </div>
     );
   }
