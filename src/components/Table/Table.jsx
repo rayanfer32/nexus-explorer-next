@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTable, useSortBy, usePagination, useExpanded } from 'react-table';
-import styles from './Table.module.css';
+import styles from './Table.module.scss';
 import Pagination from './Pagination';
 
 export default function Table({ columns, data = [] }) {

@@ -153,8 +153,8 @@ export default function AccountInfo({ data }) {
       <h1>Account Details</h1>
       <div className={styles.details}>
         <section className={styles.details__text}>
-          <div>Address: {data.address}</div>
-          <div>Owner: {data.owner}</div>
+          <div>Address: <CopyText value={data.address} ellipsisAfter={99}/> </div>
+          <div>Owner: <CopyText value={data.owner} ellipsisAfter={99} /></div>
           <div>
             Created On: {new Date(data.created * 1000).toLocaleString()}
           </div>

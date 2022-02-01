@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Pagination.module.scss';
 import Button from 'components/atoms/NE_Button';
+import { BiChevronDown, BiChevronLeft, BiChevronRight, BiFirstPage, BiLastPage, BiSkipNext } from 'react-icons/bi';
 
 function Pagination({ controls }) {
   const {
@@ -18,36 +19,38 @@ function Pagination({ controls }) {
 
   return (
     <div className={styles.pagination}>
-      <Button
+      <span className={styles.pagination__btn}>
+      <BiFirstPage
         type="secondary"
         onClick={() => gotoPage(0)}
         disabled={!canPreviousPage}>
         {'<<'}
-      </Button>{' '}
-      <Button
+      </BiFirstPage>{' '}
+      <BiChevronLeft
         type="secondary"
         onClick={() => previousPage()}
         disabled={!canPreviousPage}>
         {'<'}
-      </Button>{' '}
-      <Button
+      </BiChevronLeft>{' '}
+      <BiChevronRight
         type="secondary"
         onClick={() => nextPage()}
         disabled={!canNextPage}>
         {'>'}
-      </Button>{' '}
-      <Button
+      </BiChevronRight>{' '}
+      <BiLastPage
         type="secondary"
         onClick={() => gotoPage(pageCount - 1)}
         disabled={!canNextPage}>
         {'>>'}
-      </Button>{' '}
+      </BiLastPage>{' '}
       <span>
         Page{' '}
         <strong>
           {pageIndex + 1} of {pageOptions.length}
         </strong>{' '}
       </span>
+        </span>
       <span>
         | Go to page:{' '}
         <input

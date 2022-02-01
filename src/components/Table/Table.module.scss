@@ -8,9 +8,13 @@
   box-shadow: var(--card-shadow);
   font-size: var(--font-normal);
   margin-bottom: var(--space-l);
+  font-variant-numeric: tabular-nums;
+  /* font-family: Fira Code; */
 }
 
 .thead {
+  text-align: left;
+  /* font-family: Google Sans; */
 }
 
 .thead > tr > th {
@@ -28,7 +32,7 @@
 }
 
 .tr {
-  text-align: center;
+  border-top: 1px solid var(--theme-tab-bg);
 }
 
 .td {
