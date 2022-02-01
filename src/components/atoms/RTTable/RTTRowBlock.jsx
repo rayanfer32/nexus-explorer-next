@@ -1,4 +1,4 @@
-import styles from './RTTRowBlock.module.css';
+import styles from './RTTRowBlock.module.scss';
 
 import PropTypes from 'prop-types';
 
@@ -41,9 +41,11 @@ function RTTRowBlock(props) {
       <div className={styles.rttrowBlockDetail}>
         {/* row top */}
         <div className={styles.rttBlockRowTop}>
-          <div className={styles.cardTag}>
-            <div className={styles.carTagName}>{channel}</div>
-          </div>
+          {channel && (
+            <div className={styles.cardTag}>
+              <div className={styles.carTagName}>{channel}</div>
+            </div>
+          )}
         </div>
         {/* row bottom */}
         <div className={styles.rttBlockRowBottom}>

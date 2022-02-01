@@ -1,11 +1,11 @@
 .rttrow {
   position: relative;
-  width: 32.75rem;
+  width: 100%;
   height: 3.5rem;
   background: var(--theme-page-background);
   box-shadow: var(--card-shadow);
   border-radius: 0.25rem;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.25rem;
   display: flex;
   overflow: hidden;
   animation: slideIn 1.5s ease;
@@ -21,11 +21,7 @@
   margin-left: 0.125rem;
   width: var(--font-normal);
   text-align: center;
-  /* font-weight: bold; */
   transform: rotateZ(180deg);
-  /* font-family: 'Roboto Condensed'; */
-  /* letter-spacing: 0.125rem; */
-  /* animation: scrollDown 4s linear infinite; */
 }
 
 .rttrow .rttrowDetail {
@@ -146,14 +142,5 @@
   }
   100% {
     color: black;
-  }
-}
-
-@keyframes scrollDown {
-  from {
-    transform: translateY(-3.25rem) rotate(180deg);
-  }
-  to {
-    transform: translateY(3.25rem) rotate(180deg);
   }
 }
