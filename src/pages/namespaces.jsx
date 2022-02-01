@@ -13,6 +13,10 @@ export default function Namespaces() {
 
   const columns = [
     {
+      Header: '#ID',
+      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+    },
+    {
       Header: 'Namespace',
       accessor: 'namespace',
     },

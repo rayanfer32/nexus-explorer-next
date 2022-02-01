@@ -14,6 +14,10 @@ export default function Tokens() {
 
   const columns = [
     {
+      Header: '#ID',
+      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+    },
+    {
       Header: 'Token Register Address',
       accessor: 'token',
       Cell: ({ value }) => <CopyText value={value} />,
