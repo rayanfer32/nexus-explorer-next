@@ -10,7 +10,7 @@ The development branch is hosted at https://nexus-explorer-next-git-develop-raya
 
 Clone this repo and run 
 ```sh
-npm install
+yarn install
 ```
 to install all the dependencies listed in `package.json`.
 

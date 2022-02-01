@@ -1,6 +1,6 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
-import { useState} from 'react';
+import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import CopyText from '../CopyText/CopyText';
 
@@ -11,7 +11,7 @@ export const InfoCard = (props) => {
     return (
       <div className={styles.row}>
         <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
-       <CopyText value={value} />
+        <CopyText value={value} />
       </div>
     );
   }

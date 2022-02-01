@@ -35,10 +35,9 @@ const About = () => {
           <p>A Redesigned Explorer for the nexus blockchain.</p>
         </div>
         <p>
-          Nexus Explorer V2 aims to be visually modern by design, 
-          and present the user with realtime statistics with graphically
-          illustrated data to inspect the nexus blockchain as deeply as
-          possible.
+          Nexus Explorer V2 aims to be visually modern by design, and present
+          the user with realtime statistics with graphically illustrated data to
+          inspect the nexus blockchain as deeply as possible.
         </p>
         <p>
           After many iterations over the design, we came up with the new look
@@ -105,5 +104,5 @@ const About = () => {
     </main>
   );
 };
-// export default about;
+
 export default About;

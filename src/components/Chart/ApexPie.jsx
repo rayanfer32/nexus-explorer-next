@@ -54,13 +54,13 @@ function ApexPie(props) {
   }, [isDarkMode]);
 
   return (
-      <Chart
-        key={Math.random()}
-        options={options}
-        series={series}
-        type="donut"
-        width={380}
-      />
+    <Chart
+      key={Math.random()}
+      options={options}
+      series={series}
+      type="donut"
+      width={380}
+    />
   );
 }
 
