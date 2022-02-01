@@ -10,7 +10,7 @@ SmallCard.propTypes = {
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   ticker: PropTypes.any,
   link: PropTypes.string,
-  icon: PropTypes.any
+  icon: PropTypes.any,
 };
 
 export default function SmallCard(props) {

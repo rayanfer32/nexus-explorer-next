@@ -12,7 +12,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <ContextWrapper>
       <IconContext.Provider
-        value={{ color: TYPES.colors.nexusBlue,size: "1.5rem", style: { verticalAlign: 'middle' } }}>
+        value={{
+          color: TYPES.colors.nexusBlue,
+          size: '1.5rem',
+          style: { verticalAlign: 'middle' },
+        }}>
         <QueryClientProvider client={queryClient}>
           <Layout>
             <Component {...pageProps} />
