@@ -2,7 +2,7 @@ import Table from 'components/Table/Table';
 // import data from 'assets/data/trustlist.json';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import styles from '../styles/trustlist.module.scss';
+import styles from './trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 

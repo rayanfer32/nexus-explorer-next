@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
+import TYPES from 'types';
 
 export default function Blocks(props) {
   // const { data } = props;
@@ -10,7 +11,7 @@ export default function Blocks(props) {
     {
       Header: 'Block',
       accessor: 'height',
-      key: 'height',
+      Cell: (props) => <a href={`/scan/${props.value}`}>{props.value}</a>,
     },
     {
       Header: 'Date',
@@ -21,8 +22,6 @@ export default function Blocks(props) {
     {
       Header: 'Mint',
       accessor: 'mint',
-      key: 'mint',
-      sorter: (a, b) => a.mint - b.mint,
     },
     // {
     //   Header: 'TXNs',
@@ -34,11 +33,9 @@ export default function Blocks(props) {
       Header: 'Channel',
       accessor: 'channel',
       key: 'channel',
-      render: (chanId) => {
-        const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
-        return CHANNELS[chanId];
+      Cell: (props) => {
+        return TYPES.channels[props.value];
       },
-      sorter: (a, b) => a.channel - b.channel,
     },
   ];
 

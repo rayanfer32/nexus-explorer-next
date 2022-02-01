@@ -7,7 +7,7 @@ export default function Table({ columns, data = [] }) {
   const tableInstance = useTable(
     { data, columns },
     useSortBy,
-    useExpanded,
+    // useExpanded,
     usePagination
   );
 
@@ -25,7 +25,7 @@ export default function Table({ columns, data = [] }) {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize, expanded },
+    state: { pageIndex, pageSize },
   } = tableInstance;
 
   const paginationControls = {

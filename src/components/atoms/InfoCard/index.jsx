@@ -1,38 +1,17 @@
 import { toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
-import { middleElipsis } from 'utils/converter';
-import { BiClipboard, BiCopy, BiDownArrow, BiUpArrow } from 'react-icons/bi';
-import { handleCopy } from 'utils/helper';
-import { useState, useEffect } from 'react';
-import Toast from '../..//Toast';
+import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import CopyText from '../CopyText/CopyText';
 
 export const InfoCard = (props) => {
-  const [toastList, setToastList] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(props.collapse);
 
   function InfoRow({ label, value }) {
     return (
       <div className={styles.row}>
         <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
-        <span data-copy={value} className={styles.rowValue}>
-          {`${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
-          <BiCopy
-            onClick={() => {
-              handleCopy(value);
-              setToastList((prev) => {
-                return [
-                  ...prev,
-                  {
-                    message: `Copied ${value}`,
-                    type: 'success',
-                    icon: <BiClipboard color="inherit" />,
-                  },
-                ];
-              });
-            }}
-          />
-        </span>
+        <CopyText value={value} />
       </div>
     );
   }
@@ -69,7 +48,6 @@ export const InfoCard = (props) => {
               </InfoCard>
             );
           } else if (typeof value === 'object') {
-            console.log();
             return (
               <InfoCard
                 key={Math.random()}
@@ -103,7 +81,6 @@ export const InfoCard = (props) => {
           </div>
         </div>
       </div>
-      <Toast toastList={toastList} />
     </>
   );
 };
