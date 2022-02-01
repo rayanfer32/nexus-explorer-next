@@ -33,6 +33,8 @@
       &:disabled {
         cursor: not-allowed;
         opacity: 0.6;
+        outline: none;
+        color: var(--sky-blue);
       }
     }
 
