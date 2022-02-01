@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 import { intlNum } from 'utils/converter';
 
 export default function Tokens() {
-  const { isLoading, data, error } = useQuery('namespaces', () => {
+  const { isLoading, data, error } = useQuery('tokens', () => {
     return axios.get(
       `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/tokens?sort=maxsupply`
     );
