@@ -10,7 +10,7 @@ export default function CopyText({ value }) {
   return (
     <>
       <span data-copy={value}>
-        {`${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
+        {value && `${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
         <BiCopy
           onClick={() => {
             handleCopy(value);
