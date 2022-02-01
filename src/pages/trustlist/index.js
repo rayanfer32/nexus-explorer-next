@@ -1,10 +1,10 @@
 import Table from 'components/Table/Table';
-// import data from 'assets/data/trustlist.json';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from './trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
+import CopyText from 'components/atoms/CopyText/CopyText';
 
 export default function Trustlist() {
   const { isLoading, data, error } = useQuery(
@@ -30,8 +30,13 @@ export default function Trustlist() {
 
   const columns = [
     {
+      Header: '#ID',
+      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+    },
+    {
       Header: 'Address',
       accessor: 'address',
+      Cell: ({value}) => <CopyText value={value}/>
     },
     {
       Header: 'Balance',

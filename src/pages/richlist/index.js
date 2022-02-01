@@ -33,6 +33,10 @@ export default function Richlist() {
 
   const columns = [
     {
+      Header: '#ID',
+      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+    },
+    {
       Header: 'Owner',
       accessor: 'owner',
       Cell: (props) => <CopyText value={props.value}/>,

@@ -31,6 +31,10 @@ export default function Transactions(props) {
 
   const columns = [
     {
+      Header: '#ID',
+      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+    },
+    {
       Header: 'Transaction ID',
       accessor: 'txid',
       Cell: (props) => (
