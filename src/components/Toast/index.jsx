@@ -1,4 +1,4 @@
-import ToastMessage from '../atoms/ToastMessage';
+import ToastMessage from '../atoms/NE_ToastMessage';
 import { useState, useEffect } from 'react';
 import styles from './Toast.module.scss';
 import PropTypes, { element, node, number, string } from 'prop-types';
@@ -18,7 +18,7 @@ const ToastListType = {
  * @param {Number} duration Duration of the toast message
  * @returns
  */
-const Toast = ({ toastList = [], autoDelete = true, duration = 3000 }) => {
+const Toast = ({ toastList = [], autoDelete = true, duration = 4000 }) => {
   const [list, setList] = useState(() => {
     return toastList;
   });

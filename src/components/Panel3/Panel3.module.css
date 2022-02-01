@@ -1,9 +1,8 @@
 /* for desktops */
 .container {
-  /* display: flex; */
-  /* flex-direction: column; */
   overflow: scroll;
-  gap: var(--space-xl);
+  gap: var(--space-xxl);
+  gap: 1rem;
   flex-direction: column;
   justify-content: center;
 }

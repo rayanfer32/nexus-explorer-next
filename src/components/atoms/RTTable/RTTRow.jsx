@@ -1,4 +1,4 @@
-import styles from './RTTRow.module.css';
+import styles from './RTTRow.module.scss';
 import { middleElipsis } from 'utils/converter';
 import PropTypes from 'prop-types';
 
@@ -33,12 +33,16 @@ function RTTRow(props) {
       <div className={styles.rttrowDetail}>
         {/* row top */}
         <div className={styles.rttrowTop}>
-          <div className={styles.fromTag}>
-            From: <span className={styles.tagText}>{fromId}</span>
-          </div>
-          <div className={styles.toTag}>
-            To: <span className={styles.tagText}> {toId}</span>
-          </div>
+          {fromId && (
+            <div className={styles.fromTag}>
+              From: <span className={styles.tagText}>{fromId}</span>
+            </div>
+          )}
+          {toId && (
+            <div className={styles.toTag}>
+              To: <span className={styles.tagText}> {toId}</span>
+            </div>
+          )}
         </div>
         {/* row bottom */}
         <div className={styles.rttrowBottom}>

@@ -1,4 +1,4 @@
-import { toTitleCase } from 'utils/converter';
+import { middleElipsis, toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.css';
 import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
@@ -11,7 +11,11 @@ export const InfoCard = (props) => {
     return (
       <div className={styles.row}>
         <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
-        <CopyText value={value} />
+        {value.toString().length > 25 ? (
+          <CopyText value={value} />
+        ) : (
+          middleElipsis(value, 15)
+        )}
       </div>
     );
   }
