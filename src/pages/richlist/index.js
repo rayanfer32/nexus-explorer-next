@@ -17,13 +17,10 @@ export default function Richlist() {
       // {{NEXUSTPP}}/register/list/trust?where=object.token=0 AND object.trust>10000
 
       const page0 = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=0&sort=total&order=desc`
-      );
-      const page1 = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=1&sort=total&order=desc&limit=11`
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111`
       );
 
-      return { data: [...page0.data.result, ...page1.data.result] };
+      return { data: [...page0.data.result] };
     },
     {
       // refetchOnWindowFocus: false,
@@ -77,7 +74,7 @@ export default function Richlist() {
   }
 
   if (data) {
-    const sortedData = data.data.sort((a, b) => b.total - a.total);
+    const sortedData = data.data;
     const top1 = sortedData.slice(0, 1);
     const top10 = sortedData.slice(1, 11);
     const top100 = sortedData.slice(11, 111);
