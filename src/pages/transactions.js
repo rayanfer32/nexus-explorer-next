@@ -71,6 +71,11 @@ export default function Transactions(props) {
       Cell: (props) => <span>{toTitleCase(props.value)}</span>,
     },
     {
+      Header: 'Confirmations',
+      accessor: 'confirmations',
+      // Cell: (props) => <div>{props.value}</div>,
+    },
+    {
       Header: 'Timestamp',
       accessor: 'timestamp',
       Cell: (props) => (

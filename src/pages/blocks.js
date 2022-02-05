@@ -30,12 +30,11 @@ export default function Blocks(props) {
       Header: 'Mint',
       accessor: 'mint',
     },
-    // {
-    //   Header: 'TXNs',
-    //   accessor: 'tx',
-    //   render: (tx) => tx.length,
-    //   sorter: (a, b) => a.tx.length - b.tx.length,
-    // },
+    {
+      Header: 'TXNs',
+      accessor: 'tx',
+      Cell: ({value}) => value.length,
+    },
     {
       Header: 'Channel',
       accessor: 'channel',
