@@ -1,4 +1,4 @@
-import styles from './DetailCard.module.css';
+import styles from './DetailCard.module.scss';
 
 export default function Typeone(props) {
   const {

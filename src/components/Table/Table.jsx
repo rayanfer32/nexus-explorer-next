@@ -3,7 +3,7 @@ import { useTable, useSortBy, usePagination, useExpanded } from 'react-table';
 import styles from './Table.module.scss';
 import Pagination from './Pagination';
 
-export default function Table({ columns, data = [] }) {
+export default function Table({ columns, data = [], paginate = true }) {
   const tableInstance = useTable(
     { data, columns },
     useSortBy,
@@ -17,6 +17,7 @@ export default function Table({ columns, data = [] }) {
     headerGroups,
     prepareRow,
     page,
+    rows,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -82,7 +83,7 @@ export default function Table({ columns, data = [] }) {
         <tbody className={styles.tbody} {...getTableBodyProps()}>
           {
             // Loop over the table rows
-            page.map((row) => {
+            (paginate ? page : rows).map((row) => {
               // Prepare the row for display
               prepareRow(row);
               return (
@@ -110,7 +111,7 @@ export default function Table({ columns, data = [] }) {
           }
         </tbody>
       </table>
-      {pageCount > 1 && (
+      {pageCount > 1 && paginate && (
         <div style={{ marginBottom: '1rem' }}>
           <Pagination controls={paginationControls} />
         </div>

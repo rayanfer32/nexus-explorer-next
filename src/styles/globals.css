@@ -87,10 +87,6 @@
   --space-xl: 2rem; /* 48px */
   --space-xxl: 3rem; /* 72px */
   --space-xxxl: 4rem; /* 96px */
-
-  /* shadows */
-  --card-shadow: 0rem 0.25rem 0.5rem #0002;
-  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
 }
 
 :root,
@@ -120,6 +116,11 @@
   --theme-tab-bg: var(--frost-white);
   --theme-tab-text: var(--dark-grey);
   --theme-toast-bg: hsl(220, 10%, 16%);
+
+  /* shadows */
+  --card-shadow: 0rem 0.25rem 0.5rem #0002;
+  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
+  --card-shadow-border: 0 0 0.1rem 0.1rem inset hsla(0, 0%, 67%, 0.1);
 }
 [data-color-theme='dark'],
 .dark {
@@ -148,6 +149,11 @@
   --theme-tab-text: var(--frost-white);
   --theme-tab-bg: var(--ocean-blue);
   --theme-toast-bg: hsl(220, 10%, 16%);
+
+  /* shadows */
+  --card-shadow: 0rem 0.25rem 0.5rem #0002;
+  --card-shadow-subtle: 0rem 0.25rem 0.5rem #0001;
+  --card-shadow-border: 0 0 0.1rem 0.1rem inset hsla(0, 0%, 67%, 0.3);
 }
 
 html,
