@@ -33,6 +33,12 @@ export const FooterTypes = {
       label: 'Github',
       src: '',
     },
+    about: {
+      href: '/about',
+      target: '_self',
+      label: 'About',
+      src: '',
+    },
     nexusSite: {
       href: 'https://nexus.io',
     },
