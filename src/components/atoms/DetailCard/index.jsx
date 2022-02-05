@@ -1,4 +1,4 @@
-import styles from './DetailCard.module.css';
+import styles from './DetailCard.module.scss';
 import pngLogo from 'assets/icons/nexusWhite.png';
 import Typeone from './TypeOne';
 import TypeTwo from './TypeTwo';

@@ -1,5 +1,5 @@
 import { middleElipsis, toTitleCase } from 'utils/converter';
-import styles from './InfoCard.module.css';
+import styles from './InfoCard.module.scss';
 import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import CopyText from '../CopyText/CopyText';
