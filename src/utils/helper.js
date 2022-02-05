@@ -38,3 +38,8 @@ export function handleCopy(value) {
     navigator.clipboard.writeText(value);
   }
 }
+
+
+export function totalPages(totalRows, pageSize){
+  return Math.round(totalRows/pageSize)
+}

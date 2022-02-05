@@ -3,9 +3,16 @@ import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import TYPES from 'types';
+import { useState } from 'react';
+import { totalPages } from 'utils/helper';
+import DynamicPagination from 'components/Table/DynamicPagination';
+import { useEffect } from 'react';
 
 export default function Blocks(props) {
-  // const { data } = props;
+  const [pageSize, setPageSize] = useState(10);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
 
   const columns = [
     {
@@ -39,12 +46,28 @@ export default function Blocks(props) {
     },
   ];
 
-  const { isLoading, data, error } = useQuery('blocks', async () => {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-    );
-    return res.data.result;
-  });
+  const { isLoading, data, error } = useQuery(
+    ['blocks', pageSize, pageIndex],
+    async ({ queryKey }) => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${queryKey[1]}&page=${queryKey[2]}`
+      );
+      return res.data.result;
+    }
+  );
+
+  useEffect(() => {
+    if (data) {
+      let height = data[0].height;
+      if (height > totalRows) {
+        setTotalRows(height);
+      }
+    }
+  }, [data, pageSize]);
+
+  useEffect(() => {
+    setPageCount(totalPages(totalRows, pageSize));
+  }, [totalRows, pageSize]);
 
   if (isLoading)
     return (
@@ -59,15 +82,35 @@ export default function Blocks(props) {
       </div>
     );
 
-  if (error) return <pre>{error}</pre>;
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   // return <pre >{JSON.stringify(data, null, 2)}</pre>;
 
-  return (
-    <div style={{ overflow: 'visible' }}>
-      <Table columns={columns} data={data} />
-    </div>
-  );
+  if (data) {
+    const dynamicPageControls = {
+      canPreviousPage: pageIndex > 0,
+      canNextPage: pageIndex < pageCount - 1,
+      pageCount: pageCount,
+      gotoPage: (pageIndex) => {
+        setPageIndex(pageIndex);
+      },
+      setPageSize: (pageSize) => {
+        setPageSize(0);
+        setPageSize(pageSize);
+      },
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+    };
+
+    return (
+      <div style={{ overflow: 'visible' }}>
+        <Table columns={columns} data={data} paginate={false} />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination controls={dynamicPageControls} />
+        </div>
+      </div>
+    );
+  }
 }
 
 // export async function getServerSideProps() {
