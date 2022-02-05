@@ -115,7 +115,7 @@ export default function Transactions(props) {
         setPageIndex(pageIndex);
       },
       setPageSize: (pageSize) => {
-        setPageSize(0);
+        setPageIndex(0);
         setPageSize(pageSize);
       },
       pageIndex: pageIndex,

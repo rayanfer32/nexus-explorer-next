@@ -41,5 +41,6 @@ export function handleCopy(value) {
 
 
 export function totalPages(totalRows, pageSize){
-  return Math.round(totalRows/pageSize)
+  // * use floor instead of round as the api isnt flexible to handle last page where limit is more than the rows.
+  return Math.floor(totalRows/pageSize) 
 }

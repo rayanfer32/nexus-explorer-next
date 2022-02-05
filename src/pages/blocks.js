@@ -94,7 +94,7 @@ export default function Blocks(props) {
         setPageIndex(pageIndex);
       },
       setPageSize: (pageSize) => {
-        setPageSize(0);
+        setPageIndex(0);
         setPageSize(pageSize);
       },
       pageIndex: pageIndex,
