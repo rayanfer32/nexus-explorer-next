@@ -24,7 +24,7 @@ const ToastMessage = ({
   autoDelete = true,
   ...props
 }) => {
-  const animationDuration = `${duration / 1000 - 0.5}s`;
+  const animationDuration = `${duration / 1000 - 0.8}s`;
   const messageBody = message ?? children;
   const Icon =
     typeof icon == 'string' ? (

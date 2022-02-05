@@ -11,6 +11,17 @@
   color: var(--theme-page-text);
   background: var(--theme-nav-bg);
 }
+
+.container::after {
+  content: '';
+  position: absolute;
+  background: var(--theme-tab-bg);
+  border-radius: 0.25rem;
+  height: 0.125rem;
+  width: 95%;
+  top: 8rem;
+}
+
 .container .header {
   width: 100%;
   max-width: var(--screen-lg);

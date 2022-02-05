@@ -7,15 +7,12 @@ import {
   BiLastPage,
 } from 'react-icons/bi';
 
-function Pagination({ controls }) {
+export default function DynamicPagination({ controls }) {
   const {
     canPreviousPage,
     canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
-    nextPage,
-    previousPage,
     setPageSize,
     pageIndex,
     pageSize,
@@ -28,11 +25,11 @@ function Pagination({ controls }) {
   };
 
   const handlePreviousPageClick = () => {
-    previousPage();
+    gotoPage(pageIndex - 1);
   };
 
   const handleNextPageClick = () => {
-    nextPage();
+    gotoPage(pageIndex + 1);
   };
 
   const handleEndOfPageClick = () => {
@@ -64,7 +61,7 @@ function Pagination({ controls }) {
           <span className={styles.pagination__btn__page}>
             Page
             <strong>
-              {pageIndex + 1} of {pageOptions.length}
+              {pageIndex + 1} of {pageCount}
             </strong>
           </span>
           <button
@@ -112,5 +109,3 @@ function Pagination({ controls }) {
     </>
   );
 }
-
-export default Pagination;

@@ -1,38 +1,21 @@
-import { toTitleCase } from 'utils/converter';
-import styles from './InfoCard.module.css';
-import { middleElipsis } from 'utils/converter';
-import { BiClipboard, BiCopy, BiDownArrow, BiUpArrow } from 'react-icons/bi';
-import { handleCopy } from 'utils/helper';
-import { useState, useEffect } from 'react';
-import Toast from '../..//Toast';
+import { middleElipsis, toTitleCase } from 'utils/converter';
+import styles from './InfoCard.module.scss';
+import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import CopyText from '../CopyText/CopyText';
 
 export const InfoCard = (props) => {
-  const [toastList, setToastList] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(props.collapse);
 
   function InfoRow({ label, value }) {
     return (
       <div className={styles.row}>
         <div className={styles.rowKey}>{`${toTitleCase(label)}:`}</div>
-        <span data-copy={value} className={styles.rowValue}>
-          {`${value.toString().length > 12 ? middleElipsis(value, 12) : value}`}
-          <BiCopy
-            onClick={() => {
-              handleCopy(value);
-              setToastList((prev) => {
-                return [
-                  ...prev,
-                  {
-                    message: `Copied ${value}`,
-                    type: 'success',
-                    icon: <BiClipboard color="inherit" />,
-                  },
-                ];
-              });
-            }}
-          />
-        </span>
+        {value.toString().length > 25 ? (
+          <CopyText value={value} />
+        ) : (
+          middleElipsis(value, 15)
+        )}
       </div>
     );
   }
@@ -40,10 +23,13 @@ export const InfoCard = (props) => {
   return (
     <>
       <div
-        style={{ maxHeight: isCollapsed ? '4rem' : '' }}
+        style={{
+          maxHeight: isCollapsed ? '3.8rem' : '',
+          marginBottom: '0.25rem',
+        }}
         className={styles.container}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <h3>{toTitleCase(props.type)} Details</h3>
+          <h3>{toTitleCase(props.type)}</h3>
           {props.collapse && (
             <span onClick={() => setIsCollapsed((prev) => !prev)}>
               {isCollapsed ? <FaCaretDown /> : <FaCaretUp />}
@@ -53,14 +39,27 @@ export const InfoCard = (props) => {
 
         {Object.entries(props?.data).map(([key, value]) => {
           if (Array.isArray(value)) {
-            return value.map((item) => (
+            return (
+              <InfoCard collapse={true} type={key} data={value}>
+                {value.map((item, index) => (
+                  <InfoCard
+                    collapse={true}
+                    key={Math.random()}
+                    type={(index + 1).toString()}
+                    data={item}
+                  />
+                ))}
+              </InfoCard>
+            );
+          } else if (typeof value === 'object') {
+            return (
               <InfoCard
-                collapse={true}
                 key={Math.random()}
-                type={key}
-                data={item}
+                collapse={true}
+                type={isNaN(key) ? key : (parseInt(key) + 1).toString()}
+                data={value}
               />
-            ));
+            );
           }
 
           return <InfoRow key={Math.random()} label={key} value={value} />;
@@ -86,7 +85,6 @@ export const InfoCard = (props) => {
           </div>
         </div>
       </div>
-      <Toast toastList={toastList} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import styles from './RTTable.module.css';
+import styles from './RTTable.module.scss';
 
 import PropTypes from 'prop-types';
 
@@ -19,7 +19,7 @@ function RTTable(props) {
           {btnTxt}
         </button>
       </div>
-      <div className={styles.rttDataList}>{props.children}</div>
+      <div className={styles.rttDataList}> {props.children} </div>
     </div>
   );
 }

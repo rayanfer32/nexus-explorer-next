@@ -66,9 +66,9 @@ function Footer() {
         <section className={styles.support}>
           <a href={footerItems.nexusSite.href}>Nexus.io</a>
           <p>|</p>
-          <a href={footerItems.repoUrl.href}>
-            {footerItems.repoUrl.label}
-          </a>
+          <a href={footerItems.repoUrl.href}>{footerItems.repoUrl.label}</a>
+          <p>|</p>
+          <a href={footerItems.about.href}>{footerItems.about.label}</a>
         </section>
       </div>
     </section>

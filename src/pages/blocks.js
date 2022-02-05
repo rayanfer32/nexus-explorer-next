@@ -2,15 +2,23 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
+import TYPES from 'types';
+import { useState } from 'react';
+import { totalPages } from 'utils/helper';
+import DynamicPagination from 'components/Table/DynamicPagination';
+import { useEffect } from 'react';
 
 export default function Blocks(props) {
-  // const { data } = props;
+  const [pageSize, setPageSize] = useState(10);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
 
   const columns = [
     {
       Header: 'Block',
       accessor: 'height',
-      key: 'height',
+      Cell: (props) => <a href={`/scan/${props.value}`}>{props.value}</a>,
     },
     {
       Header: 'Date',
@@ -21,33 +29,44 @@ export default function Blocks(props) {
     {
       Header: 'Mint',
       accessor: 'mint',
-      key: 'mint',
-      sorter: (a, b) => a.mint - b.mint,
     },
-    // {
-    //   Header: 'TXNs',
-    //   accessor: 'tx',
-    //   render: (tx) => tx.length,
-    //   sorter: (a, b) => a.tx.length - b.tx.length,
-    // },
+    {
+      Header: 'TXNs',
+      accessor: 'tx',
+      Cell: ({value}) => value.length,
+    },
     {
       Header: 'Channel',
       accessor: 'channel',
       key: 'channel',
-      render: (chanId) => {
-        const CHANNELS = { 0: 'Stake', 1: 'Prime', 2: 'Hash' };
-        return CHANNELS[chanId];
+      Cell: (props) => {
+        return TYPES.channels[props.value];
       },
-      sorter: (a, b) => a.channel - b.channel,
     },
   ];
 
-  const { isLoading, data, error } = useQuery('blocks', async () => {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-    );
-    return res.data.result;
-  });
+  const { isLoading, data, error } = useQuery(
+    ['blocks', pageSize, pageIndex],
+    async ({ queryKey }) => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${queryKey[1]}&page=${queryKey[2]}`
+      );
+      return res.data.result;
+    }
+  );
+
+  useEffect(() => {
+    if (data) {
+      let height = data[0].height;
+      if (height > totalRows) {
+        setTotalRows(height);
+      }
+    }
+  }, [data, pageSize]);
+
+  useEffect(() => {
+    setPageCount(totalPages(totalRows, pageSize));
+  }, [totalRows, pageSize]);
 
   if (isLoading)
     return (
@@ -62,15 +81,35 @@ export default function Blocks(props) {
       </div>
     );
 
-  if (error) return <pre>{error}</pre>;
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   // return <pre >{JSON.stringify(data, null, 2)}</pre>;
 
-  return (
-    <div style={{ overflow: 'visible' }}>
-      <Table columns={columns} data={data} />
-    </div>
-  );
+  if (data) {
+    const dynamicPageControls = {
+      canPreviousPage: pageIndex > 0,
+      canNextPage: pageIndex < pageCount - 1,
+      pageCount: pageCount,
+      gotoPage: (pageIndex) => {
+        setPageIndex(pageIndex);
+      },
+      setPageSize: (pageSize) => {
+        setPageIndex(0);
+        setPageSize(pageSize);
+      },
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+    };
+
+    return (
+      <div style={{ overflow: 'visible' }}>
+        <Table columns={columns} data={data} paginate={false} />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination controls={dynamicPageControls} />
+        </div>
+      </div>
+    );
+  }
 }
 
 // export async function getServerSideProps() {

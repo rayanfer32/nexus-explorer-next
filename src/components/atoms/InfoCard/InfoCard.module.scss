@@ -6,7 +6,9 @@
   overflow: hidden;
   font-size: var(--font-normal);
   color: var(--theme-page-text);
-  box-shadow: var(--card-shadow);
+
+  box-shadow: var(--card-shadow-border), var(--card-shadow);
+  /* border: 0.1rem solid var(--theme-page-text); */
   /* box-shadow: -0.125rem 0.125rem 0.125rem #0003; */
 }
 
@@ -44,6 +46,9 @@
 
 /* mobile screen classes */
 @media (max-width: 768px) {
+  .container {
+    padding: 0.25rem 0.2rem;
+  }
   .row {
     grid-template-columns: 1fr 1fr;
   }

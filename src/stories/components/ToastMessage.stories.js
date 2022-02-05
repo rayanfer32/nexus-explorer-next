@@ -1,4 +1,4 @@
-import ToastMessage from 'components/atoms/ToastMessage';
+import ToastMessage from 'components/atoms/NE_ToastMessage';
 import {
   BsCheckLg,
   BsXLg,

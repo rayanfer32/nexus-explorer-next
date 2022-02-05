@@ -10,7 +10,7 @@ function SearchBar(props) {
         results={5}
         value={props?.value}
         onChange={props?.onChange}
-        placeholder="Search by Address / Tx ID / Block Hash"
+        placeholder={props?.placeholder}
       />
       <button type="submit" onClick={props?.onSearch}>
         <Image

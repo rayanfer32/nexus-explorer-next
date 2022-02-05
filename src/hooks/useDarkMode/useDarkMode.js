@@ -22,18 +22,17 @@ export function useDarkMode() {
       theme: enabled ? TYPES.theme.dark : TYPES.theme.light,
     });
     document.body.classList.toggle(TYPES.theme.dark, enabled);
-    return (isDarkTheme) => isDarkTheme
-  }
+    return (isDarkTheme) => isDarkTheme;
+  };
 
   useEffect(() => {
-    setGlobalDarkMode(enabled)
+    setGlobalDarkMode(enabled);
   }, [enabled]);
   // * problem with the hook not updating state is
   // * this hook creates a new instance of the state inside the child component
   // * so the global theme state is not updated
 
   // * refer the theme state from the sharedState
-  
 
   return [isDarkTheme, setDarkMode, setGlobalDarkMode];
 
