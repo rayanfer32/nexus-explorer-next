@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useDarkMode } from 'hooks';
 
 export default function BlockEstimator() {
-  // https://nx1.rayanfer32.repl.co/blockFromTimestamp/1642153560
+  // blockFromTimestamp/1642153560
   const [timestamp, setTimestamp] = useState();
   const [blockData, setBlockData] = useState();
   const [block, setBlock] = useState();
@@ -16,7 +16,7 @@ export default function BlockEstimator() {
 
   useEffect(async () => {
     const estimatedBlock = await fetch(
-      `https://nx1.rayanfer32.repl.co/blockFromTimestamp/${timestamp}`
+      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/blockFromTimestamp/${timestamp}`
     );
     try {
       const resp = await estimatedBlock.json();
@@ -31,7 +31,7 @@ export default function BlockEstimator() {
   useEffect(async () => {
     setLoading(true);
     const blockResp = await fetch(
-      `https://nx1.rayanfer32.repl.co/ledger/get/block?height=${block}`
+      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/edger/get/block?height=${block}`
     );
     try {
       const resp = await blockResp.json();
