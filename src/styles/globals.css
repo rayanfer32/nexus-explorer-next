@@ -191,6 +191,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
   background: var(--theme-page-text);
+  border-radius: var(--space-xs);
 }
 
 .slideRowAnim {
