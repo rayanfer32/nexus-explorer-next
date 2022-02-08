@@ -180,6 +180,15 @@ a {
   box-sizing: border-box;
 }
 
+.apexcharts-toolbar-custom-icon {
+  /* background-color: var(--theme-page-text); */
+  border-radius: 1rem;
+  background: white;
+  font-size: 0.6rem;
+  padding: 0 0.3rem;
+  margin: 0 0.05rem;
+}
+
 ::-webkit-scrollbar {
   height: 0.5rem;
   width: 0.5rem;

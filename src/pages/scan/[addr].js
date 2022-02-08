@@ -79,7 +79,7 @@ function Scan({ addr }) {
   }
 
   const { isLoading, data, error, refetch } = useQuery(
-    'scan',
+    ['scan', addr],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
       console.log(endpoint, params, 'type:', type);
@@ -91,18 +91,18 @@ function Scan({ addr }) {
       return res.data;
     },
     {
-      refetchOnWindowFocus: true,
-      enabled: true,
+      // refetchOnWindowFocus: true,
+      // enabled: true,
     }
   );
 
-  // when the search query is changed, the query is refetched
-  useEffect(() => {
-    // console.log("addr", addr);
-    console.log('refetching');
-    refetch();
-    // queryClient.removeQueries('scan', { exact: true });
-  }, [addr]);
+  // // when the search query is changed, the query is refetched
+  // useEffect(() => {
+  //   // console.log("addr", addr);
+  //   console.log('refetching');
+  //   refetch();
+  //   // queryClient.removeQueries('scan', { exact: true });
+  // }, [addr]);
 
   if (isLoading) {
     return (

@@ -10,17 +10,14 @@ import { useLocalStorage } from '../useStorage/useStorage';
  */
 export function useDarkMode() {
   const [darkMode, setDarkMode] = useLocalStorage('theme');
-  const { sharedState, setSharedState } = useAppContext();
+  const { state: sharedState, setState } = useAppContext();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const enabled = darkMode ?? prefersDarkMode;
 
   const isDarkTheme = sharedState.theme === TYPES.THEME.DARK ? true : false;
 
   const setGlobalDarkMode = (enabled) => {
-    setSharedState({
-      ...sharedState,
-      theme: enabled ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
-    });
+    setState('theme', enabled ? TYPES.THEME.DARK : TYPES.THEME.LIGHT);
     document.body.classList.toggle(TYPES.THEME.DARK, enabled);
     return (isDarkTheme) => isDarkTheme;
   };

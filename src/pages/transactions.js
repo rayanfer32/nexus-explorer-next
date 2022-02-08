@@ -67,7 +67,7 @@ export default function Transactions(props) {
     {
       Header: 'Contracts',
       accessor: 'contracts',
-      Cell: (props) => <div>{props.value.length}</div>,
+      Cell: (props) => <div>{props.value?.length || 0}</div>,
     },
     {
       Header: 'Type',
