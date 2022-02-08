@@ -13,6 +13,7 @@ import Shimmer from 'components/atoms/NE_Shimmer';
 import BlockEstimator from '../pages/TestComponents/BlockEstimator';
 import ApexTest from 'components/Chart/ApexTest';
 import ApexPie from 'components/Chart/ApexPie';
+import ChartApi from './TestComponents/ChartApi';
 
 function test() {
   const blockData = {
@@ -130,9 +131,11 @@ function test() {
 
   return (
     <div>
-      <ApexTest />
-      <ApexPie series={[10, 20, 30, 50, 20, 30]} />
+      {/* <ApexTest /> */}
+      {/* <ApexPie series={[10, 20, 30, 50, 20, 30]} /> */}
       {/* <BlockEstimator /> */}
+      {/* <ChartApi/> */}
+      <ChartsApex />
     </div>
   );
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
 import {
   BiChevronLeft,
@@ -8,6 +8,8 @@ import {
 } from 'react-icons/bi';
 
 export default function DynamicPagination({ controls }) {
+  const [gotoPageTimer, setGotoPageTimer] = useState();
+
   const {
     canPreviousPage,
     canNextPage,
@@ -40,6 +42,17 @@ export default function DynamicPagination({ controls }) {
     setPageSize(Number(e.target.value));
   };
 
+  const handleGotoPageInputChange = (e) => {
+    clearTimeout(gotoPageTimer);
+
+    setGotoPageTimer(
+      setTimeout(() => {
+        const page = e.target.value ? Number(e.target.value) - 1 : 0;
+        gotoPage(page);
+      }, 1000)
+    );
+  };
+
   return (
     <>
       <div className={styles.pagination}>
@@ -59,8 +72,7 @@ export default function DynamicPagination({ controls }) {
             <BiChevronLeft color="inherit" />
           </button>
           <span className={styles.pagination__btn__page}>
-            Page
-            <strong>
+            Page <strong>
               {pageIndex + 1} of {pageCount}
             </strong>
           </span>
@@ -81,14 +93,10 @@ export default function DynamicPagination({ controls }) {
         </span>
         <div className={styles.pagination__goToPage}>
           <span className={styles.pagination__goToPage__pageSelect}>
-            Go to page:
-            <input
+            Go to page: <input
               type="number"
               defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }}
+              onChange={handleGotoPageInputChange}
               min={1}
               max={pageCount}
               style={{ width: '100px' }}
