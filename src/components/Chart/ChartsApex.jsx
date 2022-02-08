@@ -33,7 +33,7 @@ function ChartsApex() {
       chart: {
         id: 'tx_chart',
 
-        background: TYPES.COLORS.TRANSPARENT,
+        background: 'rgba(0, 0, 0, 0)',
         toolbar: {
           show: true,
           offsetX: -48,

@@ -11,7 +11,7 @@ function ApexPie(props) {
   const [options, setOptions] = useState(
     props.options || {
       chart: {
-        background: TYPES.COLORS.TRANSPARENT,
+        background: 'rgba(0, 0, 0, 0)',
       },
       theme: {
         mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
