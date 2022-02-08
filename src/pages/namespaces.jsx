@@ -16,24 +16,20 @@ export default function Namespaces() {
       Header: '#ID',
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
+
+    {
+      Header: 'Address',
+      accessor: 'address',
+      Cell: ({ value }) => <CopyText value={value} />,
+    },
     {
       Header: 'Namespace',
       accessor: 'namespace',
     },
     {
-      Header: 'Address',
-      accessor: 'address',
-      Cell: ({value}) => <CopyText value={value} />,
-    },
-    {
-      Header: 'Owner',
-      accessor: 'owner',
-      Cell: ({value}) => <CopyText value={value} />,
-    },
-    {
       Header: 'Created',
       accessor: 'created',
-      Cell: ({value}) => new Date(value * 1000).toDateString(),
+      Cell: ({ value }) => new Date(value * 1000).toDateString(),
     },
   ];
 
