@@ -21,7 +21,7 @@ function Navbar() {
         {TYPES.navbar.NAVLIST.map((navItem) => {
           return (
             <span
-              key={navItem.id}
+              key={navItem.title}
               className={
                 router.pathname === navItem.path ? styles.active : undefined
               }>

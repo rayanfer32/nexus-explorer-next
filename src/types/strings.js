@@ -7,7 +7,7 @@ export const Strings = {
     primary: 'primary',
     secondary: 'secondary',
   },
-  channels: { 0: 'Stake', 1: 'Prime', 2: 'Hash' },
+  channels: { 0: 'Stake', 1: 'Prime (CPU)', 2: 'Hash (GPU)' },
   shimmerType: {
     default: 'default',
     text: 'small-card',
