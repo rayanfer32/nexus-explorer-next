@@ -1,14 +1,15 @@
-export const colors = {
-  colors: {
-    nexusBlue: '#0ca4fb',
-    skyBlue: '#6dcefe',
-    oceanBlue: '#025e93',
-    midnightBlue: '#012235',
-    white: '#ffffff',
-    darkGrey: '#2e292f',
-    marketGreen: '#28a745',
-    marketRed: ' #dc3545',
-    paperWhite: '#f8f9fa',
-    paleWhite: '#f5f7f9',
+export const Colors = {
+  COLORS: {
+    NEXUS_BLUE: '#0ca4fb',
+    SKY_BLUE: '#6dcefe',
+    OCEAN_BLUE: '#025e93',
+    MID_NIGHT_BLUE: '#012235',
+    WHITE: '#ffffff',
+    DARK_GREY: '#2e292f',
+    MARKET_GREEN: '#28a745',
+    MARKET_RED: ' #dc3545',
+    PAPER_WHITE: '#f8f9fa',
+    PALE_WHITE: '#f5f7f9',
+    TRANSPARENT: 'rgba(0, 0, 0, 0)',
   },
 };

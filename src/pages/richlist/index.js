@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from './richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
-import { intlNum, middleElipsis } from 'utils/converter';
+import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
-import { MAX_SUPPLY } from 'types/constants';
+import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
 
 export default function Richlist() {
@@ -36,7 +36,7 @@ export default function Richlist() {
     {
       Header: 'Owner',
       accessor: 'owner',
-      Cell: (props) => <CopyText value={props.value}/>,
+      Cell: (props) => <CopyText value={props.value} />,
     },
     {
       Header: 'Balance',
@@ -87,7 +87,7 @@ export default function Richlist() {
       sumTop1,
       sumTop10,
       sumTop100,
-      MAX_SUPPLY - (sumTop100 + sumTop10 + sumTop1),
+      TYPES.MAX_SUPPLY.VALUE - (sumTop100 + sumTop10 + sumTop1),
     ];
     const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 

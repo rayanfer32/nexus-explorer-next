@@ -16,5 +16,5 @@ Primary.args = {
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Nexus Explorer',
-  type: TYPES.textType.secondary,
+  type: TYPES.TEXT.SECONDARY,
 };

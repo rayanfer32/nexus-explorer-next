@@ -1,18 +1,18 @@
 export const Strings = {
-  loaderType: {
-    circle: 'circle',
-    dot: 'dot',
+  LOADER: {
+    CIRCLE: 'circle',
+    DOT: 'dot',
   },
-  textType: {
-    primary: 'primary',
-    secondary: 'secondary',
+  TEXT: {
+    PRIMARY: 'primary',
+    SECONDARY: 'secondary',
   },
-  channels: { 0: 'Stake', 1: 'Prime', 2: 'Hash' },
-  shimmerType: {
-    default: 'default',
-    text: 'small-card',
+  CHANNELS: { 0: 'Stake', 1: 'Prime', 2: 'Hash' },
+  SHIMMER: {
+    DEFAULT: 'default',
+    TEXT: 'small-card',
   },
-  placeHolder: {
-    search: 'Search for a username:account / block / transaction / address',
+  PLACE_HOLDER: {
+    SEARCH: 'Search for a username:account / block / transaction / address',
   },
 };

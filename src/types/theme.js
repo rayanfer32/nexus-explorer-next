@@ -1,3 +1,3 @@
 export const Theme = {
-  theme: { dark: 'dark', light: 'light' },
+  THEME: { DARK: 'dark', LIGHT: 'light' },
 };

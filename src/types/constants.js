@@ -1,9 +1,16 @@
-export const refetchIntervals = {
-  mining: 1000 * 60, // 1 minute
-  metrics: 1000 * 60,
-  market: 1000 * 60,
-  info: 1000 * 30, // 30 sec
-  regenerateSSG: 1000 * 60, // 60 sec
+const REFETCH_INTERVALS = {
+  MINING: 1000 * 60, // 1 minute
+  METRICS: 1000 * 60,
+  MARKET: 1000 * 60,
+  INFO: 1000 * 30, // 30 sec
+  REGENERATE_SSG: 1000 * 60, // 60 sec
 };
 
-export const MAX_SUPPLY =  72586439.41;
+const MAX_SUPPLY = 72586439.41;
+
+export const Constants = {
+  REFETCH_INTERVALS,
+  MAX_SUPPLY: {
+    VALUE: MAX_SUPPLY,
+  },
+};

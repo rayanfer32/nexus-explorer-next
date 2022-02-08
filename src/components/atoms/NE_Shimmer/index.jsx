@@ -30,7 +30,7 @@ const Shimmer = ({
     '--animate': animate,
     '--animate-width': animateWidth,
   };
-  if (type == TYPES.shimmerType.text)
+  if (type == TYPES.SHIMMER.TEXT)
     return <Small {...props} style={style} width={width} />;
   return <Shine {...props} style={style} />;
 };

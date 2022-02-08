@@ -1,5 +1,5 @@
 export const Links = {
-  links: {
+  LINKS: {
     github: {
       rayan: {
         id: '001',

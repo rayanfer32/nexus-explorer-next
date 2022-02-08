@@ -1,6 +1,7 @@
 import Button from 'components/atoms/NE_Button';
 import TYPES from 'types';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Components/Button',
   component: Button,
@@ -10,18 +11,18 @@ const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  type: TYPES.buttonType.primary,
+  type: TYPES.BUTTON.PRIMARY,
   children: 'Button',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  type: TYPES.buttonType.secondary,
+  type: TYPES.BUTTON.SECONDARY,
   children: 'Button',
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  type: TYPES.buttonType.tertiary,
+  type: TYPES.BUTTON.TERTIARY,
   children: 'Button',
 };

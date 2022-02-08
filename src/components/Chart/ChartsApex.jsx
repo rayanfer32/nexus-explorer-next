@@ -29,23 +29,23 @@ function ChartsApex() {
         zoom: {
           enabled: false,
         },
-        background: 'rgba(0, 0, 0, 0)',
+        background: TYPES.COLORS.TRANSPARENT,
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       fill: {
         type: 'gradient',
         gradient: {
           gradientToColors: isDarkMode
-            ? [TYPES.colors.skyBlue]
-            : [TYPES.colors.nexusBlue],
+            ? [TYPES.COLORS.SKY_BLUE]
+            : [TYPES.COLORS.NEXUS_BLUE],
         },
         opacityFrom: 0.7,
         opacityTo: 0.3,
         stops: [0, 90, 100],
       },
-      colors: isDarkMode ? [TYPES.colors.skyBlue] : [TYPES.colors.nexusBlue],
+      colors: isDarkMode ? [TYPES.COLORS.SKY_BLUE] : [TYPES.COLORS.NEXUS_BLUE],
       grid: {
         show: false,
       },
@@ -132,18 +132,18 @@ function ChartsApex() {
   // check appcontext update
   useEffect(() => {
     // get dark mode state
-    const isDark = sharedState.theme === TYPES.theme.dark;
+    const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
       prev.options.theme.mode = sharedState.theme;
       // update colors property of the chart
       prev.options.colors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       // update fill color of the chart
       prev.options.fill.gradient.gradientToColors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       return { ...prev };
     });
   }, [sharedState.theme]);

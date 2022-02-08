@@ -21,17 +21,17 @@ const CustomError = ({ statusCode }) => {
         <div className={styles['cta']}>
           {/* back to prevo=ious page */}
           <Button
-            type={TYPES.buttonType.primary}
+            type={TYPES.BUTTON.PRIMARY}
             className={styles['cta-back']}
             onClick={() => Router.back()}>
-            <h3>{TYPES.fallback.GO_BACK}</h3>
+            <h3>{TYPES.FALLBACK.GO_BACK}</h3>
           </Button>
           {/* back to home page option */}
           <Link href="/" replace={true}>
             <Button
-              type={TYPES.buttonType.secondary}
+              type={TYPES.BUTTON.SECONDARY}
               className={styles['cta-home']}>
-              <h3>{TYPES.fallback.BACK_TO_HOME}</h3>
+              <h3>{TYPES.FALLBACK.BACK_TO_HOME}</h3>
             </Button>
           </Link>
         </div>

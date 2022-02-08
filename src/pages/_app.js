@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
     <ContextWrapper>
       <IconContext.Provider
         value={{
-          color: TYPES.colors.nexusBlue,
+          color: TYPES.COLORS.NEXUS_BLUE,
           size: '1.5rem',
           style: { verticalAlign: 'middle' },
         }}>

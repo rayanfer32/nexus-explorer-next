@@ -11,10 +11,10 @@ function ApexPie(props) {
   const [options, setOptions] = useState(
     props.options || {
       chart: {
-        background: 'rgba(0, 0, 0, 0)',
+        background: TYPES.COLORS.TRANSPARENT,
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       labels: props.labels || [],
       responsive: [
@@ -44,7 +44,7 @@ function ApexPie(props) {
   // * updates the chart when dark mode changes
   function updateChart() {
     let newOptions = { ...options };
-    newOptions.theme.mode = isDarkMode ? TYPES.theme.dark : TYPES.theme.light;
+    newOptions.theme.mode = isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT;
     setOptions(newOptions);
   }
 

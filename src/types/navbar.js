@@ -10,9 +10,9 @@ const navList = [
   // { id: 5, title: 'About', path: '/about' }, // moved to footer
 ];
 
-export const navbar = {
-  navbar: {
+export const Navbar = {
+  NAVBAR: {
     NAVLIST: [...navList],
-    brand: ASSESTS.BRAND.PRIMARY,
+    BRAND: ASSESTS.BRAND.PRIMARY,
   },
 };

@@ -72,7 +72,7 @@ export default function AccountInfo({ data }) {
         let fontColor = 'var(--theme-page-text)';
         let sign = '+';
         if (['CREDIT', 'CREATE'].includes(props.row.values.operation)) {
-          fontColor = TYPES.colors.marketGreen;
+          fontColor = TYPES.COLORS.MARKET_GREEN;
           sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
           fontColor = 'red';
@@ -153,8 +153,12 @@ export default function AccountInfo({ data }) {
       <h1>Account Details</h1>
       <div className={styles.details}>
         <section className={styles.details__text}>
-          <div>Address: <CopyText value={data.address} ellipsisAfter={99}/> </div>
-          <div>Owner: <CopyText value={data.owner} ellipsisAfter={99} /></div>
+          <div>
+            Address: <CopyText value={data.address} ellipsisAfter={99} />{' '}
+          </div>
+          <div>
+            Owner: <CopyText value={data.owner} ellipsisAfter={99} />
+          </div>
           <div>
             Created On: {new Date(data.created * 1000).toLocaleString()}
           </div>
@@ -168,7 +172,7 @@ export default function AccountInfo({ data }) {
         <section>
           <div className={styles.qrCode}>
             <QRCode
-              fgColor={TYPES.colors.nexusBlue}
+              fgColor={TYPES.COLORS.NEXUS_BLUE}
               title={data.address}
               value={data.address || ''}
               level="L"

@@ -1,8 +1,8 @@
-export const ToastmessageTypes = {
-  toastType: {
-    default: 'default',
-    success: 'success',
-    error: 'error',
-    warning: 'warning',
+export const ToastMessage = {
+  TOAST: {
+    DEFAULT: 'default',
+    SUCCESS: 'success',
+    ERROR: 'error',
+    WARNING: 'warning',
   },
 };

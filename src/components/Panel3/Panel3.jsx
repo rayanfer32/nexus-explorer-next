@@ -30,7 +30,7 @@ function Panel3() {
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
-        channel={TYPES.channels[newRowData.channel]}
+        channel={TYPES.CHANNELS[newRowData.channel]}
         link={`/scan/${newRowData.height}`}
       />
     );

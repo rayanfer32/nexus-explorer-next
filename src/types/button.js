@@ -1,10 +1,12 @@
-export const ButtonTypes = {
-  buttonType: {
-    primary: 'primary',
-    secondary: 'secondary',
-    tertiary: 'tertiary',
+export const Button = {
+  BUTTON: {
+    PRIMARY: 'primary',
+    SECONDARY: 'secondary',
+    TERTIARY: 'tertiary',
+    WIDE: 'wide',
+    TRANSPARENT: 'transparent',
   },
-  fallback: {
+  FALLBACK: {
     BACK_TO_HOME: 'Back to Home',
     GO_BACK: 'Go Back',
   },

@@ -23,17 +23,17 @@ export default function Namespaces() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({value}) => <CopyText value={value} />,
+      Cell: ({ value }) => <CopyText value={value} />,
     },
     {
       Header: 'Owner',
       accessor: 'owner',
-      Cell: ({value}) => <CopyText value={value} />,
+      Cell: ({ value }) => <CopyText value={value} />,
     },
     {
       Header: 'Created',
       accessor: 'created',
-      Cell: ({value}) => new Date(value * 1000).toDateString(),
+      Cell: ({ value }) => new Date(value * 1000).toDateString(),
     },
   ];
 
