@@ -3,11 +3,15 @@ import Image from 'next/image';
 import TYPES from 'types';
 import { useDarkMode } from 'hooks';
 
+/**
+ * Footer component for the website
+ * @returns {JSX.Element}
+ */
 function Footer() {
   const footerItems = TYPES.footerItems;
   const [isDarkMode] = useDarkMode();
   return (
-    <section className={styles.container}>
+    <footer className={styles.container}>
       <div className={styles.footer}>
         <section className={styles.redirectIcon}>
           <a href={footerItems.nexus.href} target={footerItems.nexus.target}>
@@ -71,7 +75,7 @@ function Footer() {
           <a href={footerItems.about.href}>{footerItems.about.label}</a>
         </section>
       </div>
-    </section>
+    </footer>
   );
 }
 

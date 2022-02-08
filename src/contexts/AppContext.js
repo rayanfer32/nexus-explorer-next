@@ -13,8 +13,24 @@ export function ContextWrapper({ children }) {
   // not required imo
   const [sharedState, setSharedState] = useState(_state);
 
+  /**
+   * setState
+   * @param {string} key
+   * @param {any} data
+   * @returns
+   */
+  const setState = (key, data) => {
+    setSharedState({
+      ...sharedState,
+      [key]: data,
+    });
+  };
+
   return (
-    <AppContext.Provider value={{ sharedState, setSharedState }}>
+    <AppContext.Provider
+      // * soon sharedState and setSharedState will be removed
+      // * recommand not to use sharedState and setSharedState
+      value={{ sharedState, setSharedState, state: sharedState, setState }}>
       {children}
     </AppContext.Provider>
   );

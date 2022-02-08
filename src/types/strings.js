@@ -12,4 +12,7 @@ export const Strings = {
     default: 'default',
     text: 'small-card',
   },
+  placeHolder: {
+    search: 'Search for a username:account / block / transaction / address',
+  },
 };

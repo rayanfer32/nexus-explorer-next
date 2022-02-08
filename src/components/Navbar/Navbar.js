@@ -6,8 +6,12 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+/**
+ * Header component for the website
+ * @returns {JSX.Element}
+ */
 function Navbar() {
   const router = useRouter();
   const [isDarkMode, setDarkMode] = useDarkMode();
@@ -17,7 +21,7 @@ function Navbar() {
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
-      <div className={styles.links}>
+      <nav className={styles.links}>
         {TYPES.navbar.NAVLIST.map((navItem) => {
           return (
             <span
@@ -29,7 +33,7 @@ function Navbar() {
             </span>
           );
         })}
-      </div>
+      </nav>
 
       <ThemeMode
         onClick={() => setDarkMode((prevMode) => !prevMode)}
@@ -53,7 +57,7 @@ function Navbar() {
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
-            <div className={styles.mlinks}>
+            <nav className={styles.mlinks}>
               {TYPES.navbar.NAVLIST.map((navItem) => {
                 return (
                   <span
@@ -68,7 +72,7 @@ function Navbar() {
                   </span>
                 );
               })}
-            </div>
+            </nav>
           </div>
         </section>
       )}
@@ -76,7 +80,7 @@ function Navbar() {
   );
 
   return (
-    <section className={styles.container}>
+    <header className={styles.container}>
       <div className={styles.header}>
         <div className={styles.nav}>
           <div className={styles.brand} onClick={onClickBrand}>
@@ -98,7 +102,7 @@ function Navbar() {
             long
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder={"Search for a username:account / block / transaction / address"}
+            placeholder={TYPES.placeHolder.search}
             onSearch={() => {
               router.push(`/scan/${searchInput}`);
               setTimeout(() => setSearchInput(''), 3000);
@@ -106,7 +110,7 @@ function Navbar() {
           />
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
