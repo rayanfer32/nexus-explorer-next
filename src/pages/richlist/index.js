@@ -34,24 +34,24 @@ export default function Richlist() {
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
     {
-      Header: 'Owner',
-      accessor: 'owner',
-      Cell: (props) => <CopyText value={props.value}/>,
+      Header: 'Address',
+      accessor: 'address',
+      Cell: ({value}) => value ? <CopyText value={value}/> : '-',
     },
     {
       Header: 'Balance',
       accessor: 'total',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value.toFixed(2)) + ' NXS' : '-'),
     },
     {
       Header: 'Trust',
       accessor: 'trust',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value) + '' : '-'),
     },
     {
       Header: 'Stake Rate',
       accessor: 'rate',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value.toFixed(2)) + '' : '-'),
     },
   ];
 
