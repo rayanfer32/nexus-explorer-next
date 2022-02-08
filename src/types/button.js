@@ -1,4 +1,4 @@
-export const Button = {
+export const ButtonTypes = {
   BUTTON: {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',

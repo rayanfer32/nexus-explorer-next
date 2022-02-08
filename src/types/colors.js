@@ -1,4 +1,4 @@
-export const Colors = {
+export const ColorsTypes = {
   COLORS: {
     NEXUS_BLUE: '#0ca4fb',
     SKY_BLUE: '#6dcefe',

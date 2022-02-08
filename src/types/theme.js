@@ -1,3 +1,3 @@
-export const Theme = {
+export const ThemeTypes = {
   THEME: { DARK: 'dark', LIGHT: 'light' },
 };

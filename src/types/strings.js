@@ -1,4 +1,4 @@
-export const Strings = {
+export const StringsTypes = {
   LOADER: {
     CIRCLE: 'circle',
     DOT: 'dot',

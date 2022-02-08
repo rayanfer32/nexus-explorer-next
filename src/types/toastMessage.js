@@ -1,4 +1,4 @@
-export const ToastMessage = {
+export const ToastMessageTypes = {
   TOAST: {
     DEFAULT: 'default',
     SUCCESS: 'success',

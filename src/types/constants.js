@@ -8,7 +8,7 @@ const REFETCH_INTERVALS = {
 
 const MAX_SUPPLY = 72586439.41;
 
-export const Constants = {
+export const ConstantsTypes = {
   REFETCH_INTERVALS,
   MAX_SUPPLY: {
     VALUE: MAX_SUPPLY,

@@ -1,6 +1,6 @@
 import ASSESTS from 'assets';
 
-export const Footer = {
+export const FooterTypes = {
   FOOTER_ITEMS: {
     NEXUS: {
       href: 'https://nexus.io/',

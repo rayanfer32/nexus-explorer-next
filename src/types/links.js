@@ -1,4 +1,4 @@
-export const Links = {
+export const LinksTypes = {
   LINKS: {
     github: {
       rayan: {
