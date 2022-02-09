@@ -8,22 +8,22 @@ import { useDarkMode } from 'hooks';
  * @returns {JSX.Element}
  */
 function Footer() {
-  const footerItems = TYPES.footerItems;
+  const footerItems = TYPES.FOOTER_ITEMS;
   const [isDarkMode] = useDarkMode();
   return (
     <footer className={styles.container}>
       <div className={styles.footer}>
         <section className={styles.redirectIcon}>
-          <a href={footerItems.nexus.href} target={footerItems.nexus.target}>
+          <a href={footerItems.NEXUS.href} target={footerItems.NEXUS.target}>
             <Image
               width={176}
               height={32}
               src={
                 !isDarkMode
-                  ? footerItems.nexus.brand.WHITE
-                  : footerItems.nexus.brand.BLUE
+                  ? footerItems.NEXUS.brand.WHITE
+                  : footerItems.NEXUS.brand.BLUE
               }
-              alt={footerItems.nexus.label}
+              alt={footerItems.NEXUS.label}
             />
           </a>
           <div className={styles.walletLinks}>

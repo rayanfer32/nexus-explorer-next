@@ -53,7 +53,7 @@ function ChartsApex() {
                 title: '2H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                 setLimit(2 * 60)
+                  setLimit(2 * 60);
                 },
               },
               {
@@ -62,7 +62,7 @@ function ChartsApex() {
                 title: '6H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(6 * 60)
+                  setLimit(6 * 60);
                 },
               },
               {
@@ -71,7 +71,7 @@ function ChartsApex() {
                 title: '12H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(12 * 60)
+                  setLimit(12 * 60);
                 },
               },
               {
@@ -80,7 +80,7 @@ function ChartsApex() {
                 title: '24H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(24 * 60)
+                  setLimit(24 * 60);
                 },
               },
             ],
@@ -88,20 +88,20 @@ function ChartsApex() {
         },
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       fill: {
         type: 'gradient',
         gradient: {
           gradientToColors: isDarkMode
-            ? [TYPES.colors.skyBlue]
-            : [TYPES.colors.nexusBlue],
+            ? [TYPES.COLORS.SKY_BLUE]
+            : [TYPES.COLORS.NEXUS_BLUE],
         },
         opacityFrom: 0.7,
         opacityTo: 0.3,
         stops: [0, 90, 100],
       },
-      colors: isDarkMode ? [TYPES.colors.skyBlue] : [TYPES.colors.nexusBlue],
+      colors: isDarkMode ? [TYPES.COLORS.SKY_BLUE] : [TYPES.COLORS.NEXUS_BLUE],
       grid: {
         show: false,
       },
@@ -172,18 +172,18 @@ function ChartsApex() {
   // check appcontext update
   useEffect(() => {
     // get dark mode state
-    const isDark = sharedState.theme === TYPES.theme.dark;
+    const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
       prev.options.theme.mode = sharedState.theme;
       // update colors property of the chart
       prev.options.colors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       // update fill color of the chart
       prev.options.fill.gradient.gradientToColors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       return { ...prev };
     });
   }, [sharedState.theme]);

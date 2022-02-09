@@ -14,11 +14,11 @@ export function useDarkMode() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const enabled = darkMode ?? prefersDarkMode;
 
-  const isDarkTheme = sharedState.theme === TYPES.theme.dark ? true : false;
+  const isDarkTheme = sharedState.theme === TYPES.THEME.DARK ? true : false;
 
   const setGlobalDarkMode = (enabled) => {
-    setState('theme', enabled ? TYPES.theme.dark : TYPES.theme.light);
-    document.body.classList.toggle(TYPES.theme.dark, enabled);
+    setState('theme', enabled ? TYPES.THEME.DARK : TYPES.THEME.LIGHT);
+    document.body.classList.toggle(TYPES.THEME.DARK, enabled);
     return (isDarkTheme) => isDarkTheme;
   };
 

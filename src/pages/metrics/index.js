@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAppContext } from 'contexts/AppContext';
 import { fetchMetrics } from 'utils/common/fetch';
-import { refetchIntervals } from 'types/constants';
 import { useQuery } from 'react-query';
+import TYPES from 'types';
 
 export default function Metrics() {
   // load data from sharedState
@@ -10,7 +10,7 @@ export default function Metrics() {
 
   const metricsRQ = useQuery('metrics', fetchMetrics, {
     initialData: state.metrics,
-    refetchInterval: refetchIntervals.metrics,
+    refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 
   return <pre>{JSON.stringify(metricsRQ.data, null, 2)}</pre>;

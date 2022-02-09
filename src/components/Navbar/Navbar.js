@@ -22,7 +22,7 @@ function Navbar() {
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
       <nav className={styles.links}>
-        {TYPES.navbar.NAVLIST.map((navItem,index) => {
+        {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
           return (
             <span
               key={index}
@@ -58,7 +58,7 @@ function Navbar() {
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
             <nav className={styles.mlinks}>
-              {TYPES.navbar.NAVLIST.map((navItem) => {
+              {TYPES.NAVBAR.NAVLIST.map((navItem) => {
                 return (
                   <span
                     key={navItem.id}
@@ -89,7 +89,7 @@ function Navbar() {
               height={32}
               layout="fixed"
               src={
-                isDarkMode ? TYPES.navbar.brand.WHITE : TYPES.navbar.brand.BLUE
+                isDarkMode ? TYPES.NAVBAR.BRAND.WHITE : TYPES.NAVBAR.BRAND.BLUE
               }
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
@@ -102,7 +102,7 @@ function Navbar() {
             long
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder={TYPES.placeHolder.search}
+            placeholder={TYPES.PLACE_HOLDER.SEARCH}
             onSearch={() => {
               router.push(`/scan/${searchInput}`);
               setTimeout(() => setSearchInput(''), 3000);

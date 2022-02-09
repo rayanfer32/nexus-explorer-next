@@ -1,6 +1,7 @@
 import Loader from 'components/atoms/NE_Loader';
 import TYPES from 'types';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Components/Loader',
   component: Loader,
@@ -10,10 +11,10 @@ const Template = (args) => <Loader {...args} />;
 
 export const Circular = Template.bind({});
 Circular.args = {
-  type: TYPES.loaderType.circle,
+  type: TYPES.LOADER.CIRCLE,
 };
 
 export const Dot = Template.bind({});
 Dot.args = {
-  type: TYPES.loaderType.dot,
+  type: TYPES.LOADER.DOT,
 };

@@ -4,7 +4,7 @@ import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { refetchIntervals } from 'types/constants';
+import TYPES from 'types';
 import { useAppContext } from 'contexts/AppContext';
 import { useEffect } from 'react';
 
@@ -38,25 +38,23 @@ export async function getStaticProps() {
       market: { data: market.data },
     },
 
-    revalidate: refetchIntervals.regenerateSSG,
+    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG,
   };
 }
 
 export default function Home(props) {
-  const { state, setState, setSharedState } = useAppContext();
+  const { state, setState } = useAppContext();
 
   useEffect(() => {
     setState('metrics', props.metrics);
     setState('info', props.info);
     setState('mining', props.mining);
     setState('market', props.market);
-
-    // setSharedState(prev=>({...prev, metrics: props.metrics}))
   }, []);
 
   const metricsRQ = useQuery('metrics', fetchMetrics, {
     initialData: props.metrics,
-    refetchInterval: refetchIntervals.metrics,
+    refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 
   const infoRQ = useQuery(
@@ -67,18 +65,18 @@ export default function Home(props) {
       );
     },
     {
-      refetchIntervals: refetchIntervals.info,
+      refetchIntervalS: TYPES.REFETCH_INTERVALS.INFO,
     }
   );
 
   const marketRQ = useQuery('market', fetchMarket, {
     initialData: props.market,
-    refetchIntervals: refetchIntervals.market,
+    refetchIntervalS: TYPES.REFETCH_INTERVALS.MARKET,
   });
 
   const miningRQ = useQuery('mining', fetchMining, {
     initialData: props.mining,
-    refetchIntervals: refetchIntervals.mining,
+    refetchIntervalS: TYPES.REFETCH_INTERVALS.MINING,
   });
 
   return (

@@ -11,9 +11,9 @@ const navList = [
   { title: 'Tokens', path: '/tokens' },
 ];
 
-export const navbar = {
-  navbar: {
+export const NavbarTypes = {
+  NAVBAR: {
     NAVLIST: [...navList],
-    brand: ASSESTS.BRAND.PRIMARY,
+    BRAND: ASSESTS.BRAND.PRIMARY,
   },
 };

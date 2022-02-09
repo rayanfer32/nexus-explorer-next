@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CircleLoader = ({
   className = '',
   size = '2.5rem',
-  color = TYPES.colors.nexusBlue,
+  color = TYPES.COLORS.NEXUS_BLUE,
 }) => {
   const style = { '--color': color, '--c-size': size };
   return (

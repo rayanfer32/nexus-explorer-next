@@ -1,5 +1,5 @@
-export const Links = {
-  links: {
+export const LinksTypes = {
+  LINKS: {
     github: {
       rayan: {
         id: '001',

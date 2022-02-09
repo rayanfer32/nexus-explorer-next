@@ -36,7 +36,7 @@ export default function Trustlist() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({value}) => <CopyText value={value}/>
+      Cell: ({ value }) => <CopyText value={value} />,
     },
     {
       Header: 'Balance',

@@ -1,21 +1,23 @@
-import { ButtonTypes } from './button';
-import { colors } from './colors';
-import { FooterTypes } from './footer';
-import { Links } from './links';
-import { navbar } from './navbar';
-import { Strings } from './strings';
-import { Theme } from './theme';
-import { ToastmessageTypes } from './toastMessage';
+import { ButtonTypes } from './ButtonTypes';
+import { ColorsTypes } from './ColorsTypes';
+import { ConstantsTypes } from './ConstantsTypes';
+import { FooterTypes } from './FooterTypes';
+import { LinksTypes } from './LinksTypes';
+import { NavbarTypes } from './NavbarTypes';
+import { StringsTypes } from './StringsTypes';
+import { ThemeTypes } from './ThemeTypes';
+import { ToastMessageTypes } from './ToastMessageTypes';
 
 export const TYPES = {
-  ...colors,
   ...ButtonTypes,
+  ...ColorsTypes,
+  ...ConstantsTypes,
   ...FooterTypes,
-  ...Links,
-  ...navbar,
-  ...Strings,
-  ...Theme,
-  ...ToastmessageTypes,
+  ...LinksTypes,
+  ...NavbarTypes,
+  ...StringsTypes,
+  ...ThemeTypes,
+  ...ToastMessageTypes,
 };
 
 export default TYPES;

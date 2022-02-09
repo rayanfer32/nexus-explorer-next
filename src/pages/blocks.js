@@ -33,14 +33,14 @@ export default function Blocks(props) {
     {
       Header: 'TXNs',
       accessor: 'tx',
-      Cell: ({value}) => value.length,
+      Cell: ({ value }) => value.length,
     },
     {
       Header: 'Channel',
       accessor: 'channel',
       key: 'channel',
       Cell: (props) => {
-        return TYPES.channels[props.value];
+        return TYPES.CHANNELS[props.value];
       },
     },
   ];

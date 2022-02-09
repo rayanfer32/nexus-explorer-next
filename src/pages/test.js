@@ -82,7 +82,7 @@ function test() {
       animateWidth={'30rem'}
     />,
     <Loader key={Math.random()} />,
-    <Loader type={TYPES.loaderType.dot} key={Math.random()} />,
+    <Loader type={TYPES.LOADER.DOT} key={Math.random()} />,
     <Card type="small" key={Math.random()} />,
     <Text type="primary" key={Math.random()}>
       Hello World
@@ -121,7 +121,7 @@ function test() {
     // <ChartsApex key={Math.random()} />,
     <ChartsApex key={Math.random()} />,
     <Loader key={Math.random()} />,
-    <Loader key={Math.random()} type={TYPES.loaderType.dot} />,
+    <Loader key={Math.random()} type={TYPES.LOADER.DOT} />,
     <Card key={Math.random()} type="small" />,
     <Text key={Math.random()} type="primary">
       Hello World
