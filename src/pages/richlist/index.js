@@ -7,8 +7,13 @@ import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { useAppContext } from 'contexts/AppContext';
 
 export default function Richlist() {
+  const { appContext, setAppContext } = useAppContext();
+
+  const totalSupply = appContext?.metrics?.data?.result?.supply?.total;
+
   const { isLoading, data, error } = useQuery(
     'richlist',
     async () => {
@@ -83,13 +88,13 @@ export default function Richlist() {
     const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
     const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
 
+    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
     const pieData = [
       sumTop1,
       sumTop10,
       sumTop100,
-      TYPES.MAX_SUPPLY.VALUE - (sumTop100 + sumTop10 + sumTop1),
+      (totalSupply || TYPES.MAX_SUPPLY.VALUE) - (sumTop100 + sumTop10 + sumTop1),
     ];
-    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
