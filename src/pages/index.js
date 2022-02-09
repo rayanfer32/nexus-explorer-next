@@ -5,27 +5,18 @@ import Panel3 from 'components/Panel3/Panel3';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import TYPES from 'types';
+import { useAppContext } from 'contexts/AppContext';
+import { useEffect } from 'react';
+
+import {
+  fetchInfo,
+  fetchMarket,
+  fetchMetrics,
+  fetchMining,
+} from 'utils/common/fetch';
 
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
-
-function fetchMetrics() {
-  return axios.get(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
-  );
-}
-
-function fetchInfo() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`);
-}
-
-function fetchMining() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`);
-}
-
-function fetchMarket() {
-  return axios.get(`${process.env.NEXT_PUBLIC_COINGECKO_BASE_URL}/coins/nexus`);
-}
 
 export async function getStaticProps() {
   const responses = await Promise.all([
@@ -52,6 +43,15 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
+  const { state, setState } = useAppContext();
+
+  useEffect(() => {
+    setState('metrics', props.metrics);
+    setState('info', props.info);
+    setState('mining', props.mining);
+    setState('market', props.market);
+  }, []);
+
   const metricsRQ = useQuery('metrics', fetchMetrics, {
     initialData: props.metrics,
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,

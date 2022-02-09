@@ -29,18 +29,13 @@ export default function GlobalNames() {
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
     {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => <CopyText value={value} ellipsisAfter={15}/>,
     },
     {
-      Header: 'Owner',
-      accessor: 'owner',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Header: 'Name',
+      accessor: 'name',
     },
     {
       Header: 'Created',

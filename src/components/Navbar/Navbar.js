@@ -22,10 +22,10 @@ function Navbar() {
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
       <nav className={styles.links}>
-        {TYPES.NAVBAR.NAVLIST.map((navItem) => {
+        {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
           return (
             <span
-              key={navItem.id}
+              key={index}
               className={
                 router.pathname === navItem.path ? styles.active : undefined
               }>
