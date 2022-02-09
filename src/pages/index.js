@@ -38,13 +38,14 @@ export async function getStaticProps() {
       market: { data: market.data },
     },
 
-    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG,
+    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG_INTERVAL,
   };
 }
 
 export default function Home(props) {
   const { state, setState } = useAppContext();
 
+  // * load all the data to context when it is first rendered
   useEffect(() => {
     setState('metrics', props.metrics);
     setState('info', props.info);
