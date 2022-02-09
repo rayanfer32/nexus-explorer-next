@@ -43,14 +43,14 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
-  const { state, setState } = useAppContext();
+  const { appContext, setAppContext } = useAppContext();
 
   // * load all the data to context when it is first rendered
   useEffect(() => {
-    setState('metrics', props.metrics);
-    setState('info', props.info);
-    setState('mining', props.mining);
-    setState('market', props.market);
+    setAppContext('metrics', props.metrics);
+    setAppContext('info', props.info);
+    setAppContext('mining', props.mining);
+    setAppContext('market', props.market);
   }, []);
 
   const metricsRQ = useQuery('metrics', fetchMetrics, {

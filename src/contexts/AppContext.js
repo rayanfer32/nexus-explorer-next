@@ -19,7 +19,7 @@ export function ContextWrapper({ children }) {
    * @param {any} data
    * @returns
    */
-  const setState = (key, data) => {
+  const setAppContext = (key, data) => {
     setSharedState({
       ...sharedState,
       [key]: data,
@@ -30,7 +30,7 @@ export function ContextWrapper({ children }) {
     <AppContext.Provider
       // * soon sharedState and setSharedState will be removed
       // * recommand not to use sharedState and setSharedState
-      value={{ sharedState, setSharedState, state: sharedState, setState }}>
+      value={{ sharedState, setSharedState, appContext: sharedState, setAppContext }}>
       {children}
     </AppContext.Provider>
   );

@@ -10,7 +10,7 @@ import { useLocalStorage } from '../useStorage/useStorage';
  */
 export function useDarkMode() {
   const [darkMode, setDarkMode] = useLocalStorage('theme');
-  const { state: sharedState, setState } = useAppContext();
+  const { appContext: sharedState, setAppContext: setState } = useAppContext();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const enabled = darkMode ?? prefersDarkMode;
 
