@@ -5,7 +5,7 @@ const navList = [
   { title: 'Home', path: '/' },
   { title: 'Trustlist', path: '/trustlist' },
   { title: 'Richlist', path: '/richlist' },
-  // { title: 'Metrics', path: '/metrics' },
+  { title: 'Metrics', path: '/metrics' },
   { title: 'Global', path: '/globalnames' },
   { title: 'Namespaces', path: '/namespaces' },
   { title: 'Tokens', path: '/tokens' },
