@@ -8,19 +8,18 @@ import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
 import { useAppContext } from 'contexts/AppContext';
+import { fetchMetrics } from 'utils/common/fetch';
 
 export default function Richlist() {
-  const { appContext, setAppContext } = useAppContext();
+  const metricsRQ = useQuery('metrics', fetchMetrics);
 
-  const totalSupply = appContext?.metrics?.data?.result?.supply?.total;
+  const totalSupply = metricsRQ?.data?.result?.supply?.total;
 
   const { isLoading, data, error } = useQuery(
     'richlist',
     async () => {
       // * to consider the users who have moved their balance to trust
-      // * combine the result of the two queries
-      // {{NEXUSTPP}}/register/list/trust?where=object.token=0 AND object.trust>10000
-
+      // * query for both trust and normal accounts
       const page0 = await axios.get(
         `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111`
       );
@@ -93,7 +92,8 @@ export default function Richlist() {
       sumTop1,
       sumTop10,
       sumTop100,
-      (totalSupply || TYPES.MAX_SUPPLY.VALUE) - (sumTop100 + sumTop10 + sumTop1),
+      (totalSupply || TYPES.MAX_SUPPLY.VALUE) -
+        (sumTop100 + sumTop10 + sumTop1),
     ];
 
     return (
