@@ -1,0 +1,37 @@
+.scrollToTop {
+  position: fixed;
+  bottom: var(--space-l);
+  right: var(--space-l);
+  bottom: 5rem;
+
+  &__clickAble {
+    cursor: pointer;
+    width: var(--space-xl);
+    height: var(--space-xl);
+    border-radius: var(--space-xxxs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    background: var(--theme-page-not-background);
+    box-shadow: 0 0 0.25rem 0 rgba(226, 235, 250, 0.5);
+    animation: move-in 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      border: solid var(--theme-page-text) 0.0625rem;
+    }
+  }
+
+  @keyframes move-in {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-l));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
