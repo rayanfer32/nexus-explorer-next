@@ -38,19 +38,12 @@ export async function getStaticProps() {
       market: { data: market.data },
     },
 
-    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG,
+    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG_INTERVAL,
   };
 }
 
 export default function Home(props) {
-  const { state, setState } = useAppContext();
-
-  useEffect(() => {
-    setState('metrics', props.metrics);
-    setState('info', props.info);
-    setState('mining', props.mining);
-    setState('market', props.market);
-  }, []);
+  // all the data will be available in the respective queries
 
   const metricsRQ = useQuery('metrics', fetchMetrics, {
     initialData: props.metrics,
