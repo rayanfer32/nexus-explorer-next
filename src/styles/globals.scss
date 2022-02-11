@@ -209,6 +209,25 @@ a {
   animation: slideIn 2s;
 }
 
+.fadeInAnim {
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 70%;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+
+
 @keyframes slideIn {
   0% {
     transform: translateX(-20%);

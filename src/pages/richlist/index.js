@@ -7,7 +7,6 @@ import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
-import { useAppContext } from 'contexts/AppContext';
 import { fetchMetrics } from 'utils/common/fetch';
 
 export default function Richlist() {
