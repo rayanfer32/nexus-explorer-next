@@ -8,6 +8,7 @@ import { BiCopy } from 'react-icons/bi';
 import { handleCopy, totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Transactions(props) {
   // const { data } = props;
@@ -18,12 +19,10 @@ export default function Transactions(props) {
   const [totalRows, setTotalRows] = useState(0);
   const [rows, setRows] = useState([]);
 
+  const {network, getTransactions} = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['transactions', pageIndex, pageSize],
-    ({ queryKey }) =>
-      axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&page=${queryKey[1]}&limit=${queryKey[2]}`
-      )
+    ['transactions', pageIndex, pageSize, network.name],
+    getTransactions
   );
 
   // prepare rows when data gets fetched

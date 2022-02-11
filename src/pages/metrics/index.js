@@ -6,13 +6,15 @@ import SmallCard from 'components/atoms/SmallCard';
 import styles from './styles.module.scss';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Metrics() {
 
   // fetchMetrics should be created from a custom hook which 
   // updates along with the change of network in appContext
 
-  const { isLoading, data, error } = useQuery('metrics', fetchMetrics, {
+  const {network, getMetrics} = useNetwork();
+  const { isLoading, data, error } = useQuery(['metrics', network.name], getMetrics, {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 

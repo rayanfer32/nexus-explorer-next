@@ -8,23 +8,17 @@ import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
 import { fetchMetrics } from 'utils/common/fetch';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Richlist() {
   const metricsRQ = useQuery('metrics', fetchMetrics);
 
   const totalSupply = metricsRQ?.data?.result?.supply?.total;
 
+  const {network, getRichlist} = useNetwork();
   const { isLoading, data, error } = useQuery(
-    'richlist',
-    async () => {
-      // * to consider the users who have moved their balance to trust
-      // * query for both trust and normal accounts
-      const page0 = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111`
-      );
-
-      return { data: [...page0.data.result] };
-    },
+    ['richlist', network.name],
+    getRichlist,
     {
       // refetchOnWindowFocus: false,
       // enable: false,
