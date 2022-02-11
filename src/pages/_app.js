@@ -1,5 +1,5 @@
 import Layout from 'components/Layout/Layout';
-import 'styles/globals.scss';
+import 'styles/globals.css';
 import { ContextWrapper } from 'contexts/AppContext';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
