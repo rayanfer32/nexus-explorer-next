@@ -7,7 +7,7 @@ export const StringsTypes = {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
   },
-  CHANNELS: { 0: 'Stake', 1: 'Prime (CPU)', 2: 'Hash (GPU)' },
+  CHANNELS: { 0: 'Stake', 1: 'Prime', 2: 'Hash' },
   SHIMMER: {
     DEFAULT: 'default',
     TEXT: 'small-card',
