@@ -158,6 +158,10 @@
   --card-shadow-border: 0 0 0.1rem 0.1rem inset hsla(0, 0%, 67%, 0.3);
 }
 
+.testnet-filter {
+  filter: hue-rotate(-30deg) contrast(0.98);
+}
+
 html,
 body {
   padding: 0;

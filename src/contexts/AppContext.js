@@ -8,7 +8,7 @@ export const AppContext = createContext();
  */
 const _state = {
   theme: 'dark',
-  network: NETWORKS.TESTNET,
+  network: NETWORKS.MAINNET,
 };
 
 export function ContextWrapper({ children }) {

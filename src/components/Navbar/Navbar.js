@@ -22,15 +22,17 @@ function Navbar() {
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
 
-  const {appContext, setAppContext} = useAppContext();
+  const { appContext, setAppContext } = useAppContext();
 
   const handleNetworkChange = (e) => {
     const val = e.target.value;
-    // if(val === appContext.network) 
+    // if(val === appContext.network)
     setAppContext('network', NETWORKS[val.toUpperCase()]);
-    console.log(appContext)
-    
-  }
+    document.body.classList.toggle(
+      'testnet-filter',
+      val == NETWORKS.TESTNET.name
+    );
+  };
 
 
   const DesktopNavItem = () => (
@@ -108,7 +110,11 @@ function Navbar() {
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
-          <SelectInput options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]} value={appContext.network.name} onChange={handleNetworkChange}/>
+          <SelectInput
+            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+            value={appContext.network.name}
+            onChange={handleNetworkChange}
+          />
           <DesktopNavItem />
           <MobileNavItem />
         </div>
