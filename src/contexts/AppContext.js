@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 export const AppContext = createContext();
 
@@ -7,6 +8,7 @@ export const AppContext = createContext();
  */
 const _state = {
   theme: 'dark',
+  network: NETWORKS.TESTNET,
 };
 
 export function ContextWrapper({ children }) {

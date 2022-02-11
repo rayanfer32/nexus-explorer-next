@@ -7,7 +7,6 @@ import axios from 'axios';
 import TYPES from 'types';
 import { useAppContext } from 'contexts/AppContext';
 import { useEffect } from 'react';
-
 import {
   fetchInfo,
   fetchMarket,
@@ -15,11 +14,14 @@ import {
   fetchMining,
 } from 'utils/common/fetch';
 
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
+
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
 
 export async function getStaticProps() {
-  console.log("Generating static props"); // export this function 
+
+  console.log('Generating static props'); // export this function
   const responses = await Promise.all([
     fetchMetrics(),
     fetchInfo(),
@@ -46,31 +48,26 @@ export async function getStaticProps() {
 export default function Home(props) {
   // all the data will be available in the respective queries
 
-  const metricsRQ = useQuery('metrics', fetchMetrics, {
+  // const { appContext, setAppContext } = useAppContext();
+  const {network, getMetrics, getInfo, getMining} = useNetwork();
+
+  const metricsRQ = useQuery(['metrics', network.name], getMetrics, {
     initialData: props.metrics,
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 
-  const infoRQ = useQuery(
-    'info',
-    () => {
-      return axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`
-      );
-    },
-    {
-      refetchIntervalS: TYPES.REFETCH_INTERVALS.INFO,
-    }
-  );
+  const infoRQ = useQuery(['info', network.name], getInfo, {
+    refetchInterval: TYPES.REFETCH_INTERVALS.INFO,
+  });
 
   const marketRQ = useQuery('market', fetchMarket, {
     initialData: props.market,
-    refetchIntervalS: TYPES.REFETCH_INTERVALS.MARKET,
+    refetchInterval: TYPES.REFETCH_INTERVALS.MARKET,
   });
 
-  const miningRQ = useQuery('mining', fetchMining, {
+  const miningRQ = useQuery(['mining', network.name], getMining, {
     initialData: props.mining,
-    refetchIntervalS: TYPES.REFETCH_INTERVALS.MINING,
+    refetchInterval: TYPES.REFETCH_INTERVALS.MINING,
   });
 
   return (

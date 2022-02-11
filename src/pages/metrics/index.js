@@ -8,6 +8,10 @@ import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 
 export default function Metrics() {
+
+  // fetchMetrics should be created from a custom hook which 
+  // updates along with the change of network in appContext
+
   const { isLoading, data, error } = useQuery('metrics', fetchMetrics, {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });

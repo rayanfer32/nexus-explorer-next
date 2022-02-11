@@ -164,6 +164,8 @@ body {
   margin: 0;
   font-family: Google Sans;
   background: var(--theme-bg-under) no-repeat;
+  /* * for testnet */
+  /* filter: hue-rotate(160deg); */
 }
 
 .themeText {
