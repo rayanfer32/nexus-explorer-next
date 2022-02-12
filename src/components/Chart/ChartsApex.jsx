@@ -15,9 +15,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 function ChartsApex() {
   const { sharedState } = useAppContext();
-
   const [isDarkMode] = useDarkMode();
-  let apexChartRef = useRef();
 
   // * fetch the blocks first and extract the total number of contracts inside the trasactions
   const [limit, setLimit] = useState(2 * 60);
@@ -193,22 +191,15 @@ function ChartsApex() {
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
   return (
-    <div>
-      {/* <input
-        type="number"
-        value={limit}
-        onChange={(e) => setLimit(e.target.value)}></input> */}
-      <Chart
-        className={styles.container}
-        ref={apexChartRef}
-        key={Math.random()}
-        options={chartState.options}
-        series={chartState.series}
-        height={190}
-        width={'100%'}
-        type="area"
-      />
-    </div>
+    <Chart
+      className={styles.container}
+      key={chartState.options.theme.mode}
+      options={chartState.options}
+      series={chartState.series}
+      height={190}
+      width={'100%'}
+      type="area"
+    />
   );
 }
 
