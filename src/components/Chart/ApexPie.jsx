@@ -55,7 +55,7 @@ function ApexPie(props) {
 
   return (
     <Chart
-      key={Math.random()}
+      key={options.theme.mode}
       options={options}
       series={series}
       type="donut"
