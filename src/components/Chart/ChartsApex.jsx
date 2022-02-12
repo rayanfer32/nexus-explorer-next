@@ -201,7 +201,7 @@ function ChartsApex() {
       <Chart
         className={styles.container}
         ref={apexChartRef}
-        key={Math.random()}
+        key={chartState.options.colors}
         options={chartState.options}
         series={chartState.series}
         height={190}

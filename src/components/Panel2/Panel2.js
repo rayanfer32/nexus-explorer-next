@@ -122,7 +122,7 @@ function Panel2(props) {
 
   return (
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
-      {network === NETWORKS.MAINNET && (
+      {network.name === NETWORKS.MAINNET.name && (
         <DetailCard
           type
           icon={<GiTwoCoins color="white" size="2.25rem" />}
