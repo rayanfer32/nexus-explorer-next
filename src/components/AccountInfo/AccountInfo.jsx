@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './AccountInfo.module.scss';
 import SmallCard from 'components/atoms/SmallCard';
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import Table from 'components/Table/Table';
 import Button from 'components/atoms/NE_Button';
@@ -9,25 +8,16 @@ import Loader from 'components/atoms/NE_Loader';
 import QRCode from 'react-qr-code';
 import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function AccountInfo({ data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
   const [tableData, setTableData] = useState([]);
 
+  const { network, getAccountTransactions } = useNetwork();
   const accountTransactionsRQ = useQuery(
-    'accountTransactions',
-    async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/account`,
-        {
-          params: {
-            address: data?.address,
-            limit: 100,
-          },
-        }
-      );
-      return res.data;
-    },
+    ['accountTransactions', network.name],
+    () => getAccountTransactions(data),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,

@@ -111,6 +111,33 @@ export function useNetwork() {
       `${url}/ledger/list/blocks?verbose=summary&page=${queryKey[1]}&limit=${queryKey[2]}`
     );
 
+  const getScanResults = async (endpoint, params) => {
+    const res = await axios.get(`${url}/${endpoint}`, {
+      params: params,
+    });
+    return res.data;
+  };
+
+  const getTrustTransactions = async (data) => {
+    const res = await axios.get(`${url}/finance/transactions/trust`, {
+      params: {
+        address: data?.address,
+        limit: 100,
+      },
+    });
+    return res.data;
+  };
+
+  const getAccountTransactions = async (data) => {
+    const res = await axios.get(`${url}/finance/transactions/account`, {
+      params: {
+        address: data?.address,
+        limit: 100,
+      },
+    });
+    return res.data;
+  };
+
   return {
     network: appContext.network,
     getMetrics,
@@ -124,5 +151,8 @@ export function useNetwork() {
     getTokens,
     getBlocks,
     getTransactions,
+    getScanResults,
+    getTrustTransactions,
+    getAccountTransactions,
   };
 }

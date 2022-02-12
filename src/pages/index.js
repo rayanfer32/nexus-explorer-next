@@ -3,10 +3,7 @@ import Panel1 from 'components/Panel1/Panel1';
 import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import TYPES from 'types';
-import { useAppContext } from 'contexts/AppContext';
-import { useEffect } from 'react';
 import {
   fetchInfo,
   fetchMarket,
@@ -20,7 +17,6 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 // * https://react-query.tanstack.com/guides/ssr
 
 export async function getStaticProps() {
-
   console.log('Generating static props'); // export this function
   const responses = await Promise.all([
     fetchMetrics(),
@@ -49,7 +45,7 @@ export default function Home(props) {
   // all the data will be available in the respective queries
 
   // const { appContext, setAppContext } = useAppContext();
-  const {network, getMetrics, getInfo, getMining} = useNetwork();
+  const { network, getMetrics, getInfo, getMining } = useNetwork();
 
   const metricsRQ = useQuery(['metrics', network.name], getMetrics, {
     initialData: props.metrics,

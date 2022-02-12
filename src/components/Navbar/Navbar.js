@@ -6,7 +6,7 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SelectInput from 'components/atoms/SelectInput/SelectInput';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
@@ -26,14 +26,16 @@ function Navbar() {
 
   const handleNetworkChange = (e) => {
     const val = e.target.value;
-    // if(val === appContext.network)
-    setAppContext('network', NETWORKS[val.toUpperCase()]);
-    document.body.classList.toggle(
-      'testnet-filter',
-      val == NETWORKS.TESTNET.name
-    );
+    const network = NETWORKS[val.toUpperCase()];
+    setAppContext('network', network);
   };
 
+  useEffect(() => {
+    document.body.classList.toggle(
+      'testnet-filter',
+      appContext.network.name == NETWORKS.TESTNET.name
+    );
+  }, [appContext.network]);
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>

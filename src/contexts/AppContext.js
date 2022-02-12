@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { useLocalStorage } from 'hooks';
+import { createContext, useContext } from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
 
 export const AppContext = createContext();
@@ -12,8 +13,8 @@ const _state = {
 };
 
 export function ContextWrapper({ children }) {
-  // not required imo
-  const [sharedState, setSharedState] = useState(_state);
+  // sync the context with localStorage
+  const [sharedState, setSharedState] = useLocalStorage("context", _state);
 
   /**
    * setState
