@@ -17,20 +17,6 @@ export default function Blocks(props) {
   const [pageCount, setPageCount] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
 
-  const [mainnetPage, setMainnetPage] = useState({
-    pageSize: 10,
-    pageIndex: 0,
-    pageCount: 1,
-    totalRows: 0,
-  });
-
-  const [testnetPage, setTestnetPage] = useState({
-    pageSize: 10,
-    pageIndex: 0,
-    pageCount: 1,
-    totalRows: 0,
-  });
-
   const columns = [
     {
       Header: 'Block',
@@ -69,17 +55,21 @@ export default function Blocks(props) {
   );
 
   useEffect(() => {
+    // reset all pagination props on network change
+    setPageSize(10);
+    setPageIndex(0);
+    setPageCount(1);
+    setTotalRows(0);
+  }, [network]);
+
+  useEffect(() => {
     if (data) {
       let height = data[0].height;
-      if (network == NETWORKS.MAINNET) {
-        if (height > totalRows) {
-          setTotalRows(height);
-        }
-      } else if (network == NETWORKS.TESTNET) {
-        setTotalRows(height); // temp fix , need to get the total rows from the testnet
+      if (height > totalRows) {
+        setTotalRows(height);
       }
     }
-  }, [data, pageSize, network]);
+  }, [data, pageSize]);
 
   useEffect(() => {
     setPageCount(totalPages(totalRows, pageSize));
@@ -128,16 +118,3 @@ export default function Blocks(props) {
     );
   }
 }
-
-// export async function getServerSideProps() {
-//   const resp = await fetch(
-//     `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-//   );
-//   const data = await resp.json();
-
-//   return {
-//     props: {
-//       data: data.result,
-//     },
-//   };
-// }

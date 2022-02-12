@@ -19,7 +19,7 @@ export default function Transactions(props) {
   const [totalRows, setTotalRows] = useState(0);
   const [rows, setRows] = useState([]);
 
-  const {network, getTransactions} = useNetwork();
+  const { network, getTransactions } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['transactions', pageIndex, pageSize, network.name],
     getTransactions
@@ -36,6 +36,14 @@ export default function Transactions(props) {
       setRows(_rows);
     }
   }, [data]);
+
+  useEffect(() => {
+    // reset all pagination props on network change
+    setPageSize(10);
+    setPageIndex(0);
+    setPageCount(1);
+    setTotalRows(0);
+  }, [network]);
 
   useEffect(() => {
     if (data) {
