@@ -19,6 +19,7 @@ import {
 // * https://react-query.tanstack.com/guides/ssr
 
 export async function getStaticProps() {
+  console.log("Generating static props"); // export this function 
   const responses = await Promise.all([
     fetchMetrics(),
     fetchInfo(),

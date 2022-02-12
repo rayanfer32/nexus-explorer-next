@@ -8,7 +8,7 @@
   margin-bottom: 0.25rem;
   display: flex;
   overflow: hidden;
-  animation: slideIn 1.5s ease;
+  animation: fadeIn 1.5s ease-in; // in future use animation from globals.scss
 }
 
 .rttrow .rttrowName {
@@ -129,18 +129,17 @@
 }
 
 /* animations */
-@keyframes slideIn {
+
+@keyframes fadeIn {
   0% {
-    transform: translateX(-20%);
     opacity: 0%;
-    color: rgb(58, 119, 231);
   }
   70% {
-    transform: translateX(0rem);
-    opacity: 100%;
-    color: blue;
+    transform: translateX(0px);
+    opacity: 70%;
   }
   100% {
-    color: black;
+    transform: translateX(0px);
+    opacity: 100%;
   }
 }

@@ -4,14 +4,25 @@ import { useQuery } from 'react-query';
 import TYPES from 'types';
 import SmallCard from 'components/atoms/SmallCard';
 import styles from './styles.module.scss';
-import { toTitleCase } from 'utils/converter';
+import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 
 export default function Metrics() {
-
   const { isLoading, data, error } = useQuery('metrics', fetchMetrics, {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
+
+  const SmallCards = ({object}) => {
+    return Object.entries(object).map(([k, v]) => (
+      <SmallCard
+        key={k}
+        label={toTitleCase(k)}
+        // sublabel="Annual"
+        text={intlNum(v.toFixed(2))}
+        ticker=""
+      />
+    ));
+  };
 
   if (isLoading) {
     return (
@@ -26,17 +37,46 @@ export default function Metrics() {
       </div>
     );
   }
+
+  if (error) {
+    <div> Error </div>;
+  }
+
   return (
-  <div className={styles.container}>
-      {Object.entries(data.data.result.registers).map(([k, v]) => (
-        <SmallCard
-          key={k}
-          label={toTitleCase(k)}
-          // sublabel="Annual"
-          text={v}
-          ticker=""
-        />
-      ))}
+    <div className={styles.container}>
+      <h3>Registers</h3>
+      <div className={styles.cardGroup}>
+      <SmallCard label="Signature Chains" text={data.data.result.sig_chains} />
+        <SmallCards object={data.data.result.registers} />
+      </div>
+
+      <h3>Reserves</h3>
+      <div className={styles.cardGroup}>
+      <SmallCards object={data.data.result.reserves} />
+      </div>
+
+      <h3>Supply</h3>
+      <div className={styles.cardGroup}>
+      <SmallCards object={data.data.result.supply} />
+      </div>
+
+      <h3>Trust</h3>
+      <div className={styles.cardGroup}>
+      <SmallCards object={data.data.result.trust} />
+      </div>
+
+
     </div>
   );
 }
+
+// {
+//   Object.entries(value).map(([k, v]) => (
+//    <SmallCard
+//      key={k}
+//      label={toTitleCase(k)}
+//      // sublabel="Annual"
+//      text={v}
+//      ticker=""
+//    />
+//  ))}
