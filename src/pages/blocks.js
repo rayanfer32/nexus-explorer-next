@@ -7,12 +7,29 @@ import { useState } from 'react';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import { useEffect } from 'react';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 export default function Blocks(props) {
+  // wrap these states in the specific network's state
   const [pageSize, setPageSize] = useState(10);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
+
+  const [mainnetPage, setMainnetPage] = useState({
+    pageSize: 10,
+    pageIndex: 0,
+    pageCount: 1,
+    totalRows: 0,
+  });
+
+  const [testnetPage, setTestnetPage] = useState({
+    pageSize: 10,
+    pageIndex: 0,
+    pageCount: 1,
+    totalRows: 0,
+  });
 
   const columns = [
     {
@@ -45,28 +62,28 @@ export default function Blocks(props) {
     },
   ];
 
+  const { network, getBlocks } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['blocks', pageSize, pageIndex],
-    async ({ queryKey }) => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${queryKey[1]}&page=${queryKey[2]}`
-      );
-      return res.data.result;
-    }
+    ['blocks', pageSize, pageIndex, network.name],
+    getBlocks
   );
 
   useEffect(() => {
     if (data) {
       let height = data[0].height;
-      if (height > totalRows) {
-        setTotalRows(height);
+      if (network == NETWORKS.MAINNET) {
+        if (height > totalRows) {
+          setTotalRows(height);
+        }
+      } else if (network == NETWORKS.TESTNET) {
+        setTotalRows(height); // temp fix , need to get the total rows from the testnet
       }
     }
-  }, [data, pageSize]);
+  }, [data, pageSize, network]);
 
   useEffect(() => {
     setPageCount(totalPages(totalRows, pageSize));
-  }, [totalRows, pageSize]);
+  }, [totalRows, pageSize, network]);
 
   if (isLoading)
     return (

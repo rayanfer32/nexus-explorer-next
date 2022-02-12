@@ -1,17 +1,21 @@
 import axios from 'axios';
 
-export function fetchMetrics() {
+export function fetchMetrics(url) {
   return axios.get(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
+    `${url || process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
   );
 }
 
-export function fetchInfo() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`);
+export function fetchInfo(url) {
+  return axios.get(
+    `${url || process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`
+  );
 }
 
-export function fetchMining() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`);
+export function fetchMining(url) {
+  return axios.get(
+    `${url || process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`
+  );
 }
 
 export function fetchMarket() {

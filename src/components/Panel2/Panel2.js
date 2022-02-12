@@ -11,14 +11,18 @@ import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
 import { MdSpeed } from 'react-icons/md';
 import { StringsTypes } from 'types/StringsTypes';
-import { ConstantsTypes } from 'types/ConstantsTypes';
+import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 function Panel2(props) {
+  const { network } = useNetwork();
   const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
 
   const [state, setState] = useState({});
 
-  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(ConstantsTypes.REFETCH_INTERVALS.MINING /  1000);
+  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(
+    ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
+  );
 
   // * initialize state when RQ has data
   useEffect(() => {
@@ -118,20 +122,22 @@ function Panel2(props) {
 
   return (
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
-      <DetailCard
-        type
-        icon={<GiTwoCoins color="white" size="2.25rem" />}
-        label="Price"
-        sublabel={`${state.price?.sublabel} BTC`}
-        text={`${state.price?.text} $`}
-        reserveLabel="Change 24h"
-        reserve={`${state.price?.reserve} %`}
-        rewardLabel="Total Volume"
-        reward={`${intlNum(state.price?.reward)} $`}
-        footerLabel="Market Cap:"
-        footerValue={`${intlNum(state.price?.footer)} $`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
+      {network === NETWORKS.MAINNET && (
+        <DetailCard
+          type
+          icon={<GiTwoCoins color="white" size="2.25rem" />}
+          label="Price"
+          sublabel={`${state.price?.sublabel} BTC`}
+          text={`${state.price?.text} $`}
+          reserveLabel="Change 24h"
+          reserve={`${state.price?.reserve} %`}
+          rewardLabel="Total Volume"
+          reward={`${intlNum(state.price?.reward)} $`}
+          footerLabel="Market Cap:"
+          footerValue={`${intlNum(state.price?.footer)} $`}
+          delayTime={`${cardRefreshTimeout}s`}
+        />
+      )}
       <DetailCard
         type
         icon={<AiFillBank color="white" size="2.25rem" />}

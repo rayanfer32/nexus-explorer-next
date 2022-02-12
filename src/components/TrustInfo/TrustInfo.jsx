@@ -2,32 +2,21 @@ import React, { useEffect, useState } from 'react';
 import SmallCard from 'components/atoms/SmallCard';
 import styles from '../AccountInfo/AccountInfo.module.scss';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import Loader from 'components/atoms/NE_Loader';
 import Button from 'components/atoms/NE_Button';
 import Table from 'components/Table/Table';
 import { middleElipsis } from 'utils/converter';
 import QRCode from 'react-qr-code';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function TrustInfo({ data }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [tableData, setTableData] = useState([]);
 
+  const { network, getTrustTransactions } = useNetwork();
   const trustTransactionsRQ = useQuery(
-    'trustTransactions',
-    async () => {
-      console.log('running trust transactions query');
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/trust`,
-        {
-          params: {
-            address: data?.address,
-            limit: 100,
-          },
-        }
-      );
-      return res.data;
-    },
+    ['trustTransactions', network.name],
+    () => getTrustTransactions(data),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,

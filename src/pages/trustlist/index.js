@@ -5,27 +5,13 @@ import styles from './trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Trustlist() {
+  const { network, getTrustlist } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    'trustlist',
-    async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust`,
-        {
-          params: {
-            // limit: 100,
-            sort: 'trust',
-            order: 'desc',
-          },
-        }
-      );
-      return res.data;
-    },
-    {
-      // refetchOnWindowFocus: false,
-      // enable: false,
-    }
+    ['trustlist', network.name],
+    getTrustlist
   );
 
   const columns = [

@@ -3,25 +3,14 @@ import CopyText from 'components/atoms/CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function GlobalNames() {
-  const { isLoading, data, error } = useQuery('global_namespaces', async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/names`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          where: 'object.namespace=*GLOBAL*',
-          limit: 100,
-          page: 0,
-        }),
-      }
-    );
-    return res.json();
-  });
+  const { network, getGlobalNames } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['global_namespaces', network.name],
+    getGlobalNames
+  );
 
   const columns = [
     {
@@ -31,7 +20,7 @@ export default function GlobalNames() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} ellipsisAfter={15}/>,
+      Cell: ({ value }) => <CopyText value={value} ellipsisAfter={15} />,
     },
     {
       Header: 'Name',

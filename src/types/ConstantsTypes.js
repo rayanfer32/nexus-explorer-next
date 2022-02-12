@@ -14,3 +14,11 @@ export const ConstantsTypes = {
     VALUE: MAX_SUPPLY,
   },
 };
+
+export const NETWORKS = {
+  MAINNET: { name: 'Mainnet', url: process.env.NEXT_PUBLIC_NEXUS_BASE_URL },
+  TESTNET: {
+    name: 'Testnet',
+    url: process.env.NEXT_PUBLIC_TESTNET_BASE_URL,
+  },
+};

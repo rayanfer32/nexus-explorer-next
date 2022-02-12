@@ -6,7 +6,10 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SelectInput from 'components/atoms/SelectInput/SelectInput';
+import { NETWORKS } from 'types/ConstantsTypes';
+import { useAppContext } from 'contexts/AppContext';
 
 /**
  * Header component for the website
@@ -18,6 +21,21 @@ function Navbar() {
   const onClickBrand = () => router.push('/');
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
+
+  const { appContext, setAppContext } = useAppContext();
+
+  const handleNetworkChange = (e) => {
+    const val = e.target.value;
+    const network = NETWORKS[val.toUpperCase()];
+    setAppContext('network', network);
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle(
+      'testnet-filter',
+      appContext.network.name == NETWORKS.TESTNET.name
+    );
+  }, [appContext.network]);
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
@@ -94,6 +112,11 @@ function Navbar() {
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
+          <SelectInput
+            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+            value={appContext.network.name}
+            onChange={handleNetworkChange}
+          />
           <DesktopNavItem />
           <MobileNavItem />
         </div>

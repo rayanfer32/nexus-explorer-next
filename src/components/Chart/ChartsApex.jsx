@@ -11,6 +11,7 @@ import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 import { useQuery } from 'react-query';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 function ChartsApex() {
   const { sharedState } = useAppContext();
@@ -21,12 +22,11 @@ function ChartsApex() {
   // * fetch the blocks first and extract the total number of contracts inside the trasactions
   const [limit, setLimit] = useState(2 * 60);
 
-  const { isLoading, data, error } = useQuery(['blocks', limit], async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${limit}&verbose=summary`
-    );
-    return res.json();
-  });
+  const { network, getRecentBlocks } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['charting', limit, network.name],
+    () => getRecentBlocks(limit)
+  );
 
   let [chartState, setChartState] = useState({
     options: {
@@ -145,7 +145,7 @@ function ChartsApex() {
     if (data) {
       let _dateStamps = [];
       let _contracts = [];
-      data.result.map((block) => {
+      data.map((block) => {
         _dateStamps.push(block.date);
         let _contractsLengths = block.tx.map((tx) => {
           return tx?.contracts?.length || tx?.inputs?.length;
