@@ -3,25 +3,14 @@ import CopyText from 'components/atoms/CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function GlobalNames() {
-  const { isLoading, data, error } = useQuery('global_namespaces', async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/names`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          where: 'object.namespace=*GLOBAL*',
-          limit: 100,
-          page: 0,
-        }),
-      }
-    );
-    return res.json();
-  });
+  const { network, getGlobalNames } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['global_namespaces', network.name],
+    getGlobalNames
+  );
 
   const columns = [
     {
@@ -29,18 +18,13 @@ export default function GlobalNames() {
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
     {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => <CopyText value={value} ellipsisAfter={15} />,
     },
     {
-      Header: 'Owner',
-      accessor: 'owner',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Header: 'Name',
+      accessor: 'name',
     },
     {
       Header: 'Created',

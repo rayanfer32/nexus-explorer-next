@@ -14,7 +14,7 @@ function ApexPie(props) {
         background: 'rgba(0, 0, 0, 0)',
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       labels: props.labels || [],
       responsive: [
@@ -44,7 +44,7 @@ function ApexPie(props) {
   // * updates the chart when dark mode changes
   function updateChart() {
     let newOptions = { ...options };
-    newOptions.theme.mode = isDarkMode ? TYPES.theme.dark : TYPES.theme.light;
+    newOptions.theme.mode = isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT;
     setOptions(newOptions);
   }
 
@@ -55,7 +55,7 @@ function ApexPie(props) {
 
   return (
     <Chart
-      key={Math.random()}
+      key={options.theme.mode}
       options={options}
       series={series}
       type="donut"

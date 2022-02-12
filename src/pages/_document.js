@@ -13,9 +13,9 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.json"/>
           <link rel="icon" href="/nexus-nxs-logo.svg" />
-          <meta name="theme-color" content={TYPES.colors.oceanBlue} />
+          <meta name="theme-color" content={TYPES.COLORS.OCEAN_BLUE} />
         </Head>
-        <body className={TYPES.theme.light}>
+        <body className={TYPES.THEME.LIGHT}>
           <Main />
           <div id="__portal" />
           <NextScript />

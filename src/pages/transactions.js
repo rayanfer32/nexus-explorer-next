@@ -8,6 +8,7 @@ import { BiCopy } from 'react-icons/bi';
 import { handleCopy, totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Transactions(props) {
   // const { data } = props;
@@ -18,12 +19,10 @@ export default function Transactions(props) {
   const [totalRows, setTotalRows] = useState(0);
   const [rows, setRows] = useState([]);
 
+  const { network, getTransactions } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['transactions', pageIndex, pageSize],
-    ({ queryKey }) =>
-      axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&page=${queryKey[1]}&limit=${queryKey[2]}`
-      )
+    ['transactions', pageIndex, pageSize, network.name],
+    getTransactions
   );
 
   // prepare rows when data gets fetched
@@ -37,6 +36,14 @@ export default function Transactions(props) {
       setRows(_rows);
     }
   }, [data]);
+
+  useEffect(() => {
+    // reset all pagination props on network change
+    setPageSize(10);
+    setPageIndex(0);
+    setPageCount(1);
+    setTotalRows(0);
+  }, [network]);
 
   useEffect(() => {
     if (data) {
@@ -57,7 +64,11 @@ export default function Transactions(props) {
       Header: 'Transaction ID',
       accessor: 'txid',
       Cell: (props) => (
-        <CopyText value={props.value} link={`/scan/${props.value}`} ellipsisAfter={20} />
+        <CopyText
+          value={props.value}
+          link={`/scan/${props.value}`}
+          ellipsisAfter={20}
+        />
       ),
     },
     {

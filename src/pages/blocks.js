@@ -7,8 +7,11 @@ import { useState } from 'react';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import { useEffect } from 'react';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 export default function Blocks(props) {
+  // wrap these states in the specific network's state
   const [pageSize, setPageSize] = useState(10);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(1);
@@ -33,27 +36,31 @@ export default function Blocks(props) {
     {
       Header: 'TXNs',
       accessor: 'tx',
-      Cell: ({value}) => value.length,
+      Cell: ({ value }) => value.length,
     },
     {
       Header: 'Channel',
       accessor: 'channel',
       key: 'channel',
       Cell: (props) => {
-        return TYPES.channels[props.value];
+        return TYPES.CHANNELS[props.value];
       },
     },
   ];
 
+  const { network, getBlocks } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['blocks', pageSize, pageIndex],
-    async ({ queryKey }) => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${queryKey[1]}&page=${queryKey[2]}`
-      );
-      return res.data.result;
-    }
+    ['blocks', pageSize, pageIndex, network.name],
+    getBlocks
   );
+
+  useEffect(() => {
+    // reset all pagination props on network change
+    setPageSize(10);
+    setPageIndex(0);
+    setPageCount(1);
+    setTotalRows(0);
+  }, [network]);
 
   useEffect(() => {
     if (data) {
@@ -66,7 +73,7 @@ export default function Blocks(props) {
 
   useEffect(() => {
     setPageCount(totalPages(totalRows, pageSize));
-  }, [totalRows, pageSize]);
+  }, [totalRows, pageSize, network]);
 
   if (isLoading)
     return (
@@ -111,16 +118,3 @@ export default function Blocks(props) {
     );
   }
 }
-
-// export async function getServerSideProps() {
-//   const resp = await fetch(
-//     `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=50`
-//   );
-//   const data = await resp.json();
-
-//   return {
-//     props: {
-//       data: data.result,
-//     },
-//   };
-// }

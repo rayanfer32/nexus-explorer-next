@@ -3,25 +3,22 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from './richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
-import { intlNum, middleElipsis } from 'utils/converter';
+import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
-import { MAX_SUPPLY } from 'types/constants';
+import TYPES from 'types';
 import CopyText from 'components/atoms/CopyText/CopyText';
+import { fetchMetrics } from 'utils/common/fetch';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Richlist() {
+  const metricsRQ = useQuery('metrics', fetchMetrics);
+
+  const totalSupply = metricsRQ?.data?.result?.supply?.total;
+
+  const {network, getRichlist} = useNetwork();
   const { isLoading, data, error } = useQuery(
-    'richlist',
-    async () => {
-      // * to consider the users who have moved their balance to trust
-      // * combine the result of the two queries
-      // {{NEXUSTPP}}/register/list/trust?where=object.token=0 AND object.trust>10000
-
-      const page0 = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111`
-      );
-
-      return { data: [...page0.data.result] };
-    },
+    ['richlist', network.name],
+    getRichlist,
     {
       // refetchOnWindowFocus: false,
       // enable: false,
@@ -34,24 +31,24 @@ export default function Richlist() {
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
     {
-      Header: 'Owner',
-      accessor: 'owner',
-      Cell: (props) => <CopyText value={props.value}/>,
+      Header: 'Address',
+      accessor: 'address',
+      Cell: ({ value }) => (value ? <CopyText value={value} /> : '-'),
     },
     {
       Header: 'Balance',
       accessor: 'total',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value.toFixed(2)) + ' NXS' : '-'),
     },
     {
       Header: 'Trust',
       accessor: 'trust',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value) + '' : '-'),
     },
     {
       Header: 'Stake Rate',
       accessor: 'rate',
-      Cell: ({ value }) => (value ? intlNum(value) + ' NXS' : '-'),
+      Cell: ({ value }) => (value ? intlNum(value.toFixed(2)) + '' : '-'),
     },
   ];
 
@@ -83,13 +80,14 @@ export default function Richlist() {
     const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
     const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
 
+    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
     const pieData = [
       sumTop1,
       sumTop10,
       sumTop100,
-      MAX_SUPPLY - (sumTop100 + sumTop10 + sumTop1),
+      (totalSupply || TYPES.MAX_SUPPLY.VALUE) -
+        (sumTop100 + sumTop10 + sumTop1),
     ];
-    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 
     return (
       <div className={styles.page} style={{ marginBottom: '1rem' }}>

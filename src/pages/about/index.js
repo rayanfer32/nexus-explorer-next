@@ -12,7 +12,7 @@ const About = () => {
   } = useAppContext();
 
   let ThemedVscLogo = () => {
-    return theme == TYPES.theme.dark ? (
+    return theme == TYPES.THEME.DARK ? (
       <VscGithub
         style={{
           color: 'white',
@@ -47,17 +47,10 @@ const About = () => {
           contributions and suggestions please feel free to reach out to us on
           our github page.
         </p>
-        <a
-          className={styles.link}
-          href={TYPES.footerItems.repoUrl.href}
-          target={TYPES.footerItems.repoUrl.target}>
-          {' '}
-          <ThemedVscLogo /> {TYPES.footerItems.repoUrl.label}{' '}
-        </a>
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
-            {ObjectToArray(TYPES.links.github).map((ele) => (
+            {ObjectToArray(TYPES.LINKS.github).map((ele) => (
               <span key={ele.id} className={styles.links}>
                 <a href={ele.url} target={ele.target} className={styles.link}>
                   <ThemedVscLogo />

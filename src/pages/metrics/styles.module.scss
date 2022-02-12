@@ -1,0 +1,27 @@
+// desktop
+.container {
+  
+  padding: 1rem 1rem;
+  overflow: auto;
+  color: var(--theme-page-text);
+}
+
+.cardGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+// tablet
+@media screen and (max-width: 992px) {
+  .cardGroup {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+  .cardGroup {
+    grid-template-columns: 1fr 1fr;
+  }
+}

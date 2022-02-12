@@ -4,7 +4,7 @@ import DotLoader from './DotLoader';
 import PropTypes from 'prop-types';
 
 export default function Loader({ type, ...props }) {
-  if (type === TYPES.loaderType.dot) return <DotLoader {...props} />;
+  if (type === TYPES.LOADER.DOT) return <DotLoader {...props} />;
   return <CircleLoader {...props} />;
 }
 
@@ -15,7 +15,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  type: TYPES.loaderType.circle,
+  type: TYPES.LOADER.CIRCLE,
   size: '3rem',
-  color: TYPES.colors.nexusBlue,
+  color: TYPES.COLORS.NEXUS_BLUE,
 };

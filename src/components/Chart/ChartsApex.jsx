@@ -11,22 +11,20 @@ import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 import { useQuery } from 'react-query';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 function ChartsApex() {
   const { sharedState } = useAppContext();
-
   const [isDarkMode] = useDarkMode();
-  let apexChartRef = useRef();
 
   // * fetch the blocks first and extract the total number of contracts inside the trasactions
   const [limit, setLimit] = useState(2 * 60);
 
-  const { isLoading, data, error } = useQuery(['blocks', limit], async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${limit}&verbose=summary`
-    );
-    return res.json();
-  });
+  const { network, getRecentBlocks } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['charting', limit, network.name],
+    () => getRecentBlocks(limit)
+  );
 
   let [chartState, setChartState] = useState({
     options: {
@@ -53,7 +51,7 @@ function ChartsApex() {
                 title: '2H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                 setLimit(2 * 60)
+                  setLimit(2 * 60);
                 },
               },
               {
@@ -62,7 +60,7 @@ function ChartsApex() {
                 title: '6H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(6 * 60)
+                  setLimit(6 * 60);
                 },
               },
               {
@@ -71,7 +69,7 @@ function ChartsApex() {
                 title: '12H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(12 * 60)
+                  setLimit(12 * 60);
                 },
               },
               {
@@ -80,7 +78,7 @@ function ChartsApex() {
                 title: '24H',
                 class: 'custom-icon',
                 click: (chart, options, e) => {
-                  setLimit(24 * 60)
+                  setLimit(24 * 60);
                 },
               },
             ],
@@ -88,20 +86,20 @@ function ChartsApex() {
         },
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       fill: {
         type: 'gradient',
         gradient: {
           gradientToColors: isDarkMode
-            ? [TYPES.colors.skyBlue]
-            : [TYPES.colors.nexusBlue],
+            ? [TYPES.COLORS.SKY_BLUE]
+            : [TYPES.COLORS.NEXUS_BLUE],
         },
         opacityFrom: 0.7,
         opacityTo: 0.3,
         stops: [0, 90, 100],
       },
-      colors: isDarkMode ? [TYPES.colors.skyBlue] : [TYPES.colors.nexusBlue],
+      colors: isDarkMode ? [TYPES.COLORS.SKY_BLUE] : [TYPES.COLORS.NEXUS_BLUE],
       grid: {
         show: false,
       },
@@ -145,7 +143,7 @@ function ChartsApex() {
     if (data) {
       let _dateStamps = [];
       let _contracts = [];
-      data.result.map((block) => {
+      data.map((block) => {
         _dateStamps.push(block.date);
         let _contractsLengths = block.tx.map((tx) => {
           return tx?.contracts?.length || tx?.inputs?.length;
@@ -172,18 +170,18 @@ function ChartsApex() {
   // check appcontext update
   useEffect(() => {
     // get dark mode state
-    const isDark = sharedState.theme === TYPES.theme.dark;
+    const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
       prev.options.theme.mode = sharedState.theme;
       // update colors property of the chart
       prev.options.colors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       // update fill color of the chart
       prev.options.fill.gradient.gradientToColors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       return { ...prev };
     });
   }, [sharedState.theme]);
@@ -193,22 +191,15 @@ function ChartsApex() {
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
   return (
-    <div>
-      {/* <input
-        type="number"
-        value={limit}
-        onChange={(e) => setLimit(e.target.value)}></input> */}
-      <Chart
-        className={styles.container}
-        ref={apexChartRef}
-        key={Math.random()}
-        options={chartState.options}
-        series={chartState.series}
-        height={190}
-        width={'100%'}
-        type="area"
-      />
-    </div>
+    <Chart
+      className={styles.container}
+      key={chartState.options.theme.mode}
+      options={chartState.options}
+      series={chartState.series}
+      height={190}
+      width={'100%'}
+      type="area"
+    />
   );
 }
 
