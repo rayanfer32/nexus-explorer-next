@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import styles from './Panel3.module.css';
 import { useEffect, useState } from 'react';
@@ -7,7 +6,7 @@ import RTTRow from 'components/atoms/RTTable/RTTRow';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
@@ -42,17 +41,10 @@ function Panel3({ blocks }) {
         link={`/scan/${newRowData.height}`}
       />
     );
-    setTableBlockRowElements((tableBlockRowElements) => [
-      newRow,
-      ...tableBlockRowElements.slice(0, MAX_ROWS - 1),
-    ]);
+    setTableBlockRowElements((prev) => [newRow, ...prev].slice(0, MAX_ROWS));
   }
 
-  function addNewTxRow(newRowData) {
-    //console.log('adding txn ');
-    //console.log(newRowData);
-    // FIXME: When new block is fetched in 30s we lose a block sometimes , bcz the latestBlock fetches only the topmost block
-
+  function addNewTxRows(newRowData) {
     // TODO:
     // DONE: (Main logic ) Iterate over the txns and inside the txn iterate over the contracts
     // Ignore the txs with type=tritium base ( currently not ignored, for filling up the table.)
@@ -82,10 +74,7 @@ function Panel3({ blocks }) {
         }
       }
 
-      setTableTxRowElements((prev) => [
-        newRows,
-        ...prev.slice(0, MAX_ROWS - 1),
-      ]);
+      setTableTxRowElements((prev) => [newRows, ...prev].slice(0, MAX_ROWS));
     } catch (err) {
       console.error(err);
     }
@@ -96,14 +85,7 @@ function Panel3({ blocks }) {
     if (data) {
       data.reverse().map((block) => {
         addNewBlockRow(block);
-        addNewTxRow(block.tx);
-        block.tx.forEach((txn) => {
-          // addNewContractRow(txn);
-          if (txn.type === 'tritium base') {
-            //console.log('tritium base txn');
-          }
-          // else if()
-        });
+        addNewTxRows(block.tx);
       });
     }
   }, [data]);

@@ -25,7 +25,7 @@ function ChartsApex({ initialData }) {
     ['charting', limit, network.name],
     () => getRecentBlocks(limit),
     {
-      initialData: initialData,
+      initialData: limit <= 120 ? initialData : undefined,
     }
   );
 
