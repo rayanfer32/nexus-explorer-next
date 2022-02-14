@@ -11,25 +11,25 @@ import { useQuery, useQueryClient } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
-function Panel3() {
+function Panel3({ blocks }) {
   const router = useRouter();
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
   const BLOCK_SPEED = 30 * 1000; // in seconds
   const MAX_ROWS = 6;
-  const {network, getRecentBlocks} = useNetwork();
+  const { network, getRecentBlocks } = useNetwork();
 
   // * fetch latest blocks
   const { isLoading, data } = useQuery(
     ['blocks', network.name],
     () => getRecentBlocks(MAX_ROWS),
     {
+      initialData: blocks,
       refetchInterval: BLOCK_SPEED,
     }
   );
 
   function addNewBlockRow(newRowData) {
-  
     const newRow = (
       <RTTRowBlock
         key={newRowData.height}
@@ -82,15 +82,14 @@ function Panel3() {
         }
       }
 
-      setTableTxRowElements((tableBlockRowElements) => {
-        const rowUpdate = [...newRows, ...tableBlockRowElements];
-        return rowUpdate.slice(0, MAX_ROWS);
-      });
+      setTableTxRowElements((prev) => [
+        newRows,
+        ...prev.slice(0, MAX_ROWS - 1),
+      ]);
     } catch (err) {
-      // console.error(err);
+      console.error(err);
     }
   }
-
 
   // * load data to the table
   useEffect(() => {

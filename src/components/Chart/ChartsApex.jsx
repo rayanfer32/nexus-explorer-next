@@ -13,7 +13,7 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
-function ChartsApex() {
+function ChartsApex({ initialData }) {
   const { sharedState } = useAppContext();
   const [isDarkMode] = useDarkMode();
 
@@ -23,7 +23,10 @@ function ChartsApex() {
   const { network, getRecentBlocks } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['charting', limit, network.name],
-    () => getRecentBlocks(limit)
+    () => getRecentBlocks(limit),
+    {
+      initialData: initialData,
+    }
   );
 
   let [chartState, setChartState] = useState({
