@@ -101,6 +101,8 @@ function Panel2(props) {
     const interval = setInterval(() => {
       setCardRefreshTimeout((prev) => prev - 1);
     }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
