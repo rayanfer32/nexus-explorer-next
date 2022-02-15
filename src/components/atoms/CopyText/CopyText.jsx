@@ -32,21 +32,25 @@ export default function CopyText({ value, ellipsisAfter, link }) {
 
   return (
     <>
-      <span>
-        <a href={link} data-copy={value}>
-          {value &&
-            `${
-              value.toString().length > 12
-                ? middleElipsis(value, ellipsisAfter || 12)
-                : value
-            }`}
-        </a>
-        {!indicator ? (
-          <BiCopy onClick={handleCopyClick} />
-        ) : (
-          <BiCheck color="#28a745" />
-        )}
-      </span>
+      <div style={{ display: 'flex' }}>
+        <span>
+          <a href={link} data-copy={value}>
+            {value &&
+              `${
+                value.toString().length > 12
+                  ? middleElipsis(value, ellipsisAfter || 12)
+                  : value
+              }`}
+          </a>
+        </span>
+        <span>
+          {!indicator ? (
+            <BiCopy onClick={handleCopyClick} />
+          ) : (
+            <BiCheck color="#28a745" />
+          )}
+        </span>
+      </div>
       <Toast toastList={toastList} />
     </>
   );
