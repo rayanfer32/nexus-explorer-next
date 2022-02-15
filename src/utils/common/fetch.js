@@ -21,3 +21,10 @@ export function fetchMining(url) {
 export function fetchMarket() {
   return axios.get(`${process.env.NEXT_PUBLIC_COINGECKO_BASE_URL}/coins/nexus`);
 }
+
+export async function fetchRecentBlocks(MAX_ROWS = 6) {
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
+  );
+  return res.data.result;
+}
