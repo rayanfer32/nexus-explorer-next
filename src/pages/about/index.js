@@ -2,9 +2,9 @@ import Image from 'next/image';
 import styles from './about.module.scss';
 import ASSESTS from 'assets';
 import TYPES from 'types';
-import { ObjectToArray } from 'utils/helper';
 import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
+import { useQuery } from 'react-query';
 
 const About = () => {
   const {
@@ -26,6 +26,13 @@ const About = () => {
       />
     );
   };
+
+  const { data } = useQuery('contributors', async () => {
+    const res = await fetch(
+      'https://api.github.com/repos/rayanfer32/nexus-explorer-next/stats/contributors'
+    );
+    return res.json();
+  });
 
   return (
     <main className={styles.main}>
@@ -50,11 +57,15 @@ const About = () => {
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
-            {ObjectToArray(TYPES.LINKS.github).map((ele) => (
-              <span key={ele.id} className={styles.links}>
-                <a href={ele.url} target={ele.target} className={styles.link}>
+            {data?.map((item) => (
+              <span key={item.author.login} className={styles.links}>
+                <a
+                  href={item.author.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.link}>
                   <ThemedVscLogo />
-                  {ele.label}
+                  {item.author.login}
                 </a>
               </span>
             ))}

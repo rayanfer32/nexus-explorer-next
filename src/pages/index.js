@@ -9,6 +9,7 @@ import {
   fetchMarket,
   fetchMetrics,
   fetchMining,
+  fetchRecentBlocks,
 } from 'utils/common/fetch';
 
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
@@ -23,11 +24,13 @@ export async function getStaticProps() {
     fetchInfo(),
     fetchMining(),
     fetchMarket(),
+    fetchRecentBlocks(2 * 60),
   ]);
   const metrics = responses[0];
   const info = responses[1];
   const mining = responses[2];
   const market = responses[3];
+  const blocks = responses[4];
 
   return {
     props: {
@@ -35,6 +38,7 @@ export async function getStaticProps() {
       info: { data: info.data },
       mining: { data: mining.data },
       market: { data: market.data },
+      blocks,
     },
 
     revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG_INTERVAL,
@@ -78,6 +82,7 @@ export default function Home(props) {
           infoRQ={infoRQ}
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
+          blocks={props.blocks}
         />
         <Panel2
           marketRQ={marketRQ}
@@ -85,7 +90,7 @@ export default function Home(props) {
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
         />
-        <Panel3 />
+        <Panel3 blocks={props.blocks}/>
       </main>
     </>
   );

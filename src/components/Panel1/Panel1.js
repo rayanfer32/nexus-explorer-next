@@ -88,7 +88,7 @@ function Panel1(props) {
         />
       </section>
       <section className={styles.chartContainer}>
-        <ChartsApex />
+        <ChartsApex initialData={props.blocks} />
       </section>
     </article>
   );
