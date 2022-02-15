@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import styles from './Panel3.module.css';
 import { useEffect, useState } from 'react';
@@ -7,21 +6,29 @@ import RTTRow from 'components/atoms/RTTable/RTTRow';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import TYPES from 'types';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
-function Panel3() {
-  // const queryClient = useQueryClient();
+function Panel3({ blocks }) {
+  const router = useRouter();
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
-  const blockSpeed = 30 * 1000; // in seconds
-  const router = useRouter();
-
-  let lastBlock = 0;
+  const BLOCK_SPEED = 30 * 1000; // in seconds
   const MAX_ROWS = 6;
+  const { network, getRecentBlocks } = useNetwork();
+
+  // * fetch latest blocks
+  const { isLoading, data } = useQuery(
+    ['blocks', network.name],
+    () => getRecentBlocks(MAX_ROWS),
+    {
+      initialData: blocks,
+      refetchInterval: BLOCK_SPEED,
+    }
+  );
 
   function addNewBlockRow(newRowData) {
-    lastBlock = newRowData.height;
     const newRow = (
       <RTTRowBlock
         key={newRowData.height}
@@ -30,21 +37,14 @@ function Panel3() {
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
-        channel={TYPES.channels[newRowData.channel]}
+        channel={TYPES.CHANNELS[newRowData.channel]}
         link={`/scan/${newRowData.height}`}
       />
     );
-    setTableBlockRowElements((tableBlockRowElements) => [
-      newRow,
-      ...tableBlockRowElements.slice(0, MAX_ROWS - 1),
-    ]);
+    setTableBlockRowElements((prev) => [newRow, ...prev].slice(0, MAX_ROWS));
   }
 
-  function addNewTxRow(newRowData) {
-    //console.log('adding txn ');
-    //console.log(newRowData);
-    // FIXME: When new block is fetched in 30s we lose a block sometimes , bcz the latestBlock fetches only the topmost block
-
+  function addNewTxRows(newRowData) {
     // TODO:
     // DONE: (Main logic ) Iterate over the txns and inside the txn iterate over the contracts
     // Ignore the txs with type=tritium base ( currently not ignored, for filling up the table.)
@@ -74,46 +74,21 @@ function Panel3() {
         }
       }
 
-      setTableTxRowElements((tableBlockRowElements) => {
-        const rowUpdate = [...newRows, ...tableBlockRowElements];
-        return rowUpdate.slice(0, MAX_ROWS);
-      });
+      setTableTxRowElements((prev) => [newRows, ...prev].slice(0, MAX_ROWS));
     } catch (err) {
       console.error(err);
     }
   }
-
-  // * fetch latest blocks
-  const { isLoading, data } = useQuery(
-    'blocks',
-    async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
-      );
-      return res.data.result;
-    },
-    {
-      refetchInterval: blockSpeed,
-    }
-  );
 
   // * load data to the table
   useEffect(() => {
     if (data) {
       data.reverse().map((block) => {
         addNewBlockRow(block);
-        addNewTxRow(block.tx);
-        block.tx.forEach((txn) => {
-          // addNewContractRow(txn);
-          if (txn.type === 'tritium base') {
-            //console.log('tritium base txn');
-          }
-          // else if()
-        });
+        addNewTxRows(block.tx);
       });
     }
   }, [data]);
-
 
   if (isLoading) {
     return (

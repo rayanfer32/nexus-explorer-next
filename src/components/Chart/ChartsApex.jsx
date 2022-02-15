@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
 import styles from './ChartsApex.module.css';
-import axios from 'axios';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
@@ -12,40 +11,98 @@ import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 import { useQuery } from 'react-query';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
-function ChartsApex() {
+function ChartsApex({ initialData }) {
   const { sharedState } = useAppContext();
-
   const [isDarkMode] = useDarkMode();
-  let apexChartRef = useRef();
 
-  const series = [];
-  const prevTimes = [];
+  // * fetch the blocks first and extract the total number of contracts inside the trasactions
+  const [limit, setLimit] = useState(2 * 60);
+
+  const { network, getRecentBlocks } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['charting', limit, network.name],
+    () => getRecentBlocks(limit),
+    {
+      initialData: limit <= 120 ? initialData : undefined,
+    }
+  );
 
   let [chartState, setChartState] = useState({
     options: {
       chart: {
         id: 'tx_chart',
-        zoom: {
-          enabled: false,
-        },
+
         background: 'rgba(0, 0, 0, 0)',
+        toolbar: {
+          show: true,
+          offsetX: -48,
+          offsetY: 8,
+          tools: {
+            download: true,
+            selection: true,
+            zoom: true,
+            zoomin: true,
+            zoomout: true,
+            pan: true,
+            customIcons: [
+              {
+                // icon: `<img src="/nexus-nxs-logo.svg" width="24" />`,
+                icon: `2H`,
+                index: 2,
+                title: '2H',
+                class: 'custom-icon',
+                click: (chart, options, e) => {
+                  setLimit(2 * 60);
+                },
+              },
+              {
+                icon: '6H',
+                index: 3,
+                title: '6H',
+                class: 'custom-icon',
+                click: (chart, options, e) => {
+                  setLimit(6 * 60);
+                },
+              },
+              {
+                icon: '12H',
+                index: 4,
+                title: '12H',
+                class: 'custom-icon',
+                click: (chart, options, e) => {
+                  setLimit(12 * 60);
+                },
+              },
+              {
+                icon: '1D',
+                index: 5,
+                title: '24H',
+                class: 'custom-icon',
+                click: (chart, options, e) => {
+                  setLimit(24 * 60);
+                },
+              },
+            ],
+          },
+        },
       },
       theme: {
-        mode: isDarkMode ? TYPES.theme.dark : TYPES.theme.light,
+        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       },
       fill: {
         type: 'gradient',
         gradient: {
           gradientToColors: isDarkMode
-            ? [TYPES.colors.skyBlue]
-            : [TYPES.colors.nexusBlue],
+            ? [TYPES.COLORS.SKY_BLUE]
+            : [TYPES.COLORS.NEXUS_BLUE],
         },
         opacityFrom: 0.7,
         opacityTo: 0.3,
         stops: [0, 90, 100],
       },
-      colors: isDarkMode ? [TYPES.colors.skyBlue] : [TYPES.colors.nexusBlue],
+      colors: isDarkMode ? [TYPES.COLORS.SKY_BLUE] : [TYPES.COLORS.NEXUS_BLUE],
       grid: {
         show: false,
       },
@@ -66,7 +123,7 @@ function ChartsApex() {
       },
       xaxis: {
         type: 'datetime',
-        categories: prevTimes,
+        categories: [],
         labels: {
           datetimeUTC: false,
         },
@@ -80,70 +137,54 @@ function ChartsApex() {
     series: [
       {
         name: 'Contracts',
-        data: series,
+        data: [],
       },
     ],
-  });
-  const [contracts24h, setContracts24h] = useState([]);
-
-  const { isLoading, data, error } = useQuery('contracts24h', () => {
-    return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/chart`);
   });
 
   useEffect(() => {
     if (data) {
-      console.log('Setting chart data');
-      setContracts24h(data.data);
+      let _dateStamps = [];
+      let _contracts = [];
+      data.map((block) => {
+        _dateStamps.push(block.date);
+        let _contractsLengths = block.tx.map((tx) => {
+          return tx?.contracts?.length || tx?.inputs?.length;
+        });
+        _contracts.push(_contractsLengths.reduce((a, b) => a + b, 0));
+      });
+
+      setChartState((prev) => ({
+        ...prev,
+        options: {
+          ...prev.options,
+          xaxis: { ...prev.options.xaxis, categories: _dateStamps },
+        },
+        series: [
+          {
+            name: 'Contracts',
+            data: _contracts,
+          },
+        ],
+      }));
     }
   }, [data]);
-
-  // const series = [
-  //   118, 111, 99, 116, 113, 92, 109, 161, 179, 164, 174, 128, 477, 104, 85, 101,
-  //   116, 109, 86, 119, 80, 112, 480, 82,
-  // ];
-
-  const updateChart = () => {
-    const newSeries = [];
-    const step = Math.floor(contracts24h.contracts.length / 24);
-    for (let i = 0; i < contracts24h.contracts.length - step; i += step) {
-      newSeries.push(
-        contracts24h.contracts.slice(i, i + step).reduce((a, b) => a + b, 0)
-      );
-    }
-    const newXAxisData = [];
-    for (let i = 0; i < contracts24h.datestamps.length - step; i += step) {
-      newXAxisData.push(contracts24h.datestamps[Math.floor(i + step / 2)]);
-    }
-
-    setChartState((prev) => {
-      prev.series[0].data = newSeries;
-      prev.options.xaxis.categories = newXAxisData;
-      return { ...prev };
-    });
-  };
-
-  useEffect(() => {
-    if (contracts24h?.contracts?.length > 0) {
-      console.log('updating chart');
-      updateChart();
-    }
-  }, [contracts24h]);
 
   // check appcontext update
   useEffect(() => {
     // get dark mode state
-    const isDark = sharedState.theme === TYPES.theme.dark;
+    const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
       prev.options.theme.mode = sharedState.theme;
       // update colors property of the chart
       prev.options.colors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       // update fill color of the chart
       prev.options.fill.gradient.gradientToColors = isDark
-        ? [TYPES.colors.skyBlue]
-        : [TYPES.colors.nexusBlue];
+        ? [TYPES.COLORS.SKY_BLUE]
+        : [TYPES.COLORS.NEXUS_BLUE];
       return { ...prev };
     });
   }, [sharedState.theme]);
@@ -155,8 +196,7 @@ function ChartsApex() {
   return (
     <Chart
       className={styles.container}
-      ref={apexChartRef}
-      key={Math.random()}
+      key={chartState.options.theme.mode}
       options={chartState.options}
       series={chartState.series}
       height={190}

@@ -12,9 +12,9 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/nexus-nxs-logo.svg" />
-          <meta name="theme-color" content={TYPES.colors.oceanBlue} />
+          <meta name="theme-color" content={TYPES.COLORS.OCEAN_BLUE} />
         </Head>
-        <body className={TYPES.theme.light}>
+        <body className={TYPES.THEME.LIGHT}>
           <Main />
           <div id="__portal" />
           <NextScript />

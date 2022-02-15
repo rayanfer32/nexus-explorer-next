@@ -18,7 +18,7 @@ function Panel1(props) {
       setState((prev) => ({
         ...prev,
         totalSupply: metricsRQ.data.data.result?.supply?.total?.toFixed(0),
-        accountRegisters: metricsRQ.data.data.result?.registers?.account,
+        sigChains: metricsRQ.data.data.result?.sig_chains,
         inflationRate:
           metricsRQ.data.data.result?.supply?.inflationrate?.toFixed(2),
       }));
@@ -73,9 +73,9 @@ function Panel1(props) {
           icon={<FaCoins />}
         />
         <SmallCard
-          label="Account Registers"
+          label="Signature Chains"
           sublabel="Users"
-          text={new Intl.NumberFormat().format(state.accountRegisters)}
+          text={new Intl.NumberFormat().format(state.sigChains)}
           ticker=""
           icon={<BsPersonCheckFill />}
         />
@@ -88,7 +88,7 @@ function Panel1(props) {
         />
       </section>
       <section className={styles.chartContainer}>
-        <ChartsApex />
+        <ChartsApex initialData={props.blocks} />
       </section>
     </article>
   );

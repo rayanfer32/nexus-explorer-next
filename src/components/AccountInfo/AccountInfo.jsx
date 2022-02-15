@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styles from './AccountInfo.module.scss';
 import SmallCard from 'components/atoms/SmallCard';
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import Table from 'components/Table/Table';
 import Button from 'components/atoms/NE_Button';
-import { middleElipsis } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import QRCode from 'react-qr-code';
 import TYPES from 'types';
-import { handleCopy } from 'utils/helper';
-import { BiCopy } from 'react-icons/bi';
+import CopyText from 'components/atoms/CopyText/CopyText';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function AccountInfo({ data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
   const [tableData, setTableData] = useState([]);
 
+  const { network, getAccountTransactions } = useNetwork();
   const accountTransactionsRQ = useQuery(
-    'accountTransactions',
-    async () => {
-      console.log('running account transactions query');
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/finance/transactions/account`,
-        {
-          params: {
-            address: data?.address,
-            limit: 100,
-          },
-        }
-      );
-      return res.data;
-    },
+    ['accountTransactions', network.name],
+    () => getAccountTransactions(data),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
@@ -61,9 +48,7 @@ export default function AccountInfo({ data }) {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <div data-value={props.value}>{middleElipsis(props.value, 15)}
-          <BiCopy onClick={() => handleCopy(props.value)} />
-        </div>;
+        return <CopyText value={props.value} ellipsisAfter={15} />;
       },
     },
     {
@@ -76,8 +61,8 @@ export default function AccountInfo({ data }) {
       Cell: (props) => {
         let fontColor = 'var(--theme-page-text)';
         let sign = '+';
-        if (['CREDIT',"CREATE"].includes(props.row.values.operation)) {
-          fontColor = TYPES.colors.marketGreen;
+        if (['CREDIT', 'CREATE'].includes(props.row.values.operation)) {
+          fontColor = TYPES.COLORS.MARKET_GREEN;
           sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
           fontColor = 'red';
@@ -158,8 +143,12 @@ export default function AccountInfo({ data }) {
       <h1>Account Details</h1>
       <div className={styles.details}>
         <section className={styles.details__text}>
-          <div>Address: {data.address}</div>
-          <div>Owner: {data.owner}</div>
+          <div>
+            Address: <CopyText value={data.address} ellipsisAfter={99} />{' '}
+          </div>
+          <div>
+            Owner: <CopyText value={data.owner} ellipsisAfter={99} />
+          </div>
           <div>
             Created On: {new Date(data.created * 1000).toLocaleString()}
           </div>
@@ -173,9 +162,9 @@ export default function AccountInfo({ data }) {
         <section>
           <div className={styles.qrCode}>
             <QRCode
-              fgColor={TYPES.colors.nexusBlue}
+              fgColor={TYPES.COLORS.NEXUS_BLUE}
               title={data.address}
-              value={data.address || ""}
+              value={data.address || ''}
               level="L"
               size={200}
             />

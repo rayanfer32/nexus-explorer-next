@@ -3,41 +3,34 @@ import Panel1 from 'components/Panel1/Panel1';
 import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
 import { useQuery } from 'react-query';
-import axios from 'axios';
-import { refetchIntervals } from 'types/constants';
+import TYPES from 'types';
+import {
+  fetchInfo,
+  fetchMarket,
+  fetchMetrics,
+  fetchMining,
+  fetchRecentBlocks,
+} from 'utils/common/fetch';
+
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
 
-function fetchMetrics() {
-  return axios.get(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
-  );
-}
-
-function fetchInfo() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`);
-}
-
-function fetchMining() {
-  return axios.get(`${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/info`);
-}
-
-function fetchMarket() {
-  return axios.get(`${process.env.NEXT_PUBLIC_COINGECKO_BASE_URL}/coins/nexus`);
-}
-
 export async function getStaticProps() {
+  console.log('Generating static props'); // export this function
   const responses = await Promise.all([
     fetchMetrics(),
     fetchInfo(),
     fetchMining(),
     fetchMarket(),
+    fetchRecentBlocks(2 * 60),
   ]);
   const metrics = responses[0];
   const info = responses[1];
   const mining = responses[2];
   const market = responses[3];
+  const blocks = responses[4];
 
   return {
     props: {
@@ -45,38 +38,36 @@ export async function getStaticProps() {
       info: { data: info.data },
       mining: { data: mining.data },
       market: { data: market.data },
+      blocks,
     },
 
-    revalidate: refetchIntervals.regenerateSSG,
+    revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG_INTERVAL,
   };
 }
 
 export default function Home(props) {
-  const metricsRQ = useQuery('metrics', fetchMetrics, {
+  // all the data will be available in the respective queries
+
+  // const { appContext, setAppContext } = useAppContext();
+  const { network, getMetrics, getInfo, getMining } = useNetwork();
+
+  const metricsRQ = useQuery(['metrics', network.name], getMetrics, {
     initialData: props.metrics,
-    refetchInterval: refetchIntervals.metrics,
+    refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 
-  const infoRQ = useQuery(
-    'info',
-    () => {
-      return axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/info`
-      );
-    },
-    {
-      refetchIntervals: refetchIntervals.info,
-    }
-  );
+  const infoRQ = useQuery(['info', network.name], getInfo, {
+    refetchInterval: TYPES.REFETCH_INTERVALS.INFO,
+  });
 
   const marketRQ = useQuery('market', fetchMarket, {
     initialData: props.market,
-    refetchIntervals: refetchIntervals.market,
+    refetchInterval: TYPES.REFETCH_INTERVALS.MARKET,
   });
 
-  const miningRQ = useQuery('mining', fetchMining, {
+  const miningRQ = useQuery(['mining', network.name], getMining, {
     initialData: props.mining,
-    refetchIntervals: refetchIntervals.mining,
+    refetchInterval: TYPES.REFETCH_INTERVALS.MINING,
   });
 
   return (
@@ -91,6 +82,7 @@ export default function Home(props) {
           infoRQ={infoRQ}
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
+          blocks={props.blocks}
         />
         <Panel2
           marketRQ={marketRQ}
@@ -98,7 +90,7 @@ export default function Home(props) {
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
         />
-        <Panel3 />
+        <Panel3 blocks={props.blocks}/>
       </main>
     </>
   );

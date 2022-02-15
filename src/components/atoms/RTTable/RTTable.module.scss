@@ -1,0 +1,47 @@
+.rttable {
+  position: relative;
+  border-radius: 0.125rem;
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  max-height: 24.6rem;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  height: 2rem;
+  padding: 0 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-normal);
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: var(--theme-page-text);
+  background: var(--theme-page-background);
+  border-bottom: rgba(0, 0, 0, 0.2) solid 0.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.button {
+  border: 1px solid var(--theme-page-text);
+  color: var(--theme-page-text);
+  background: var(--theme-page-background);
+  box-sizing: border-box;
+  padding: 2px 32px;
+  font-size: var(--font-s);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.button:hover {
+  box-shadow: var(--card-shadow);
+  background: var(--theme-page-text);
+  color: var(--theme-page-background);
+}
+
+@media screen and (max-width: 768px) {
+  .rttable {
+    margin-bottom: 1rem;
+  }
+}

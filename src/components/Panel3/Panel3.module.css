@@ -1,9 +1,6 @@
 /* for desktops */
 .container {
-  /* display: flex; */
-  /* flex-direction: column; */
-  overflow: scroll;
-  gap: var(--space-xl);
+  gap: var(--space-xxl);
   flex-direction: column;
   justify-content: center;
 }
@@ -11,8 +8,6 @@
 /* for mobile  */
 @media (min-width: 768px) {
   .container {
-    /* display: none; */
-    /* overflow: visible; */
     display: flex;
     flex-direction: row;
     min-height: 25rem;

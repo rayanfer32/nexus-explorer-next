@@ -7,7 +7,14 @@ import Search from 'components/atoms/SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
+import SelectInput from 'components/atoms/SelectInput/SelectInput';
+import { NETWORKS } from 'types/ConstantsTypes';
+import { useAppContext } from 'contexts/AppContext';
 
+/**
+ * Header component for the website
+ * @returns {JSX.Element}
+ */
 function Navbar() {
   const router = useRouter();
   const [isDarkMode, setDarkMode] = useDarkMode();
@@ -15,15 +22,28 @@ function Navbar() {
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState(false);
 
+  const { appContext, setAppContext } = useAppContext();
 
+  const handleNetworkChange = (e) => {
+    const val = e.target.value;
+    const network = NETWORKS[val.toUpperCase()];
+    setAppContext('network', network);
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle(
+      'testnet-filter',
+      appContext.network.name == NETWORKS.TESTNET.name
+    );
+  }, [appContext.network]);
 
   const DesktopNavItem = () => (
     <div className={styles.navItem}>
-      <div className={styles.links}>
-        {TYPES.navbar.NAVLIST.map((navItem) => {
+      <nav className={styles.links}>
+        {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
           return (
             <span
-              key={navItem.id}
+              key={index}
               className={
                 router.pathname === navItem.path ? styles.active : undefined
               }>
@@ -31,7 +51,7 @@ function Navbar() {
             </span>
           );
         })}
-      </div>
+      </nav>
 
       <ThemeMode
         onClick={() => setDarkMode((prevMode) => !prevMode)}
@@ -55,8 +75,8 @@ function Navbar() {
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
-            <div className={styles.mlinks}>
-              {TYPES.navbar.NAVLIST.map((navItem) => {
+            <nav className={styles.mlinks}>
+              {TYPES.NAVBAR.NAVLIST.map((navItem) => {
                 return (
                   <span
                     key={navItem.id}
@@ -70,7 +90,7 @@ function Navbar() {
                   </span>
                 );
               })}
-            </div>
+            </nav>
           </div>
         </section>
       )}
@@ -78,7 +98,7 @@ function Navbar() {
   );
 
   return (
-    <section className={styles.container}>
+    <header className={styles.container}>
       <div className={styles.header}>
         <div className={styles.nav}>
           <div className={styles.brand} onClick={onClickBrand}>
@@ -87,11 +107,16 @@ function Navbar() {
               height={32}
               layout="fixed"
               src={
-                isDarkMode ? TYPES.navbar.brand.WHITE : TYPES.navbar.brand.BLUE
+                isDarkMode ? TYPES.NAVBAR.BRAND.WHITE : TYPES.NAVBAR.BRAND.BLUE
               }
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
+          <SelectInput
+            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+            value={appContext.network.name}
+            onChange={handleNetworkChange}
+          />
           <DesktopNavItem />
           <MobileNavItem />
         </div>
@@ -100,13 +125,15 @@ function Navbar() {
             long
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+            placeholder={TYPES.PLACE_HOLDER.SEARCH}
             onSearch={() => {
               router.push(`/scan/${searchInput}`);
+              setTimeout(() => setSearchInput(''), 3000);
             }}
           />
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 

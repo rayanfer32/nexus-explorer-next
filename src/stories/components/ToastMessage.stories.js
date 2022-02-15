@@ -1,4 +1,4 @@
-import ToastMessage from 'components/atoms/ToastMessage';
+import ToastMessage from 'components/atoms/NE_ToastMessage';
 import {
   BsCheckLg,
   BsXLg,
@@ -17,7 +17,7 @@ const Template = (args) => <ToastMessage {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  type: TYPES.toastType.default,
+  type: TYPES.TOAST.DEFAULT,
   title: 'Default',
   message: 'Message',
   style: { animationPlayState: 'paused', position: 'relative', opacity: 1 },
@@ -25,7 +25,7 @@ Default.args = {
 
 export const Success = Template.bind({});
 Success.args = {
-  type: TYPES.toastType.success,
+  type: TYPES.TOAST.SUCCESS,
   children: 'Message',
   icon: <BsCheckLg />,
   style: { animationPlayState: 'paused', position: 'relative', opacity: 1 },
@@ -33,7 +33,7 @@ Success.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  type: TYPES.toastType.error,
+  type: TYPES.TOAST.ERROR,
   children: 'Message',
   icon: <BsXLg />,
   style: { animationPlayState: 'paused', position: 'relative', opacity: 1 },
@@ -41,7 +41,7 @@ Error.args = {
 
 export const Warning = Template.bind({});
 Warning.args = {
-  type: TYPES.toastType.warning,
+  type: TYPES.TOAST.WARNING,
   title: 'Warning',
   icon: <BsShieldExclamation />,
   style: { animationPlayState: 'paused', position: 'relative', opacity: 1 },
@@ -50,7 +50,7 @@ Warning.args = {
 export const Animate = Template.bind({});
 Animate.args = {
   icon: <BsClipboardCheck />,
-  type: TYPES.toastType.default,
+  type: TYPES.TOAST.DEFAULT,
   children: 'Copied to clipboard',
   duration: 3300,
 };

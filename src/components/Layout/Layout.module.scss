@@ -1,0 +1,28 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+
+  .container {
+    flex: 1 0 auto;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    max-width: var(--screen-lg);
+    padding: 0 var(--space-xs);
+  }
+  header,
+  footer {
+    flex-shrink: 0;
+    height: 100%;
+  }
+}
+/* small screens */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+}

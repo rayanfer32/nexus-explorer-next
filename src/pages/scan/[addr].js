@@ -1,22 +1,25 @@
 import axios from 'axios';
 import { InfoCard } from 'components/atoms/InfoCard';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { QueryClient, useQuery } from 'react-query';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 import AccountInfo from 'components/AccountInfo/AccountInfo';
 import TrustInfo from 'components/TrustInfo/TrustInfo';
-import Table from 'components/Table/Table';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import {  useState } from 'react';
+import { useQuery } from 'react-query';
+
+export const getServerSideProps = async (context) => {
+  let address = context.params.addr;
+  return {
+    props: {
+      addr: address,
+    },
+  };
+};
 
 function Scan({ addr }) {
-  const queryClient = new QueryClient();
-  // const router = useRouter();
-  // const { addr } = router.query;
   const [showRawResponse, setShowRawResponse] = useState(false);
-  // const [endpoint, setEndpoint] = useState('');
-  // const [params, setParams] = useState({});
   const [cardType, setCardType] = useState();
 
   /**
@@ -78,31 +81,18 @@ function Scan({ addr }) {
     return { endpoint, params, type };
   }
 
-  const { isLoading, data, error, refetch } = useQuery(
-    'scan',
+
+
+  const { network, getScanResults } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['scan', addr, network.name],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
       console.log(endpoint, params, 'type:', type);
       setCardType(type);
-      const url = `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/${endpoint}`;
-      const res = await axios.get(url, {
-        params: params,
-      });
-      return res.data;
-    },
-    {
-      refetchOnWindowFocus: true,
-      enabled: true,
+      return getScanResults(endpoint, params);
     }
   );
-
-  // when the search query is changed, the query is refetched
-  useEffect(() => {
-    // console.log("addr", addr);
-    console.log('refetching');
-    refetch();
-    // queryClient.removeQueries('scan', { exact: true });
-  }, [addr]);
 
   if (isLoading) {
     return (
@@ -141,15 +131,15 @@ function Scan({ addr }) {
     </div>
   );
 
-
-
   return (
     <div>
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
-      {cardType === 'user' && <AccountInfo data={data?.result} />}
+      {cardType === 'user' && (
+        <AccountInfo type={cardType} data={data?.result} />
+      )}
       {cardType === 'trust' && <TrustInfo data={data?.result} />}
       {cardType === 'transaction' && (
-          <InfoCard type={cardType} data={data?.result} />
+        <InfoCard type={cardType} data={data?.result} />
       )}
       {rawInfo}
     </div>
@@ -157,12 +147,3 @@ function Scan({ addr }) {
 }
 
 export default Scan;
-
-export const getServerSideProps = async (context) => {
-  let address = context.params.addr;
-  return {
-    props: {
-      addr: address,
-    },
-  };
-};

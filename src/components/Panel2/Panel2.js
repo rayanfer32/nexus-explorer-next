@@ -10,13 +10,19 @@ import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
 import { MdSpeed } from 'react-icons/md';
+import { StringsTypes } from 'types/StringsTypes';
+import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 function Panel2(props) {
+  const { network } = useNetwork();
   const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
 
   const [state, setState] = useState({});
 
-  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(30);
+  const [cardRefreshTimeout, setCardRefreshTimeout] = useState(
+    ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
+  );
 
   // * initialize state when RQ has data
   useEffect(() => {
@@ -83,6 +89,22 @@ function Panel2(props) {
     }
   }, [marketRQ.data, miningRQ.data, metricsRQ.data]);
 
+  // reset card refresh timeout when RQ gets updated
+  useEffect(() => {
+    if (metricsRQ.data) {
+      setCardRefreshTimeout(ConstantsTypes.REFETCH_INTERVALS.MINING / 1000);
+    }
+  }, [metricsRQ.data]);
+
+  // increment the card timeout evry second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCardRefreshTimeout((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
   if (miningRQ.isLoading)
     return (
@@ -102,24 +124,26 @@ function Panel2(props) {
 
   return (
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
-      <DetailCard
-        type
-        icon={<GiTwoCoins color="white" size="2.25rem" />}
-        label="Price"
-        sublabel={`${state.price?.sublabel} BTC`}
-        text={`${state.price?.text} $`}
-        reserveLabel="Change 24h"
-        reserve={`${state.price?.reserve} %`}
-        rewardLabel="Total Volume"
-        reward={`${intlNum(state.price?.reward)} $`}
-        footerLabel="Market Cap:"
-        footerValue={`${intlNum(state.price?.footer)} $`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
+      {network.name === NETWORKS.MAINNET.name && (
+        <DetailCard
+          type
+          icon={<GiTwoCoins color="white" size="2.25rem" />}
+          label="Price"
+          sublabel={`${state.price?.sublabel} BTC`}
+          text={`${state.price?.text} $`}
+          reserveLabel="Change 24h"
+          reserve={`${state.price?.reserve} %`}
+          rewardLabel="Total Volume"
+          reward={`${intlNum(state.price?.reward)} $`}
+          footerLabel="Market Cap:"
+          footerValue={`${intlNum(state.price?.footer)} $`}
+          delayTime={`${cardRefreshTimeout}s`}
+        />
+      )}
       <DetailCard
         type
         icon={<AiFillBank color="white" size="2.25rem" />}
-        label="Stake"
+        label={StringsTypes.CHANNELS[0]}
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
         text={`${intlNum(state.stake?.text)} NXS`}
         reserveLabel="Height"
@@ -130,24 +154,11 @@ function Panel2(props) {
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
-      <DetailCard
-        type
-        icon={<MdSpeed color="white" size="2.5rem" />}
-        label="Hash"
-        sublabel={`Difficulty : ${state.hash?.sublabel}`}
-        text={`${abbreviateNumber(state.hash?.text)}H/s`}
-        reserveLabel="Reserve"
-        reserve={`${intlNum(state.hash?.reserve)} NXS`}
-        rewardLabel="Reward"
-        reward={`${state.hash?.reward} NXS`}
-        footerLabel="Fees"
-        footerValue={`${intlNum(state.hash?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
+
       <DetailCard
         type
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
-        label="Prime"
+        label={StringsTypes.CHANNELS[1]}
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
         text={`${abbreviateNumber(state.prime?.text)}P/s`}
         reserveLabel="Reserve"
@@ -156,6 +167,20 @@ function Panel2(props) {
         reward={`${state.prime?.reward} NXS`}
         footerLabel="Fees"
         footerValue={`${intlNum(state.prime?.footer)} NXS`}
+        delayTime={`${cardRefreshTimeout}s`}
+      />
+      <DetailCard
+        type
+        icon={<MdSpeed color="white" size="2.5rem" />}
+        label={StringsTypes.CHANNELS[2]}
+        sublabel={`Difficulty : ${state.hash?.sublabel}`}
+        text={`${abbreviateNumber(state.hash?.text)}H/s`}
+        reserveLabel="Reserve"
+        reserve={`${intlNum(state.hash?.reserve)} NXS`}
+        rewardLabel="Reward"
+        reward={`${state.hash?.reward} NXS`}
+        footerLabel="Fees"
+        footerValue={`${intlNum(state.hash?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
     </Rail>

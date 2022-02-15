@@ -4,7 +4,7 @@
   min-width: 14.5rem; /* 232px */
   height: 6.25rem; /* 100px */
   background: var(--theme-page-background);
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-shadow-border), var(--card-shadow);
   border-radius: 0.25rem;
 
   display: grid;

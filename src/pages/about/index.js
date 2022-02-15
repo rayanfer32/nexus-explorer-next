@@ -2,9 +2,9 @@ import Image from 'next/image';
 import styles from './about.module.scss';
 import ASSESTS from 'assets';
 import TYPES from 'types';
-import { ObjectToArray } from 'utils/helper';
 import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
+import { useQuery } from 'react-query';
 
 const About = () => {
   const {
@@ -12,7 +12,7 @@ const About = () => {
   } = useAppContext();
 
   let ThemedVscLogo = () => {
-    return (theme == TYPES.theme.dark) ? (
+    return theme == TYPES.THEME.DARK ? (
       <VscGithub
         style={{
           color: 'white',
@@ -27,6 +27,13 @@ const About = () => {
     );
   };
 
+  const { data } = useQuery('contributors', async () => {
+    const res = await fetch(
+      'https://api.github.com/repos/rayanfer32/nexus-explorer-next/stats/contributors'
+    );
+    return res.json();
+  });
+
   return (
     <main className={styles.main}>
       <article>
@@ -35,28 +42,30 @@ const About = () => {
           <p>A Redesigned Explorer for the nexus blockchain.</p>
         </div>
         <p>
-          Nexus Explorer V2 is aims to be visually modern by design, 
-          and present the user with realtime statistics with graphically
-          illustrated data to inspect the nexus blockchain as deeply as
-          possible.
+          Nexus Explorer V2 aims to be visually modern by design, and present
+          the user with realtime statistics with graphically illustrated data to
+          inspect the nexus blockchain as deeply as possible.
         </p>
         <p>
-          After many iterations over the design, we came up with the new look for
-          the explorer, We made sure the project is built with the all the
+          After many iterations over the design, we came up with the new look
+          for the explorer, We made sure the project is built with the all the
           latest tech in the the web development space, The frontend is crafted
           with next.js and for the backend we have used python. For
           contributions and suggestions please feel free to reach out to us on
           our github page.
         </p>
-        <a className={styles.link} href={TYPES.footerItems.repoUrl.href} target={TYPES.footerItems.repoUrl.target}>  <ThemedVscLogo/> {TYPES.footerItems.repoUrl.label} </a>
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
-            {ObjectToArray(TYPES.links.github).map((ele) => (
-              <span key={ele.id} className={styles.links}>
-                <a href={ele.url} target={ele.target} className={styles.link}>
+            {data?.map((item) => (
+              <span key={item.author.login} className={styles.links}>
+                <a
+                  href={item.author.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.link}>
                   <ThemedVscLogo />
-                  {ele.label}
+                  {item.author.login}
                 </a>
               </span>
             ))}
@@ -99,5 +108,5 @@ const About = () => {
     </main>
   );
 };
-// export default about;
+
 export default About;
