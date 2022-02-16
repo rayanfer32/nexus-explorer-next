@@ -38,26 +38,35 @@ function Navbar() {
   }, [appContext.network]);
 
   const DesktopNavItem = () => (
-    <div className={styles.navItem}>
-      <nav className={styles.links}>
-        {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
-          return (
-            <span
-              key={index}
-              className={
-                router.pathname === navItem.path ? styles.active : undefined
-              }>
-              <Link href={navItem.path}>{navItem.title}</Link>
-            </span>
-          );
-        })}
-      </nav>
+    <>
+      <div className={styles.navItem}>
+        <nav className={styles.links}>
+          <div style={{marginRight: "1rem"}}>
+          <SelectInput
+            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+            value={appContext.network.name}
+            onChange={handleNetworkChange}
+          />
+          </div>
+          {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
+            return (
+              <span
+                key={index}
+                className={
+                  router.pathname === navItem.path ? styles.active : undefined
+                }>
+                <Link href={navItem.path}>{navItem.title}</Link>
+              </span>
+            );
+          })}
+        </nav>
 
-      <ThemeMode
-        onClick={() => setDarkMode((prevMode) => !prevMode)}
-        isDark={isDarkMode}
-      />
-    </div>
+        <ThemeMode
+          onClick={() => setDarkMode((prevMode) => !prevMode)}
+          isDark={isDarkMode}
+        />
+      </div>
+    </>
   );
 
   const MobileNavItem = () => (
@@ -72,10 +81,17 @@ function Navbar() {
                 isDark={isDarkMode}
               />
             </div>
+
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
+
             <nav className={styles.mlinks}>
+              <SelectInput
+                options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+                value={appContext.network.name}
+                onChange={handleNetworkChange}
+              />
               {TYPES.NAVBAR.NAVLIST.map((navItem) => {
                 return (
                   <span
@@ -112,11 +128,7 @@ function Navbar() {
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
-          <SelectInput
-            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
-            value={appContext.network.name}
-            onChange={handleNetworkChange}
-          />
+
           <DesktopNavItem />
           <MobileNavItem />
         </div>
