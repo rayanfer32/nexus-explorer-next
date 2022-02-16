@@ -12,6 +12,7 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 function ChartsApex({ initialData }) {
   const { sharedState } = useAppContext();
@@ -25,7 +26,10 @@ function ChartsApex({ initialData }) {
     ['charting', limit, network.name],
     () => getRecentBlocks(limit),
     {
-      initialData: limit <= 120 ? initialData : undefined,
+      initialData:
+        limit <= 120 && network.name == NETWORKS.MAINNET.name
+          ? initialData
+          : undefined,
     }
   );
 
