@@ -1,5 +1,4 @@
 import React from 'react';
-import { fetchMetrics } from 'utils/common/fetch';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import SmallCard from 'components/atoms/SmallCard';
@@ -7,25 +6,31 @@ import styles from './styles.module.scss';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { metricsMeta } from 'types/StringsTypes';
 
 export default function Metrics() {
-
-  // fetchMetrics should be created from a custom hook which 
+  // fetchMetrics should be created from a custom hook which
   // updates along with the change of network in appContext
 
-  const {network, getMetrics} = useNetwork();
-  const { isLoading, data, error } = useQuery(['metrics', network.name], getMetrics, {
-    refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
-  });
+  const { network, getMetrics } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['metrics', network.name],
+    getMetrics,
+    {
+      refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
+    }
+  );
 
-  const SmallCards = ({object}) => {
+  const res = data?.data.result;
+
+  const SmallCards = ({ object, type }) => {
     return Object.entries(object).map(([k, v]) => (
       <SmallCard
         key={k}
-        label={toTitleCase(k)}
-        // sublabel="Annual"
+        label={metricsMeta[type][k]?.label || toTitleCase(k)}
+        sublabel={type && metricsMeta[type][k]?.sublabel}
         text={intlNum(v.toFixed(2))}
-        ticker=""
+        ticker={type && metricsMeta[type][k]?.ticker}
       />
     ));
   };
@@ -52,37 +57,35 @@ export default function Metrics() {
     <div className={styles.container}>
       <h3>Registers</h3>
       <div className={styles.cardGroup}>
-      <SmallCard label="Signature Chains" text={data.data.result.sig_chains} />
-        <SmallCards object={data.data.result.registers} />
-      </div>
-
-      <h3>Reserves</h3>
-      <div className={styles.cardGroup}>
-      <SmallCards object={data.data.result.reserves} />
-      </div>
-
-      <h3>Supply</h3>
-      <div className={styles.cardGroup}>
-      <SmallCards object={data.data.result.supply} />
+        <SmallCard
+          label={metricsMeta.sig_chains.label}
+          sublabel={metricsMeta.sig_chains.sublabel}
+          text={data.data.result.sig_chains}
+        />
+        <SmallCards type="registers" object={res.registers} />
       </div>
 
       <h3>Trust</h3>
       <div className={styles.cardGroup}>
-      <SmallCards object={data.data.result.trust} />
+        <SmallCard
+          label="Staked Percentage"
+          ticker="%"
+          text={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
+        />
+        <SmallCards type="trust" object={res.trust} />
       </div>
 
+     
+      <h3>Supply</h3>
+      <div className={styles.cardGroup}>
+        <SmallCards type="supply" object={res.supply} />
+      </div>
+
+      <h3>Reserves</h3>
+      <div className={styles.cardGroup}>
+        <SmallCards type="reserves" object={res.reserves} />
+      </div>
 
     </div>
   );
 }
-
-// {
-//   Object.entries(value).map(([k, v]) => (
-//    <SmallCard
-//      key={k}
-//      label={toTitleCase(k)}
-//      // sublabel="Annual"
-//      text={v}
-//      ticker=""
-//    />
-//  ))}
