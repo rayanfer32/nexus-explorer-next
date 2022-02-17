@@ -19,19 +19,19 @@ export const StringsTypes = {
 
 export const metricsMeta = {
   registers: {
-    account: {},
-    append: {},
-    crypto: {},
-    name: {},
-    name_global: {},
-    name_namespaced: {},
-    namespace: {},
-    object: {},
-    object_tokenized: {},
-    raw: {},
-    readonly: {},
-    token: {},
-    total: {},
+    account: { label: 'Account Registers' },
+    append: { label: 'Append Registers' },
+    crypto: { label: 'Crypto Registers' },
+    name: { label: 'Total Name Registers' },
+    name_global: { label: 'Global Name Registers' },
+    name_namespaced: { label: 'Namespaced Name Registers' },
+    namespace: { label: 'Namespace Registers' },
+    object: {label: "Non-Standard Object Registers"},
+    object_tokenized: { label: 'Tokenized Object Registers' },
+    raw: { label: 'Raw Registers' },
+    readonly: { label: 'Read-Only Registers' },
+    token: { label: 'Token Registers' },
+    total: { label: 'Total Registers' },
   },
   reserves: {
     ambassador: {},
@@ -54,6 +54,6 @@ export const metricsMeta = {
   trust: {
     stake: { label: 'Staked', ticker: 'NXS' },
     total: { sublabel: 'Accounts' },
-    trust: {},
+    trust: { label: 'Trust score' },
   },
 };
