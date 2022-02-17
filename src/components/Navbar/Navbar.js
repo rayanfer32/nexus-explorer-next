@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import SelectInput from 'components/atoms/SelectInput/SelectInput';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
+import DropdownMenu from 'components/TestComponents/DropdownMenu';
 
 /**
  * Header component for the website
@@ -41,13 +42,14 @@ function Navbar() {
     <>
       <div className={styles.navItem}>
         <nav className={styles.links}>
-          <div style={{marginRight: "1rem"}}>
-          <SelectInput
-            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
-            value={appContext.network.name}
-            onChange={handleNetworkChange}
-          />
+          <div style={{ marginRight: '1rem' }}>
+            <SelectInput
+              options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+              value={appContext.network.name}
+              onChange={handleNetworkChange}
+            />
           </div>
+
           {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
             return (
               <span
@@ -55,8 +57,22 @@ function Navbar() {
                 className={
                   router.pathname === navItem.path ? styles.active : undefined
                 }>
-                <Link href={navItem.path}>{navItem.title}</Link>
+                <Link key={index} href={navItem.path}>
+                  {navItem.title}
+                </Link>
               </span>
+            );
+          })}
+
+          {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+            return (
+              <DropdownMenu key={key} title={key}>
+                {value.map((item, index) => (
+                  <Link key={index} href={item.path}>
+                    {item.title}
+                  </Link>
+                ))}
+              </DropdownMenu>
             );
           })}
         </nav>
@@ -104,6 +120,25 @@ function Navbar() {
                     onClick={() => setToggle(!toggle)}>
                     <Link href={navItem.path}>{navItem.title}</Link>
                   </span>
+                );
+              })}
+
+              {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+                return (
+                  <>
+                    {value.map((item, index) => (
+                      <span
+                        key={index}
+                        className={
+                          router.pathname === item.path
+                            ? styles.mactive
+                            : undefined
+                        }
+                        onClick={() => setToggle(!toggle)}>
+                        <Link href={item.path}>{item.title}</Link>
+                      </span>
+                    ))}
+                  </>
                 );
               })}
             </nav>

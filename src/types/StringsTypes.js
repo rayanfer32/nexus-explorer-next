@@ -1,3 +1,8 @@
+import { BiLock, BiUser } from 'react-icons/bi';
+import { BsFilePerson } from 'react-icons/bs';
+import { GrPersonalComputer } from 'react-icons/gr';
+import { ColorsTypes } from './ColorsTypes';
+
 export const StringsTypes = {
   LOADER: {
     CIRCLE: 'circle',
@@ -17,7 +22,7 @@ export const StringsTypes = {
   },
 };
 
-export const metricsMeta = {
+export const METRICS_META = {
   registers: {
     account: { label: 'Account Registers' },
     append: { label: 'Append Registers' },
@@ -26,7 +31,7 @@ export const metricsMeta = {
     name_global: { label: 'Global Name Registers' },
     name_namespaced: { label: 'Namespaced Name Registers' },
     namespace: { label: 'Namespace Registers' },
-    object: {label: "Non-Standard Object Registers"},
+    object: { label: 'Non-Standard Object Registers' },
     object_tokenized: { label: 'Tokenized Object Registers' },
     raw: { label: 'Raw Registers' },
     readonly: { label: 'Read-Only Registers' },
@@ -40,7 +45,11 @@ export const metricsMeta = {
     hash: {},
     prime: {},
   },
-  sig_chains: { label: 'Signature Chains', sublabel: 'Users' },
+  sig_chains: {
+    label: 'Signature Chains',
+    sublabel: 'Users',
+    icon: <BiUser />,
+  },
   supply: {
     day: { ticker: 'NXS' },
     hour: { ticker: 'NXS' },
@@ -52,8 +61,13 @@ export const metricsMeta = {
     week: { ticker: 'NXS' },
   },
   trust: {
-    stake: { label: 'Staked', ticker: 'NXS' },
-    total: { sublabel: 'Accounts' },
+    staked_percentage: {
+      label: 'Staked Percentage',
+      ticker: '%',
+      icon: <BiLock />,
+    },
+    stake: { label: 'Staked', ticker: 'NXS', icon: <BiLock /> },
+    total: { label: 'Staking Accounts', icon: <BsFilePerson /> },
     trust: { label: 'Trust score' },
   },
 };

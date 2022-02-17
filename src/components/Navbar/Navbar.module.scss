@@ -159,6 +159,8 @@
     right: 0;
     background: var(--linear-ocean-midnight);
     z-index: 1000;
+    overflow: auto;
+
   }
   .closeHam {
     padding: 1rem;
@@ -196,6 +198,7 @@
     padding: var(--space-xs);
     color: white;
     font-size: larger;
+    overflow: auto;
 
     span {
       padding: 1rem;

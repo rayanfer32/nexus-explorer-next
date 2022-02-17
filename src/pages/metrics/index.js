@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import { metricsMeta } from 'types/StringsTypes';
+import { METRICS_META } from 'types/StringsTypes';
 
 export default function Metrics() {
   // fetchMetrics should be created from a custom hook which
@@ -27,10 +27,11 @@ export default function Metrics() {
     return Object.entries(object).map(([k, v]) => (
       <SmallCard
         key={k}
-        label={metricsMeta[type][k]?.label || toTitleCase(k)}
-        sublabel={type && metricsMeta[type][k]?.sublabel}
+        label={METRICS_META[type][k]?.label || toTitleCase(k)}
+        sublabel={type && METRICS_META[type][k]?.sublabel}
         text={intlNum(v.toFixed(2))}
-        ticker={type && metricsMeta[type][k]?.ticker}
+        ticker={type && METRICS_META[type][k]?.ticker}
+        icon={type && METRICS_META[type][k]?.icon}
       />
     ));
   };
@@ -58,9 +59,10 @@ export default function Metrics() {
       <h3>Registers</h3>
       <div className={styles.cardGroup}>
         <SmallCard
-          label={metricsMeta.sig_chains.label}
-          sublabel={metricsMeta.sig_chains.sublabel}
-          text={data.data.result.sig_chains}
+          label={METRICS_META.sig_chains.label}
+          sublabel={METRICS_META.sig_chains.sublabel}
+          text={res.sig_chains}
+          icon={METRICS_META.sig_chains.icon}
         />
         <SmallCards type="registers" object={res.registers} />
       </div>
@@ -68,14 +70,14 @@ export default function Metrics() {
       <h3>Trust</h3>
       <div className={styles.cardGroup}>
         <SmallCard
-          label="Staked Percentage"
-          ticker="%"
+          label={METRICS_META.trust.staked_percentage.label}
+          ticker={METRICS_META.trust.staked_percentage.ticker}
           text={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
+          icon={METRICS_META.trust.staked_percentage.icon}
         />
         <SmallCards type="trust" object={res.trust} />
       </div>
 
-     
       <h3>Supply</h3>
       <div className={styles.cardGroup}>
         <SmallCards type="supply" object={res.supply} />
@@ -85,7 +87,6 @@ export default function Metrics() {
       <div className={styles.cardGroup}>
         <SmallCards type="reserves" object={res.reserves} />
       </div>
-
     </div>
   );
 }
