@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import SelectInput from 'components/atoms/SelectInput/SelectInput';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
+import DropdownMenu from 'components/TestComponents/DropdownMenu';
 
 /**
  * Header component for the website
@@ -38,26 +39,50 @@ function Navbar() {
   }, [appContext.network]);
 
   const DesktopNavItem = () => (
-    <div className={styles.navItem}>
-      <nav className={styles.links}>
-        {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
-          return (
-            <span
-              key={index}
-              className={
-                router.pathname === navItem.path ? styles.active : undefined
-              }>
-              <Link href={navItem.path}>{navItem.title}</Link>
-            </span>
-          );
-        })}
-      </nav>
+    <>
+      <div className={styles.navItem}>
+        <nav className={styles.links}>
+          <div style={{ marginRight: '1rem' }}>
+            <SelectInput
+              options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+              value={appContext.network.name}
+              onChange={handleNetworkChange}
+            />
+          </div>
 
-      <ThemeMode
-        onClick={() => setDarkMode((prevMode) => !prevMode)}
-        isDark={isDarkMode}
-      />
-    </div>
+          {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
+            return (
+              <span
+                key={index}
+                className={
+                  router.pathname === navItem.path ? styles.active : undefined
+                }>
+                <Link key={index} href={navItem.path}>
+                  {navItem.title}
+                </Link>
+              </span>
+            );
+          })}
+
+          {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+            return (
+              <DropdownMenu key={key} title={key}>
+                {value.map((item, index) => (
+                  <Link key={index} href={item.path}>
+                    {item.title}
+                  </Link>
+                ))}
+              </DropdownMenu>
+            );
+          })}
+        </nav>
+
+        <ThemeMode
+          onClick={() => setDarkMode((prevMode) => !prevMode)}
+          isDark={isDarkMode}
+        />
+      </div>
+    </>
   );
 
   const MobileNavItem = () => (
@@ -72,10 +97,17 @@ function Navbar() {
                 isDark={isDarkMode}
               />
             </div>
+
             <div
               className={styles.closeHam}
               onClick={() => setToggle(!toggle)}></div>
+
             <nav className={styles.mlinks}>
+              <SelectInput
+                options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
+                value={appContext.network.name}
+                onChange={handleNetworkChange}
+              />
               {TYPES.NAVBAR.NAVLIST.map((navItem) => {
                 return (
                   <span
@@ -88,6 +120,25 @@ function Navbar() {
                     onClick={() => setToggle(!toggle)}>
                     <Link href={navItem.path}>{navItem.title}</Link>
                   </span>
+                );
+              })}
+
+              {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+                return (
+                  <>
+                    {value.map((item, index) => (
+                      <span
+                        key={index}
+                        className={
+                          router.pathname === item.path
+                            ? styles.mactive
+                            : undefined
+                        }
+                        onClick={() => setToggle(!toggle)}>
+                        <Link href={item.path}>{item.title}</Link>
+                      </span>
+                    ))}
+                  </>
                 );
               })}
             </nav>
@@ -112,11 +163,7 @@ function Navbar() {
               alt="nexus logo"></Image>
             <div className={styles.explorer}>Explorer</div>
           </div>
-          <SelectInput
-            options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
-            value={appContext.network.name}
-            onChange={handleNetworkChange}
-          />
+
           <DesktopNavItem />
           <MobileNavItem />
         </div>

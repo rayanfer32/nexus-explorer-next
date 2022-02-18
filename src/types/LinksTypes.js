@@ -1,5 +1,7 @@
 export const LinksTypes = {
   LINKS: {
+    CONTRIBUTORS_API:
+      'https://api.github.com/repos/rayanfer32/nexus-explorer-next/stats/contributors',
     github: {
       rayan: {
         id: '001',
