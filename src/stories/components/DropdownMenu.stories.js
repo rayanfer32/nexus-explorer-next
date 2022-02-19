@@ -1,5 +1,4 @@
-import Card from 'components/atoms/NE_Card';
-import DropdownMenu from 'components/TestComponents/DropdownMenu';
+import DropdownMenu from 'components/atoms/NE_Dropdown';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -13,13 +12,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: 'Blockchain',
   children: [
-    <a href="/blocks">Blocks</a>,
-    <a href="/transactions">Transactions</a>,
-    <a href="/transactions">Transactions</a>,
-    <a href="/transactions">Transactions</a>,
-    <a href="/transactions">Transactions</a>,
-    <a href="/transactions">Transactions</a>,
-
+    <a href="https://nexplorer.vercel.app/blocks">Blocks</a>,
+    <a href="https://nexplorer.vercel.app/transactions">Transactions</a>,
   ],
 };
-

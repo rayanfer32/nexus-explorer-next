@@ -8,7 +8,9 @@ import {
   BsGlobe2,
   BsMedium,
   BsPeople,
+  BsReddit,
   BsTelegram,
+  BsTwitter,
   BsWallet2,
   BsYoutube,
 } from 'react-icons/bs';
@@ -72,6 +74,18 @@ export const FooterTypes = {
             target: '_blank',
             label: 'Discord',
             icon: (props) => <BsDiscord {...props} />,
+          },
+          {
+            href: 'https://twitter.com/NexusOfficial',
+            target: '_blank',
+            label: 'Twitter',
+            icon: (props) => <BsTwitter {...props} />,
+          },
+          {
+            href: 'https://www.reddit.com/r/nexus_community/',
+            target: '_blank',
+            label: 'Reddit',
+            icon: (props) => <BsReddit {...props} />,
           },
         ],
       },
