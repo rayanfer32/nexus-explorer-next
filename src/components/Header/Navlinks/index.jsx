@@ -3,6 +3,13 @@ import TYPES from 'types';
 import Dropdown from 'components/atoms/NE_Dropdown';
 import Link from 'next/link';
 
+/**
+ * Static link structure component
+ * @param {string} activePathname active pathname
+ * @param {string} pathname current link path
+ * @param {string} label label of the link
+ * @returns
+ */
 export const StaticNavLinks = ({
   activePathname = '',
   pathname = '',
@@ -27,6 +34,13 @@ export const StaticNavLinks = ({
   );
 };
 
+/**
+ * Nested navlinks are flattend
+ * @param {string} activePathname active pathname
+ * @param {string} title label the link
+ * @param {Array} options nested links with title and path
+ * @returns {JSX.Element}
+ */
 export const NestedNavLinks = ({
   activePathname = '',
   title = '',
@@ -50,6 +64,11 @@ export const NestedNavLinks = ({
   );
 };
 
+/**
+ * Desktop navigation links
+ * @param {string} param0 current pathname of page
+ * @returns {JSX.Element}
+ */
 export const DesktopNavLinks = ({ pathname }) => {
   return (
     <nav className={styles.links}>
@@ -79,11 +98,14 @@ export const DesktopNavLinks = ({ pathname }) => {
   );
 };
 
-export const MobileNavLinks = ({
-  pathname,
-  toggleMobileMenu = false,
-  setToggle = () => null,
-}) => {
+/**
+ *
+ * @param {string} pathname active pathname of page
+ * @param {Function} setToggle toggle function on option-click/close
+ * @returns {JSX.Element}
+ */
+export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
+  const Toggle = () => setToggle((prev) => !prev);
   return (
     <nav className={styles.mlinks}>
       {TYPES.NAVBAR.NAVLIST.map((navItem) => {
@@ -91,7 +113,7 @@ export const MobileNavLinks = ({
           <span
             key={navItem.id}
             className={pathname === navItem.path ? styles.mactive : undefined}
-            onClick={() => setToggle(!toggleMobileMenu)}>
+            onClick={Toggle}>
             <Link href={navItem.path}>{navItem.title}</Link>
           </span>
         );
@@ -106,7 +128,7 @@ export const MobileNavLinks = ({
                   className={
                     pathname === item.path ? styles.mactive : undefined
                   }
-                  onClick={() => setToggle(!toggleMobileMenu)}>
+                  onClick={Toggle}>
                   {item.title}
                 </span>
               </Link>
@@ -118,6 +140,9 @@ export const MobileNavLinks = ({
   );
 };
 
+/**
+ * Navigation link component
+ */
 const NavLinks = ({ activePathname = '', isMobile = false, ...props }) => {
   if (isMobile) return <MobileNavLinks {...props} pathname={activePathname} />;
   return <DesktopNavLinks {...props} pathname={activePathname} />;

@@ -1,4 +1,4 @@
-.navItems {
+.desktopNavbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,9 +16,16 @@
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
     min-height: 100vh;
+    backdrop-filter: blur(0.125rem);
   }
 
   background-color: var(--midnight-blue);
+  box-shadow: -0.125rem 0rem 1rem hsla(202, 96%, 11%, 40%);
+  @supports (backdrop-filter: blur(0.5rem)) {
+    backdrop-filter: blur(0.5rem);
+    background-color: hsla(202, 96%, 11%, 80%);
+  }
+
   position: fixed;
   min-height: 100vh;
   width: 80%;
@@ -51,9 +58,19 @@
     width: 100%;
     height: max-content;
   }
+
+  animation: slideIn 0.25s cubic-bezier(0.65, 0.05, 0.36, 1);
+  @keyframes slideIn {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 80%;
+    }
+  }
 }
 
-.closeHam {
+.closeHamIcon {
   position: relative;
   cursor: pointer;
   width: 2rem;
@@ -82,7 +99,7 @@
   display: none;
 }
 @media (max-width: 54em) {
-  .navItems {
+  .desktopNavbar {
     display: none;
   }
   .Mobile__hamburger {

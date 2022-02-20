@@ -3,7 +3,13 @@ import ThemeMode from 'components/atoms/ThemeMode';
 import { NETWORKS } from 'types/ConstantsTypes';
 import styles from './Navbar.module.scss';
 import NavLinks from '../Navlinks';
+import PropTypes from 'prop-types';
 
+/**
+ * Single component for navbar
+ * @param {boolean} param0 filter device type
+ * @returns {JSX.Element}
+ */
 const Navbar = ({ isMobile = false, ...props }) => {
   if (isMobile) <MobileMenu {...props} />;
   return <DesktopNavbar {...props} />;
@@ -11,6 +17,13 @@ const Navbar = ({ isMobile = false, ...props }) => {
 
 export default Navbar;
 
+/**
+ * Component to display navigation links
+ * @param {string} activePathname get active pathname of page
+ * @param {boolean} isDark get theme status
+ * @param {string} network value which network is selected
+ * @returns {JSX.Element}
+ */
 export const DesktopNavbar = ({
   activePathname = '',
   isDark = false,
@@ -20,7 +33,7 @@ export const DesktopNavbar = ({
 }) => {
   return (
     <>
-      <div className={styles.navItems}>
+      <div className={styles.desktopNavbar}>
         <NavLinks activePathname={activePathname} />
         <SelectInput
           options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
@@ -33,6 +46,11 @@ export const DesktopNavbar = ({
   );
 };
 
+/**
+ * Hamburger icon component
+ * @param {Funtion} onClick toggle function for hamburger menu
+ * @returns {JSX.Element}
+ */
 export const Hamburger = ({ onClick = () => null }) => {
   return (
     <div className={styles.Mobile__hamburger} onClick={onClick}>
@@ -41,6 +59,14 @@ export const Hamburger = ({ onClick = () => null }) => {
   );
 };
 
+/**
+ * Component to display menu options for small screen
+ * @param {string} activePathname get active pathname of page
+ * @param {boolean} isDark get theme status
+ * @param {boolean} isOpen status of menu options dispalyed or not
+ * @param {string} network value which network is selected
+ * @returns {JSX.Element}
+ */
 export const MobileMenu = ({
   activePathname = '',
   isDark = false,
@@ -62,7 +88,7 @@ export const MobileMenu = ({
             value={network}
             onChange={onNetworkChange}
           />
-          <div className={styles.closeHam} onClick={onClose} />
+          <div className={styles.closeHamIcon} onClick={onClose} />
         </div>
         <div className={styles.MobileView__content}>
           <NavLinks
@@ -75,4 +101,25 @@ export const MobileMenu = ({
       </div>
     </>
   );
+};
+
+DesktopNavbar.propTypes = {
+  isDark: PropTypes.bool,
+  activePathname: PropTypes.string,
+  network: PropTypes.string,
+  onNetworkChange: PropTypes.func,
+  onThemeChange: PropTypes.func,
+};
+Hamburger.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+MobileMenu.propTypes = {
+  ...DesktopNavbar.propTypes,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  setClose: PropTypes.func,
+};
+
+Navbar.propTypes = {
+  ...MobileMenu.propTypes,
 };
