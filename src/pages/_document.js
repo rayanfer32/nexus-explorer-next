@@ -11,7 +11,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" href="/nexus-nxs-logo.svg" />
+          <link rel="icon" href="/favicon.svg" />
           <meta name="theme-color" content={TYPES.COLORS.OCEAN_BLUE} />
         </Head>
         <body className={TYPES.THEME.LIGHT}>
