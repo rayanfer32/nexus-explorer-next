@@ -1,6 +1,6 @@
 import styles from './Layout.module.scss';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
+import Header from '../Header';
+import Footer from '../Footer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 /**
@@ -11,11 +11,12 @@ import ScrollToTop from '../ScrollToTop/ScrollToTop';
 function Layout({ children }) {
   return (
     <>
-      <section className={styles.main}>
-        <Navbar />
-        <main className={styles.container}>{children}</main>
-        <Footer />
-      </section>
+      {/* Need second opinion on commented  section tag is it required or not */}
+      {/* <section className={styles.main}> */}
+      <Header />
+      <main className={styles.container}>{children}</main>
+      <Footer />
+      {/* </section> */}
       <ScrollToTop />
     </>
   );

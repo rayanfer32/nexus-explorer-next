@@ -1,15 +1,15 @@
+.container {
+  padding: 0.3rem;
+  border: 1px solid var(--sky-blue);
+  border-radius: 0.25rem;
+  color: var(--theme-page-text);
+  background: hsla(0, 0%, 100%, 0.5);
+  font-family: inherit;
+  font-size: var(--font-normal);
 
-    .container {
-      padding: 0.3rem;
-      border: 1px solid var(--sky-blue);
-      border-radius: 0.25rem;
-      color: var(--midnight-blue);
-      background: hsla(0, 0%, 100%, 0.5);
-      font-family: inherit;
-      font-size: var(--font-normal);
-
-      &:focus {
-        background: hsla(0, 0%, 100%, 1);
-        outline-color: var(--nexus-blue);
-      }
-    }
+  &:focus {
+    color: var(--midnight-blue);
+    background: hsla(0, 0%, 100%, 1);
+    outline-color: var(--nexus-blue);
+  }
+}

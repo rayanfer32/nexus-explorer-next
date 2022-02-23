@@ -5,6 +5,7 @@ import TYPES from 'types';
 import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
 import { useQuery } from 'react-query';
+import { LinksTypes } from 'types/LinksTypes';
 
 const About = () => {
   const {
@@ -28,9 +29,7 @@ const About = () => {
   };
 
   const { data } = useQuery('contributors', async () => {
-    const res = await fetch(
-      'https://api.github.com/repos/rayanfer32/nexus-explorer-next/stats/contributors'
-    );
+    const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);
     return res.json();
   });
 

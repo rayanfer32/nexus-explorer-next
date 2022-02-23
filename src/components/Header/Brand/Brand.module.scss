@@ -1,0 +1,17 @@
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  color: var(--theme-nav-brand);
+  padding: var(--space-xs);
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+  .explorer {
+    font-style: normal;
+    font-weight: lighter;
+    font-size: var(--font-xl);
+  }
+}

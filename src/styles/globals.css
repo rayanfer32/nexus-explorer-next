@@ -3,52 +3,52 @@
 
 :root {
   /* colors */
-  --nexus-blue: #0ca4fb;
-  --sky-blue: #6dcefe;
-  --ocean-blue: #025e93;
-  --midnight-blue: #012235;
-  --white: #ffffff;
-  --dark-grey: #2e292f;
-  --market-green: #28a745;
-  --market-red: #dc3545;
-  --market-yellow: #d9bb26;
-  --paper-white: #f8f9fa;
-  --pale-white: #f5f7f9;
-  --frost-white: #daebf4;
+  --nexus-blue: hsl(202, 97%, 52%);
+  --sky-blue: hsl(200, 99%, 71%);
+  --ocean-blue: hsl(202, 97%, 29%);
+  --midnight-blue: hsl(202, 96%, 11%);
+  --white: hsl(0, 0%, 100%);
+  --dark-grey: hsl(290, 7%, 17%);
+  --market-green: hsl(134, 61%, 41%);
+  --market-red: hsl(354, 70%, 54%);
+  --market-yellow: hsl(50, 70%, 50%);
+  --paper-white: hsl(210, 17%, 98%);
+  --pale-white: hsl(210, 25%, 97%);
+  --frost-white: hsl(201, 54%, 91%);
 
   /* gradient */
   --linear-frost-white: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.5) 0%,
-    #daebf4 100%
+    hsl(201, 54%, 91%) 100%
   );
 
   --linear-frost-white-reverse: linear-gradient(
     0deg,
     rgba(255, 255, 255, 0.5) 0%,
-    #daebf4 100%
+    hsl(201, 54%, 91%) 100%
   );
 
   --linear-ocean-midnight: linear-gradient(
     175.94deg,
-    #012235b3 5.59%,
-    #025e93b3 73.28%
+    hsla(202, 96%, 11%, 0.702) 5.59%,
+    hsla(202, 97%, 29%, 0.702) 73.28%
   );
   --linear-sky-white: linear-gradient(
     175.94deg,
     rgba(12, 164, 251, 0.7) 5.59%,
-    rgba(109, 206, 254, 0.35) 73.28%
+    hsla(200, 99%, 71%, 0.35) 73.28%
   );
   --linear-nexus-sky: linear-gradient(
     328deg,
-    rgba(12, 164, 251, 1) 0%,
-    rgba(109, 206, 254, 1) 80%,
-    rgba(255, 255, 255, 1) 100%
+    hsl(202, 97%, 52%) 0%,
+    hsl(200, 99%, 71%) 80%,
+    hsl(0, 0%, 100%) 100%
   );
   --radial-ocean-midnight: radial-gradient(
     circle,
-    rgba(6, 35, 52, 1) 0%,
-    rgba(3, 45, 70, 1) 100%
+    hsl(202, 79%, 11%) 0%,
+    hsl(202, 92%, 14%) 100%
   );
 
   --radial-sky-white: radial-gradient(
@@ -117,6 +117,8 @@
   --theme-tab-text: var(--dark-grey);
   --theme-toast-bg: hsl(220, 10%, 16%);
   --theme-icon-color: var(--dark-grey);
+  --theme-hover-bg: var(--ocean-blue);
+  --theme-hover-text: var(--frost-white);
 
   /* shadows */
   --card-shadow: 0rem 0.25rem 0.5rem #0002;
@@ -151,6 +153,8 @@
   --theme-tab-bg: var(--ocean-blue);
   --theme-toast-bg: hsl(220, 10%, 16%);
   --theme-icon-color: var(--sky-blue);
+  --theme-hover-bg: var(--ocean-blue);
+  --theme-hover-text: var(--white);
 
   /* shadows */
   --card-shadow: 0rem 0.25rem 0.5rem #0002;
