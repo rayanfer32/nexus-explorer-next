@@ -40,7 +40,7 @@ export function useNetwork() {
     // * to consider the users who have moved their balance to trust
     // * query for both trust and normal accounts
     const page0 = await axios.get(
-      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111`
+      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111&where=object.token=0`
     );
 
     return { data: [...page0.data.result] };

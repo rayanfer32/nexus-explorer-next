@@ -27,63 +27,68 @@ function Panel2(props) {
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {
+      const marketData = marketRQ.data.data.market_data;
       setState((prev) => ({
         ...prev,
         price: {
-          sublabel: marketRQ.data.data.market_data.current_price.btc,
-          text: marketRQ.data.data?.market_data.current_price.usd.toFixed(2),
-          reserve: marketRQ.data.data?.market_data.price_change_percentage_24h,
-          reward: marketRQ.data.data?.market_data.total_volume.usd,
-          footer: marketRQ.data.data?.market_data.market_cap.usd,
+          sublabel: marketData?.current_price.btc,
+          text: marketData?.current_price.usd.toFixed(2),
+          reserve: marketData?.price_change_percentage_24h,
+          reward: marketData?.total_volume.usd,
+          footer: marketData?.market_cap.usd,
         },
       }));
     }
 
     if (miningRQ.data) {
+      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
           ...prev.stake,
-          sublabel: miningRQ.data.data.result.stake.difficulty.toFixed(2),
-          reserve: miningRQ.data.data.result.stake.height,
-          footer: miningRQ.data.data.result.stake.fees.toFixed(2),
+          sublabel: miningData?.stake.difficulty.toFixed(2),
+          reserve: miningData?.stake.height,
+          footer: miningData?.stake.fees.toFixed(2),
         },
       }));
     }
 
     if (metricsRQ.data) {
+      const metricsData = metricsRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
           ...prev.stake,
-          text: metricsRQ.data.data.result.trust.stake,
-          reward: metricsRQ.data.data.result.trust.total,
+          text: metricsData.trust.stake,
+          reward: metricsData.trust.total,
         },
       }));
     }
 
     if (miningRQ.data) {
+      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         hash: {
-          sublabel: miningRQ.data.data.result.hash.difficulty.toFixed(2),
-          text: miningRQ.data.data.result.hash.hashes,
-          reserve: miningRQ.data.data.result.hash.reserve.toFixed(2),
-          reward: miningRQ.data.data.result.hash.reward.toFixed(2),
-          footer: miningRQ.data.data.result.hash.fees.toFixed(2),
+          sublabel: miningData.hash.difficulty.toFixed(2),
+          text: miningData.hash.hashes,
+          reserve: miningData.hash.reserve.toFixed(2),
+          reward: miningData.hash.reward.toFixed(2),
+          footer: miningData.hash.fees.toFixed(2),
         },
       }));
     }
 
     if (miningRQ.data) {
+      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         prime: {
-          sublabel: miningRQ.data.data.result.prime.difficulty.toFixed(2),
-          text: miningRQ.data.data.result.prime.primes,
-          reserve: miningRQ.data.data.result.prime.reserve.toFixed(2),
-          reward: miningRQ.data.data.result.prime.reward.toFixed(2),
-          footer: miningRQ.data.data.result.prime.fees.toFixed(2),
+          sublabel: miningData.prime.difficulty.toFixed(2),
+          text: miningData.prime.primes,
+          reserve: miningData.prime.reserve.toFixed(2),
+          reward: miningData.prime.reward.toFixed(2),
+          footer: miningData.prime.fees.toFixed(2),
         },
       }));
     }
@@ -99,7 +104,7 @@ function Panel2(props) {
   // increment the card timeout evry second
   useEffect(() => {
     const interval = setInterval(() => {
-      setCardRefreshTimeout((prev) => prev - 1);
+      setCardRefreshTimeout((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
     return () => clearInterval(interval);
