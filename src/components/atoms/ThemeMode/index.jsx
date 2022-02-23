@@ -1,48 +1,45 @@
-import styles from './ThemeMode.module.css';
-import lightBtn from 'assets/icons/light_mode_black_24dp.svg';
-import darkBtn from 'assets/icons/dark_mode_black_24dp.svg';
-import Image from 'next/image';
+import styles from './ThemeMode.module.scss';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 ThemeMode.propTypes = {
-  isDark: PropTypes.bool,
-  onClick: PropTypes.func,
+  isDark: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
-export default function ThemeMode(props) {
-  const [toggle, setToggle] = useState(() => {
-    props.isDark ?? true ? styles['thumb-right'] : styles['thumb-left'];
-    return props.isDark ?? false;
-  });
+/**
+ * Toggle button Component for theme selection
+ * @param {boolean} isDark theme status
+ * @param {Function} onClick onClick function
+ */
+export default function ThemeMode({ isDark = false, onClick = () => null }) {
+  const [toggle, setToggle] = useState(isDark);
 
-  const onClick = () => {
+  const handleOnClick = () => {
     setToggle(!toggle);
-    props?.onClick && props?.onClick();
+    onClick();
   };
 
-  const toggleClass = toggle ? styles['thumb-right'] : styles['thumb-left'];
+  const toggleStyle = toggle
+    ? { justifyContent: 'flex-end' }
+    : { justifyContent: 'flex-start' };
 
   return (
-    <button className={styles.container} onClick={onClick}>
-      <div className={toggleClass}>
+    <button
+      className={styles.themeMode}
+      style={toggleStyle}
+      onClick={handleOnClick}>
+      <div className={styles.themeMode__thumb}>
         {toggle ? (
-          <Image
-            width={16}
-            height={20}
-            layout="fixed"
-            src={darkBtn}
-            alt="dark"
-            className={styles.img}
+          <BsMoonFill
+            color="inherit"
+            className={styles.themeMode__thumb__icon}
           />
         ) : (
-          <Image
-            width={15}
-            height={20}
-            layout="fixed"
-            src={lightBtn}
-            alt="light"
-            className={styles.img}
+          <BsSunFill
+            color="inherit"
+            className={styles.themeMode__thumb__icon}
           />
         )}
       </div>

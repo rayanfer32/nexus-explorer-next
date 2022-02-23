@@ -1,0 +1,34 @@
+.themeMode {
+  --tm-height: 1.5rem;
+  --tm-width: 2.5rem;
+  --tm-border-radius: 3.5rem;
+
+  all: unset;
+  padding: 0rem;
+  margin: 0rem;
+  display: flex;
+  align-items: center;
+  width: var(--tm-width);
+  height: var(--tm-height);
+  background: var(--linear-nav-bg);
+  border: 0.125rem solid var(--nexus-blue);
+  border-radius: var(--tm-border-radius);
+  cursor: pointer;
+
+  &__thumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(var(--tm-height) - 0.1rem);
+    padding: 0 0.25rem;
+    margin: 0 0.125rem;
+    border-radius: var(--tm-border-radius);
+    color: var(--theme-page-background);
+    background: var(--nexus-blue);
+
+    &__icon {
+      height: calc(var(--tm-height) - 0.5rem);
+      width: calc(var(--tm-height) - 0.5rem);
+    }
+  }
+}

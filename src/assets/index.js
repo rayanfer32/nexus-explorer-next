@@ -10,12 +10,9 @@ import NexusLogoWhite1000x225 from './branding/NexusLogoWhite1000x225.png';
 import NexusLogoBlue1250x225 from './branding/NexusLogoBlue1250x225.png';
 import NexusLogoWhite1250x225 from './branding/NexusLogoWhite1250x225.png';
 // ICONS
-import applceIcon from './icons/apple.png';
 import keyboard_arrow from './icons/keyboard_arrow.svg';
 import nexusBlue from './icons/nexus_blue64.png';
 import nexusWhite from './icons/nexus_white64.png';
-import playstoreIcon from './icons/playstore.png';
-import walletIcon from './icons/wallet.png';
 // IMAGES
 import error from './images/error.svg';
 import blob_type_one from './images/blob_type_one.svg';
@@ -31,13 +28,10 @@ export const ASSESTS = {
     TERTIARY: { BLUE: GlobeBlue1000x1000, WHITE: GlobeWhite1000x1000 },
   },
   ICON: {
-    APPLE: applceIcon,
     ARROW: {
       KEYBOARD: keyboard_arrow,
     },
     NEXUS: { BLUE: nexusBlue, WHITE: nexusWhite },
-    PLAY_STORE: playstoreIcon,
-    WALLET: walletIcon,
   },
   IMAGE: {
     GENRAL_ERROR: error,
