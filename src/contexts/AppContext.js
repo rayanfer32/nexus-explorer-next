@@ -14,7 +14,7 @@ const _state = {
 
 export function ContextWrapper({ children }) {
   // sync the context with localStorage
-  const [sharedState, setSharedState] = useLocalStorage("context", _state);
+  const [sharedState, setSharedState] = useLocalStorage('context', _state);
 
   /**
    * setState
@@ -22,18 +22,36 @@ export function ContextWrapper({ children }) {
    * @param {any} data
    * @returns
    */
-  const setAppContext = (key, data) => {
-    setSharedState({
-      ...sharedState,
-      [key]: data,
-    });
+  const setAppContext = (key = undefined, data) => {
+    if (key) {
+      setSharedState((prev) => ({
+        ...prev,
+        [key]: data,
+      }));
+    }
+
+    if (!key) {
+      typeof data === 'object' &&
+        !Array.isArray(data) &&
+        setSharedState((prev) => ({
+          ...prev,
+          ...data,
+        }));
+    }
+
+    return;
   };
 
   return (
     <AppContext.Provider
       // * soon sharedState and setSharedState will be removed
       // * recommand not to use sharedState and setSharedState
-      value={{ sharedState, setSharedState, appContext: sharedState, setAppContext }}>
+      value={{
+        sharedState,
+        setSharedState,
+        appContext: sharedState,
+        setAppContext,
+      }}>
       {children}
     </AppContext.Provider>
   );
