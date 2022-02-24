@@ -27,7 +27,7 @@ function Panel1(props) {
     if (infoRQ.data) {
       setState((prev) => ({
         ...prev,
-        blocks: infoRQ.data.data.result?.blocks,
+        blocks: infoRQ.data.data.result?.blocks || 0,
       }));
     }
   }, [metricsRQ.data, infoRQ.data]);
