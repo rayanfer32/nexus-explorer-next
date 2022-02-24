@@ -19,6 +19,9 @@
 @media (max-width: 768px) {
   /* hide scroll */
   .cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     overflow: visible;
     overflow-y: hidden;
     -ms-overflow-style: none;

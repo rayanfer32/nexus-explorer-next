@@ -1,4 +1,4 @@
-import styles from './Panel2.module.css';
+import styles from './Panel2.module.scss';
 
 import DetailCard from 'components/atoms/DetailCard';
 import React, { useState, useEffect } from 'react';

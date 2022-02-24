@@ -1,11 +1,12 @@
-/* for desktops */
+/* for mobile */
 .container {
+  display: none;
   gap: var(--space-xxl);
   flex-direction: column;
   justify-content: center;
 }
 
-/* for mobile  */
+/* for desktop  */
 @media (min-width: 768px) {
   .container {
     display: flex;

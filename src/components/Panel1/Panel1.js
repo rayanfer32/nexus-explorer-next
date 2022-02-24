@@ -1,5 +1,5 @@
 import SmallCard from '../atoms/SmallCard';
-import styles from 'components/Panel1/Panel1.module.css';
+import styles from 'components/Panel1/Panel1.module.scss';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { useState, useEffect } from 'react';
 import Shimmer from 'components/atoms/NE_Shimmer';
