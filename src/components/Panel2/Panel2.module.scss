@@ -19,21 +19,18 @@
 }
 /* } */
 
-
 // for mobile
-@media (max-width: 576px){
+@media (max-width: 576px) {
   .panelTwoContainer {
     display: flex;
     flex-direction: column;
     gap: var(--space-xxxs);
     padding: 0.5rem 0;
   }
-
 }
 
-
-// for tablet 
-@media (min-width: 630px) {
+// for tablet
+@media (max-width: 630px) {
   .panelTwoContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
