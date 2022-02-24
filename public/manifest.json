@@ -1,12 +1,14 @@
 {
+    "name": "Nexplorer",
+    "short_name": "Nexplorer",
+    "description": "Nexus Blockchain Explorer V2",
+    "lang": "en-IN",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
     "theme_color": "#0ca4fb",
     "background_color": "#012235",
-    "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
-    "name": "Nexplorer",
-    "short_name": "nexplorer",
-    "description": "Nexus Blockchain Explorer V2",
     "icons": [
         {
             "src": "/icon-192x192.png",
