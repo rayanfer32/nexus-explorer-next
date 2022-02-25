@@ -1,5 +1,5 @@
 import SmallCard from '../atoms/SmallCard';
-import styles from 'components/Panel1/Panel1.module.css';
+import styles from 'components/Panel1/Panel1.module.scss';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { useState, useEffect } from 'react';
 import Shimmer from 'components/atoms/NE_Shimmer';
@@ -27,7 +27,7 @@ function Panel1(props) {
     if (infoRQ.data) {
       setState((prev) => ({
         ...prev,
-        blocks: infoRQ.data.data.result?.blocks,
+        blocks: infoRQ.data.data.result?.blocks || 0,
       }));
     }
   }, [metricsRQ.data, infoRQ.data]);

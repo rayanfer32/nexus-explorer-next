@@ -13,12 +13,12 @@ import {
 } from 'utils/common/fetch';
 
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { Fragment } from 'react';
 
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
 
 export async function getStaticProps() {
-  console.log('Generating static props'); // export this function
   const responses = await Promise.all([
     fetchMetrics(),
     fetchInfo(),
@@ -76,7 +76,7 @@ export default function Home(props) {
         <title> Nexus Explorer V2 </title>
         <meta name="description" content="Nexus Blockchain Statistics" />
       </Head>
-      <main>
+      <Fragment>
         <Panel1
           marketRQ={marketRQ}
           infoRQ={infoRQ}
@@ -90,8 +90,8 @@ export default function Home(props) {
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
         />
-        <Panel3 blocks={props.blocks}/>
-      </main>
+        <Panel3 blocks={props.blocks} />
+      </Fragment>
     </>
   );
 }

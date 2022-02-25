@@ -45,6 +45,7 @@ export default function Table({ columns, data = [], paginate = true }) {
   return (
     // apply the table props
     <>
+      <div className={styles.tableContainer}>
       <table className={styles.table} {...getTableProps()}>
         <thead className={styles.thead}>
           {
@@ -111,6 +112,7 @@ export default function Table({ columns, data = [], paginate = true }) {
           }
         </tbody>
       </table>
+      </div>
       {pageCount > 1 && paginate && (
         <div style={{ marginBottom: '1rem' }}>
           <Pagination controls={paginationControls} />
