@@ -1,14 +1,16 @@
 import axios from 'axios';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useQuery } from 'react-query';
 
 export default function Namespaces() {
-
-  const {network, getNamespaces} = useNetwork();
-  const { isLoading, data, error } = useQuery(['namespaces', network.name], getNamespaces);
+  const { network, getNamespaces } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['namespaces', network.name],
+    getNamespaces
+  );
 
   const columns = [
     {

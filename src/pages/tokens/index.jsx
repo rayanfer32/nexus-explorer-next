@@ -1,5 +1,5 @@
 import axios from 'axios';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';

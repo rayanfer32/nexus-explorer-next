@@ -7,7 +7,7 @@ import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import QRCode from 'react-qr-code';
 import TYPES from 'types';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function AccountInfo({ data }) {

@@ -1,18 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import styles from './ChartsApex.module.scss';
 
 function ApexPie({ series, options, labels, ...rest }) {
   const windowSize = useWindowSize();
 
-  // useEffect(() => {
-  //   console.log(windowSize);
-  // }, [windowSize]);
-
-  // const { sharedState } = useAppContext();
   const [isDarkMode] = useDarkMode();
   const [_series, setSeries] = useState(series);
   const [_options, setOptions] = useState(
@@ -62,6 +58,7 @@ function ApexPie({ series, options, labels, ...rest }) {
 
   return (
     <Chart
+      className={styles.chart__donut}
       key={_options.theme.mode}
       options={_options}
       series={_series}

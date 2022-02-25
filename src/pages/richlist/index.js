@@ -5,7 +5,7 @@ import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Richlist() {
@@ -88,7 +88,7 @@ export default function Richlist() {
           <h3>NXS Distrubution</h3>
           <ApexPie series={pieData} labels={labels} />
         </div>
-        <Table columns={columns} data={data.data}/>
+        <Table columns={columns} data={data.data} />
       </div>
     );
   }

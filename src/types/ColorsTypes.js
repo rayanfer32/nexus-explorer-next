@@ -11,5 +11,6 @@ export const ColorsTypes = {
     PAPER_WHITE: '#f8f9fa',
     PALE_WHITE: '#f5f7f9',
     TRANSPARENT: 'rgba(0, 0, 0, 0)',
+    LIGHT_GREY: '#cccccc',
   },
 };
