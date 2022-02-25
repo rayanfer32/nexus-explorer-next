@@ -4,7 +4,7 @@ import { BiClipboard, BiCopy, BiCheck } from 'react-icons/bi';
 import { middleElipsis } from 'utils/converter';
 import { handleCopy } from 'utils/helper';
 
-export default function CopyText({ value, ellipsisAfter, link }) {
+export default function CopyText({ value, ellipsisAfter, link, className }) {
   const [toastList, setToastList] = useState([]);
   const [indicator, setIndicator] = useState(false);
 
@@ -32,7 +32,7 @@ export default function CopyText({ value, ellipsisAfter, link }) {
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex' }} className={className}>
         <span>
           <a href={link} data-copy={value}>
             {value &&

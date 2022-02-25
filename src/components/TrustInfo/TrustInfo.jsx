@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import SmallCard from 'components/atoms/SmallCard';
-import styles from '../AccountInfo/AccountInfo.module.scss';
+import { useEffect, useState } from 'react';
+import styles from '../UserAccount/UserAccount.module.scss';
 import { useQuery } from 'react-query';
-import Loader from 'components/atoms/NE_Loader';
 import Button from 'components/atoms/NE_Button';
-import Table from 'components/Table/Table';
 import { middleElipsis } from 'utils/converter';
-import QRCode from 'react-qr-code';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { AccountInfo } from 'components/UserAccount/AccountInfo';
+import { AccountDetail } from 'components/UserAccount/AccountDetail';
+import { TransactionDetails } from 'components/UserAccount/TransactionDetails';
 
 export default function TrustInfo({ data }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
@@ -25,7 +24,6 @@ export default function TrustInfo({ data }) {
   );
 
   useEffect(() => {
-    console.log(data.address);
     // temp fix for bug that causes old address to be queried
     setTimeout(() => trustTransactionsRQ.refetch(), 2000);
   }, []);
@@ -71,88 +69,22 @@ export default function TrustInfo({ data }) {
     }
   }, [trustTransactionsRQ.data]);
 
-  const LoaderDiv = () => (
-    <div
-      style={{
-        display: 'grid',
-        placeItems: 'center',
-        minHeight: '200px',
-        margin: 'auto',
-      }}>
-      <Loader type="circle" size="5rem" />
-    </div>
-  );
-
   return (
     <div className={styles.page}>
-      <h1>Trust Info</h1>
-      <section className={styles.cardsContainer}>
-        <SmallCard
-          label="Balance"
-          sublabel="Current"
-          text={new Intl.NumberFormat('en-US').format(data?.balance)}
-          ticker="NXS"
-          // link={`/scan/${state.blocks}`}
-          // icon={<GrStackOverflow />}
-        />
-        <SmallCard
-          label="Stake"
-          //   sublabel="in NXS"
-          text={new Intl.NumberFormat('en-US').format(data?.stake || 0)}
-          ticker="NXS"
-          // icon={<FaCoins />}
-        />
-        <SmallCard
-          label="Pending"
-          sublabel=""
-          text={new Intl.NumberFormat().format(data?.pending || 0)}
-          ticker="NXS"
-          // icon={<BsPersonCheckFill />}
-        />
-        <SmallCard
-          label="Unconfirmed"
-          sublabel=""
-          text={data?.unconfirmed || 0}
-          ticker="NXS"
-          // icon={<AiOutlineStock />}
-        />
-      </section>
+      <h2>Trust Info</h2>
+      <AccountInfo data={data} />
 
       {/* account details */}
-      <h1>Account Details</h1>
-      <div className={styles.details}>
-        <section className={styles.details__text}>
-          <div>Address: {data.address}</div>
-          <div>Owner: {data.owner}</div>
-          <div>
-            Created On: {new Date(data.created * 1000).toLocaleString()}
-          </div>
-          <div>
-            Last Modified: {new Date(data.modified * 1000).toLocaleString()}
-          </div>
-          <div>Name: {data.name}</div>
-          <div>Token Name: {data.token}</div>
-          <div>Ticker: {data.ticker}</div>
-        </section>
-        <section>
-          <div className={styles.qrCode}>
-            <QRCode
-              fgColor="#0ca4fb"
-              title={data.address}
-              value={data.address}
-              level="L"
-              size={200}
-            />
-          </div>
-        </section>
-      </div>
+      <h2>Account Details</h2>
+      <AccountDetail data={data} />
 
       <h1>Transaction Details</h1>
-      {trustTransactionsRQ.isLoading ? (
-        <LoaderDiv />
-      ) : (
-        <Table columns={columns} data={tableData || []} />
-      )}
+      <TransactionDetails
+        isLoading={trustTransactionsRQ.isLoading}
+        columns={columns}
+        data={tableData || []}
+      />
+
       <Button
         type="tertiary"
         onClick={() => setShowRawResponse((prev) => !prev)}>

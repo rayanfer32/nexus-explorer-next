@@ -1,13 +1,3 @@
-.page {
-  color: var(--theme-page-text);
-}
-
-.cardsContainer {
-  display: flex;
-  gap: var(--space-xxs);
-  padding: 0rem;
-}
-
 .details {
   display: flex;
   flex-direction: row;
@@ -42,36 +32,13 @@
     border-radius: 0.5rem;
     box-shadow: var(--card-shadow);
   }
-}
-
-.amount {
-  color: white;
-  font-weight: 'bold';
-  border-radius: 0.2rem;
-  // width: fit-content;
-  padding: 0.3rem;
-}
-
-/* for small screen */
-@media (max-width: 768px) {
-  /* hide scroll */
-  .cardsContainer {
-    overflow: visible;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    padding-bottom: var(--space-xs);
-  }
-  .cardsContainer::-webkit-scrollbar {
-    display: none;
-    scrollbar-width: none;
-    width: 0;
-    background: transparent;
-  }
-
-  .details {
+  @media (max-width: 768px) {
     flex-direction: column;
     overflow: scroll;
     align-items: flex-start;
+
+    .qrConatiner {
+      align-self: center;
+    }
   }
 }
