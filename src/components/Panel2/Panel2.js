@@ -123,7 +123,6 @@ function Panel2(props) {
   if (marketRQ.isError) return <p>Error...</p>;
 
   if (marketRQ.error) {
-    // console.log(marketRQ.error);
     return <pre>{JSON.stringify(marketRQ.error, null, 2)}</pre>;
   }
 
