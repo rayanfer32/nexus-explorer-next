@@ -3,10 +3,9 @@ import { InfoCard } from 'components/atoms/InfoCard';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
-import AccountInfo from 'components/AccountInfo/AccountInfo';
-import TrustInfo from 'components/TrustInfo/TrustInfo';
+import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 export const getServerSideProps = async (context) => {
@@ -81,8 +80,6 @@ function Scan({ addr }) {
     return { endpoint, params, type };
   }
 
-
-
   const { network, getScanResults } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['scan', addr, network.name],
@@ -135,9 +132,11 @@ function Scan({ addr }) {
     <div>
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && (
-        <AccountInfo type={cardType} data={data?.result} />
+        <UserAccount type={cardType} data={data?.result} />
       )}
-      {cardType === 'trust' && <TrustInfo data={data?.result} />}
+      {cardType === 'trust' && (
+        <UserAccount type={cardType} data={data?.result} />
+      )}
       {cardType === 'transaction' && (
         <InfoCard type={cardType} data={data?.result} />
       )}
