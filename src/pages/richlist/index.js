@@ -1,29 +1,22 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import styles from './richlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
-import CopyText from 'components/atoms/NE_CopyText/CopyText';
-import { fetchMetrics } from 'utils/common/fetch';
+import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Richlist() {
-  const metricsRQ = useQuery('metrics', fetchMetrics);
+  const { network, getRichlist, getMetrics } = useNetwork();
 
-  const totalSupply = metricsRQ?.data?.result?.supply?.total;
-
-  const { network, getRichlist } = useNetwork();
+  const metricsRQ = useQuery(['metrics', network.name], getMetrics);
   const { isLoading, data, error } = useQuery(
     ['richlist', network.name],
-    getRichlist,
-    {
-      // refetchOnWindowFocus: false,
-      // enable: false,
-    }
+    getRichlist
   );
+  const totalSupply = metricsRQ?.data?.result?.supply?.total;
 
   const columns = [
     {

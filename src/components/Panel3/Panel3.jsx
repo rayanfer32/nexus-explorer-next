@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import styles from './Panel3.module.css';
+import styles from './Panel3.module.scss';
 import { useEffect, useState } from 'react';
 import RTTable from 'components/atoms/RTTable/RTTable';
 import RTTRow from 'components/atoms/RTTable/RTTRow';
