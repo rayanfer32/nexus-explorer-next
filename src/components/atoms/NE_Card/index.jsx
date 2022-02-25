@@ -5,7 +5,6 @@ import styles from './Card.module.scss';
 import TYPES from 'types';
 
 const Card = ({ type = 'default', ...props }) => {
-  console.log(type);
   if (type === 'small') return <NE_SmallCard {...props} />;
   if (type === 'detail' || type === 'market' || type === 'basic')
     return <NE_DetailCard type={type} {...props} />;

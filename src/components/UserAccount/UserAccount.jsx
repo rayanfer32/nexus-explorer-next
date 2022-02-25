@@ -8,15 +8,20 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { AccountDetail } from './AccountDetail';
 import { AccountInfo } from './AccountInfo';
 import { TransactionDetails } from './TransactionDetails';
+import { toTitleCase } from 'utils/converter';
 
-export default function UserAccount({ data }) {
+export default function UserAccount({ type, data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
   const [tableData, setTableData] = useState([]);
 
-  const { network, getAccountTransactions } = useNetwork();
+  const { network, getAccountTransactions, getTrustTransactions } =
+    useNetwork();
   const accountTransactionsRQ = useQuery(
-    ['accountTransactions', network.name],
-    () => getAccountTransactions(data),
+    ['accountTransactions', network.name, type],
+    () =>
+      type == 'user'
+        ? getAccountTransactions(data)
+        : getTrustTransactions(data),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
@@ -94,15 +99,15 @@ export default function UserAccount({ data }) {
   return (
     <div className={styles.page}>
       {/* Account info  */}
-      <h2>Account Info</h2>
+      <h3>{toTitleCase(type)} Info</h3>
       <AccountInfo data={data} />
 
       {/* Account detials */}
-      <h2>Account Details</h2>
+      <h3>{toTitleCase(type)} Details</h3>
       <AccountDetail data={data} />
 
       {/* Transection detail table */}
-      <h2>Transaction Details</h2>
+      <h3>Transaction Details</h3>
       <TransactionDetails
         isLoading={accountTransactionsRQ.isLoading}
         columns={columns}

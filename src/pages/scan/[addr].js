@@ -4,7 +4,6 @@ import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 import UserAccount from 'components/UserAccount';
-import TrustInfo from 'components/TrustInfo/TrustInfo';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -135,7 +134,9 @@ function Scan({ addr }) {
       {cardType === 'user' && (
         <UserAccount type={cardType} data={data?.result} />
       )}
-      {cardType === 'trust' && <TrustInfo data={data?.result} />}
+      {cardType === 'trust' && (
+        <UserAccount type={cardType} data={data?.result} />
+      )}
       {cardType === 'transaction' && (
         <InfoCard type={cardType} data={data?.result} />
       )}
