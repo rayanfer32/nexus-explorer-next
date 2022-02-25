@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
-import styles from './ChartsApex.module.css';
+import styles from './ChartsApex.module.scss';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
@@ -39,12 +39,13 @@ function ChartsApex({ initialData }) {
         id: 'tx_chart',
 
         background: 'rgba(0, 0, 0, 0)',
+        // TODO: work arround for apexcharts toolbar issue
         toolbar: {
           show: true,
           offsetX: -48,
           offsetY: 8,
           tools: {
-            download: true,
+            download: false,
             selection: true,
             zoom: true,
             zoomin: true,
@@ -199,11 +200,11 @@ function ChartsApex({ initialData }) {
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
   return (
     <Chart
-      className={styles.container}
+      className={styles.chart__line}
       key={chartState.options.theme.mode}
       options={chartState.options}
       series={chartState.series}
-      height={190}
+      height={193}
       width={'100%'}
       type="area"
     />

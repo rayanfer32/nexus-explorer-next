@@ -76,7 +76,7 @@ export default function Home(props) {
         <title> Nexus Explorer V2 </title>
         <meta name="description" content="Nexus Blockchain Statistics" />
       </Head>
-      <main>
+      <>
         <Panel1
           marketRQ={marketRQ}
           infoRQ={infoRQ}
@@ -90,8 +90,8 @@ export default function Home(props) {
           miningRQ={miningRQ}
           metricsRQ={metricsRQ}
         />
-        <Panel3 blocks={props.blocks}/>
-      </main>
+        <Panel3 blocks={props.blocks} />
+      </>
     </>
   );
 }

@@ -2,9 +2,30 @@
   position: relative;
   background-color: var(--theme-page-background);
   padding: var(--space-xs); // 12px
-  border: solid 0.0625rem var(--theme-page-border);
+  // border: solid 0.0625rem var(--theme-page-border);
   border-radius: var(--space-xxxs); //4px
-  box-shadow: var(--card-shadow);
   width: 100%;
   height: 100%;
+  box-shadow: var(--card-shadow-border), var(--card-shadow);
+
+  &-live-state {
+    position: absolute;
+    top: 0.0625rem; // 1px
+    right: 0.0625rem; // 1px
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    animation: blink 3s ease-in infinite;
+    @keyframes blink {
+      0%,
+      100% {
+        opacity: 0;
+      }
+      10%,
+      90% {
+        opacity: 0.8;
+      }
+    }
+  }
 }

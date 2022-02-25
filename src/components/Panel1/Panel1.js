@@ -1,5 +1,5 @@
-import SmallCard from '../atoms/SmallCard';
-import styles from 'components/Panel1/Panel1.module.css';
+import { NE_SmallCard } from '../atoms/NE_Card/NE_SmallCard';
+import styles from 'components/Panel1/Panel1.module.scss';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { useState, useEffect } from 'react';
 import Shimmer from 'components/atoms/NE_Shimmer';
@@ -7,10 +7,11 @@ import { GrStackOverflow } from 'react-icons/gr';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
 import { FaCoins } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 
 function Panel1(props) {
-  const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
-
+  const { metricsRQ, infoRQ, miningRQ } = props;
+  const router = useRouter();
   const [state, setState] = useState({});
 
   useEffect(() => {
@@ -50,44 +51,45 @@ function Panel1(props) {
   if (metricsRQ.isError) return <p>Error...</p>;
 
   if (metricsRQ.error) {
-    console.log(miningRQ.error);
     return <pre>{JSON.stringify(miningRQ.error, null, 2)}</pre>;
   }
 
   return (
     <article className={styles.container}>
-      <section className={styles.cardsContainer}>
-        <SmallCard
+      <section
+        title={'metrics cards container'}
+        className={styles.cardsContainer}>
+        <NE_SmallCard
           label="Chain Height"
           sublabel="Blocks"
-          text={new Intl.NumberFormat('en-US').format(state.blocks)}
-          ticker="^"
-          link={`/scan/${state.blocks}`}
+          value={new Intl.NumberFormat('en-US').format(state.blocks)}
+          unit="^"
+          onClick={() => {
+            router.push(`/scan/${state.blocks}`);
+          }}
           icon={<GrStackOverflow />}
         />
-        <SmallCard
+        <NE_SmallCard
           label="Total Supply"
-          //   sublabel="in NXS"
-          text={new Intl.NumberFormat('en-US').format(state.totalSupply)}
-          ticker="NXS"
+          value={new Intl.NumberFormat('en-US').format(state.totalSupply)}
+          unit="NXS"
           icon={<FaCoins />}
         />
-        <SmallCard
+        <NE_SmallCard
           label="Signature Chains"
           sublabel="Users"
-          text={new Intl.NumberFormat().format(state.sigChains)}
-          ticker=""
+          value={new Intl.NumberFormat().format(state.sigChains)}
           icon={<BsPersonCheckFill />}
         />
-        <SmallCard
+        <NE_SmallCard
           label="Inflation Rate"
           sublabel="Annual"
-          text={state.inflationRate}
-          ticker="%"
+          value={state.inflationRate}
+          unit="%"
           icon={<AiOutlineStock />}
         />
       </section>
-      <section className={styles.chartContainer}>
+      <section title="chart container" className={styles.chartContainer}>
         <ChartsApex initialData={props.blocks} />
       </section>
     </article>

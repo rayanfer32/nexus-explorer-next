@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  display: flex;
+  gap: var(--space-xxs);
+  margin-bottom: var(--space-xxs);
+  .cardsContainer {
+    gap: var(--space-xxs);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .chartContainer {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  /* for small screen */
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}

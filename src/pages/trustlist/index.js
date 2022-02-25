@@ -4,7 +4,7 @@ import axios from 'axios';
 import styles from './trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Trustlist() {

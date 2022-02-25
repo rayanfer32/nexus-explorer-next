@@ -7,7 +7,7 @@ import Table from 'components/Table/Table';
 import { BiCopy } from 'react-icons/bi';
 import { handleCopy, totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Transactions(props) {

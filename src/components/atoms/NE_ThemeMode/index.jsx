@@ -10,6 +10,7 @@ ThemeMode.propTypes = {
 
 /**
  * Toggle button Component for theme selection
+ *
  * @param {boolean} isDark theme status
  * @param {Function} onClick onClick function
  */

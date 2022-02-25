@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+import styles from './ChartsApex.module.scss';
 
 function ApexPie(props) {
   // const { sharedState } = useAppContext();
@@ -55,11 +56,13 @@ function ApexPie(props) {
 
   return (
     <Chart
+      className={styles.chart__donut}
       key={options.theme.mode}
       options={options}
       series={series}
       type="donut"
       width={380}
+      height={'100%'}
     />
   );
 }

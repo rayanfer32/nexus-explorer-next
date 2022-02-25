@@ -6,7 +6,7 @@ import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { fetchMetrics } from 'utils/common/fetch';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
@@ -15,7 +15,7 @@ export default function Richlist() {
 
   const totalSupply = metricsRQ?.data?.result?.supply?.total;
 
-  const {network, getRichlist} = useNetwork();
+  const { network, getRichlist } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['richlist', network.name],
     getRichlist,

@@ -2,7 +2,7 @@ import { middleElipsis, toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.scss';
 import { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
-import CopyText from '../CopyText/CopyText';
+import CopyText from '../NE_CopyText';
 
 export const InfoCard = (props) => {
   const [isCollapsed, setIsCollapsed] = useState(props.collapse);
