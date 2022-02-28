@@ -9,6 +9,7 @@ import { AccountDetail } from './AccountDetail';
 import { AccountInfo } from './AccountInfo';
 import { TransactionDetails } from './TransactionDetails';
 import { toTitleCase } from 'utils/converter';
+import { isDev } from 'utils/middleware';
 
 export default function UserAccount({ type, data }) {
   const [showRawTxns, setShowRawTxns] = useState(false);
@@ -96,6 +97,20 @@ export default function UserAccount({ type, data }) {
     }
   }, [accountTransactionsRQ.data]);
 
+  const rawInfo = () => (
+    <>
+      <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
+        Show RAW Transactions
+      </Button>
+
+      {showRawTxns && (
+        <pre style={{ height: '10rem', overflow: 'scroll' }}>
+          {JSON.stringify(accountTransactionsRQ.data, null, 2)}
+        </pre>
+      )}
+    </>
+  );
+
   return (
     <div className={styles.page}>
       {/* Account info  */}
@@ -114,14 +129,7 @@ export default function UserAccount({ type, data }) {
         data={tableData || []}
       />
 
-      <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
-        Show RAW Transactions
-      </Button>
-      {showRawTxns && (
-        <pre style={{ height: '10rem', overflow: 'scroll' }}>
-          {JSON.stringify(accountTransactionsRQ.data, null, 2)}
-        </pre>
-      )}
+      {isDev && rawInfo}
     </div>
   );
 }

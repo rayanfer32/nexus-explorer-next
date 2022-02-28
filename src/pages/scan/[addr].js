@@ -7,6 +7,7 @@ import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import { isDev } from 'utils/middleware';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -85,7 +86,7 @@ function Scan({ addr }) {
     ['scan', addr, network.name],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
-      console.log(endpoint, params, 'type:', type);
+      isDev && console.log(endpoint, params, 'type:', type);
       setCardType(type);
       return getScanResults(endpoint, params);
     }
@@ -140,7 +141,7 @@ function Scan({ addr }) {
       {cardType === 'transaction' && (
         <InfoCard type={cardType} data={data?.result} />
       )}
-      {rawInfo}
+      {isDev && rawInfo}
     </div>
   );
 }
