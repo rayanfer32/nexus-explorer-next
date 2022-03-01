@@ -6,6 +6,18 @@
   .cardGroup {
     display: grid;
     gap: var(--space-xxs);
-    grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+
+}
+
+// for mobile
+@media (max-width: 768px) {
+  .container {
+    padding: 0rem ;
+
+    .cardGroup {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
   }
 }
