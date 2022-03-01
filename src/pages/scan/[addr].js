@@ -8,6 +8,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
+import { Log } from 'utils/customLog';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -86,7 +87,7 @@ function Scan({ addr }) {
     ['scan', addr, network.name],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
-      isDev && console.log(endpoint, params, 'type:', type);
+      Log(endpoint, params, 'type:', type);
       setCardType(type);
       return getScanResults(endpoint, params);
     }
