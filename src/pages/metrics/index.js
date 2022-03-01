@@ -7,6 +7,7 @@ import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { METRICS_META } from 'types/StringsTypes';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export default function Metrics() {
   // fetchMetrics should be created from a custom hook which
@@ -51,7 +52,9 @@ export default function Metrics() {
   }
 
   if (error) {
-    <div> Error </div>;
+    <div>
+      <ErrorCard />
+    </div>;
   }
 
   return (

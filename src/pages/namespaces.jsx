@@ -1,5 +1,6 @@
 import axios from 'axios';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
@@ -49,7 +50,7 @@ export default function Namespaces() {
   }
 
   if (error) {
-    return <div>Some Error Occured</div>;
+    return <div><ErrorCard/></div>;
   }
 
   if (data) {

@@ -6,13 +6,14 @@ import Link from 'next/link';
 import React from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { BsApp } from 'react-icons/bs';
+import ErrorCard from '../atoms/NE_ErrorCard/ErrorCard';
 
 export default function TestComponents() {
-  const { appContext, setAppContext } = useAppContext();
 
   return (
     <>
       <div>
+        <ErrorCard />
         <SmallCard />
         <hr></hr>
         <NESmallCard icon={<BsApp />} />

@@ -9,6 +9,7 @@ import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { Log } from 'utils';
 
 function Panel3({ blocks }) {
   const router = useRouter();
@@ -76,7 +77,7 @@ function Panel3({ blocks }) {
 
       setTableTxRowElements((prev) => [newRows, ...prev].slice(0, MAX_ROWS));
     } catch (err) {
-      console.error(err);
+      Log(err);
     }
   }
 
