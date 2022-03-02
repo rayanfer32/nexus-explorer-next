@@ -6,6 +6,7 @@ import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export default function Trustlist() {
   const { network, getTrustlist } = useNetwork();
@@ -60,7 +61,7 @@ export default function Trustlist() {
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div><ErrorCard/></div>;
   }
 
   if (data) {

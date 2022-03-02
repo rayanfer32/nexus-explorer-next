@@ -8,6 +8,7 @@ import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, miningRQ } = props;
@@ -48,11 +49,7 @@ function Panel1(props) {
       </article>
     );
 
-  if (metricsRQ.isError) return <p>Error...</p>;
-
-  if (metricsRQ.error) {
-    return <pre>{JSON.stringify(miningRQ.error, null, 2)}</pre>;
-  }
+  if (metricsRQ.isError) return <p><ErrorCard/></p>;
 
   return (
     <article className={styles.container}>

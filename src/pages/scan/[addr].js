@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -108,7 +109,7 @@ function Scan({ addr }) {
   }
 
   if (error) {
-    return <div>Some Error Occured</div>;
+    return <div><ErrorCard/></div>;
   }
 
   if (data.error) {

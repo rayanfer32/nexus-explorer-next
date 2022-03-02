@@ -13,6 +13,7 @@ import { MdSpeed } from 'react-icons/md';
 import { StringsTypes } from 'types/StringsTypes';
 import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 function Panel2(props) {
   const { network } = useNetwork();
@@ -120,11 +121,7 @@ function Panel2(props) {
       </Rail>
     );
 
-  if (marketRQ.isError) return <p>Error...</p>;
-
-  if (marketRQ.error) {
-    return <pre>{JSON.stringify(marketRQ.error, null, 2)}</pre>;
-  }
+  if (marketRQ.isError) return <p><ErrorCard/></p>;
 
   return (
     <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
