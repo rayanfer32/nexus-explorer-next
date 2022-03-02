@@ -1,47 +1,47 @@
 .rttable {
   position: relative;
-  border-radius: 0.125rem;
+  border-radius: var(--space-xxxs);
   width: 100%;
   height: 100%;
   min-height: 20rem;
   max-height: 24.6rem;
+  margin-bottom: var(--space-s);
   overflow: hidden;
-}
 
-.header {
-  display: flex;
-  height: 2rem;
-  padding: 0 0.75rem;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--font-normal);
-  border-radius: 0.5rem 0.5rem 0 0;
-  color: var(--theme-page-text);
-  background: var(--theme-page-background);
-  border-bottom: rgba(0, 0, 0, 0.2) solid 0.125rem;
-  margin-bottom: 0.25rem;
-}
+  .header {
+    display: flex;
+    height: 2rem;
+    padding: 0 var(--space-xs);
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-normal);
+    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
+    color: var(--theme-page-text);
+    background: var(--theme-page-background);
+    border: solid 0.0625rem rgba(100, 148, 237, 0.2);
+    border-bottom: rgba(0, 0, 0, 0.2) solid 0.125rem;
+    margin-bottom: var(--space-xxxs);
 
-.button {
-  border: 1px solid var(--theme-page-text);
-  color: var(--theme-page-text);
-  background: var(--theme-page-background);
-  box-sizing: border-box;
-  padding: 2px 32px;
-  font-size: var(--font-s);
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: inherit;
-}
+    .button {
+      border: 0.0625rem solid var(--theme-page-text);
+      color: var(--theme-page-text);
+      background: var(--theme-page-background);
+      padding: var(--space-xxxxs) var(--space-l);
+      font-size: var(--font-s);
+      border-radius: var(--space-xxxs);
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 0.2s ease-in-out;
 
-.button:hover {
-  box-shadow: var(--card-shadow);
-  background: var(--theme-page-text);
-  color: var(--theme-page-background);
-}
-
-@media screen and (max-width: 768px) {
-  .rttable {
-    margin-bottom: 1rem;
+      &:hover {
+        background: var(--theme-page-text);
+        color: var(--theme-page-background);
+      }
+    }
+  }
+  .rttDataList {
+    display: flex;
+    gap: var(--space-xxxs);
+    flex-direction: column;
   }
 }

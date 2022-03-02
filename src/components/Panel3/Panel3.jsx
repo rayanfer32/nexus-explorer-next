@@ -38,7 +38,7 @@ function Panel3({ blocks }) {
         txns={newRowData.tx.length}
         size={newRowData.size}
         channel={TYPES.CHANNELS[newRowData.channel]}
-        link={`/scan/${newRowData.height}`}
+        onClick={() => router.push(`/scan/${newRowData.height}`)}
       />
     );
     setTableBlockRowElements((prev) => [newRow, ...prev].slice(0, MAX_ROWS));

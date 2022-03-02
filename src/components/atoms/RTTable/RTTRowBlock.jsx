@@ -1,6 +1,54 @@
 import styles from './RTTRowBlock.module.scss';
-
 import PropTypes from 'prop-types';
+import { BlockData } from './NE_BlockData';
+import { DateTime } from './NE_DateTime';
+import { RTTRowTop } from './NE_RTTRow/RTTRowTop';
+
+/**
+ * RTT Table Row for Block data
+ */
+function RTTRowBlock(props) {
+  const {
+    block = '00',
+    channel = '',
+    time = '',
+    date = '',
+    timeUnit = 'UTC',
+    mint = '0.00',
+    mintUnit = 'mint',
+    size = '0',
+    sizeUnit = 'size',
+    txns = '0',
+    txnsUnit = 'txns',
+    type = 'BLOCK',
+    onClick,
+  } = props;
+
+  return (
+    <div className={styles.rttBlockRow}>
+      {type && <div className={styles.rttrowBlockName}>{type}</div>}
+      <div className={styles.rttrowBlockDetail}>
+        {/* row top */}
+        <RTTRowTop rightLabel={channel} />
+        {/* row bottom */}
+        <div className={styles.rttBlockRowBottom}>
+          <div title={block} className={styles.blockNumber} onClick={onClick}>
+            {block}
+          </div>
+          {/* time */}
+          <DateTime date={date} time={time} timeFormat={timeUnit} />
+          {/* mint  */}
+          <BlockData data={mint} dataUnit={mintUnit} />
+          {/* size of txns */}
+          <BlockData data={size} dataUnit={sizeUnit} />
+          {/* txns */}
+          <BlockData data={txns} dataUnit={txnsUnit} />
+        </div>
+        {/* end bottom container */}
+      </div>
+    </div>
+  );
+}
 
 RTTRowBlock.propTypes = {
   block: PropTypes.string,
@@ -16,70 +64,7 @@ RTTRowBlock.propTypes = {
   type: PropTypes.string,
   timeUnit: PropTypes.string,
   link: PropTypes.string,
+  onClick: PropTypes.func,
 };
-
-function RTTRowBlock(props) {
-  const {
-    block = '00',
-    channel = '-',
-    utc: time = '00:00:00',
-    date = '00-00-0000',
-    mint = '0.00',
-    mintUnit = 'mint',
-    size = '0',
-    sizeUnit = 'size',
-    txns = '0',
-    txnsUnit = 'txns',
-    type = 'BLOCK',
-    timeUnit = 'UTC',
-    link,
-  } = props;
-
-  return (
-    <div className={styles.rttBlockRow}>
-      <div className={styles.rttrowBlockName}>{type}</div>
-      <div className={styles.rttrowBlockDetail}>
-        {/* row top */}
-        <div className={styles.rttBlockRowTop}>
-          {channel && (
-            <div className={styles.cardTag}>
-              <div className={styles.carTagName}>{channel}</div>
-            </div>
-          )}
-        </div>
-        {/* row bottom */}
-        <div className={styles.rttBlockRowBottom}>
-          <div className={styles.blockNumber}>
-            <a href={link}>{block}</a>
-          </div>
-          {/* time */}
-          <div className={styles.time}>
-            <div className={styles.timeInUTC}>
-              <span className={styles.timeUnit}>{timeUnit}</span>
-              <span>{time != '00:00:0000' || time}</span>
-            </div>
-            <div className={styles.date}>{date}</div>
-          </div>
-          {/* mint section */}
-          <div className={styles.mint}>
-            <span className={styles.mintText}>{mint}</span>
-            <div className={styles.lowerThirdText}>{mintUnit}</div>
-          </div>
-          {/* size of txns */}
-          <div className={styles.size}>
-            <span className={styles.sizeText}>{size}</span>
-            <div className={styles.lowerThirdText}>{sizeUnit}</div>
-          </div>
-          {/* txns section */}
-          <div className={styles.txns}>
-            <span className={styles.txnsText}>{txns}</span>
-            <div className={styles.lowerThirdText}>{txnsUnit}</div>
-          </div>
-        </div>
-        {/* end bottom container */}
-      </div>
-    </div>
-  );
-}
 
 export default RTTRowBlock;

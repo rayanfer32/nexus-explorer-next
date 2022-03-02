@@ -78,11 +78,13 @@
   --screen-xl: 1440px;
 
   /* spaces */
+  --space-xxxxs: 0.125rem; /* 2px */
   --space-xxxs: 0.25rem; /* 4px */
   --space-xxs: 0.5rem; /* 8px */
   --space-xs: 0.75rem; /* 12px */
   --space-s: 1rem; /* 16px */
-  --space-m: 1.25rem; /* 24px */
+  --space-m: 1.25rem; /* 20px */
+  --space-xm: 1.5rem; /* 24px */
   --space-l: 1.5rem; /* 32px */
   --space-xl: 2rem; /* 48px */
   --space-xxl: 3rem; /* 72px */

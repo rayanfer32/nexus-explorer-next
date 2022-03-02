@@ -1,0 +1,26 @@
+.blockDetail {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+
+  font-size: var(--font-s);
+  color: var(--theme-page-text);
+
+  .blockData {
+    /* truncate text  */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .lowerThirdText {
+    align-self: flex-end;
+    font-size: var(--font-xxs);
+    text-align: right;
+  }
+}

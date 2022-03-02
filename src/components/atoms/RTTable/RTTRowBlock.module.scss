@@ -1,134 +1,55 @@
 .rttBlockRow {
+  --local-height: 3.875rem;
   position: relative;
   width: 100%;
-  height: 3.5rem;
+  height: var(--local-height, 3.875rem);
   background: var(--theme-page-background);
   box-shadow: var(--card-shadow);
+  border: solid 0.0625rem rgba(100, 148, 237, 0.15);
   border-radius: 0.25rem;
-  margin-bottom: 0.25rem;
   display: flex;
   overflow: hidden;
   animation: fadeIn 1.5s ease-in; // in future use animation from globals.scss
-}
 
-.rttBlockRow .rttrowBlockName {
-  font-weight: normal;
-  font-size: var(--font-xs);
-  /* Ocean Blue */
-  color: var(--theme-page-text-secondary);
-  writing-mode: vertical-rl;
-  text-transform: uppercase;
-  margin-left: 0.125rem;
-  width: var(--font-normal);
-  /* mirror text */
+  .rttrowBlockName {
+    font-size: var(--font-xs);
+    /* Ocean Blue */
+    color: var(--theme-page-text-secondary);
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    line-height: 2;
 
-  transform: rotate(180deg);
-  text-align: center;
-}
+    /* mirror text */
+    transform: rotate(180deg);
+    text-align: center;
+  }
 
-.rttBlockRow .rttrowBlockDetail {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
+  .rttrowBlockDetail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
-.rttrowBlockDetail .rttBlockRowTop {
-  height: 1.125rem;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: var(--font-normal);
-}
-.rttrowBlockDetail .rttBlockRowBottom {
-  height: 100%;
-  display: grid;
-  display: -ms-grid;
-  grid-template-columns: repeat(5, 1fr);
-  -ms-grid-columns: repeat(5, 1fr);
-  align-items: center;
-  justify-items: center;
-  grid-gap: 0.25rem;
-}
+    .rttBlockRowBottom {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      justify-items: center;
+      gap: var(--space-xxxs);
 
-.rttBlockRowTop .cardTag {
-  /* Midnight Blue */
-  background: var(--theme-page-not-background);
-  border-radius: 0.125rem 0.125rem 0.5rem 0.5rem;
-  width: 11.125rem;
-  max-height: var(--font-l);
-  /* truncate text  */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  /* font property */
-  font-size: var(--font-xs);
-  text-align: left;
-  color: var(--white);
-  padding: 0 0.125rem;
-}
-
-.cardTag .carTagName {
-  font-size: var(--font-s);
-  text-align: center;
-  line-height: 1.6;
-  color: var(--white);
-  margin-left: 0.125rem;
-  position: relative;
-  bottom: 2px;
-}
-
-.rttBlockRowBottom .blockNumber {
-  margin-left: 0.125rem;
-  font-weight: normal;
-  font-size: var(--font-normal);
-  color: var(--theme-page-text);
-  position: relative;
-  bottom: 0.5rem;
-  cursor: pointer;
-}
-
-.rttBlockRowBottom .time {
-  font-size: var(--font-s);
-}
-.rttBlockRowBottom .time .timeInUTC,
-.rttBlockRowBottom .time .date {
-  font-size: var(--font-s);
-  display: flex;
-  color: var(--theme-page-text);
-  align-items: center;
-  gap: 2px;
-}
-.rttBlockRowBottom .time .timeInUTC .timeUnit {
-  font-size: var(--font-xs);
-  color: var(--theme-page-text-secondary);
-}
-
-.rttBlockRowBottom .mint,
-.rttBlockRowBottom .txns,
-.rttBlockRowBottom .size {
-  position: relative;
-  width: fit-content;
-  max-width: 100%;
-
-  font-size: var(--font-s);
-  color: var(--theme-page-text);
-  justify-self: center;
-
-  display: flex;
-  flex-direction: column;
-}
-.rttBlockRowBottom .mint .mintText,
-.rttBlockRowBottom .txns .txnsText,
-.rttBlockRowBottom .size .sizeText {
-  /* truncate text  */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.lowerThirdText {
-  font-size: var(--font-xxs);
-  text-align: right;
+      .blockNumber {
+        text-align: right;
+        font-size: var(--font-normal);
+        color: var(--theme-page-text);
+        position: relative;
+        bottom: calc(var(--local-height) * 0.125);
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
 
 // animations
