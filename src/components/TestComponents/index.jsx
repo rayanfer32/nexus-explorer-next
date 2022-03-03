@@ -1,28 +1,24 @@
 import SelectInput from 'components/atoms/SelectInput/SelectInput';
+import SmallCard from 'components/atoms/SmallCard';
+import { NE_SmallCard as NESmallCard } from 'components/atoms/NE_Card/NE_SmallCard';
 import { useAppContext } from 'contexts/AppContext';
 import Link from 'next/link';
 import React from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
-import DropdownMenu from './DropdownMenu';
-import Dropdown from 'components/atoms/NE_Dropdown';
+import { BsApp } from 'react-icons/bs';
+import ErrorCard from '../atoms/NE_ErrorCard/ErrorCard';
 
 export default function TestComponents() {
-  const { appContext, setAppContext } = useAppContext();
 
   return (
     <>
-      {/* <div>
-        <DropdownMenu title="Blockchain">
-          <Link href="/blocks">Blocks</Link>
-          <Link href="/transactions">Transactions</Link>
-        </DropdownMenu>
-      </div> */}
       <div>
-        <Dropdown>
-          Hello
-          <Link href="/blocks">Blocks</Link>
-          <Link href="/transactions">Transactions</Link>
-        </Dropdown>
+        <ErrorCard />
+        <SmallCard />
+        <hr></hr>
+        <NESmallCard icon={<BsApp />} />
+        <hr></hr>
+        <NESmallCard icon={null} value={5465454} text="text" unit="nxs" />
       </div>
     </>
   );

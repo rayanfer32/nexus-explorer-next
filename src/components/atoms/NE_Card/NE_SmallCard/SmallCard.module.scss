@@ -1,40 +1,50 @@
 .card {
+  min-width: 14.5rem; /* 232px */
+  box-shadow: var(--card-shadow-border), var(--card-shadow);
+
   &-small {
     width: 100%;
     min-width: 14.5rem; /* 232px */
+    // max-width: 20rem; /* 320px */
+    min-height: 6.25rem; /* 100px */
     height: 6.25rem; /* 100px */
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    transition: all 0.2s ease;
   }
   &-body {
     display: flex;
     flex-direction: column;
-    width: 96%;
+    width: 100%;
 
-    h1,
+    h3,
     h4,
     label {
       margin: 0;
       text-align: left;
       color: var(--theme-page-text);
+      font-weight: normal;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    &-above {
+    label {
+      font-size: var(--font-s);
+    }
+    &-upper-part {
       display: flex;
       flex-direction: column;
       width: 99%;
     }
-    &-below {
+    &-lowwer-part {
       display: flex;
       align-items: baseline;
       justify-content: flex-start;
       width: 99%;
       label {
-        font-size: var(--font-xs);
+        font-size: var(--font-s);
         &[data-left] {
           margin-left: var(--space-xxxs);
         }
@@ -42,10 +52,11 @@
           margin-right: var(--space-xxxs);
         }
       }
-      h1 {
+      h3 {
         max-width: 100%;
         margin-top: var(--space-xs);
         font-size: var(--font-xxl);
+        font-weight: 500;
       }
     }
 
@@ -61,13 +72,37 @@
     }
   }
   &-icon {
-    // position: static;
-    border: 0.0625rem solid var(--nexus-blue);
+    position: absolute;
+    color: var(--nexus-blue);
     border-radius: 50%;
     min-width: var(--space-xl);
     width: var(--space-xl);
     min-height: var(--space-xl);
     height: var(--space-xl);
-    // right: 0;
+    right: var(--space-xs);
+    display: grid;
+    place-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    min-width: 12rem; /* 192px */
+    &-small {
+      min-width: 10rem; /* 192px */
+    }
+    &-body {
+      align-items: stretch;
+      justify-content: space-around;
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    &-icon {
+      opacity: 0.6;
+      display: block;
+    }
   }
 }

@@ -3,11 +3,13 @@ import { InfoCard } from 'components/atoms/InfoCard';
 import Button from 'components/atoms/NE_Button';
 import Loader from 'components/atoms/NE_Loader';
 import ErrorMessage from 'components/atoms/ErrorMessage';
-import AccountInfo from 'components/AccountInfo/AccountInfo';
-import TrustInfo from 'components/TrustInfo/TrustInfo';
+import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
+import { isDev } from 'utils/middleware';
+import { Log } from 'utils/customLog';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -81,14 +83,12 @@ function Scan({ addr }) {
     return { endpoint, params, type };
   }
 
-
-
   const { network, getScanResults } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['scan', addr, network.name],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
-      console.log(endpoint, params, 'type:', type);
+      Log(endpoint, params, 'type:', type);
       setCardType(type);
       return getScanResults(endpoint, params);
     }
@@ -109,7 +109,7 @@ function Scan({ addr }) {
   }
 
   if (error) {
-    return <div>Some Error Occured</div>;
+    return <div><ErrorCard/></div>;
   }
 
   if (data.error) {
@@ -135,13 +135,15 @@ function Scan({ addr }) {
     <div>
       {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
       {cardType === 'user' && (
-        <AccountInfo type={cardType} data={data?.result} />
+        <UserAccount type={cardType} data={data?.result} />
       )}
-      {cardType === 'trust' && <TrustInfo data={data?.result} />}
+      {cardType === 'trust' && (
+        <UserAccount type={cardType} data={data?.result} />
+      )}
       {cardType === 'transaction' && (
         <InfoCard type={cardType} data={data?.result} />
       )}
-      {rawInfo}
+      {isDev && rawInfo}
     </div>
   );
 }

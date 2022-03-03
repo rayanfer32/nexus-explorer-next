@@ -1,0 +1,17 @@
+/* for mobile */
+.container {
+  gap: var(--space-xxs);
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* for desktop  */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    min-height: 25rem;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+}

@@ -56,18 +56,19 @@ const About = () => {
         <div>
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
-            {data?.map((item) => (
-              <span key={item.author.login} className={styles.links}>
-                <a
-                  href={item.author.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.link}>
-                  <ThemedVscLogo />
-                  {item.author.login}
-                </a>
-              </span>
-            ))}
+            {Array.isArray(data) &&
+              data?.map((item) => (
+                <span key={item.author.login} className={styles.links}>
+                  <a
+                    href={item.author.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.link}>
+                    <ThemedVscLogo />
+                    {item.author.login}
+                  </a>
+                </span>
+              ))}
           </p>
         </div>
       </article>

@@ -1,0 +1,41 @@
+.rttrowDetail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .rttrowBottom {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+    gap: 0.25rem;
+    margin-right: var(--space-xxxs);
+    .amountValue {
+      margin: 0;
+      align-self: center;
+      text-align: center;
+      font-size: var(--font-normal);
+      color: var(--theme-page-text);
+    }
+  }
+  .tertiaryData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xxxl);
+    color: var(--theme-page-text);
+    font-size: var(--font-xs);
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .rttrowBottom {
+      align-items: center;
+    }
+    .tertiaryData {
+      display: none;
+    }
+  }
+}

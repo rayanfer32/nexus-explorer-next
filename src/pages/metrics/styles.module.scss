@@ -1,27 +1,22 @@
-// desktop
 .container {
-  
-  padding: 1rem 1rem;
   overflow: auto;
   color: var(--theme-page-text);
-}
+  padding: 0 var(--space-xxxs) var(--space-xs) var(--space-xxxs);
 
-.cardGroup {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 0.5rem;
-}
-
-// tablet
-@media screen and (max-width: 992px) {
   .cardGroup {
-    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    gap: var(--space-xxs);
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   }
 }
 
-// mobile
-@media screen and (max-width: 768px) {
-  .cardGroup {
-    grid-template-columns: 1fr 1fr;
+// for mobile
+@media (max-width: 768px) {
+  .container {
+    padding: 0rem var(--space-xxxs) var(--space-xs) var(--space-xxxs);
+
+    .cardGroup {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
   }
 }

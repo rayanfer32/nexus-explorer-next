@@ -24,7 +24,7 @@ SmallCard.args = {
   label: 'Chain Height',
   sublabel: 'Blocks',
   text: '',
-  title: '4,816,265',
+  value: '4,816,265',
   unit: '^',
   onClick: () => {},
   onClickLabel: () => {},

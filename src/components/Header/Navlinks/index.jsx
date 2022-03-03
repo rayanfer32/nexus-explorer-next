@@ -2,6 +2,7 @@ import styles from './Navlinks.module.scss';
 import TYPES from 'types';
 import Dropdown from 'components/atoms/NE_Dropdown';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 /**
  * Static link structure component
@@ -75,10 +76,10 @@ export const DesktopNavLinks = ({ pathname }) => {
       {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
         return (
           <StaticNavLinks
+            key={index}
             activePathname={pathname}
             pathname={navItem.path}
             label={navItem.title}
-            key={index}
           />
         );
       })}
@@ -87,10 +88,10 @@ export const DesktopNavLinks = ({ pathname }) => {
       {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
         return (
           <NestedNavLinks
+            key={key}
             activePathname={pathname}
             title={key}
             options={value}
-            key={key}
           />
         );
       })}
@@ -108,10 +109,10 @@ export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
   const Toggle = () => setToggle((prev) => !prev);
   return (
     <nav className={styles.mlinks}>
-      {TYPES.NAVBAR.NAVLIST.map((navItem) => {
+      {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
         return (
           <span
-            key={navItem.id}
+            key={`${navItem.id}${index}`}
             className={pathname === navItem.path ? styles.mactive : undefined}
             onClick={Toggle}>
             <Link href={navItem.path}>{navItem.title}</Link>
@@ -119,9 +120,9 @@ export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
         );
       })}
 
-      {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+      {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value], index) => {
         return (
-          <>
+          <Fragment key={`${key}${index}`}>
             {value.map((item, index) => (
               <Link key={key + index} href={item.path} passHref>
                 <span
@@ -133,7 +134,7 @@ export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
                 </span>
               </Link>
             ))}
-          </>
+          </Fragment>
         );
       })}
     </nav>

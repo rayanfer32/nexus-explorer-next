@@ -1,5 +1,5 @@
 import SelectInput from 'components/atoms/SelectInput';
-import ThemeMode from 'components/atoms/ThemeMode';
+import ThemeMode from 'components/atoms/NE_ThemeMode';
 import { NETWORKS } from 'types/ConstantsTypes';
 import styles from './Navbar.module.scss';
 import NavLinks from '../Navlinks';

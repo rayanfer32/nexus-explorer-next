@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import styles from './rail.module.css';
+import styles from './rail.module.scss';
 import PropTypes from 'prop-types';
 
 const Rail = (props) => {

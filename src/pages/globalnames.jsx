@@ -1,9 +1,10 @@
 import axios from 'axios';
-import CopyText from 'components/atoms/CopyText/CopyText';
+import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export default function GlobalNames() {
   const { network, getGlobalNames } = useNetwork();
@@ -48,7 +49,11 @@ export default function GlobalNames() {
   }
 
   if (error) {
-    return <div>Some Error Occured</div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   if (data) {
