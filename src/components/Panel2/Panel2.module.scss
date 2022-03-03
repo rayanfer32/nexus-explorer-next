@@ -1,0 +1,6 @@
+.panelTwoContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-xxs);
+  margin-bottom: var(--space-xxs);
+}

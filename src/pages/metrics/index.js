@@ -1,12 +1,13 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
-import SmallCard from 'components/atoms/SmallCard';
+import { NE_CompactCard as SmallCard } from 'components/atoms/NE_Card/NE_CompactCard';
 import styles from './styles.module.scss';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { METRICS_META } from 'types/StringsTypes';
+import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 export default function Metrics() {
   // fetchMetrics should be created from a custom hook which
@@ -29,8 +30,8 @@ export default function Metrics() {
         key={k}
         label={METRICS_META[type][k]?.label || toTitleCase(k)}
         sublabel={type && METRICS_META[type][k]?.sublabel}
-        text={intlNum(v.toFixed(2))}
-        ticker={type && METRICS_META[type][k]?.ticker}
+        value={intlNum(v.toFixed(2))}
+        unit={type && METRICS_META[type][k]?.ticker}
         icon={type && METRICS_META[type][k]?.icon}
       />
     ));
@@ -51,7 +52,9 @@ export default function Metrics() {
   }
 
   if (error) {
-    <div> Error </div>;
+    <div>
+      <ErrorCard />
+    </div>;
   }
 
   return (
@@ -61,7 +64,7 @@ export default function Metrics() {
         <SmallCard
           label={METRICS_META.sig_chains.label}
           sublabel={METRICS_META.sig_chains.sublabel}
-          text={res.sig_chains}
+          value={res.sig_chains}
           icon={METRICS_META.sig_chains.icon}
         />
         <SmallCards type="registers" object={res.registers} />
@@ -71,8 +74,8 @@ export default function Metrics() {
       <div className={styles.cardGroup}>
         <SmallCard
           label={METRICS_META.trust.staked_percentage.label}
-          ticker={METRICS_META.trust.staked_percentage.ticker}
-          text={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
+          unit={METRICS_META.trust.staked_percentage.ticker}
+          value={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
           icon={METRICS_META.trust.staked_percentage.icon}
         />
         <SmallCards type="trust" object={res.trust} />

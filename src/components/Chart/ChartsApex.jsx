@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
-import styles from './ChartsApex.module.css';
+import styles from './ChartsApex.module.scss';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
@@ -8,6 +8,7 @@ import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
 import Shimmer from 'components/atoms/NE_Shimmer';
 import TYPES from 'types';
+import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 import { useQuery } from 'react-query';
@@ -17,10 +18,10 @@ import { NETWORKS } from 'types/ConstantsTypes';
 function ChartsApex({ initialData }) {
   const { sharedState } = useAppContext();
   const [isDarkMode] = useDarkMode();
+  const windowSize = useWindowSize();
 
   // * fetch the blocks first and extract the total number of contracts inside the trasactions
   const [limit, setLimit] = useState(2 * 60);
-
   const { network, getRecentBlocks } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['charting', limit, network.name],
@@ -33,18 +34,23 @@ function ChartsApex({ initialData }) {
     }
   );
 
+  // useEffect(() => {
+  //   console.log('windowsize', windowSize);
+  // }, [windowSize]);
+
   let [chartState, setChartState] = useState({
     options: {
       chart: {
         id: 'tx_chart',
 
         background: 'rgba(0, 0, 0, 0)',
+        // TODO: work arround for apexcharts toolbar issue
         toolbar: {
-          show: true,
+          show: windowSize.width > 1000,
           offsetX: -48,
           offsetY: 8,
           tools: {
-            download: true,
+            download: false,
             selection: true,
             zoom: true,
             zoomin: true,
@@ -180,7 +186,8 @@ function ChartsApex({ initialData }) {
     const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
-      prev.options.theme.mode = sharedState.theme;
+      (prev.options.chart.toolbar.show = windowSize.width > 500),
+        (prev.options.theme.mode = sharedState.theme);
       // update colors property of the chart
       prev.options.colors = isDark
         ? [TYPES.COLORS.SKY_BLUE]
@@ -191,7 +198,7 @@ function ChartsApex({ initialData }) {
         : [TYPES.COLORS.NEXUS_BLUE];
       return { ...prev };
     });
-  }, [sharedState.theme]);
+  }, [sharedState.theme, windowSize]);
 
   if (isLoading) return <Shimmer width="100%" height="12.5rem" />;
 
@@ -199,11 +206,11 @@ function ChartsApex({ initialData }) {
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
   return (
     <Chart
-      className={styles.container}
+      className={styles.chart__line}
       key={chartState.options.theme.mode}
       options={chartState.options}
       series={chartState.series}
-      height={190}
+      height={193}
       width={'100%'}
       type="area"
     />

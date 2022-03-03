@@ -2,8 +2,8 @@ import InfoCard from 'components/atoms/InfoCard';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Loader from 'components/atoms/NE_Loader';
-import axios from 'axios';
 import { useDarkMode } from 'hooks';
+import { Log } from 'utils/customLog';
 
 export default function BlockEstimator() {
   // blockFromTimestamp/1642153560
@@ -20,7 +20,7 @@ export default function BlockEstimator() {
     );
     try {
       const resp = await estimatedBlock.json();
-      console.log(resp);
+      Log(resp);
       setBlock(resp.estimatedBlock);
       setError(resp.error);
     } catch (err) {
@@ -35,7 +35,7 @@ export default function BlockEstimator() {
     );
     try {
       const resp = await blockResp.json();
-      console.log(resp);
+      Log(resp);
       setBlockData(resp.result);
     } catch (err) {
       console.log(err);

@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
-import styles from './Panel3.module.css';
+import styles from './Panel3.module.scss';
 import { useEffect, useState } from 'react';
-import RTTable from 'components/atoms/RTTable/RTTable';
-import RTTRow from 'components/atoms/RTTable/RTTRow';
 import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/atoms/NE_Loader';
-import RTTRowBlock from 'components/atoms/RTTable/RTTRowBlock';
+import RTTable, {
+  RTTRowBlock,
+  RTTRowTransactions,
+} from 'components/atoms/NE_RTTable';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import { Warn } from 'utils';
 
 function Panel3({ blocks }) {
   const router = useRouter();
@@ -38,7 +40,7 @@ function Panel3({ blocks }) {
         txns={newRowData.tx.length}
         size={newRowData.size}
         channel={TYPES.CHANNELS[newRowData.channel]}
-        link={`/scan/${newRowData.height}`}
+        onClick={() => router.push(`/scan/${newRowData.height}`)}
       />
     );
     setTableBlockRowElements((prev) => [newRow, ...prev].slice(0, MAX_ROWS));
@@ -57,7 +59,7 @@ function Panel3({ blocks }) {
       for (let txidx = 0; txidx < newRowData.length; txidx++) {
         for (let cidx = 0; cidx < newRowData[txidx].contracts.length; cidx++) {
           newRows.push(
-            <RTTRow
+            <RTTRowTransactions
               key={`${newRowData[txidx].txid}${txidx}${cidx}`}
               fromId={newRowData[txidx]?.contracts[cidx]?.from}
               toId={newRowData[txidx]?.contracts[cidx]?.to}
@@ -70,13 +72,13 @@ function Panel3({ blocks }) {
               confirmations={newRowData[txidx]?.confirmations}
               contracts={newRowData[txidx]?.contracts?.length}
             />
-          );
+          ); 
         }
       }
 
       setTableTxRowElements((prev) => [newRows, ...prev].slice(0, MAX_ROWS));
     } catch (err) {
-      console.error(err);
+      Warn(err);
     }
   }
 

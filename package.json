@@ -1,7 +1,7 @@
 {
   "name": "nexus-explorer-next",
   "private": true,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,6 +19,7 @@
   "dependencies": {
     "apexcharts": "^3.30.0",
     "axios": "^0.24.0",
+    "js-cookie": "^3.0.1",
     "next": "12.0.5",
     "prop-types": "^15.7.2",
     "react": "17.0.2",

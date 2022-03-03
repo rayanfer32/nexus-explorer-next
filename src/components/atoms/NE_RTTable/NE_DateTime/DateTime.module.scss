@@ -1,0 +1,22 @@
+.datetime {
+  font-size: var(--font-s);
+  color: var(--theme-page-text);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .time,
+  .date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.0625rem;
+
+    .timeFormat {
+      align-self: flex-end;
+      font-size: var(--font-xxs);
+      color: var(--theme-page-text-secondary);
+    }
+  }
+}
