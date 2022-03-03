@@ -17,7 +17,7 @@ import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 
 function Panel2(props) {
   const { network } = useNetwork();
-  const { metricsRQ, infoRQ, marketRQ, miningRQ } = props;
+  const { metricsRQ, marketRQ, miningRQ } = props;
 
   const [state, setState] = useState({});
 
@@ -121,10 +121,15 @@ function Panel2(props) {
       </Rail>
     );
 
-  if (marketRQ.isError) return <p><ErrorCard/></p>;
+  if (marketRQ.isError)
+    return (
+      <p>
+        <ErrorCard />
+      </p>
+    );
 
   return (
-    <Rail className={styles.panelTwoContainer} scrollSpeed={1.8}>
+    <section className={styles.panelTwoContainer}>
       {network.name === NETWORKS.MAINNET.name && (
         <DetailCard
           type
@@ -184,7 +189,7 @@ function Panel2(props) {
         footerValue={`${intlNum(state.hash?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
-    </Rail>
+    </section>
   );
 }
 

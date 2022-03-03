@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   min-width: 17.5rem; /* 280px */
+  max-width: 40rem; /* 600px */
   height: 10.75rem; /* 175px */
   background: var(--theme-gradient-radial);
   box-shadow: var(--card-shadow-border), var(--card-shadow);
