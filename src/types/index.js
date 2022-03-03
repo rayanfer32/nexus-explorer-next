@@ -4,6 +4,7 @@ import { ConstantsTypes } from './ConstantsTypes';
 import { FooterTypes } from './FooterTypes';
 import { LinksTypes } from './LinksTypes';
 import { NavbarTypes } from './NavbarTypes';
+import { PageMetaTypes } from './PageMetaTypes';
 import { StringsTypes } from './StringsTypes';
 import { ThemeTypes } from './ThemeTypes';
 import { ToastMessageTypes } from './ToastMessageTypes';
@@ -15,6 +16,7 @@ export const TYPES = {
   ...FooterTypes,
   ...LinksTypes,
   ...NavbarTypes,
+  ...PageMetaTypes,
   ...StringsTypes,
   ...ThemeTypes,
   ...ToastMessageTypes,

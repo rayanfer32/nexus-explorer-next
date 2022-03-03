@@ -1,4 +1,3 @@
-import axios from 'axios';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import Loader from 'components/atoms/NE_Loader';
@@ -6,6 +5,7 @@ import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useQuery } from 'react-query';
 import { intlNum } from 'utils/converter';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function Tokens() {
   const { network, getTokens } = useNetwork();
@@ -55,15 +55,22 @@ export default function Tokens() {
   }
 
   if (error) {
-    return <div><ErrorCard/></div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   if (data) {
     return (
-      <div>
-        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-        <Table columns={columns} data={data.data.result} />
-      </div>
+      <>
+        <PageHeader page="Tokens" />
+        <div>
+          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+          <Table columns={columns} data={data.data.result} />
+        </div>
+      </>
     );
   }
 }
