@@ -7,6 +7,7 @@ import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function Richlist() {
   const { network, getRichlist, getMetrics } = useNetwork();
@@ -83,13 +84,16 @@ export default function Richlist() {
     ];
 
     return (
-      <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        <div className={styles.chartContainer}>
-          <h3>NXS Distrubution</h3>
-          <ApexPie series={pieData} labels={labels} />
+      <>
+        <PageHeader page="Richlist" />
+        <div className={styles.page} style={{ marginBottom: '1rem' }}>
+          <div className={styles.chartContainer}>
+            <h3>NXS Distrubution</h3>
+            <ApexPie series={pieData} labels={labels} />
+          </div>
+          <Table columns={columns} data={data.data} />
         </div>
-        <Table columns={columns} data={data.data} />
-      </div>
+      </>
     );
   }
 }

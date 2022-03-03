@@ -1,4 +1,4 @@
-import axios from 'axios';
+import PageHeader from 'components/Header/PageHeader';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import Loader from 'components/atoms/NE_Loader';
@@ -50,14 +50,21 @@ export default function Namespaces() {
   }
 
   if (error) {
-    return <div><ErrorCard/></div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   if (data) {
     return (
-      <div>
-        <Table columns={columns} data={data.data.result} />
-      </div>
+      <>
+        <PageHeader page={'namespaces'} />
+        <div>
+          <Table columns={columns} data={data.data.result} />
+        </div>
+      </>
     );
   }
 }
