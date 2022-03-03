@@ -1,12 +1,12 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import styles from './trustlist.module.scss';
 import Loader from 'components/atoms/NE_Loader';
 import { intlNum } from 'utils/converter';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function Trustlist() {
   const { network, getTrustlist } = useNetwork();
@@ -61,7 +61,11 @@ export default function Trustlist() {
   }
 
   if (error) {
-    return <div><ErrorCard/></div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   if (data) {
@@ -72,9 +76,12 @@ export default function Trustlist() {
       balance: item.balance,
     }));
     return (
-      <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        <Table columns={columns} data={newData} />
-      </div>
+      <>
+        <PageHeader page={'trustlist'} />
+        <div className={styles.page} style={{ marginBottom: '1rem' }}>
+          <Table columns={columns} data={newData} />
+        </div>
+      </>
     );
   }
 }

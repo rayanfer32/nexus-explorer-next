@@ -10,6 +10,7 @@ import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import PageHeader from 'components/Header/PageHeader';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -23,7 +24,7 @@ export const getServerSideProps = async (context) => {
 function Scan({ addr }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [cardType, setCardType] = useState();
-
+  Log('Scan', cardType);
   /**
    * identify the endpoint to use from the scan
    * @param {*} addr pass the address to scan
@@ -109,7 +110,11 @@ function Scan({ addr }) {
   }
 
   if (error) {
-    return <div><ErrorCard/></div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   if (data.error) {
@@ -132,19 +137,24 @@ function Scan({ addr }) {
   );
 
   return (
-    <div>
-      {cardType === 'block' && <InfoCard type={cardType} data={data?.result} />}
-      {cardType === 'user' && (
-        <UserAccount type={cardType} data={data?.result} />
-      )}
-      {cardType === 'trust' && (
-        <UserAccount type={cardType} data={data?.result} />
-      )}
-      {cardType === 'transaction' && (
-        <InfoCard type={cardType} data={data?.result} />
-      )}
-      {isDev && rawInfo}
-    </div>
+    <>
+      <PageHeader page={cardType} />
+      <div>
+        {cardType === 'block' && (
+          <InfoCard type={cardType} data={data?.result} />
+        )}
+        {cardType === 'user' && (
+          <UserAccount type={cardType} data={data?.result} />
+        )}
+        {cardType === 'trust' && (
+          <UserAccount type={cardType} data={data?.result} />
+        )}
+        {cardType === 'transaction' && (
+          <InfoCard type={cardType} data={data?.result} />
+        )}
+        {isDev && rawInfo}
+      </div>
+    </>
   );
 }
 

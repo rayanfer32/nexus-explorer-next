@@ -1,10 +1,10 @@
-import axios from 'axios';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function GlobalNames() {
   const { network, getGlobalNames } = useNetwork();
@@ -58,9 +58,12 @@ export default function GlobalNames() {
 
   if (data) {
     return (
-      <div>
-        <Table columns={columns} data={data.result} />
-      </div>
+      <>
+        <PageHeader page={'GLOBALNAMES'} />
+        <div>
+          <Table columns={columns} data={data.result} />
+        </div>
+      </>
     );
   }
 }
