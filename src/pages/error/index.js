@@ -27,7 +27,7 @@ const CustomError = ({ statusCode }) => {
             <h3>{TYPES.FALLBACK.GO_BACK}</h3>
           </Button>
           {/* back to home page option */}
-          <Link href="/" replace={true}>
+          <Link href="/" replace={true} passHref>
             <Button
               type={TYPES.BUTTON.SECONDARY}
               className={styles['cta-home']}>

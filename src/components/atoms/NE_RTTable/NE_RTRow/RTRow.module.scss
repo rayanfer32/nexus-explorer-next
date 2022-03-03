@@ -1,0 +1,110 @@
+// --------- RTTRow styles --------- //
+.rttRow {
+  --local-height: 3.875rem;
+  --local-height: 4rem;
+  position: relative;
+  width: 100%;
+  height: var(--local-height, 3.875rem);
+  background: var(--theme-page-background);
+  box-shadow: var(--card-shadow);
+  border: solid 0.0625rem rgba(100, 148, 237, 0.15);
+  border-radius: 0.25rem;
+  display: flex;
+  overflow: hidden;
+  animation: fadeIn 1.2s ease-in;
+  &:hover {
+    font-weight: 600;
+  }
+
+  .rttRowType {
+    font-size: var(--font-xs);
+    color: var(--theme-page-text-secondary);
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    line-height: 2;
+
+    /* mirror text */
+    transform: rotate(180deg);
+    text-align: center;
+  }
+
+  // animations
+  @keyframes fadeIn {
+    0% {
+      opacity: 0%;
+      transform: translateX(calc(6rem * var(--local-animation-direction, -1)));
+    }
+    70% {
+      transform: translateX(0);
+      opacity: 70%;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 100%;
+    }
+  }
+}
+
+// --------- RTTRowTop styles --------- //
+.rttRowTop {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-xxxxs);
+  color: var(--theme-page-text);
+
+  &__Left,
+  &__Right {
+    font-size: var(--font-s);
+    display: flex;
+    &__Tag {
+      color: var(--white);
+      min-width: 8rem;
+      max-width: 9.25rem;
+      background-color: var(--ocean-blue);
+      font-size: var(--font-xs);
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xxxxs);
+      align-items: center;
+      overflow: hidden;
+      width: 100%;
+      &__Label {
+        width: 80%;
+        text-align: center;
+        line-height: 1.6;
+        /* truncate text  */
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &__Icon {
+        color: white;
+      }
+    }
+  }
+
+  &__Left {
+    text-align: left;
+    justify-content: flex-start;
+    &__Tag {
+      border-radius: var(--space-xxxs) var(--space-m) var(--space-xxxs)
+        var(--space-m);
+    }
+  }
+
+  &__Right {
+    text-align: right;
+    justify-content: flex-end;
+    &__Tag {
+      border-radius: var(--space-m) var(--space-xxxs) var(--space-m)
+        var(--space-xxxs);
+    }
+  }
+
+  &__Center {
+    text-align: center;
+    font-size: var(--font-s);
+    text-transform: uppercase;
+  }
+}
