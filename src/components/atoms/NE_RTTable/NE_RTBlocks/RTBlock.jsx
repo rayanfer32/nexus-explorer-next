@@ -1,8 +1,8 @@
-import styles from './RTTRowBlock.module.scss';
+import styles from './RTBlock.module.scss';
 import PropTypes from 'prop-types';
-import { BlockData } from './NE_BlockData';
-import { DateTime } from './NE_DateTime';
-import { RTTRowTop } from './NE_RTTRow/RTTRowTop';
+import { BlockData } from '../NE_BlockData';
+import { DateTime } from '../NE_DateTime';
+import { RTTRow, RTTRowTop } from '../NE_RTRow';
 
 /**
  * RTT Table Row for Block data
@@ -25,8 +25,7 @@ function RTTRowBlock(props) {
   } = props;
 
   return (
-    <div className={styles.rttBlockRow}>
-      {type && <div className={styles.rttrowBlockName}>{type}</div>}
+    <RTTRow type={type}>
       <div className={styles.rttrowBlockDetail}>
         {/* row top */}
         <RTTRowTop rightLabel={channel} />
@@ -46,7 +45,8 @@ function RTTRowBlock(props) {
         </div>
         {/* end bottom container */}
       </div>
-    </div>
+    </RTTRow>
+    // </div>
   );
 }
 

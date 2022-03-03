@@ -1,0 +1,26 @@
+.rttrowBlockDetail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .rttBlockRowBottom {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: var(--space-xxxs);
+
+    .blockNumber {
+      text-align: right;
+      font-size: var(--font-normal);
+      color: var(--theme-page-text);
+      position: relative;
+      bottom: calc(var(--local-height, 3.875rem) * 0.125);
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,6 +1,11 @@
 import React from 'react';
-import styles from './RTTRow.module.scss';
+import { middleElipsis } from 'utils';
+import styles from './RTRow.module.scss';
+import PropTypes from 'prop-types';
 
+/**
+ * RTTableRowTop component is used to render the top row of the RTTable.
+ */
 export const RTTRowTop = ({
   title,
   leftLabel,
@@ -21,7 +26,7 @@ export const RTTRowTop = ({
             <div
               className={styles.rttRowTop__Left__Tag__Label}
               title={leftLabel}>
-              {leftLabel}
+              {middleElipsis(leftLabel, 10)}
             </div>
           </div>
         )}
@@ -37,7 +42,7 @@ export const RTTRowTop = ({
             <div
               className={styles.rttRowTop__Right__Tag__Label}
               title={rightLabel}>
-              {rightLabel}
+              {middleElipsis(rightLabel, 10)}
             </div>
             {rightIcon && (
               <div className={styles.rttRowTop__Right__Tag__Icon}>
@@ -49,4 +54,12 @@ export const RTTRowTop = ({
       </div>
     </div>
   );
+};
+
+RTTRowTop.propTypes = {
+  title: PropTypes.string,
+  leftLabel: PropTypes.string,
+  rightLabel: PropTypes.string,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
 };

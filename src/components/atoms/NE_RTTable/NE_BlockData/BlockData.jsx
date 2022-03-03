@@ -6,16 +6,20 @@ import PropTypes from 'prop-types';
  *
  * @param {string} data value to be displayed
  * @param {string} dataUnit value unit
+ * @param {string} href link to be opened
  * @returns {JSX.Element}
  */
-export const BlockData = ({ data, dataUnit }) => {
+export const BlockData = ({ data, dataUnit, href }) => {
   return (
     <>
       {data ? (
-        <div className={styles.blockDetail} title={`${data}${dataUnit}`}>
+        <a
+          href={href}
+          className={styles.blockDetail}
+          title={`${data} ${dataUnit}`}>
           <span className={styles.blockData}>{data}</span>
           <div className={styles.lowerThirdText}>{dataUnit}</div>
-        </div>
+        </a>
       ) : null}
     </>
   );
@@ -24,4 +28,5 @@ export const BlockData = ({ data, dataUnit }) => {
 BlockData.propTypes = {
   data: PropTypes.string,
   dataUnit: PropTypes.string,
+  href: PropTypes.string,
 };

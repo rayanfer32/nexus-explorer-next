@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-self: center;
   align-items: center;
+  overflow: hidden;
 
   font-size: var(--font-s);
   color: var(--theme-page-text);
@@ -20,7 +21,8 @@
 
   .lowerThirdText {
     align-self: flex-end;
-    font-size: var(--font-xxs);
+    font-size: var(--font-xs);
     text-align: right;
+    color: var(--theme-page-text-secondary);
   }
 }
