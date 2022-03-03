@@ -53,7 +53,7 @@ export default function UserAccount({ type, data }) {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <CopyText value={props.value} ellipsisAfter={15} />;
+        return <CopyText value={props.value} />;
       },
     },
     {

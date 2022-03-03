@@ -61,11 +61,7 @@ export default function Transactions() {
       Header: 'Transaction ID',
       accessor: 'txid',
       Cell: (props) => (
-        <CopyText
-          value={props.value}
-          link={`/scan/${props.value}`}
-          ellipsisAfter={20}
-        />
+        <CopyText value={props.value} link={`/scan/${props.value}`} />
       ),
     },
     {
