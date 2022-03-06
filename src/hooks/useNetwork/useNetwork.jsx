@@ -7,7 +7,9 @@ export function useNetwork() {
   const url = appContext.network.url;
 
   function getMetrics() {
-    return axios.get(`${url}/system/get/metrics`);
+    return axios.get(`${url}/system/get/metrics`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+    });
   }
 
   function getInfo() {
@@ -27,6 +29,7 @@ export function useNetwork() {
 
   const getTrustlist = async () => {
     const res = await axios.get(`${url}/register/list/trust`, {
+      headers: { 'Cache-Control': 'max-age=300' },
       params: {
         // limit: 100,
         sort: 'trust',
@@ -40,7 +43,8 @@ export function useNetwork() {
     // * to consider the users who have moved their balance to trust
     // * query for both trust and normal accounts
     const page0 = await axios.get(
-      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111&where=object.token=0`
+      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111&where=object.token=0`,
+      { headers: { 'Cache-Control': 'max-age=300' } }
     );
 
     return { data: [...page0.data.result] };
@@ -51,6 +55,7 @@ export function useNetwork() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'max-age=300',
       },
       body: JSON.stringify({
         where: 'object.namespace=*GLOBAL*',
@@ -62,11 +67,15 @@ export function useNetwork() {
   };
 
   const getNamespaces = () => {
-    return axios.get(`${url}/register/list/namespaces?limit=1000`);
+    return axios.get(`${url}/register/list/namespaces?limit=1000`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+    });
   };
 
   const getTokens = () => {
-    return axios.get(`${url}/register/list/tokens?sort=maxsupply&limit=1000`);
+    return axios.get(`${url}/register/list/tokens?sort=maxsupply&limit=1000`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+    });
   };
 
   const getBlocks = async ({ queryKey }) => {

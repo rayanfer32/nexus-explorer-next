@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react';
 import { BiClipboard, BiCopy, BiCheck } from 'react-icons/bi';
 import { middleElipsis } from 'utils/converter';
 import { handleCopy } from 'utils/helper';
+import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 
 export default function CopyText({ value, ellipsisAfter, link, className }) {
+  const windowSize = useWindowSize();
+
   const [toastList, setToastList] = useState([]);
   const [indicator, setIndicator] = useState(false);
 
@@ -38,7 +41,10 @@ export default function CopyText({ value, ellipsisAfter, link, className }) {
             {value &&
               `${
                 value.toString().length > 12
-                  ? middleElipsis(value, ellipsisAfter || 12)
+                  ? middleElipsis(
+                      value,
+                      ellipsisAfter || windowSize.width < 500 ? 5 : 12
+                    )
                   : value
               }`}
           </a>
