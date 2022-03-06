@@ -24,14 +24,14 @@ export default function Blocks(props) {
       Cell: (props) => <a href={`/scan/${props.value}`}>{props.value}</a>,
     },
     {
-      Header: 'Date',
-      accessor: 'date',
-      key: 'date',
-      // render: (val) => new Date(val).toDateString,
+      Header: 'Timestamp',
+      accessor: 'timestamp',
+      Cell: (props) => (new Date(props.value * 1000).toLocaleTimeString()),
     },
     {
       Header: 'Mint',
       accessor: 'mint',
+      Cell: (props) => props.value.toFixed(2),
     },
     {
       Header: 'TXNs',
