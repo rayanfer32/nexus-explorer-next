@@ -1,4 +1,4 @@
-import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.scss';
 import SearchIcon from 'assets/icons/search.svg';
 import Image from 'next/image';
 

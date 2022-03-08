@@ -1,0 +1,34 @@
+$media-expression: (
+  // Extra large screens, TV
+  'extra-large-desktop': '(min-width: 1441px)',
+  // Large screens, TV
+  'large-desktop': '(min-width: 1201px) and (max-width: 1440px)',
+  '>large-desktop': '(min-width: 1441px)',
+  '<large-desktop': '(max-width: 1439px)',
+  '>=large-desktop': '(min-width: 1440px)',
+  '<=large-desktop': '(max-width: 1440px)',
+  // Desktop
+  'desktop': '(min-width: 1025px) and (max-width: 1200px)',
+  '>desktop': '(min-width: 1025px)',
+  '<desktop': '(max-width: 1023px)',
+  '>=desktop': '(min-width: 1024px)',
+  '<=desktop': '(max-width: 1024px)',
+  // Tablet
+  'tablet': '(min-width: 769px) and (max-width: 1024px)',
+  '>tablet': '(min-width: 770px)',
+  '<tablet': '(max-width: 768px)',
+  '>=tablet': '(min-width: 769px)',
+  '<=tablet': '(max-width: 769px)',
+  // Mobile
+  'mobile': '(min-width: 481px) and (max-width: 768px)',
+  '>mobile': '(min-width: 577px)',
+  '<mobile': '(max-width: 575px)',
+  '>=mobile': '(min-width: 576px)',
+  '<=mobile': '(max-width: 576px)',
+  // Small Mobile
+  'small-mobile': '(min-width: 320px) and (max-width: 480px)',
+  '>small-mobile': '(min-width: 321px)',
+  '<small-mobile': '(max-width: 319px)',
+  '>=small-mobile': '(min-width: 320px)',
+  '<=small-mobile': '(max-width: 320px)'
+);
