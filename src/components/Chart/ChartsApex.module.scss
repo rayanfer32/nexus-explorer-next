@@ -21,7 +21,7 @@
     margin-bottom: var(--space-xxs);
 
     @media (max-width: 768px) {
-      min-width: 30rem;
+      // min-width: 30rem; // this causes appearnce of scrollbar on mobile
       min-height: 30rem;
     }
   }
