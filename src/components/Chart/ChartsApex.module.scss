@@ -10,8 +10,10 @@
   }
 
   &__donut {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     min-width: 16rem; /* 256px */
@@ -19,7 +21,7 @@
     margin-bottom: var(--space-xxs);
 
     @media (max-width: 768px) {
-      min-width: 30rem;
+      // min-width: 30rem; // this causes appearnce of scrollbar on mobile
       min-height: 30rem;
     }
   }

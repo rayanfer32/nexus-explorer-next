@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export function fetchMetrics(url) {
   return axios.get(
-    `${url || process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`
+    `${url || process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/system/get/metrics`,
+    { headers: { 'Cache-Control': 'max-age=300' } }
   );
 }
 

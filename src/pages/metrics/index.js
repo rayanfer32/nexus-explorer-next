@@ -8,6 +8,7 @@ import Loader from 'components/atoms/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { METRICS_META } from 'types/StringsTypes';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function Metrics() {
   // fetchMetrics should be created from a custom hook which
@@ -58,38 +59,41 @@ export default function Metrics() {
   }
 
   return (
-    <div className={styles.container}>
-      <h3>Registers</h3>
-      <div className={styles.cardGroup}>
-        <SmallCard
-          label={METRICS_META.sig_chains.label}
-          sublabel={METRICS_META.sig_chains.sublabel}
-          value={res.sig_chains}
-          icon={METRICS_META.sig_chains.icon}
-        />
-        <SmallCards type="registers" object={res.registers} />
-      </div>
+    <>
+      <PageHeader page={'metrics'}></PageHeader>
+      <div className={styles.container}>
+        <h3>Registers</h3>
+        <div className={styles.cardGroup}>
+          <SmallCard
+            label={METRICS_META.sig_chains.label}
+            sublabel={METRICS_META.sig_chains.sublabel}
+            value={res.sig_chains}
+            icon={METRICS_META.sig_chains.icon}
+          />
+          <SmallCards type="registers" object={res.registers} />
+        </div>
 
-      <h3>Trust</h3>
-      <div className={styles.cardGroup}>
-        <SmallCard
-          label={METRICS_META.trust.staked_percentage.label}
-          unit={METRICS_META.trust.staked_percentage.ticker}
-          value={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
-          icon={METRICS_META.trust.staked_percentage.icon}
-        />
-        <SmallCards type="trust" object={res.trust} />
-      </div>
+        <h3>Trust</h3>
+        <div className={styles.cardGroup}>
+          <SmallCard
+            label={METRICS_META.trust.staked_percentage.label}
+            unit={METRICS_META.trust.staked_percentage.ticker}
+            value={((res.trust.stake / res.supply.total) * 100).toFixed(2)}
+            icon={METRICS_META.trust.staked_percentage.icon}
+          />
+          <SmallCards type="trust" object={res.trust} />
+        </div>
 
-      <h3>Supply</h3>
-      <div className={styles.cardGroup}>
-        <SmallCards type="supply" object={res.supply} />
-      </div>
+        <h3>Supply</h3>
+        <div className={styles.cardGroup}>
+          <SmallCards type="supply" object={res.supply} />
+        </div>
 
-      <h3>Reserves</h3>
-      <div className={styles.cardGroup}>
-        <SmallCards type="reserves" object={res.reserves} />
+        <h3>Reserves</h3>
+        <div className={styles.cardGroup}>
+          <SmallCards type="reserves" object={res.reserves} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,18 +1,15 @@
-import { toTitleCase, middleElipsis } from 'utils/converter';
-import axios from 'axios';
+import { toTitleCase } from 'utils/converter';
+import PageHeader from 'components/Header/PageHeader';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
-import { BiCopy } from 'react-icons/bi';
-import { handleCopy, totalPages } from 'utils/helper';
+import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
-export default function Transactions(props) {
-  // const { data } = props;
-
+export default function Transactions() {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [pageCount, setPageCount] = useState(1);
@@ -64,11 +61,7 @@ export default function Transactions(props) {
       Header: 'Transaction ID',
       accessor: 'txid',
       Cell: (props) => (
-        <CopyText
-          value={props.value}
-          link={`/scan/${props.value}`}
-          ellipsisAfter={20}
-        />
+        <CopyText value={props.value} link={`/scan/${props.value}`} />
       ),
     },
     {
@@ -134,12 +127,15 @@ export default function Transactions(props) {
     };
 
     return (
-      <div>
-        <Table columns={columns} data={rows} paginate={false} />
-        <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination controls={dynamicPaginationControls} />
+      <>
+        <PageHeader page={'transactions'} />
+        <div>
+          <Table columns={columns} data={rows} paginate={false} />
+          <div style={{ marginBottom: '1rem' }}>
+            <DynamicPagination controls={dynamicPaginationControls} />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

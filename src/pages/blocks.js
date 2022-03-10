@@ -8,7 +8,7 @@ import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
 import { useEffect } from 'react';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import { NETWORKS } from 'types/ConstantsTypes';
+import PageHeader from 'components/Header/PageHeader';
 
 export default function Blocks(props) {
   // wrap these states in the specific network's state
@@ -24,14 +24,14 @@ export default function Blocks(props) {
       Cell: (props) => <a href={`/scan/${props.value}`}>{props.value}</a>,
     },
     {
-      Header: 'Date',
-      accessor: 'date',
-      key: 'date',
-      // render: (val) => new Date(val).toDateString,
+      Header: 'Timestamp',
+      accessor: 'timestamp',
+      Cell: (props) => (new Date(props.value * 1000).toLocaleTimeString()),
     },
     {
       Header: 'Mint',
       accessor: 'mint',
+      Cell: (props) => props.value.toFixed(2),
     },
     {
       Header: 'TXNs',
@@ -109,12 +109,15 @@ export default function Blocks(props) {
     };
 
     return (
-      <div style={{ overflow: 'visible' }}>
-        <Table columns={columns} data={data} paginate={false} />
-        <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination controls={dynamicPageControls} />
+      <>
+        <PageHeader page="blocks" />
+        <div style={{ overflow: 'visible' }}>
+          <Table columns={columns} data={data} paginate={false} />
+          <div style={{ marginBottom: '1rem' }}>
+            <DynamicPagination controls={dynamicPageControls} />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

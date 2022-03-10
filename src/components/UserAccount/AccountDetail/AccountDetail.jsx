@@ -9,10 +9,10 @@ export const AccountDetail = ({ data }) => {
       <div className={styles.details}>
         <section className={styles.details__text}>
           <div>
-            Address: <CopyText value={data.address} ellipsisAfter={99} />{' '}
+            Address: <CopyText value={data.address} />
           </div>
           <div>
-            Owner: <CopyText value={data.owner} ellipsisAfter={99} />
+            Owner: <CopyText value={data.owner} />
           </div>
           <div>
             Created On: {new Date(data.created * 1000).toLocaleString()}
@@ -21,6 +21,7 @@ export const AccountDetail = ({ data }) => {
             Last Modified: {new Date(data.modified * 1000).toLocaleString()}
           </div>
           <div>Name: {data.name}</div>
+          <div>Stake Rate: {data.rate}</div>
           <div>Token Name: {data.token}</div>
           <div>Ticker: {data.ticker}</div>
         </section>
