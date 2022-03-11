@@ -1,10 +1,12 @@
-import SearchBarLong from '../../components/atoms/SearchBar/SearchBarLong';
-import SearchBar from '../../components/atoms/SearchBar/SearchBar';
+import SearchBar from '../../components/atoms/NE_SearchBar';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Components/SearchBar',
-  component: SearchBarLong,
+  component: SearchBar,
+  argTypes: {
+    onkeydown: { action: 'clicked' },
+  },
 };
 
-export const Short = () => <SearchBar />;
-export const Long = () => <SearchBarLong />;
+export const Default = () => <SearchBar />;

@@ -2,22 +2,22 @@ import styles from './SearchBar.module.scss';
 import SearchIcon from 'assets/icons/search.svg';
 import Image from 'next/image';
 
-function SearchBarLong(props) {
+function SearchBar(props) {
   return (
-    <div className={[styles.searchBar, styles.searchBarLong].join(' ')}>
+    <div className={styles.searchBar}>
       <input
         type="search"
         results={5}
         value={props?.value}
         onChange={props?.onChange}
         placeholder={props?.placeholder}
-        className={styles.searchLong}
+        className={styles.searchInput}
         onKeyDown={props?.onKeyDown}
       />
       <button
         type="submit"
         onClick={props?.onSearch}
-        className={styles.searchLongBtn}>
+        className={styles.searchBtn}>
         <Image
           src={SearchIcon}
           alt="search"
@@ -30,4 +30,4 @@ function SearchBarLong(props) {
   );
 }
 
-export default SearchBarLong;
+export default SearchBar;

@@ -2,12 +2,15 @@ import styles from './AccountDetail.module.scss';
 import QRCode from 'react-qr-code';
 import CopyText from 'components/atoms/NE_CopyText';
 import TYPES from 'types';
+import { useRouter } from 'next/router';
 
 export const AccountDetail = ({ data }) => {
+  const router = useRouter();
   return (
     <>
       <div className={styles.details}>
         <section className={styles.details__text}>
+          <div>Account: {router.query.addr}</div>
           <div>
             Address: <CopyText value={data.address} />
           </div>
