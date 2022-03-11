@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
-import Search from 'components/atoms/SearchBar';
+import Search from 'components/atoms/NE_SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';

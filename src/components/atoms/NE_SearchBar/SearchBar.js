@@ -1,4 +1,4 @@
-import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.scss';
 import SearchIcon from 'assets/icons/search.svg';
 import Image from 'next/image';
 
@@ -11,8 +11,13 @@ function SearchBar(props) {
         value={props?.value}
         onChange={props?.onChange}
         placeholder={props?.placeholder}
+        className={styles.searchInput}
+        onKeyDown={props?.onKeyDown}
       />
-      <button type="submit" onClick={props?.onSearch}>
+      <button
+        type="submit"
+        onClick={props?.onSearch}
+        className={styles.searchBtn}>
         <Image
           src={SearchIcon}
           alt="search"
