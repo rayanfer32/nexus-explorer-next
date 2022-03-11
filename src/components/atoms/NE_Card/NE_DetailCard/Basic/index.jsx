@@ -1,13 +1,10 @@
-import Card from '../..';
-import Image from 'next/image';
 import PropTypes from 'prop-types';
-import classes from '../DetailCard.module.scss';
 import styles from './Basic.module.scss';
-import ASSESTS from 'assets';
 
 export const Card_Header = ({ label = '', sublabel = '', ticker = '' }) => (
   <div className={styles.card_header}></div>
 );
+
 export const Card_Body_Title = ({ title = '', unit = '' }) => (
   <div className={styles.card_body}>
     <p>{title}</p>

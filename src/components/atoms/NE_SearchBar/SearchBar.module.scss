@@ -1,0 +1,67 @@
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 3.25rem;
+  filter: drop-shadow(var(--card-shadow-subtle));
+  &:focus-within {
+    outline: none;
+  }
+
+  .searchInput {
+    border: none;
+    outline: none;
+    height: 2.625rem;
+    width: 100%;
+    color: var(--midnight-blue);
+    background: var(--theme-search);
+    padding-left: var(--space-xxs);
+    border-radius: var(--space-xxxs);
+    font-size: var(--font-normal);
+    font-family: inherit;
+    box-shadow: var(--card-shadow-subtle);
+
+    &:focus {
+      outline: solid 0.125rem var(--nexus-blue);
+      border-radius: 2pt;
+      color: var(--midnight-blue);
+    }
+    &::-webkit-search-cancel-button {
+      position: relative;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: url('../../../assets/icons/cross.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: hue-rotate(180deg);
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    &:-ms-input-placeholder,
+    &::placeholder {
+      color: var(--theme-search-text);
+    }
+  }
+
+  .searchBtn {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 2.625rem;
+    height: 2.625rem;
+    margin-left: 0.25rem;
+    background: var(--theme-search);
+    border-radius: var(--space-xxxs);
+    box-shadow: var(--card-shadow-subtle);
+    cursor: pointer;
+
+    &:focus {
+      outline: solid 0.125rem var(--nexus-blue);
+      border-radius: 2pt;
+    }
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+}

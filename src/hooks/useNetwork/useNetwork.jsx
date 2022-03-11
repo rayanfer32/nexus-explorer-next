@@ -1,10 +1,15 @@
 import axios from 'axios';
 import { useAppContext } from 'contexts/AppContext';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 export function useNetwork() {
   const { appContext } = useAppContext();
 
-  const url = appContext.network.url;
+  /* try to avoid use of the netwrok url from app context */
+  const url =
+    appContext.network.name === NETWORKS.MAINNET.name
+      ? process.env.NEXT_PUBLIC_NEXUS_BASE_URL
+      : process.env.NEXT_PUBLIC_TESTNET_BASE_URL;
 
   function getMetrics() {
     return axios.get(`${url}/system/get/metrics`, {
@@ -101,7 +106,7 @@ export function useNetwork() {
     const res = await axios.get(`${url}/finance/transactions/trust`, {
       params: {
         address: data?.address,
-        limit: 100,
+        limit: 20,
       },
     });
     return res.data;
@@ -111,14 +116,14 @@ export function useNetwork() {
     const res = await axios.get(`${url}/finance/transactions/account`, {
       params: {
         address: data?.address,
-        limit: 100,
+        limit: 20,
       },
     });
     return res.data;
   };
 
   return {
-    network: appContext.network,
+    network: { name: appContext.network.name, url },
     getMetrics,
     getInfo,
     getMining,

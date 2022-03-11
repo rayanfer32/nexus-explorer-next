@@ -66,7 +66,7 @@ export default function UserAccount({ type, data }) {
       Cell: (props) => {
         let fontColor = 'var(--theme-page-text)';
         let sign = '+';
-        if (['CREDIT', 'CREATE'].includes(props.row.values.operation)) {
+        if (['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)) {
           fontColor = TYPES.COLORS.MARKET_GREEN;
           sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {

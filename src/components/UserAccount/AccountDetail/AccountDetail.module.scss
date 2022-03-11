@@ -11,15 +11,23 @@
   box-shadow: var(--card-shadow);
 
   .details__text {
+    width: 30rem;
     display: flex;
     flex-direction: column;
     padding: 0.2rem;
     gap: 0.5rem;
-    div {
+
+    > div {
+      display: flex;
+      align-items: center;
       border-radius: 0.2rem;
       color: var(--theme-page-text);
       background: var(--theme-tab-bg);
       padding: 0.3rem 1rem;
+
+      > div {
+        align-items: center;
+      }
     }
   }
 
@@ -36,6 +44,10 @@
     flex-direction: column;
     overflow: scroll;
     align-items: flex-start;
+
+    .details__text {
+      width: 100%;
+    }
 
     .qrConatiner {
       align-self: center;

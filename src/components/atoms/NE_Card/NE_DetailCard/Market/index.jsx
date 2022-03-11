@@ -1,6 +1,5 @@
 import Card from '../..';
 import PropTypes from 'prop-types';
-import classes from '../DetailCard.module.scss';
 
 export const Market = ({ ...props }) => {
   return <Card>market</Card>;

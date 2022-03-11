@@ -1,9 +1,7 @@
 import SearchBar from './SearchBar';
-import SearchBarLong from './SearchBarLong';
-
 import PropTypes from 'prop-types';
 
-SearchBar.propTypes = {
+Search.propTypes = {
   type: PropTypes.oneOf(['long']),
   long: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -19,7 +17,5 @@ export default function Search(props) {
     }
   }
 
-  if (props.type === 'long' || props.long === true)
-    return <SearchBarLong {...props} onKeyDown={handleOnKeyDown} />;
   return <SearchBar {...props} onKeyDown={handleOnKeyDown} />;
 }
