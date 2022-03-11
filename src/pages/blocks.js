@@ -8,6 +8,7 @@ import DynamicPagination from 'components/Table/DynamicPagination';
 import { useEffect } from 'react';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
+import Logger from 'utils/customLog';
 
 export default function Blocks(props) {
   // wrap these states in the specific network's state
@@ -53,13 +54,13 @@ export default function Blocks(props) {
     getBlocks
   );
 
+  // reset all pagination props on network.name change
   useEffect(() => {
-    // reset all pagination props on network change
     setPageSize(10);
     setPageIndex(0);
     setPageCount(1);
     setTotalRows(0);
-  }, [network]);
+  }, [network.name]);
 
   useEffect(() => {
     if (data) {
@@ -71,6 +72,7 @@ export default function Blocks(props) {
   }, [data, pageSize]);
 
   useEffect(() => {
+    Logger.log("setting total pages")
     setPageCount(totalPages(totalRows, pageSize));
   }, [totalRows, pageSize, network]);
 
@@ -88,8 +90,6 @@ export default function Blocks(props) {
     );
 
   if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-
-  // return <pre >{JSON.stringify(data, null, 2)}</pre>;
 
   if (data) {
     const dynamicPageControls = {
