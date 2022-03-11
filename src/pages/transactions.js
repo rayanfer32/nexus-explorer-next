@@ -34,17 +34,16 @@ export default function Transactions() {
     }
   }, [data]);
 
+  // reset all pagination props on network.name change
   useEffect(() => {
-    // reset all pagination props on network change
     setPageSize(10);
     setPageIndex(0);
     setPageCount(1);
     setTotalRows(0);
-  }, [network]);
+  }, [network.name]);
 
   useEffect(() => {
     if (data) {
-      // console.log(data)
       let height = data.data.result[0].height;
       if (height > totalRows) {
         setTotalRows(height);
@@ -77,7 +76,6 @@ export default function Transactions() {
     {
       Header: 'Confirmations',
       accessor: 'confirmations',
-      // Cell: (props) => <div>{props.value}</div>,
     },
     {
       Header: 'Timestamp',
@@ -86,11 +84,6 @@ export default function Transactions() {
         <span>{new Date(props.value * 1000).toLocaleTimeString()}</span>
       ),
     },
-    // {
-    //   Header: 'Contracts',
-    //   accessor: 'contracts',
-    //   render: (contracts) => contracts?.length,
-    // },
   ];
 
   if (isLoading)
@@ -139,18 +132,3 @@ export default function Transactions() {
     );
   }
 }
-
-// export async function getServerSideProps() {
-//   const resp = await fetch(
-//     `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=20&verbose=summary`
-//   );
-//   const data = await resp.json();
-
-//   const txns = data.result.map((item) => item.tx);
-
-//   return {
-//     props: {
-//       data: txns,
-//     },
-//   };
-// }
