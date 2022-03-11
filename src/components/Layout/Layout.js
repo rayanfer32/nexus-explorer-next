@@ -11,12 +11,12 @@ import ScrollToTop from '../ScrollToTop/ScrollToTop';
 function Layout({ children }) {
   return (
     <>
-      {/* Need second opinion on commented  section tag is it required or not */}
-      {/* <section className={styles.main}> */}
-      <Header />
-      <main className={styles.container}>{children}</main>
-      <Footer />
-      {/* </section> */}
+      {/* Need second opinion on section tag is it required or not */}
+      <section className={styles.main}>
+        <Header />
+        <main className={styles.container}>{children}</main>
+        <Footer />
+      </section>
       <ScrollToTop />
     </>
   );

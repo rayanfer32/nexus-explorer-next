@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
@@ -26,7 +25,7 @@ export default function Blocks(props) {
     {
       Header: 'Timestamp',
       accessor: 'timestamp',
-      Cell: (props) => (new Date(props.value * 1000).toLocaleTimeString()),
+      Cell: (props) => new Date(props.value * 1000).toLocaleTimeString(),
     },
     {
       Header: 'Mint',
