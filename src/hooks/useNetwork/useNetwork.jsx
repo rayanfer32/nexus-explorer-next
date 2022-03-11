@@ -106,7 +106,7 @@ export function useNetwork() {
     const res = await axios.get(`${url}/finance/transactions/trust`, {
       params: {
         address: data?.address,
-        limit: 100,
+        limit: 20,
       },
     });
     return res.data;
@@ -116,7 +116,7 @@ export function useNetwork() {
     const res = await axios.get(`${url}/finance/transactions/account`, {
       params: {
         address: data?.address,
-        limit: 100,
+        limit: 20,
       },
     });
     return res.data;
