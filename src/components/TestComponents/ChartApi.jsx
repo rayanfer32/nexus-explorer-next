@@ -8,7 +8,7 @@ export default function ChartApi() {
   const [dateStamps, setDateStamps] = useState([]);
   const [limit, setLimit] = useState(10);
 
-  const { isLoading, data, error } = useQuery(['charting', limit], async () => {
+  const { isLoading, data } = useQuery(['charting', limit], async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/list/blocks?limit=${limit}&verbose=summary`
     );

@@ -1,3 +1,4 @@
+import { NE_CompactCard } from './NE_CompactCard';
 import { NE_SmallCard } from './NE_SmallCard';
 import { NE_DetailCard } from './NE_DetailCard';
 import PropTypes from 'prop-types';
@@ -6,7 +7,8 @@ import TYPES from 'types';
 
 const Card = ({ type = 'default', ...props }) => {
   if (type === 'small') return <NE_SmallCard {...props} />;
-  if (type === 'detail' || type === 'market' || type === 'basic')
+  if (type === 'compact') return <NE_CompactCard {...props} />;
+  if (type === 'market' || type === 'basic')
     return <NE_DetailCard type={type} {...props} />;
 
   return (
@@ -26,8 +28,8 @@ const Card = ({ type = 'default', ...props }) => {
 };
 
 export default Card;
-export { NE_SmallCard, NE_DetailCard };
+export { NE_SmallCard, NE_DetailCard, NE_CompactCard };
 
 Card.propTypes = {
-  type: PropTypes.oneOf(['default', 'small', 'basic', 'detail', 'market']),
+  type: PropTypes.oneOf(['default', 'small', 'basic', 'compact', 'market']),
 };

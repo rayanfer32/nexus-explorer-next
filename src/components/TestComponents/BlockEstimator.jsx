@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Loader from 'components/atoms/NE_Loader';
 import { useDarkMode } from 'hooks';
-import { Log } from 'utils/customLog';
+import Logger from 'utils/customLog';
 
 export default function BlockEstimator() {
   // blockFromTimestamp/1642153560
@@ -20,11 +20,11 @@ export default function BlockEstimator() {
     );
     try {
       const resp = await estimatedBlock.json();
-      Log(resp);
+      Logger.log(resp);
       setBlock(resp.estimatedBlock);
       setError(resp.error);
     } catch (err) {
-      console.log(estimatedBlock);
+      Logger.error(estimatedBlock);
     }
   }, [timestamp]);
 
@@ -35,10 +35,10 @@ export default function BlockEstimator() {
     );
     try {
       const resp = await blockResp.json();
-      Log(resp);
+      Logger.log(resp);
       setBlockData(resp.result);
     } catch (err) {
-      console.log(err);
+      Logger.error(err);
     }
     setLoading(false);
   }, [block]);

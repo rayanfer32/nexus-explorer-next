@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
 import styles from './ChartsApex.module.scss';
 
@@ -23,7 +23,7 @@ function ChartsApex({ initialData }) {
   // * fetch the blocks first and extract the total number of contracts inside the trasactions
   const [limit, setLimit] = useState(2 * 60);
   const { network, getRecentBlocks } = useNetwork();
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     ['charting', limit, network.name],
     () => getRecentBlocks(limit),
     {
@@ -63,7 +63,7 @@ function ChartsApex({ initialData }) {
                 index: 2,
                 title: '2H',
                 class: 'custom-icon',
-                click: (chart, options, e) => {
+                click: () => {
                   setLimit(2 * 60);
                 },
               },
@@ -72,7 +72,7 @@ function ChartsApex({ initialData }) {
                 index: 3,
                 title: '6H',
                 class: 'custom-icon',
-                click: (chart, options, e) => {
+                click: () => {
                   setLimit(6 * 60);
                 },
               },
@@ -81,7 +81,7 @@ function ChartsApex({ initialData }) {
                 index: 4,
                 title: '12H',
                 class: 'custom-icon',
-                click: (chart, options, e) => {
+                click: () => {
                   setLimit(12 * 60);
                 },
               },
@@ -90,7 +90,7 @@ function ChartsApex({ initialData }) {
                 index: 5,
                 title: '24H',
                 class: 'custom-icon',
-                click: (chart, options, e) => {
+                click: () => {
                   setLimit(24 * 60);
                 },
               },

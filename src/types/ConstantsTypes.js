@@ -16,9 +16,13 @@ export const ConstantsTypes = {
 };
 
 export const NETWORKS = {
-  MAINNET: { name: 'Mainnet', url: process.env.NEXT_PUBLIC_NEXUS_BASE_URL },
+  //* AVOID ADDING NETWORKS url TO THIS LIST
+  MAINNET: {
+    name: 'Mainnet',
+    // url: process.env.NEXT_PUBLIC_NEXUS_BASE_URL
+  },
   TESTNET: {
     name: 'Testnet',
-    url: process.env.NEXT_PUBLIC_TESTNET_BASE_URL,
+    // url: process.env.NEXT_PUBLIC_TESTNET_BASE_URL,
   },
 };
