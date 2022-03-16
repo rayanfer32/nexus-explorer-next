@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useAppContext } from 'contexts/AppContext';
 import { NETWORKS } from 'types/ConstantsTypes';
+import { API_URLS } from 'types/ConstantsTypes';
 
 export function useNetwork() {
   const { appContext } = useAppContext();
@@ -8,8 +9,8 @@ export function useNetwork() {
   /* try to avoid use of the netwrok url from app context */
   const url =
     appContext.network.name === NETWORKS.MAINNET.name
-      ? process.env.NEXT_PUBLIC_NEXUS_BASE_URL
-      : process.env.NEXT_PUBLIC_TESTNET_BASE_URL;
+      ? API_URLS.MAINNET
+      : API_URLS.TESTNET;
 
   function getMetrics() {
     return axios.get(`${url}/system/get/metrics`, {

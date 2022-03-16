@@ -1,4 +1,9 @@
-const REFETCH_INTERVALS = {
+export const API_URLS = {
+  MAINNET: '/api/v1/mainnet',
+  TESTNET: '/api/v1/testnet',
+};
+
+export const REFETCH_INTERVALS = {
   MINING: 1000 * 60, // 1 minute
   METRICS: 1000 * 60,
   MARKET: 1000 * 60,
