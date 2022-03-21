@@ -71,47 +71,43 @@ export default function Trustlist() {
     );
   }
 
-  if (data) {
-    if (data.data?.error) {
-      return (
-        <div>
-          <ErrorMessage error={data.data.error} />
+  const newData = data.data?.result?.map((item, index) => ({
+    key: index,
+    ...item,
+    stake: item.stake,
+    balance: item.balance,
+  }));
+
+  const dynamicPageControls = {
+    canPreviousPage: pageIndex > 0,
+    canNextPage: pageIndex < pageCount - 1,
+    pageCount: pageCount,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    gotoPage: (pageIndex) => {
+      setPageIndex(pageIndex);
+    },
+    setPageSize: (pageSize) => {
+      setPageIndex(0);
+      setPageSize(pageSize);
+    },
+  };
+
+  return (
+    <>
+      <PageHeader page={'trustlist'} />
+      <div className={styles.page} style={{ marginBottom: '1rem' }}>
+        
+        <Table
+          columns={columns}
+          data={data.data?.error ? [] : newData}
+          paginate={false}
+        />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination controls={dynamicPageControls} />
         </div>
-      );
-    }
-
-    const newData = data.data.result.map((item, index) => ({
-      key: index,
-      ...item,
-      stake: item.stake,
-      balance: item.balance,
-    }));
-
-    const dynamicPageControls = {
-      canPreviousPage: pageIndex > 0,
-      canNextPage: pageIndex < pageCount - 1,
-      pageCount: pageCount,
-      pageIndex: pageIndex,
-      pageSize: pageSize,
-      gotoPage: (pageIndex) => {
-        setPageIndex(pageIndex);
-      },
-      setPageSize: (pageSize) => {
-        setPageIndex(0);
-        setPageSize(pageSize);
-      },
-    };
-
-    return (
-      <>
-        <PageHeader page={'trustlist'} />
-        <div className={styles.page} style={{ marginBottom: '1rem' }}>
-          <Table columns={columns} data={newData} paginate={false} />
-          <div style={{ marginBottom: '1rem' }}>
-            <DynamicPagination controls={dynamicPageControls} />
-          </div>
-        </div>
-      </>
-    );
-  }
+        {data.data?.error && <ErrorMessage error={data.data.error} />}
+      </div>
+    </>
+  );
 }
