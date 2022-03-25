@@ -1,15 +1,27 @@
 import axios from 'axios';
 import { useAppContext } from 'contexts/AppContext';
 import { NETWORKS } from 'types/ConstantsTypes';
+import { API_URLS } from 'types/ConstantsTypes';
 
 export function useNetwork() {
   const { appContext } = useAppContext();
 
-  /* try to avoid use of the netwrok url from app context */
-  const url =
-    appContext.network.name === NETWORKS.MAINNET.name
-      ? process.env.NEXT_PUBLIC_NEXUS_BASE_URL
-      : process.env.NEXT_PUBLIC_TESTNET_BASE_URL;
+  const MAINNET_URL = process.env.NEXT_PUBLIC_NEXUS_BASE_URL;
+  const TESTNET_URL = process.env.NEXT_PUBLIC_TESTNET_BASE_URL;
+  const { MAINNET: MAINNET_PROXY_URL, TESTNET: TESTNET_PROXY_URL } = API_URLS;
+
+  // Change network url based on the NEXT_PUBLIC_USE_PROXY_MIDDLEWARE env variable
+  const isProxyEnabled =
+    process.env.NEXT_PUBLIC_USE_PROXY_MIDDLEWARE == 'true' ? true : false;
+  const isMainnetSelected = appContext.network.name === NETWORKS.MAINNET.name;
+
+  const url = isMainnetSelected
+    ? isProxyEnabled
+      ? MAINNET_PROXY_URL
+      : MAINNET_URL
+    : isProxyEnabled
+    ? TESTNET_PROXY_URL
+    : TESTNET_URL;
 
   function getMetrics() {
     return axios.get(`${url}/system/get/metrics`, {
