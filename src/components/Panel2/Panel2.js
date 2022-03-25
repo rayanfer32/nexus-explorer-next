@@ -25,10 +25,12 @@ function Panel2(props) {
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
 
+  const marketData = marketRQ?.data?.data?.market_data;
+  const miningData = miningRQ?.data?.data?.result;
+  const metricsData = metricsRQ?.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {
-      const marketData = marketRQ.data.data.market_data;
       setState((prev) => ({
         ...prev,
         price: {
@@ -36,13 +38,14 @@ function Panel2(props) {
           text: marketData?.current_price.usd.toFixed(2),
           reserve: marketData?.price_change_percentage_24h,
           reward: marketData?.total_volume.usd,
-          footer: marketData?.market_cap.usd,
+          footer: (
+            marketData?.current_price.usd * metricsData?.supply.total
+          ).toFixed(2),
         },
       }));
     }
 
     if (miningRQ.data) {
-      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
@@ -55,7 +58,6 @@ function Panel2(props) {
     }
 
     if (metricsRQ.data) {
-      const metricsData = metricsRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
@@ -81,7 +83,6 @@ function Panel2(props) {
     }
 
     if (miningRQ.data) {
-      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         prime: {
@@ -141,7 +142,7 @@ function Panel2(props) {
           reserve={`${state.price?.reserve} %`}
           rewardLabel="Total Volume"
           reward={`${intlNum(state.price?.reward)} $`}
-          footerLabel="Market Cap:"
+          footerLabel="Market Cap "
           footerValue={`${intlNum(state.price?.footer)} $`}
           delayTime={`${cardRefreshTimeout}s`}
         />
@@ -156,7 +157,7 @@ function Panel2(props) {
         reserve={`${intlNum(state.stake?.reserve)}`}
         reward={`${state.stake?.reward}`}
         rewardLabel="Total"
-        footerLabel="Fees"
+        footerLabel="Fees "
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
