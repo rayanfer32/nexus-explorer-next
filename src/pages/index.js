@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Panel1 from 'components/Panel1/Panel1';
 import Panel2 from 'components/Panel2/Panel2';
 import Panel3 from 'components/Panel3/Panel3';
@@ -14,6 +13,7 @@ import {
 
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { Fragment } from 'react';
+import PageHeader from 'components/Header/PageHeader';
 
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
@@ -72,10 +72,7 @@ export default function Home(props) {
 
   return (
     <>
-      <Head>
-        <title> Nexus Explorer V2 </title>
-        <meta name="description" content="Nexus Blockchain Statistics" />
-      </Head>
+      <PageHeader title={TYPES.PAGEMETA.TITLE} />
       <Fragment>
         <Panel1
           marketRQ={marketRQ}
