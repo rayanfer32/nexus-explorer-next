@@ -3,8 +3,27 @@
 
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 
-check_run() {
-	echo "$changed_files" | grep --quiet "$1" && eval "$2"
+#  function  to check package.json file changes
+check_package_json() {
+  echo "🕵️📦 Checking package file changes..."
+  if [ -n "$changed_files" ]; then
+    if [ -n "$(echo "$changed_files" | grep package.json)" ]; then
+      echo "📦 package.json file changed"
+      yarn install
+			exit 0
+    fi
+  fi
 }
+  
+if [ -z "$changed_files" ]; then
+  echo "🤷‍♂️ No files changed"
+  exit 0
+fi
 
-check_run package.json "yarn install"
+# run check_package_json function 
+check_package_json || (
+  echo "❌ packages changes checks failed"
+  exit 1
+)
+
+echo "✅ No package changes found"
