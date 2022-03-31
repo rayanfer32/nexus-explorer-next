@@ -11,6 +11,13 @@ export const REFETCH_INTERVALS = {
   REGENERATE_SSG_INTERVAL: 1000 * 60, // 60 sec
 };
 
+export const CARD_TYPES = {
+  BLOCK: 'block',
+  TRANSACTION: 'transaction',
+  USER: 'user',
+  TRUST: 'trust',
+}
+
 const MAX_SUPPLY = 72586439.41;
 
 export const ConstantsTypes = {

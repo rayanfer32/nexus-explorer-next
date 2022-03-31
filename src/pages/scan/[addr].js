@@ -11,6 +11,7 @@ import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
+import { CARD_TYPES } from 'types/ConstantsTypes';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -24,7 +25,8 @@ export const getServerSideProps = async (context) => {
 function Scan({ addr }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [cardType, setCardType] = useState();
-  Log('Scan', cardType);
+  const { network, getScanResults } = useNetwork();
+
   /**
    * identify the endpoint to use from the scan
    * @param {*} addr pass the address to scan
@@ -48,35 +50,27 @@ function Scan({ addr }) {
       };
       type = 'user';
     } else if (addr.length === 51) {
-      // might be trust acc or user acc address, so query for both and identify which one is correct
+      // ? might be trust acc or user acc address, so query for both and identify which one is correct
       endpoint = 'finance/get/account';
       params = { address: addr };
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/${endpoint}`,
-        {
-          params: params,
-        }
-      );
+      const res = await axios.get(`${network.url}/${endpoint}`, {
+        params: params,
+      });
       if (res.data.error) {
-        // console.log('its a trust acc');
         endpoint = 'finance/get/trust';
         type = 'trust';
       } else {
         type = 'user';
-        // console.log('its a user acc');
       }
     } else if (addr.length === 128) {
-      // console.log('its a transactions hash');
       endpoint = 'ledger/get/transaction';
       params = { hash: addr };
       type = 'transaction';
     } else if (addr.length === 256) {
-      // console.log('its a blockhash');
       endpoint = 'ledger/get/block';
       params = { hash: addr, verbose: 'detail' };
       type = 'block';
     } else {
-      // console.log('its a block height');
       endpoint = 'ledger/get/block';
       params = { height: addr, verbose: 'detail' };
       type = 'block';
@@ -84,7 +78,6 @@ function Scan({ addr }) {
     return { endpoint, params, type };
   }
 
-  const { network, getScanResults } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['scan', addr, network.name],
     async () => {
@@ -140,17 +133,11 @@ function Scan({ addr }) {
     <>
       <PageHeader page={cardType} />
       <div>
-        {cardType === 'block' && (
+        {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
           <InfoCard type={cardType} data={data?.result} />
         )}
-        {cardType === 'user' && (
+        {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
           <UserAccount type={cardType} data={data?.result} />
-        )}
-        {cardType === 'trust' && (
-          <UserAccount type={cardType} data={data?.result} />
-        )}
-        {cardType === 'transaction' && (
-          <InfoCard type={cardType} data={data?.result} />
         )}
         {isDev && rawInfo}
       </div>
