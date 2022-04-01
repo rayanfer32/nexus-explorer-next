@@ -2,7 +2,8 @@
 '📝documentation':
   - src/stories/**/*
   - README.md
-  - *.md
+  - CONTRIBUTING.md
+  - '*.md'
 
 # Chore
 'chore':
