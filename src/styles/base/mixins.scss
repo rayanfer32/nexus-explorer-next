@@ -1,0 +1,15 @@
+@use '../abstracts/breakpoints.scss' as bp;
+
+/// Media queries for screen sizes
+@mixin media-screen($device) {
+  $device-selected: map-get(bp.$media-expression, quote($device));
+
+  @if $device-selected != null {
+    @media screen and #{$device-selected} {
+      @content;
+    }
+  } @else {
+    // device not in bp.$media-expression
+    @content;
+  }
+}

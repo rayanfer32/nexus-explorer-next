@@ -1,0 +1,109 @@
+$colors: (
+  $nexus-blue: hsl(202, 97%, 52%),
+  $sky-blue: hsl(200, 99%, 71%),
+  $ocean-blue: hsl(202, 97%, 29%),
+  $midnight-blue: hsl(202, 96%, 11%),
+  $white: hsl(0, 0%, 100%),
+  $dark-grey: hsl(290, 7%, 17%),
+  $market-green: hsl(134, 61%, 41%),
+  $market-red: hsl(354, 70%, 54%),
+  $market-yellow: hsl(50, 70%, 50%),
+  $paper-white: hsl(210, 17%, 98%),
+  $pale-white: hsl(210, 25%, 97%),
+  $frost-white: hsl(201, 54%, 91%),
+);
+
+$gradients: (
+  $linear: (
+    $forst-white:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        hsl(201, 54%, 91%) 100%
+      ),
+    $forst-white-reverse:
+      linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        hsl(201, 54%, 91%) 100%
+      ),
+    $ocean-midnight:
+      linear-gradient(
+        175.94deg,
+        hsla(202, 96%, 11%, 0.702) 5.59%,
+        hsla(202, 97%, 29%, 0.702) 73.28%
+      ),
+    $sky-white:
+      linear-gradient(
+        175.94deg,
+        rgba(12, 164, 251, 0.7) 5.59%,
+        hsla(200, 99%, 71%, 0.35) 73.28%
+      ),
+    $nexus-sky:
+      linear-gradient(
+        328deg,
+        hsl(202, 97%, 52%) 0%,
+        hsl(200, 99%, 71%) 80%,
+        hsl(0, 0%, 100%) 100%
+      ),
+  )
+  $radial:
+  (
+    $ocean-midnight:
+      radial-gradient(circle, hsl(202, 79%, 11%) 0%, hsl(202, 92%, 14%) 100%),
+    $sky-white:
+      radial-gradient(
+        114.53% 197.34% at 25.54% -14.53%,
+        hsl(0, 0%, 100%) 26.66%,
+        hsl(200, 99%, 71%) 100%
+      ),
+  ),
+);
+
+$font: (
+  $xxxs: 0.375rem,
+  // 6px
+  $xxs: 0.5rem,
+  // 8px
+  $xs: 0.625rem,
+  // 10px
+  $s: 0.75rem,
+  // 12px
+  $normal: 0.875rem,
+  // 14px
+  $l: 1rem,
+  // 16px
+  $xl: 1.125rem,
+  // 18px
+  $xxl: 1.25rem,
+  // 20px
+  $xxxl: 1.5rem,
+  // 24px
+  $xxxxl: 2rem,
+  // 32px
+  $xxxxxl: 3rem,
+  // 48px
+);
+
+$space: (
+  $xxxxs: 0.125rem,
+  // 2px
+  $xxxs: 0.25rem,
+  // 4px
+  $xxs: 0.5rem,
+  // 8px
+  $xs: 0.75rem,
+  // 12px
+  $s: 1rem,
+  // 16px
+  $m: 1.25rem,
+  // 20px
+  $l: 1.5rem,
+  // 32px
+  $xl: 2rem,
+  // 32px
+  $xxl: 3rem,
+  // 48px
+  $xxxl: 4rem,
+  // 64px
+);
