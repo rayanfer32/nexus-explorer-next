@@ -9,3 +9,6 @@ node_modules
 *.html
 
 next.config.js
+
+*.lock
+*.log
