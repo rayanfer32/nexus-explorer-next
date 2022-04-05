@@ -1,46 +1,48 @@
 export const PageMetaTypes = {
   PAGEMETA: {
-    TITLE: 'Nexus Explorer V2',
-    DESCRIPTION: 'A Redesigned Explorer for the nexus blockchain.',
+    TITLE: 'Nexus Blockchain Explorer V2',
+    DESCRIPTION:
+      'A Redesigned Explorer for the nexus blockchain. The Nexus Blockchain explorer provides an easy to use application to explore the nexus blockchain. You are able to track blocks, transactions, NXS addresses, ...',
     HOME: {
-      TITLE: 'Home | Nexus Explorer V2',
-      DESCRIPTION: 'Nexus Blockchain Statistics',
+      TITLE: 'Home | Nexus Blockchain Explorer V2',
+      DESCRIPTION:
+        'The Nexus Blockchain explorer provides an easy to use application to explore the nexus blockchain. You are able to track blocks, transactions, NXS addresses, ...',
     },
     METRICS: {
-      TITLE: 'Metrics | Nexus Explorer V2',
+      TITLE: 'Metrics | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     BLOCKS: {
-      TITLE: 'Blocks | Nexus Explorer V2',
+      TITLE: 'Blocks | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     TRANSACTIONS: {
-      TITLE: 'Transactions | Nexus Explorer V2',
+      TITLE: 'Transactions | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     TRUSTLIST: {
-      TITLE: 'Trustlist | Nexus Explorer V2',
+      TITLE: 'Trustlist | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     RICHLIST: {
-      TITLE: 'Richlist | Nexus Explorer V2',
+      TITLE: 'Richlist | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     GLOBALNAMES: {
-      TITLE: 'Global Names | Nexus Explorer V2',
+      TITLE: 'Global Names | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     NAMESPACES: {
-      TITLE: 'Namespaces | Nexus Explorer V2',
+      TITLE: 'Namespaces | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     TOKENS: {
-      TITLE: 'Tokens | Nexus Explorer V2',
+      TITLE: 'Tokens | Nexus Blockchain Explorer V2',
       DESCRIPTION: 'Nexus Blockchain Statistics',
     },
     USER: {
-      TITLE: 'User | Nexus Explorer V2',
-      DESCRIPTION: 'Nexus Blockchain Statistics',
+      TITLE: 'User | Nexus Blockchain Explorer V2',
+      DESCRIPTION: 'Nexus Blockchain Explorer provides User Statistics',
     },
   },
 };

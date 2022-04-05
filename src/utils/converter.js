@@ -1,5 +1,5 @@
-export function intlNum(num) {
-  return new Intl.NumberFormat().format(num);
+export function intlNum(num, ...args) {
+  return new Intl.NumberFormat(...args).format(num);
 }
 
 export function middleElipsis(text, sliceAt) {
