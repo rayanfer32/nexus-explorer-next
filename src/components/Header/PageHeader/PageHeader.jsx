@@ -14,7 +14,8 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
     description ||
     TYPES.PAGEMETA[page.toUpperCase()]?.DESCRIPTION ||
     TYPES.PAGEMETA.DESCRIPTION;
-  const _explorer_domain = process.env.NEXT_PUBLIC_DOMAIN_BASE_URL || '';
+  const _explorer_domain =
+    process.env.NEXT_PUBLIC_DOMAIN_BASE_URL || 'https://explorer.nexus.io';
 
   return (
     <Head>
@@ -27,11 +28,17 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
       <meta property="og:url" content={_explorer_domain} />
       <meta
         property="og:image"
-        content={`${_explorer_domain}/og_meta_image.jpg` || ''}
+        content={
+          `${_explorer_domain}/og_meta_image.jpg` ||
+          'https://explorer.nexus.io/images/social/home.jpg'
+        }
       />
       <meta
         property="og:image:secure_url"
-        content={`${_explorer_domain}/og_meta_image.jpg` || ''}
+        content={
+          `${_explorer_domain}/og_meta_image.jpg` ||
+          'https://explorer.nexus.io/images/social/home.jpg'
+        }
       />
       <meta property="og:title" content={_title} />
       <meta property="og:site_name" content="Nexus" />
@@ -40,7 +47,10 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
       <meta name="twitter:title" content={_title} />
       <meta
         name="twitter:image"
-        content={`${_explorer_domain}/og_meta_image.jpg` || ''}
+        content={
+          `${_explorer_domain}/og_meta_image.jpg` ||
+          'https://explorer.nexus.io/images/social/home.jpg'
+        }
       />
     </Head>
   );
