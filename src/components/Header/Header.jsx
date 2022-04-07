@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Search from 'components/atoms/NE_SearchBar';
 import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
 import Brand from './Brand';
@@ -36,9 +36,30 @@ const Header = () => {
     );
   }, [appContext.network]);
 
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+
+    const previousValue = window.pageYOffset;
+    function onScroll() {
+      if (window.pageYOffset > previousValue) {
+        el.style.transform = `translateY(-${window.pageYOffset}px)`;
+      } else {
+        el.style.transform = `translateY(0px)`;
+      }
+      previousValue = window.pageYOffset;
+    }
+
+    if (el) {
+      window.addEventListener('scroll', onScroll);
+    }
+    return () => window && window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
-      <header className={styles.container}>
+      <header ref={headerRef} className={styles.container}>
         <div className={styles.header}>
           <div className={styles.nav}>
             <Brand isDarkMode={isDarkMode} onClick={onClickBrand} />
