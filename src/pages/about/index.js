@@ -4,11 +4,19 @@ import ASSESTS from 'assets';
 import TYPES from 'types';
 import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
-import { useQuery } from 'react-query';
 import { LinksTypes } from 'types/LinksTypes';
 import PageHeader from 'components/Header/PageHeader';
 
-const About = () => {
+export const getStaticProps = async () => {
+  const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);
+  const data = await res.json();
+
+  return {
+    props: { data: data },
+  };
+};
+
+const About = ({ data }) => {
   const {
     sharedState: { theme },
   } = useAppContext();
@@ -28,11 +36,6 @@ const About = () => {
       />
     );
   };
-
-  const { data } = useQuery('contributors', async () => {
-    const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);
-    return res.json();
-  });
 
   return (
     <>
