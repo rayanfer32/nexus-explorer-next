@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ![](/public/og_meta_image.jpg)
 
-- The stable version of the explorer is hosted at https://nexplorer.vercel.app
+- The stable version of the explorer is hosted at https://nexplorer-main.vercel.app
 
 - The development branch is hosted at https://nexus-explorer-next-git-develop-rayanfer32.vercel.app/
 
