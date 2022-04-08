@@ -22,12 +22,12 @@
 
 @keyframes flipCard {
   0% {
-    filter: blur(0.25rem);
+    filter: var(--theme-hue-rotate) blur(0.25rem);
     opacity: 0;
-    transform: rotateY(180deg);
+    transform: rotateY(10deg);
   }
   80% {
-    filter: blur(0rem);
+    filter: var(--theme-hue-rotate) blur(0rem);
     opacity: 1;
     transform: rotateY(-6deg);
   }
