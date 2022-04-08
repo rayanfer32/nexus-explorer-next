@@ -8,6 +8,7 @@ import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
 import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
+import { throttle } from 'utils/common';
 
 /**
  * Header component for the website
@@ -42,9 +43,16 @@ const Header = () => {
     const el = headerRef.current;
 
     const previousValue = window.pageYOffset;
+
     function onScroll() {
       if (window.pageYOffset > previousValue) {
-        el.style.transform = `translateY(-${window.pageYOffset}px)`;
+        // avoid unnecessary increase in scroll offset Value
+        const offsetValue =
+          el.clientHeight * 2 > window.pageYOffset
+            ? window.pageYOffset
+            : el.clientHeight * 2;
+
+        el.style.transform = `translateY(-${offsetValue}px)`;
       } else {
         el.style.transform = `translateY(0px)`;
       }
@@ -52,9 +60,10 @@ const Header = () => {
     }
 
     if (el) {
-      window.addEventListener('scroll', onScroll);
+      window.addEventListener('scroll', throttle(onScroll));
     }
-    return () => window && window.removeEventListener('scroll', onScroll);
+    return () =>
+      window && window.removeEventListener('scroll', throttle(onScroll));
   }, []);
 
   return (
@@ -85,19 +94,19 @@ const Header = () => {
             />
           </div>
         </div>
-        {toggleMobileMenu && (
-          <MobileMenu
-            isOpen={toggleMobileMenu}
-            isDark={isDarkMode}
-            network={appContext.network.name}
-            activePathname={router.pathname}
-            onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
-            onNetworkChange={handleNetworkChange}
-            onClose={() => setToggle(!toggleMobileMenu)}
-            setClose={setToggle}
-          />
-        )}
       </header>
+      {toggleMobileMenu && (
+        <MobileMenu
+          isOpen={toggleMobileMenu}
+          isDark={isDarkMode}
+          network={appContext.network.name}
+          activePathname={router.pathname}
+          onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
+          onNetworkChange={handleNetworkChange}
+          onClose={() => setToggle(!toggleMobileMenu)}
+          setClose={setToggle}
+        />
+      )}
     </>
   );
 };
