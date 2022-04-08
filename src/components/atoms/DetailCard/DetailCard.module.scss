@@ -17,17 +17,23 @@
   padding: 0.5rem;
 
   overflow: hidden;
-  animation: flipCard 2s;
-
-  filter: var(--theme-hue-rotate);
+  animation: flipCard 2s ease-out forwards;
 }
 
 @keyframes flipCard {
   0% {
+    filter: blur(0.25rem);
+    opacity: 0;
     transform: rotateY(180deg);
+  }
+  80% {
+    filter: blur(0rem);
+    opacity: 1;
+    transform: rotateY(-6deg);
   }
   100% {
     transform: rotateY(0deg);
+    filter: var(--theme-hue-rotate);
   }
 }
 
