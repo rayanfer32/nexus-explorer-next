@@ -1,0 +1,56 @@
+:root {
+  /* colors */
+  --nexus-blue: hsl(202, 97%, 52%);
+  --sky-blue: hsl(200, 99%, 71%);
+  --ocean-blue: hsl(202, 97%, 29%);
+  --midnight-blue: hsl(202, 96%, 11%);
+  --white: hsl(0, 0%, 100%);
+  --dark-grey: hsl(290, 7%, 17%);
+  --market-green: hsl(134, 61%, 41%);
+  --market-red: hsl(354, 70%, 54%);
+  --market-yellow: hsl(50, 70%, 50%);
+  --paper-white: hsl(210, 17%, 98%);
+  --pale-white: hsl(210, 25%, 97%);
+  --frost-white: hsl(201, 54%, 91%);
+
+  /* gradient */
+  --linear-frost-white: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    hsl(201, 54%, 91%) 100%
+  );
+
+  --linear-frost-white-reverse: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    hsl(201, 54%, 91%) 100%
+  );
+
+  --linear-ocean-midnight: linear-gradient(
+    175.94deg,
+    hsla(202, 96%, 11%, 0.702) 5.59%,
+    hsla(202, 97%, 29%, 0.702) 73.28%
+  );
+  --linear-sky-white: linear-gradient(
+    175.94deg,
+    rgba(12, 164, 251, 0.7) 5.59%,
+    hsla(200, 99%, 71%, 0.35) 73.28%
+  );
+  --linear-nexus-sky: linear-gradient(
+    328deg,
+    hsl(202, 97%, 52%) 0%,
+    hsl(200, 99%, 71%) 80%,
+    hsl(0, 0%, 100%) 100%
+  );
+  --radial-ocean-midnight: radial-gradient(
+    circle,
+    hsl(202, 79%, 11%) 0%,
+    hsl(202, 92%, 14%) 100%
+  );
+
+  --radial-sky-white: radial-gradient(
+    114.53% 197.34% at 25.54% -14.53%,
+    var(--white) 26.66%,
+    var(--sky-blue) 100%
+  );
+}
