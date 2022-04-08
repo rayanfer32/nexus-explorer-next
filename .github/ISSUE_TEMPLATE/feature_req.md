@@ -1,6 +1,6 @@
 ---
 name: Feature/Enhancement Request
-about: Request for improvement/feature for developers
+about: Submit a improvement/feature  
 title: ''
 labels: '✨enhancement'
 assignees: ''
