@@ -5,7 +5,7 @@ export function intlNum(num, ...args) {
 export function middleElipsis(text, sliceAt) {
   text = text.toString();
   if (text.length > sliceAt * 2) {
-    return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
+    return `${text.substring(0, sliceAt)}...${text.slice(-sliceAt)}`;
   }
   return text;
 }
