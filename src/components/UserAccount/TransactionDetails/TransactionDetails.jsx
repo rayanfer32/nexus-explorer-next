@@ -6,31 +6,42 @@ import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
+import DynamicPagination from 'components/Table/DynamicPagination';
+import ErrorMessage from 'components/atoms/ErrorMessage';
 
 export const TransactionDetails = ({ type, data }) => {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [pageCount, setPageCount] = useState(Infinity);
 
   const [tableData, setTableData] = useState([]);
   const { network, getAccountTransactions, getTrustTransactions } =
     useNetwork();
 
-    const LoaderDiv = () => (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  
+  const LoaderDiv = () => (
+    <div
+      style={{
+        display: 'grid',
+        placeItems: 'center',
+        minHeight: '200px',
+        margin: 'auto',
+      }}>
+      <Loader type="circle" size="5rem" />
+    </div>
+  );
 
   const accountTransactionsRQ = useQuery(
-    ['accountTransactions', network.name, type],
+    [
+      'accountTransactions',
+      type,
+      data.address,
+      pageIndex,
+      pageSize,
+      network.name,
+    ],
     () =>
       type == 'user'
-        ? getAccountTransactions(data)
+        ? getAccountTransactions(data.address, pageIndex, pageSize)
         : getTrustTransactions(data),
     {
       refetchOnMount: false,
@@ -83,7 +94,7 @@ export const TransactionDetails = ({ type, data }) => {
     },
   ];
 
-useEffect(() => {
+  useEffect(() => {
     if (accountTransactionsRQ.data) {
       let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
         return {
@@ -98,13 +109,41 @@ useEffect(() => {
     }
   }, [accountTransactionsRQ.data]);
 
+  const dynamicPageControls = {
+    canPreviousPage: pageIndex > 0,
+    canNextPage: pageIndex < pageCount - 1,
+    pageCount: pageCount,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    gotoPage: (pageIndex) => {
+      setPageIndex(pageIndex);
+    },
+    setPageSize: (pageSize) => {
+      setPageIndex(0);
+      setPageSize(pageSize);
+    },
+  };
 
   return (
     <>
-      {accountTransactionsRQ.isFetching ? (
+      {accountTransactionsRQ.isLoading ? (
         <LoaderDiv />
       ) : (
-        <Table columns={columns} data={tableData || []} />
+        <>
+          <div className={styles.page} style={{ marginBottom: '1rem' }}>
+            <Table
+              columns={columns}
+              data={accountTransactionsRQ.data?.error ? [] : tableData}
+              paginate={false}
+            />
+            <div style={{ marginBottom: '1rem' }}>
+              <DynamicPagination controls={dynamicPageControls} />
+            </div>
+            {accountTransactionsRQ.data?.error && (
+              <ErrorMessage error={accountTransactionsRQ.data.error} />
+            )}
+          </div>
+        </>
       )}
     </>
   );
