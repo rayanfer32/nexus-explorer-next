@@ -101,7 +101,9 @@ export const TransactionDetails = ({ type, data }) => {
           txid: txn.txid,
           timestamp: txn.timestamp,
           operation: txn.contracts[0].OP,
-          amount: `${txn.contracts[0].amount || 0} ${txn.contracts[0].ticker || ''}`,
+          amount: `${txn.contracts[0].amount || 0} ${
+            txn.contracts[0].ticker || ''
+          }`,
         };
       });
 
@@ -124,27 +126,23 @@ export const TransactionDetails = ({ type, data }) => {
     },
   };
 
+  if (accountTransactionsRQ.isLoading) {
+    return <LoaderDiv />;
+  }
+
   return (
-    <>
-      {accountTransactionsRQ.isLoading ? (
-        <LoaderDiv />
-      ) : (
-        <>
-          <div className={styles.page} style={{ marginBottom: '1rem' }}>
-            <Table
-              columns={columns}
-              data={accountTransactionsRQ.data?.error ? [] : tableData}
-              paginate={false}
-            />
-            <div style={{ marginBottom: '1rem' }}>
-              <DynamicPagination controls={dynamicPageControls} />
-            </div>
-            {accountTransactionsRQ.data?.error && (
-              <ErrorMessage error={accountTransactionsRQ.data.error} />
-            )}
-          </div>
-        </>
+    <div className={styles.page} style={{ marginBottom: '1rem' }}>
+      <Table
+        columns={columns}
+        data={accountTransactionsRQ.data?.error ? [] : tableData}
+        paginate={false}
+      />
+      <div style={{ marginBottom: '1rem' }}>
+        <DynamicPagination controls={dynamicPageControls} />
+      </div>
+      {accountTransactionsRQ.data?.error && (
+        <ErrorMessage error={accountTransactionsRQ.data.error} />
       )}
-    </>
+    </div>
   );
 };
