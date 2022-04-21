@@ -114,11 +114,12 @@ export function useNetwork() {
     return res.data;
   };
 
-  const getTrustTransactions = async (address) => {
+  const getTrustTransactions = async (address, page, limit) => {
     const res = await axios.get(`${url}/finance/transactions/trust`, {
       params: {
         address: address,
-        limit: 20,
+        page: page,
+        limit: limit,
       },
     });
     return res.data;

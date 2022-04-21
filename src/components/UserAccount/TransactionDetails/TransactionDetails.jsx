@@ -42,7 +42,7 @@ export const TransactionDetails = ({ type, data }) => {
     () =>
       type == 'user'
         ? getAccountTransactions(data.address, pageIndex, pageSize)
-        : getTrustTransactions(data),
+        : getTrustTransactions(data.address, pageIndex, pageSize),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
@@ -74,19 +74,19 @@ export const TransactionDetails = ({ type, data }) => {
       Header: 'Amount',
       accessor: 'amount',
       Cell: (props) => {
-        let fontColor = 'var(--theme-page-text)';
+        let cellColor = 'var(--theme-page-text)';
         let sign = '+';
         if (
           ['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)
         ) {
-          fontColor = TYPES.COLORS.MARKET_GREEN;
+          cellColor = TYPES.COLORS.MARKET_GREEN;
           sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
-          fontColor = TYPES.COLORS.MARKET_RED;
+          cellColor = TYPES.COLORS.MARKET_RED;
           sign = '-';
         }
         return (
-          <div className={styles.amount} style={{ background: fontColor }}>
+          <div className={styles.amount} style={{ background: cellColor }}>
             {sign} {props.value}
           </div>
         );
@@ -101,7 +101,7 @@ export const TransactionDetails = ({ type, data }) => {
           txid: txn.txid,
           timestamp: txn.timestamp,
           operation: txn.contracts[0].OP,
-          amount: `${txn.contracts[0].amount || 0} ${txn.contracts[0].ticker}`,
+          amount: `${txn.contracts[0].amount || 0} ${txn.contracts[0].ticker || ''}`,
         };
       });
 
