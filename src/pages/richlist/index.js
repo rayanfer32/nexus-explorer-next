@@ -8,16 +8,32 @@ import TYPES from 'types';
 import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
+import { useEffect, useState } from 'react';
+import DynamicPagination from 'components/Table/DynamicPagination';
+import Button from 'components/atoms/NE_Button';
 
 export default function Richlist() {
   const { network, getRichlist, getMetrics } = useNetwork();
 
-  const metricsRQ = useQuery(['metrics', network.name], getMetrics);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [pageCount, setPageCount] = useState(Infinity);
+
+  const [paginate, setPaginate] = useState(true);
+
+  const [pieData, setPieData] = useState();
+
   const { isLoading, data, error } = useQuery(
-    ['richlist', network.name],
-    getRichlist
+    ['richlist', pageIndex, pageSize, network.name],
+    () => getRichlist(pageIndex, pageSize)
+  );
+
+  const metricsRQ = useQuery(['metrics', network.name], getMetrics);
+  const richlist111 = useQuery(['richlist', network.name], () =>
+    getRichlist(0, 111)
   );
   const totalSupply = metricsRQ?.data?.result?.supply?.total;
+  const PIE_LABELS = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 
   const columns = [
     {
@@ -46,6 +62,41 @@ export default function Richlist() {
     },
   ];
 
+  const dynamicPageControls = {
+    canPreviousPage: pageIndex > 0,
+    canNextPage: pageIndex < pageCount - 1,
+    pageCount: pageCount,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    gotoPage: (pageIndex) => {
+      setPageIndex(pageIndex);
+    },
+    setPageSize: (pageSize) => {
+      setPageIndex(0);
+      setPageSize(pageSize);
+    },
+  };
+
+  useEffect(() => {
+    if (richlist111.data) {
+      const sortedData = richlist111.data.data;
+      const top1 = sortedData.slice(0, 1);
+      const top10 = sortedData.slice(1, 11);
+      const top100 = sortedData.slice(11, 111);
+      const sumTop1 = top1.reduce((acc, cur) => acc + cur.total, 0);
+      const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
+      const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
+
+      setPieData([
+        sumTop1,
+        sumTop10,
+        sumTop100,
+        (totalSupply || TYPES.MAX_SUPPLY.VALUE) -
+          (sumTop100 + sumTop10 + sumTop1),
+      ]);
+    }
+  }, [richlist111.data]);
+
   if (isLoading) {
     return (
       <div
@@ -64,36 +115,26 @@ export default function Richlist() {
     return <pre>{JSON.stringify(error, null, 2)}</pre>;
   }
 
-  if (data) {
-    const sortedData = data.data;
-    const top1 = sortedData.slice(0, 1);
-    const top10 = sortedData.slice(1, 11);
-    const top100 = sortedData.slice(11, 111);
-
-    const sumTop1 = top1.reduce((acc, cur) => acc + cur.total, 0);
-    const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
-    const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
-
-    const labels = ['Top 1', 'Top 10', 'Top 100', 'Others'];
-    const pieData = [
-      sumTop1,
-      sumTop10,
-      sumTop100,
-      (totalSupply || TYPES.MAX_SUPPLY.VALUE) -
-        (sumTop100 + sumTop10 + sumTop1),
-    ];
-
-    return (
-      <>
-        <PageHeader page="Richlist" />
-        <div className={styles.page} style={{ marginBottom: '1rem' }}>
-          <div className={styles.chartContainer}>
-            <h3>NXS Distrubution</h3>
-            <ApexPie series={pieData} labels={labels} />
-          </div>
-          <Table columns={columns} data={data.data} />
+  return (
+    <>
+      <PageHeader page="Richlist" />
+      <div className={styles.page} style={{ marginBottom: '1rem' }}>
+        <div className={styles.chartContainer}>
+          <h3>NXS Distrubution</h3>
+          {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
-      </>
-    );
-  }
+        <Table
+          columns={columns}
+          data={paginate ? richlist111?.data?.data || [] : data.data || []}
+          paginate={paginate}
+        />
+        {!paginate && <DynamicPagination controls={dynamicPageControls} />}
+        <input
+          type="checkbox"
+          value={paginate}
+          onChange={() => setPaginate((prev) => !prev)}
+        />
+      </div>
+    </>
+  );
 }

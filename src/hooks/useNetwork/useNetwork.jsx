@@ -57,13 +57,19 @@ export function useNetwork() {
     return res;
   };
 
-  const getRichlist = async () => {
+  const getRichlist = async (page = 0, limit = 111) => {
     // * to consider the users who have moved their balance to trust
     // * query for both trust and normal accounts
-    const page0 = await axios.get(
-      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111&where=object.token=0`,
-      { headers: { 'Cache-Control': 'max-age=300' } }
-    );
+    const page0 = await axios.get(`${url}/register/list/trust,accounts?`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+      params: {
+        page: page,
+        limit: limit,
+        sort: 'total',
+        order: 'desc',
+        where: 'object.token=0',
+      },
+    });
 
     return { data: [...page0.data.result] };
   };
