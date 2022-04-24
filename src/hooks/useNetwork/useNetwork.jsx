@@ -44,16 +44,17 @@ export function useNetwork() {
     return res.data.result;
   }
 
-  const getTrustlist = async () => {
+  const getTrustlist = async ({ queryKey }) => {
     const res = await axios.get(`${url}/register/list/trust`, {
       headers: { 'Cache-Control': 'max-age=300' },
       params: {
-        // limit: 100,
+        page: queryKey[1],
+        limit: queryKey[2],
         sort: 'trust',
         order: 'desc',
       },
     });
-    return res.data;
+    return res;
   };
 
   const getRichlist = async () => {
