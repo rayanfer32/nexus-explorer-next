@@ -16,15 +16,17 @@
   grid-gap: 0.125rem;
   padding: 0.5rem;
 
-  overflow: hidden;
-  animation: flipCard 2s;
-
   filter: var(--theme-hue-rotate);
+  overflow: hidden;
+  animation: flipCard 2s cubic-bezier(0, 1, 1, 1) forwards;
 }
 
 @keyframes flipCard {
   0% {
-    transform: rotateY(180deg);
+    transform: rotateY(135deg);
+  }
+  80% {
+    transform: rotateY(-4deg);
   }
   100% {
     transform: rotateY(0deg);
