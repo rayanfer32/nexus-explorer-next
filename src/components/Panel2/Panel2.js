@@ -1,6 +1,6 @@
 import styles from './Panel2.module.scss';
 
-import DetailCard from 'components/atoms/DetailCard';
+import DetailCard from 'components/atoms/NE_Card';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/atoms/Rail';
@@ -133,7 +133,7 @@ function Panel2(props) {
     <section className={styles.panelTwoContainer}>
       {network.name === NETWORKS.MAINNET.name && (
         <DetailCard
-          type
+          type="basic"
           icon={<GiTwoCoins color="white" size="2.25rem" />}
           label="Price"
           sublabel={`${state.price?.sublabel} BTC`}
@@ -148,7 +148,7 @@ function Panel2(props) {
         />
       )}
       <DetailCard
-        type
+        type="basic"
         icon={<AiFillBank color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[0]}
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
@@ -163,7 +163,7 @@ function Panel2(props) {
       />
 
       <DetailCard
-        type
+        type="basic"
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[1]}
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
@@ -177,7 +177,7 @@ function Panel2(props) {
         delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
-        type
+        type="basic"
         icon={<MdSpeed color="white" size="2.5rem" />}
         label={StringsTypes.CHANNELS[2]}
         sublabel={`Difficulty : ${state.hash?.sublabel}`}
