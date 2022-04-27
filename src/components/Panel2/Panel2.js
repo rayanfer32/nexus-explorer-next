@@ -152,7 +152,8 @@ function Panel2(props) {
         icon={<AiFillBank color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[0]}
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
-        text={`${intlNum(state.stake?.text)} NXS`}
+        text={`${intlNum(state.stake?.text)}`}
+        unit="NXS"
         reserveLabel="Height"
         reserve={`${intlNum(state.stake?.reserve)}`}
         reward={`${state.stake?.reward}`}
@@ -167,7 +168,8 @@ function Panel2(props) {
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[1]}
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
-        text={`${abbreviateNumber(state.prime?.text)}P/s`}
+        text={`${abbreviateNumber(state.prime?.text)}`}
+        unit="P/s"
         reserveLabel="Reserve"
         reserve={`${state.prime?.reserve} NXS`}
         rewardLabel="Reward"
@@ -181,7 +183,8 @@ function Panel2(props) {
         icon={<MdSpeed color="white" size="2.5rem" />}
         label={StringsTypes.CHANNELS[2]}
         sublabel={`Difficulty : ${state.hash?.sublabel}`}
-        text={`${abbreviateNumber(state.hash?.text)}H/s`}
+        text={`${abbreviateNumber(state.hash?.text)}`}
+        unit="H/s"
         reserveLabel="Reserve"
         reserve={`${intlNum(state.hash?.reserve)} NXS`}
         rewardLabel="Reward"

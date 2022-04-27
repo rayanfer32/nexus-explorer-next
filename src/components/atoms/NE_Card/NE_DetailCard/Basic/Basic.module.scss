@@ -10,7 +10,7 @@
   border-radius: 0.25rem; /* 4px */
 
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
   grid-gap: 0.125rem;
   padding: 0.5rem;
 
@@ -19,126 +19,52 @@
   animation: flipCard 2s cubic-bezier(0, 1, 1, 1) forwards;
 }
 
-.detailcard {
-  .header,
-  .body,
-  .footer {
-    z-index: 10;
-  }
-}
-
-/* Style specific to the card type */
-/* Type one Card styles */
-.header {
-  display: grid;
-  display: -ms-grid;
-  grid-template-columns: 1fr 1.75rem;
-
-  .label {
-    &__container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    &__sub {
-      font-weight: normal;
-      font-size: var(--font-s);
-      color: var(--theme-page-text-secondary);
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &__title {
-      margin: 0;
-
-      font-weight: normal;
-      font-size: var(--font-normal);
-      color: var(--theme-page-text);
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  .ticker {
-    background: var(--market-green);
-    width: 1.75rem;
-    height: 1rem;
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--font-xs);
-    color: var(--white);
-    overflow: hidden;
-  }
-}
-
 .body {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-around;
+  display: grid;
+  grid-template-rows: 1fr auto;
   overflow: hidden;
+  z-index: 1;
 
-  &__value {
-    margin: 0;
-    font-weight: normal;
-    font-size: var(--font-xxl);
-    color: var(--theme-page-text);
-  }
-  .transectionBlock {
-    width: 90%;
+  &__text {
     display: flex;
-    justify-content: space-between;
-    gap: 0.125rem;
-    align-items: flex-end;
-
-    .transectionUnit {
-      width: 100%;
-      white-space: nowrap;
+    align-items: center;
+    gap: var(--space-xxxxs);
+    color: var(--theme-page-text);
+    font-weight: normal;
+    &__value {
+      margin: 0;
+      font-size: var(--font-xxl);
+    }
+    &__unit {
+      font-size: var(--font-normal);
+    }
+  }
+  .txn {
+    &__block {
+      width: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xxxxs);
       overflow: hidden;
-      text-overflow: ellipsis;
-      .transection,
-      .transectionType {
-        color: var(--theme-page-text-secondary);
 
+      &__type {
+        width: 100%;
+        white-space: nowrap;
         font-weight: normal;
         font-size: var(--font-normal);
-        text-overflow: ellipsis;
+        color: var(--theme-page-text-secondary);
         overflow: hidden;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: normal;
+        &__value,
+        &__label {
+          margin: 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        &__label {
+          font-size: var(--font-s);
+        }
       }
     }
-  }
-}
-
-/* Type Two Card styles */
-.footer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.125rem;
-  overflow: hidden;
-  &__label,
-  &__value {
-    margin: 0;
-
-    font-weight: normal;
-    font-size: var(--font-l);
-    color: var(--theme-page-text-secondary);
-  }
-  &__value {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-  &__label {
-    font-weight: normal;
-    font-size: var(--font-normal);
   }
 }
 

@@ -21,4 +21,35 @@ const Card_Watermark = ({ logo = pngLogo, icon }) => (
   </div>
 );
 
-export { NE_DetailCard, Card_Watermark, Basic, Market };
+/* Card Header section */
+const Card_Header = ({ label, sublabel, ticker }) => (
+  <div className={[styles.header].join(' ')}>
+    <span className={styles.label__container}>
+      {/* card name*/}
+      <h3 className={styles.label__title}>{label}</h3>
+      {/* card sublabel */}
+      <label className={styles.label__sub}>{sublabel}</label>
+    </span>
+    {/* delay timestamp/ticker */}
+    {!!ticker && <label className={styles.ticker}>{ticker}</label>}
+  </div>
+);
+
+/* Card footer section */
+const Card_Footer = ({ footerLabel, footerValue }) => (
+  <div className={[styles.footer].join(' ')}>
+    <label className={styles.footer__label}>{footerLabel}</label>
+    <p className={styles.footer__value}>{footerValue}</p>
+  </div>
+);
+
+export default NE_DetailCard;
+
+export {
+  NE_DetailCard,
+  Card_Watermark,
+  Card_Header,
+  Card_Footer,
+  Basic,
+  Market,
+};

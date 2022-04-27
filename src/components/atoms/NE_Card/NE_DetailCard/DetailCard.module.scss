@@ -1,3 +1,5 @@
+@use 'styles/mixins' as *;
+
 /* Triangle Water mark */
 .triangle {
   &__container {
@@ -5,47 +7,112 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1;
+    pointer-events: none;
   }
 
   &__icon {
+    @include flex-center;
     position: absolute;
-    left: 81.43%;
-    right: 4.29%;
-    top: 72.09%;
-    bottom: 4.65%;
+    right: 3%;
+    bottom: 5%;
     width: 2.5rem;
     height: 2.5rem;
-    z-index: 6;
     opacity: 80%;
   }
 
   &__one,
   &__two,
   &__three {
-    width: 10.5rem;
-    height: 5.625rem;
-    top: 60%;
-    right: -16%;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    background: var(--theme-gradient-linear);
     border-radius: 0.25rem;
-    transform: rotate(135deg);
+    background: var(--theme-gradient-linear);
     box-shadow: 0 0 0.125rem 0 var(--theme-gradient-linear);
-    z-index: 2;
+    transform: rotate(135deg);
+  }
+  &__one {
+    top: 50%;
+    left: 50%;
   }
   &__two {
-    width: 19.875rem;
-    height: 15.3125rem;
-    top: 60%;
-    left: 50%;
-    z-index: 3;
+    top: 55%;
+    left: 55%;
   }
   &__three {
-    top: 64%;
-    right: -50%;
-    width: 18rem;
-    height: 15rem;
-    z-index: 4;
+    top: 60%;
+    left: 60%;
+  }
+}
+
+/* Card Header styles */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1.75rem;
+
+  .label {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    &__sub {
+      font-weight: normal;
+      font-size: var(--font-s);
+      color: var(--theme-page-text-secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__title {
+      margin: 0;
+
+      font-weight: normal;
+      font-size: var(--font-normal);
+      color: var(--theme-page-text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .ticker {
+    background: var(--market-green);
+    width: 1.75rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-xs);
+    color: var(--white);
+    overflow: hidden;
+  }
+}
+
+/* Card Footer styles */
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: end;
+  gap: 0.125rem;
+  overflow: hidden;
+  z-index: 1;
+  &__label,
+  &__value {
+    margin: 0;
+    font-weight: normal;
+    font-size: var(--font-l);
+    color: var(--theme-page-text-secondary);
+  }
+  &__value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &__label {
+    font-weight: normal;
+    font-size: var(--font-normal);
   }
 }
