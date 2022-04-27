@@ -1,0 +1,22 @@
+@use 'styles/mixins' as *;
+
+.market {
+  &__price {
+    @include flex-center;
+    margin-left: var(--space-xxxxs);
+    gap: var(--space-xxxxs);
+    &__icon {
+      width: var(--space-m);
+    }
+
+    &__value {
+      font-size: var(--font-l);
+    }
+    [data-state='true'] {
+      color: var(--market-green);
+    }
+    [data-state='false'] {
+      color: var(--market-red);
+    }
+  }
+}

@@ -133,7 +133,7 @@ function Panel2(props) {
     <section className={styles.panelTwoContainer}>
       {network.name === NETWORKS.MAINNET.name && (
         <DetailCard
-          type="basic"
+          type="market"
           icon={<GiTwoCoins color="white" size="2.25rem" />}
           label="Price"
           sublabel={`${state.price?.sublabel} BTC`}
