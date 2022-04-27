@@ -52,3 +52,18 @@ DetailCard.args = {
   footerValue: '17,225,284.74 $',
   delayTime: '12s',
 };
+
+export const MarketCard = Template.bind({});
+MarketCard.args = {
+  type: 'market',
+  label: 'Price',
+  sublabel: '0.00000603 BTC',
+  text: '1 NXS = 0.93 $',
+  reserveLabel: 'Change 24h',
+  reserve: '49.50 %',
+  rewardLabel: 'Total Volume',
+  reward: '2.02 NXS',
+  footerLabel: 'Market Cap ',
+  footerValue: '17,225,284.74 $',
+  delayTime: '12s',
+};

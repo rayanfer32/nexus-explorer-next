@@ -5,6 +5,10 @@
     @include flex-center;
     margin-left: var(--space-xxxxs);
     gap: var(--space-xxxxs);
+    height: var(--space-m);
+    padding: var(--space-xxxxs) var(--space-xxs) var(--space-xxxxs)
+      var(--space-xxxs);
+    border-radius: var(--space-s);
     &__icon {
       width: var(--space-m);
     }
