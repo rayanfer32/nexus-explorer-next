@@ -1,6 +1,6 @@
 // .storybook/preview.js
 import * as NextImage from 'next/image';
-import '../src/styles/globals.css';
+import '../src/styles/globals.scss';
 
 const OriginalNextImage = NextImage.default;
 
