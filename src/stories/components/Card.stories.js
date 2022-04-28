@@ -18,12 +18,6 @@ Default.args = {
   children: '',
 };
 
-/** Default card with children */
-export const WithChildren = Template.bind({});
-WithChildren.args = {
-  children: <h1>Nexus Explorer</h1>,
-};
-
 export const SmallCard = Template.bind({});
 SmallCard.args = {
   type: 'small',
@@ -42,4 +36,34 @@ CompactCard.args = {
   text: '',
   value: '4,816,265',
   unit: '^',
+};
+
+export const DetailCard = Template.bind({});
+DetailCard.args = {
+  type: 'basic',
+  label: 'Price',
+  sublabel: '0.00000603 BTC',
+  text: '1 NXS = 0.93 $',
+  reserveLabel: 'Change 24h',
+  reserve: '249.50 NXS',
+  rewardLabel: 'Total Volume',
+  reward: '2.02 NXS',
+  footerLabel: 'Market Cap ',
+  footerValue: '17,225,284.74 $',
+  delayTime: '12s',
+};
+
+export const MarketCard = Template.bind({});
+MarketCard.args = {
+  type: 'market',
+  label: 'Price',
+  sublabel: '0.00000603 BTC',
+  text: '1 NXS = 0.93 $',
+  reserveLabel: 'Change 24h',
+  reserve: '49.50 %',
+  rewardLabel: 'Total Volume',
+  reward: '2.02 NXS',
+  footerLabel: 'Market Cap ',
+  footerValue: '17,225,284.74 $',
+  delayTime: '12s',
 };

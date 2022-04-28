@@ -12,3 +12,9 @@
   // There used to be a CSS rule that could hide scrollbars in Firefox, but it has since been deprecated.
   scrollbar-width: none;
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
