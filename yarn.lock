@@ -3337,10 +3337,10 @@ anymatch@^3.0.0, anymatch@^3.0.3, anymatch@~3.1.1, anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-apexcharts@^3.30.0:
-  version "3.30.0"
-  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.30.0.tgz#09b008d0a58bb303904bed33b09b260e8fa5e283"
-  integrity sha512-NHhFjkd4sqoQqHi+ECN/duVCRvqVZMdXX/UBzCs1xriq8NbNLvs+nIM8OXH1Siv+W50FrK1uTDZrW2cLsKWhBQ==
+apexcharts@^3.35.0:
+  version "3.35.0"
+  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.35.0.tgz#5571f4852747359b7ef76662998f3d6a8ffe923a"
+  integrity sha512-oipJRkaxt8DPGRmn1kur6aPzML1JSpf2M3ecu+gyw+8xiNmT2C0p1uuuqPZrk+Lr2hmDxzNBPR7TvxwRl3ozgw==
   dependencies:
     svg.draggable.js "^2.2.2"
     svg.easing.js "^2.0.0"
@@ -9345,10 +9345,10 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-react-apexcharts@^1.3.9:
-  version "1.3.9"
-  resolved "https://registry.yarnpkg.com/react-apexcharts/-/react-apexcharts-1.3.9.tgz#d97e53fd513dc6ff73b90c2364c3bdd88d8dad01"
-  integrity sha512-KPonT5uQPHOHSVgTNEzpB0HhCkZtoicQYGjR9P+3DRDSgTsC+DM2vDUfo/B2Fn1m+wdgVeDXWL0VJYDc6JD/tw==
+react-apexcharts@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-apexcharts/-/react-apexcharts-1.4.0.tgz#e3619104b34750da67a2ca80289dc87085c2aa27"
+  integrity sha512-DrcMV4aAMrUG+n6412yzyATWEyCDWlpPBBhVbpzBC4PDeuYU6iF84SmExbck+jx5MUm4U5PM3/T307Mc3kzc9Q==
   dependencies:
     prop-types "^15.5.7"
 
