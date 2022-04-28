@@ -1,0 +1,10 @@
+.page {
+  color: var(--theme-page-text);
+}
+
+.amount {
+  color: var(--white);
+  font-weight: 'bold';
+  border-radius: var(--space-xxxs);
+  padding: var(--space-xxxs) var(--space-xxs);
+}

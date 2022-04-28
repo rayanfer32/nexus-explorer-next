@@ -1,0 +1,20 @@
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+  // There is a CSS rule that can hide scrollbars in IE 10+.
+  -ms-overflow-style: none;
+
+  // Use -ms-autohiding-scrollbar if you wish to display on hover.
+  // -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  // There used to be a CSS rule that could hide scrollbars in Firefox, but it has since been deprecated.
+  scrollbar-width: none;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

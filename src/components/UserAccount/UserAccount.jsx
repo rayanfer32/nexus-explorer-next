@@ -12,104 +12,62 @@ import { toTitleCase } from 'utils/converter';
 import { isDev } from 'utils/middleware';
 
 export default function UserAccount({ type, data }) {
-  const [showRawTxns, setShowRawTxns] = useState(false);
-  const [tableData, setTableData] = useState([]);
+  // const [showRawTxns, setShowRawTxns] = useState(false);
+  // const [tableData, setTableData] = useState([]);
 
-  const { network, getAccountTransactions, getTrustTransactions } =
-    useNetwork();
-  const accountTransactionsRQ = useQuery(
-    ['accountTransactions', network.name, type],
-    () =>
-      type == 'user'
-        ? getAccountTransactions(data)
-        : getTrustTransactions(data),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      enable: false,
-    }
-  );
+  // const { network, getAccountTransactions, getTrustTransactions } =
+  //   useNetwork();
+  // const accountTransactionsRQ = useQuery(
+  //   ['accountTransactions', network.name, type],
+  //   () =>
+  //     type == 'user'
+  //       ? getAccountTransactions(data)
+  //       : getTrustTransactions(data),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //     enable: false,
+  //   }
+  // );
 
-  useEffect(() => {
-    // temp fix for the issue where the query is not re-run when the component is re-rendered
-    setTimeout(() => accountTransactionsRQ.refetch(), 2000);
-  }, []);
+  // useEffect(() => {
+  //   // ! temp fix for the issue where the query is not re-run when the component is re-rendered
+  //   setTimeout(() => accountTransactionsRQ.refetch(), 2000);
+  // }, []);
 
-  useEffect(() => {
-    // temp fix for the issue where the query is not re-run when the component is re-rendered
-    accountTransactionsRQ.refetch();
-  }, [data.address]);
+  // useEffect(() => {
+  //   // ! temp fix for the issue where the query is not re-run when the component is re-rendered
+  //   accountTransactionsRQ.refetch();
+  // }, [data.address]);
 
-  // columns for the txns table
-  const columns = [
-    {
-      Header: 'Time',
-      accessor: 'timestamp',
-      Cell: (props) => {
-        return <div>{new Date(props.value * 1000).toLocaleString()}</div>;
-      },
-    },
-    {
-      Header: 'TXID',
-      accessor: 'txid',
-      Cell: (props) => {
-        return <CopyText value={props.value} />;
-      },
-    },
-    {
-      Header: 'Operation',
-      accessor: 'operation',
-    },
-    {
-      Header: 'Amount',
-      accessor: 'amount',
-      Cell: (props) => {
-        let fontColor = 'var(--theme-page-text)';
-        let sign = '+';
-        if (['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)) {
-          fontColor = TYPES.COLORS.MARKET_GREEN;
-          sign = '+';
-        } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
-          fontColor = 'red';
-          sign = '-';
-        }
-        return (
-          <div className={styles.amount} style={{ background: fontColor }}>
-            {sign} {props.value}
-          </div>
-        );
-      },
-    },
-  ];
+  // useEffect(() => {
+  //   if (accountTransactionsRQ.data) {
+  //     let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
+  //       return {
+  //         txid: txn.txid,
+  //         timestamp: txn.timestamp,
+  //         operation: txn.contracts[0].OP,
+  //         amount: `${txn.contracts[0].amount || 0} NXS`,
+  //       };
+  //     });
 
-  useEffect(() => {
-    if (accountTransactionsRQ.data) {
-      let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
-        return {
-          txid: txn.txid,
-          timestamp: txn.timestamp,
-          operation: txn.contracts[0].OP,
-          amount: `${txn.contracts[0].amount || 0} NXS`,
-        };
-      });
+  //     setTableData(_tableData);
+  //   }
+  // }, [accountTransactionsRQ.data]);
 
-      setTableData(_tableData);
-    }
-  }, [accountTransactionsRQ.data]);
+  // const rawInfo = () => (
+  //   <>
+  //     <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
+  //       Show RAW Transactions
+  //     </Button>
 
-  const rawInfo = () => (
-    <>
-      <Button type="tertiary" onClick={() => setShowRawTxns((prev) => !prev)}>
-        Show RAW Transactions
-      </Button>
-
-      {showRawTxns && (
-        <pre style={{ height: '10rem', overflow: 'scroll' }}>
-          {JSON.stringify(accountTransactionsRQ.data, null, 2)}
-        </pre>
-      )}
-    </>
-  );
+  //     {showRawTxns && (
+  //       <pre style={{ height: '10rem', overflow: 'scroll' }}>
+  //         {JSON.stringify(accountTransactionsRQ.data, null, 2)}
+  //       </pre>
+  //     )}
+  //   </>
+  // );
 
   return (
     <div className={styles.page}>
@@ -123,13 +81,9 @@ export default function UserAccount({ type, data }) {
 
       {/* Transection detail table */}
       <h3>Transaction Details</h3>
-      <TransactionDetails
-        isLoading={accountTransactionsRQ.isLoading}
-        columns={columns}
-        data={tableData || []}
-      />
+      <TransactionDetails type={type} data={data} />
 
-      {isDev && rawInfo}
+      {/* {isDev && rawInfo} */}
     </div>
   );
 }

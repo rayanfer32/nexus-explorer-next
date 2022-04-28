@@ -15,6 +15,7 @@ import {
   BsYoutube,
 } from 'react-icons/bs';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
+import { SiGitbook } from 'react-icons/si';
 
 export const FooterTypes = {
   FOOTER_ITEMS: {
@@ -33,6 +34,12 @@ export const FooterTypes = {
             label: 'API Documentation',
             target: '_blank',
             icon: (props) => <BsFileEarmarkText {...props} />,
+          },
+          {
+            href: 'https://docs.nexus-interactions.io/',
+            label: 'Nexus Docs',
+            target: '_blank',
+            icon: (props) => <SiGitbook {...props} />,
           },
           {
             href: 'https://nexus.io/ResourceHub/',
@@ -149,7 +156,7 @@ export const FooterTypes = {
           {
             href: null,
             target: '_blank',
-            label: 'Copyright (c) 2014-2022 www.nexus.io',
+            label: 'Copyright © 2014-2022 www.nexus.io',
             icon: undefined,
           },
         ],

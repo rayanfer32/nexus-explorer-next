@@ -1,11 +1,11 @@
-export function intlNum(num) {
-  return new Intl.NumberFormat().format(num);
+export function intlNum(num, ...args) {
+  return new Intl.NumberFormat(...args).format(num);
 }
 
 export function middleElipsis(text, sliceAt) {
   text = text.toString();
   if (text.length > sliceAt * 2) {
-    return `${text.substring(0, sliceAt)}..${text.slice(-sliceAt)}`;
+    return `${text.substring(0, sliceAt)}...${text.slice(-sliceAt)}`;
   }
   return text;
 }

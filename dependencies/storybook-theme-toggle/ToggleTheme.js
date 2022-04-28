@@ -51,6 +51,7 @@ var ToggleTheme = function ToggleTheme(_ref) {
     var iframe = document.getElementById('storybook-preview-iframe');
     var iframeDocument = iframe.contentDocument || ((_iframe$contentWindow = iframe.contentWindow) === null || _iframe$contentWindow === void 0 ? void 0 : _iframe$contentWindow.document);
     iframeDocument.documentElement.setAttribute('data-color-theme', isDark ? 'dark' : 'light');
+    iframeDocument.documentElement.setAttribute('style', 'height:100%');
   }, [isDark]);
   return /*#__PURE__*/_react["default"].createElement(_components.IconButton, {
     key: "theme-toggle",

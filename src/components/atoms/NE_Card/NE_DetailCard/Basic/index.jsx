@@ -1,38 +1,100 @@
 import PropTypes from 'prop-types';
 import styles from './Basic.module.scss';
+import { Card_Watermark, Card_Header, Card_Footer } from '..';
 
-export const Card_Header = ({ label = '', sublabel = '', ticker = '' }) => (
-  <div className={styles.card_header}></div>
-);
-
-export const Card_Body_Title = ({ title = '', unit = '' }) => (
-  <div className={styles.card_body}>
-    <p>{title}</p>
-    <label>{unit}</label>
+/* Card body section */
+const Card_Body = ({
+  text,
+  reserveLabel,
+  reserve,
+  rewardLabel,
+  reward,
+  unit,
+}) => (
+  <div className={[styles.body].join(' ')}>
+    {/* Card main value */}
+    <div className={styles.body__text}>
+      <p className={styles.body__text__value} title={text}>
+        {text}
+      </p>
+      <sub className={styles.body__text__unit} title={unit}>
+        {unit}
+      </sub>
+    </div>
+    <div className={styles.txn__block}>
+      <span className={styles.txn__block__type}>
+        <label className={styles.txn__block__type__label} title={reserveLabel}>
+          {reserveLabel}
+        </label>
+        <p className={styles.txn__block__type__value} title={reserve}>
+          {reserve}
+        </p>
+      </span>
+      <span className={styles.txn__block__type}>
+        <label className={styles.txn__block__type__label} title={rewardLabel}>
+          {rewardLabel}
+        </label>
+        <p className={styles.txn__block__type__value} title={reward}>
+          {reward}
+        </p>
+      </span>
+    </div>
   </div>
 );
 
-export const Basic = ({ ...props }) => {
+export const Basic = ({
+  label = '',
+  sublabel = '',
+  delayTime = '',
+  text = '',
+  unit = '',
+  reserve = '',
+  reserveLabel = '',
+  reward = '',
+  rewardLabel = '',
+  footerLabel = '',
+  footerValue = '',
+  ...props
+}) => {
   return (
-    <section className={styles['basic']}>
-      <div className={styles.imgBg}>
-        <div className={styles.container}>
-          <div className={styles.header}>
-            <Card_Header label="label" sublabel="sublabel" ticker="ticker" />
-          </div>
-          <div className={styles.body}>
-            <Card_Body_Title title="title" unit="unit" />
-          </div>
-        </div>
-      </div>
+    <section className={styles.detailcard}>
+      <Card_Watermark {...props} />
+      <Card_Header
+        label={label}
+        sublabel={sublabel}
+        ticker={delayTime}
+        {...props}
+      />
+      <Card_Body
+        text={text}
+        reserve={reserve}
+        reserveLabel={reserveLabel}
+        reward={reward}
+        rewardLabel={rewardLabel}
+        unit={unit}
+        {...props}
+      />
+      <Card_Footer
+        footerLabel={footerLabel}
+        footerValue={footerValue}
+        {...props}
+      />
     </section>
   );
 };
 
+export default Basic;
+
 Basic.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   sublabel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   unit: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  ticker: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  delayTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  reserve: PropTypes.string,
+  reserveLabel: PropTypes.string,
+  reward: PropTypes.string,
+  rewardLabel: PropTypes.string,
+  footerLabel: PropTypes.string,
+  footerValue: PropTypes.string,
 };

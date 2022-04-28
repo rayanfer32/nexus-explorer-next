@@ -1,6 +1,6 @@
 import styles from './Panel2.module.scss';
 
-import DetailCard from 'components/atoms/DetailCard';
+import DetailCard from 'components/atoms/NE_Card';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/atoms/Rail';
@@ -25,24 +25,27 @@ function Panel2(props) {
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
 
+  const marketData = marketRQ?.data?.data?.market_data;
+  const miningData = miningRQ?.data?.data?.result;
+  const metricsData = metricsRQ?.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {
-      const marketData = marketRQ.data.data.market_data;
       setState((prev) => ({
         ...prev,
         price: {
           sublabel: marketData?.current_price.btc,
           text: marketData?.current_price.usd.toFixed(2),
-          reserve: marketData?.price_change_percentage_24h,
+          reserve: marketData?.price_change_percentage_24h.toFixed(2),
           reward: marketData?.total_volume.usd,
-          footer: marketData?.market_cap.usd,
+          footer: (
+            marketData?.current_price.usd * metricsData?.supply.total
+          ).toFixed(2),
         },
       }));
     }
 
     if (miningRQ.data) {
-      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
@@ -55,7 +58,6 @@ function Panel2(props) {
     }
 
     if (metricsRQ.data) {
-      const metricsData = metricsRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         stake: {
@@ -81,7 +83,6 @@ function Panel2(props) {
     }
 
     if (miningRQ.data) {
-      const miningData = miningRQ.data.data.result;
       setState((prev) => ({
         ...prev,
         prime: {
@@ -132,41 +133,43 @@ function Panel2(props) {
     <section className={styles.panelTwoContainer}>
       {network.name === NETWORKS.MAINNET.name && (
         <DetailCard
-          type
+          type="market"
           icon={<GiTwoCoins color="white" size="2.25rem" />}
           label="Price"
           sublabel={`${state.price?.sublabel} BTC`}
-          text={`${state.price?.text} $`}
+          text={`1 NXS = ${state.price?.text} $`}
           reserveLabel="Change 24h"
           reserve={`${state.price?.reserve} %`}
           rewardLabel="Total Volume"
           reward={`${intlNum(state.price?.reward)} $`}
-          footerLabel="Market Cap:"
+          footerLabel="Market Cap "
           footerValue={`${intlNum(state.price?.footer)} $`}
           delayTime={`${cardRefreshTimeout}s`}
         />
       )}
       <DetailCard
-        type
+        type="basic"
         icon={<AiFillBank color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[0]}
         sublabel={`Difficulty : ${state.stake?.sublabel}`}
-        text={`${intlNum(state.stake?.text)} NXS`}
+        text={`${intlNum(state.stake?.text)}`}
+        unit="NXS"
         reserveLabel="Height"
         reserve={`${intlNum(state.stake?.reserve)}`}
         reward={`${state.stake?.reward}`}
         rewardLabel="Total"
-        footerLabel="Fees"
+        footerLabel="Fees "
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
       />
 
       <DetailCard
-        type
+        type="basic"
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
         label={StringsTypes.CHANNELS[1]}
         sublabel={`Difficulty : ${state.prime?.sublabel}`}
-        text={`${abbreviateNumber(state.prime?.text)}P/s`}
+        text={`${abbreviateNumber(state.prime?.text)}`}
+        unit="P/s"
         reserveLabel="Reserve"
         reserve={`${state.prime?.reserve} NXS`}
         rewardLabel="Reward"
@@ -176,11 +179,12 @@ function Panel2(props) {
         delayTime={`${cardRefreshTimeout}s`}
       />
       <DetailCard
-        type
+        type="basic"
         icon={<MdSpeed color="white" size="2.5rem" />}
         label={StringsTypes.CHANNELS[2]}
         sublabel={`Difficulty : ${state.hash?.sublabel}`}
-        text={`${abbreviateNumber(state.hash?.text)}H/s`}
+        text={`${abbreviateNumber(state.hash?.text)}`}
+        unit="H/s"
         reserveLabel="Reserve"
         reserve={`${intlNum(state.hash?.reserve)} NXS`}
         rewardLabel="Reward"
