@@ -6,7 +6,8 @@ import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
-import DynamicPagination from 'components/Table/DynamicPagination';
+// import DynamicPagination from 'components/Table/DynamicPagination';
+import DynamicPagination from 'components/atoms/NE_Pagination';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 
 export const TransactionDetails = ({ type, data }) => {
@@ -124,6 +125,15 @@ export const TransactionDetails = ({ type, data }) => {
       setPageIndex(0);
       setPageSize(pageSize);
     },
+    handleStartOfPageClick: () => {
+      setPageIndex(0);
+    },
+    handlePreviousPageClick: () => {
+      setPageIndex(pageIndex - 1);
+    },
+    handleNextPageClick: () => {
+      setPageIndex(pageIndex + 1);
+    },
   };
 
   if (accountTransactionsRQ.isLoading) {
@@ -138,7 +148,10 @@ export const TransactionDetails = ({ type, data }) => {
         paginate={false}
       />
       <div style={{ marginBottom: '1rem' }}>
-        <DynamicPagination controls={dynamicPageControls} />
+        <DynamicPagination
+          controls={dynamicPageControls}
+          isStaticPanination={false}
+        />
       </div>
       {accountTransactionsRQ.data?.error && (
         <ErrorMessage error={accountTransactionsRQ.data.error} />

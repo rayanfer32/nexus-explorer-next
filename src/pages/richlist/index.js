@@ -9,7 +9,8 @@ import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
 import { useEffect, useState } from 'react';
-import DynamicPagination from 'components/Table/DynamicPagination';
+import DynamicPagination from 'components/atoms/NE_Pagination';
+// import DynamicPagination from 'components/Table/DynamicPagination';
 import Button from 'components/atoms/NE_Button';
 
 export default function Richlist() {
@@ -75,6 +76,15 @@ export default function Richlist() {
       setPageIndex(0);
       setPageSize(pageSize);
     },
+    handleStartOfPageClick: () => {
+      setPageIndex(0);
+    },
+    handlePreviousPageClick: () => {
+      setPageIndex(pageIndex - 1);
+    },
+    handleNextPageClick: () => {
+      setPageIndex(pageIndex + 1);
+    },
   };
 
   useEffect(() => {
@@ -128,7 +138,12 @@ export default function Richlist() {
           data={paginate ? richlist111?.data?.data || [] : data.data || []}
           paginate={paginate}
         />
-        {!paginate && <DynamicPagination controls={dynamicPageControls} />}
+        {!paginate && (
+          <DynamicPagination
+            controls={dynamicPageControls}
+            isStaticPanination={false}
+          />
+        )}
         <input
           type="checkbox"
           value={paginate}
