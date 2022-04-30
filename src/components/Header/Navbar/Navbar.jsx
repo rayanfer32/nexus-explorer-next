@@ -26,10 +26,8 @@ export default Navbar;
  */
 export const DesktopNavbar = ({
   activePathname = '',
-  isDark = false,
   network = '',
   onNetworkChange = () => null,
-  onThemeChange = () => null,
 }) => {
   return (
     <>
@@ -40,7 +38,7 @@ export const DesktopNavbar = ({
           value={network}
           onChange={onNetworkChange}
         />
-        <ThemeMode onClick={onThemeChange} isDark={isDark} />
+        <ThemeMode />
       </div>
     </>
   );
@@ -69,12 +67,10 @@ export const Hamburger = ({ onClick = () => null }) => {
  */
 export const MobileMenu = ({
   activePathname = '',
-  isDark = false,
   isOpen = true,
   network = '',
   onClose = () => null,
   onNetworkChange = () => null,
-  onThemeChange = () => null,
   setClose = () => null,
 }) => {
   return (
@@ -82,7 +78,7 @@ export const MobileMenu = ({
       <div className={styles.MobileView__mask} onClick={onClose} />
       <div className={styles.MobileView}>
         <div className={styles.MobileView__header}>
-          <ThemeMode onClick={onThemeChange} isDark={isDark} />
+          <ThemeMode />
           <SelectInput
             options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
             value={network}
@@ -104,11 +100,9 @@ export const MobileMenu = ({
 };
 
 DesktopNavbar.propTypes = {
-  isDark: PropTypes.bool,
   activePathname: PropTypes.string,
   network: PropTypes.string,
   onNetworkChange: PropTypes.func,
-  onThemeChange: PropTypes.func,
 };
 Hamburger.propTypes = {
   onClick: PropTypes.func.isRequired,
