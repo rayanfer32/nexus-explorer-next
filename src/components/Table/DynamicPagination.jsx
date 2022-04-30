@@ -20,7 +20,7 @@ export default function DynamicPagination({ controls }) {
     pageSize,
   } = controls;
 
-  const dataPerPage = [10, 20, 30, 40, 50];
+  const dataPerPage = [10, 25, 50, 100];
 
   const handleStartOfPageClick = () => {
     gotoPage(0);
