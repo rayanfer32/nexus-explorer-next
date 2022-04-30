@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useAppContext } from 'contexts/AppContext';
-import { NETWORKS } from 'types/ConstantsTypes';
-import { API_URLS } from 'types/ConstantsTypes';
+import { NETWORKS, API_URLS } from 'types/ConstantsTypes';
 
 export function useNetwork() {
   const { appContext } = useAppContext();

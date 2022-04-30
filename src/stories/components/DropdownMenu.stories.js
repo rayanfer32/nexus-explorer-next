@@ -12,7 +12,11 @@ export const Default = Template.bind({});
 Default.args = {
   title: 'Blockchain',
   children: [
-    <a href="https://nexplorer.vercel.app/blocks">Blocks</a>,
-    <a href="https://nexplorer.vercel.app/transactions">Transactions</a>,
+    <a href="https://nexplorer.vercel.app/blocks" key={1}>
+      Blocks
+    </a>,
+    <a href="https://nexplorer.vercel.app/transactions" key={2}>
+      Transactions
+    </a>,
   ],
 };

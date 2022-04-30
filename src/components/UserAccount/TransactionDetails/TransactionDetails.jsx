@@ -12,7 +12,7 @@ import ErrorMessage from 'components/atoms/ErrorMessage';
 export const TransactionDetails = ({ type, data }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [pageCount, setPageCount] = useState(Infinity);
+  const [pageCount] = useState(Infinity);
 
   const [tableData, setTableData] = useState([]);
   const { network, getAccountTransactions, getTrustTransactions } =

@@ -14,7 +14,7 @@ import ErrorMessage from 'components/atoms/ErrorMessage';
 export default function Trustlist() {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [pageCount, setPageCount] = useState(Infinity);
+  const [pageCount] = useState(Infinity);
 
   const { network, getTrustlist } = useNetwork();
   const { isLoading, data, error } = useQuery(
@@ -97,7 +97,6 @@ export default function Trustlist() {
     <>
       <PageHeader page={'trustlist'} />
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        
         <Table
           columns={columns}
           data={data.data?.error ? [] : newData}
