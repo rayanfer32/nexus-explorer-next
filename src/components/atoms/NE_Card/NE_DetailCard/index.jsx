@@ -1,8 +1,8 @@
 import { Basic } from './Basic';
 import { Market } from './Market';
-import Image from 'next/image';
-import pngLogo from 'assets/icons/nexusWhite.png';
+import { Nexus_SVG_Icon } from 'assets/icons';
 import styles from './DetailCard.module.scss';
+import TYPES from 'types';
 
 const NE_DetailCard = ({ type, ...props }) => {
   if (type === 'market') return <Market {...props} />;
@@ -10,13 +10,18 @@ const NE_DetailCard = ({ type, ...props }) => {
   return <Basic {...props} />;
 };
 
-const Card_Watermark = ({ logo = pngLogo, icon }) => (
+const Card_Watermark = ({ icon }) => (
   <div className={styles.triangle__container}>
     <div className={styles.triangle__one} />
     <div className={styles.triangle__two} />
     <div className={styles.triangle__three} />
     <div className={styles.triangle__icon}>
-      {icon || <Image src={logo} alt="nexus logo" layout="fill" />}
+      {icon || (
+        <Nexus_SVG_Icon
+          fill={TYPES.COLORS.TRANSPARENT}
+          color={TYPES.COLORS.WHITE}
+        />
+      )}
     </div>
   </div>
 );

@@ -118,4 +118,5 @@ Market.propTypes = {
   rewardLabel: PropTypes.string,
   footerLabel: PropTypes.string,
   footerValue: PropTypes.string,
+  icon: PropTypes.element,
 };
