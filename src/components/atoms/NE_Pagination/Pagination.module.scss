@@ -1,0 +1,102 @@
+.pagination {
+  color: var(--theme-page-text);
+  background: var(--theme-tab-bg);
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.0625rem 0.125rem 0 #0003;
+  display: flex;
+  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--nexus-blue);
+    &__icon {
+      all: unset;
+      border: none;
+      background: none;
+      padding: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        outline: 1px solid var(--nexus-blue);
+        border-radius: 0.25rem;
+        color: hsl(202, 202%, 52%);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+        outline: none;
+        color: var(--sky-blue);
+      }
+    }
+
+    &__page {
+      margin: 0 1rem;
+      color: var(--theme-page-text);
+    }
+  }
+
+  &__goToPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '|';
+      font-size: 2rem;
+      color: hsla(197, 100%, 31%, 0.5);
+      margin-right: 0.5rem;
+    }
+
+    &__pageSelect {
+      input {
+        background: hsla(0, 0%, 100%, 0.5);
+        padding: 0.3rem;
+        border: 1px solid var(--sky-blue);
+        border-radius: 0.25rem;
+        color: var(--midnight-blue);
+        font-size: var(--font-normal);
+
+        &:focus {
+          background: hsla(0, 0%, 100%, 1);
+          outline-color: var(--nexus-blue);
+        }
+      }
+    }
+
+    &__pageDropdown {
+      padding: 0.3rem;
+      border: 1px solid var(--sky-blue);
+      border-radius: 0.25rem;
+      color: var(--midnight-blue);
+      background: hsla(0, 0%, 100%, 0.5);
+      font-size: var(--font-normal);
+
+      &:focus {
+        background: hsla(0, 0%, 100%, 1);
+        outline-color: var(--nexus-blue);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+
+    &__goToPage {
+      &::before {
+        content: '';
+      }
+    }
+  }
+}

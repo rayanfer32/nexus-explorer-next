@@ -7,7 +7,8 @@ import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
-import DynamicPagination from 'components/Table/DynamicPagination';
+import DynamicPagination from 'components/atoms/NE_Pagination';
+// import DynamicPagination from 'components/Table/DynamicPagination';
 import { useState } from 'react';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 
@@ -91,20 +92,31 @@ export default function Trustlist() {
       setPageIndex(0);
       setPageSize(pageSize);
     },
+    handleStartOfPageClick: () => {
+      setPageIndex(0);
+    },
+    handlePreviousPageClick: () => {
+      setPageIndex(pageIndex - 1);
+    },
+    handleNextPageClick: () => {
+      setPageIndex(pageIndex + 1);
+    },
   };
 
   return (
     <>
       <PageHeader page={'trustlist'} />
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        
         <Table
           columns={columns}
           data={data.data?.error ? [] : newData}
           paginate={false}
         />
         <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination controls={dynamicPageControls} />
+          <DynamicPagination
+            controls={dynamicPageControls}
+            isStaticPanination={false}
+          />
         </div>
         {data.data?.error && <ErrorMessage error={data.data.error} />}
       </div>

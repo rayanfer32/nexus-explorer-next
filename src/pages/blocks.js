@@ -4,7 +4,8 @@ import Table from 'components/Table/Table';
 import TYPES from 'types';
 import { useState } from 'react';
 import { totalPages } from 'utils/helper';
-import DynamicPagination from 'components/Table/DynamicPagination';
+import DynamicPagination from 'components/atoms/NE_Pagination';
+// import DynamicPagination from 'components/Table/DynamicPagination';
 import { useEffect } from 'react';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
@@ -72,7 +73,7 @@ export default function Blocks(props) {
   }, [data, pageSize]);
 
   useEffect(() => {
-    Logger.log("setting total pages")
+    Logger.log('setting total pages');
     setPageCount(totalPages(totalRows, pageSize));
   }, [totalRows, pageSize, network]);
 
@@ -105,6 +106,15 @@ export default function Blocks(props) {
       },
       pageIndex: pageIndex,
       pageSize: pageSize,
+      handleStartOfPageClick: () => {
+        setPageIndex(0);
+      },
+      handlePreviousPageClick: () => {
+        setPageIndex(pageIndex - 1);
+      },
+      handleNextPageClick: () => {
+        setPageIndex(pageIndex + 1);
+      },
     };
 
     return (
@@ -113,7 +123,10 @@ export default function Blocks(props) {
         <div style={{ overflow: 'visible' }}>
           <Table columns={columns} data={data} paginate={false} />
           <div style={{ marginBottom: '1rem' }}>
-            <DynamicPagination controls={dynamicPageControls} />
+            <DynamicPagination
+              controls={dynamicPageControls}
+              isStaticPanination={false}
+            />
           </div>
         </div>
       </>
