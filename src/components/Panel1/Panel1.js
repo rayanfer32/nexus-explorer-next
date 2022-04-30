@@ -49,7 +49,12 @@ function Panel1(props) {
       </article>
     );
 
-  if (metricsRQ.isError) return <p><ErrorCard/></p>;
+  if (metricsRQ.isError)
+    return (
+      <p>
+        <ErrorCard />
+      </p>
+    );
 
   return (
     <article className={styles.container}>

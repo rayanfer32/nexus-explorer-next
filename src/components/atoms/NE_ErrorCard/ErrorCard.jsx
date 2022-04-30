@@ -4,7 +4,7 @@ import { BiError } from 'react-icons/bi';
 export default function ErrorCard() {
   return (
     <div className="container">
-      <BiError/>
+      <BiError />
       <style jsx>
         {`
           .container {

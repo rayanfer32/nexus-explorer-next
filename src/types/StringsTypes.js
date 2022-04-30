@@ -75,7 +75,7 @@ export const METRICS_META = {
     month: { label: 'Monthly', ticker: 'NXS' },
     target: {},
     total: { label: 'Total Supply' },
-    week: { label:"Weekly", ticker: 'NXS' },
+    week: { label: 'Weekly', ticker: 'NXS' },
   },
   trust: {
     staked_percentage: {

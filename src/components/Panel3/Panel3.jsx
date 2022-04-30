@@ -72,7 +72,7 @@ function Panel3({ blocks }) {
               confirmations={newRowData[txidx]?.confirmations}
               contracts={newRowData[txidx]?.contracts?.length}
             />
-          ); 
+          );
         }
       }
 
