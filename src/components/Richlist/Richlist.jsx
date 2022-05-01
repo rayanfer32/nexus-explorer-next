@@ -7,11 +7,8 @@ import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
 import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import PageHeader from 'components/Header/PageHeader';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/atoms/NE_Pagination';
-// import DynamicPagination from 'components/Table/DynamicPagination';
-import Button from 'components/atoms/NE_Button';
 
 export default function Richlist() {
   const { network, getRichlist, getMetrics } = useNetwork();
@@ -19,8 +16,6 @@ export default function Richlist() {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(100);
   const [pageCount, setPageCount] = useState(Infinity);
-
-  const [paginate, setPaginate] = useState(true);
 
   const [pieData, setPieData] = useState();
 
@@ -120,13 +115,15 @@ export default function Richlist() {
 
   return (
     <>
-      <PageHeader page="Richlist" />
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
         <div className={styles.chartContainer}>
           <h3>NXS Distrubution</h3>
           {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
 
+        <div className={styles.top_pagination}>
+          {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
+        </div>
         <Table columns={columns} data={data.data || []} paginate={false} />
         <Pagination controls={dynamicPageControls} />
       </div>
