@@ -7,11 +7,11 @@ import {
   BiLastPage,
 } from 'react-icons/bi';
 
+// ! will be deprecated soon.
 function Pagination({ controls }) {
   const {
     canPreviousPage,
     canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
     nextPage,
@@ -64,7 +64,7 @@ function Pagination({ controls }) {
           <span className={styles.pagination__btn__page}>
             Page
             <strong>
-              {pageIndex + 1} of {pageOptions.length}
+              {pageIndex + 1} of {pageCount}
             </strong>
           </span>
           <button

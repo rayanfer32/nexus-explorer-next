@@ -9,7 +9,6 @@ import { debounce } from 'utils/common';
 
 export const Pagination = ({ controls, isStaticPanination }) => {
   const {
-    pageOptions,
     canPreviousPage,
     canNextPage,
     pageCount,
@@ -17,27 +16,39 @@ export const Pagination = ({ controls, isStaticPanination }) => {
     setPageSize,
     pageIndex,
     pageSize,
-    handleStartOfPageClick,
-    handlePreviousPageClick,
-    handleNextPageClick,
-    handleEndOfPageClick,
   } = controls;
 
   const currentPage = isStaticPanination
-    ? ` ${pageIndex + 1} of ${pageOptions.length}`
-    : `${pageIndex + 1} ${pageCount != Infinity && `of ${pageCount}`}`;
+    ? ` ${pageIndex + 1} of ${pageCount}`
+    : `${pageIndex + 1} ${pageCount != Infinity ? `of ${pageCount}` : ''}`;
   const defaultPageNumber = pageIndex + 1;
   const totalPages = pageCount;
-  const dataPerPage = [10, 20, 30, 40, 50];
+  const dataPerPage = [10, 25, 50, 100];
   const _isStaticPanination = isStaticPanination ? true : pageCount != Infinity;
 
   const handleGotoPageInputChange = (e) => {
     const page = e.target.value ? Number(e.target.value) - 1 : 0;
-    debounce(gotoPage(page), 1000);
+    debounce(() => gotoPage(page), 2000);
   };
 
   const handlePageSizeChange = (e) => {
     setPageSize(Number(e.target.value));
+  };
+
+  const handleStartOfPageClick = () => {
+    gotoPage(0);
+  };
+
+  const handlePreviousPageClick = () => {
+    gotoPage(pageIndex - 1);
+  };
+
+  const handleNextPageClick = () => {
+    gotoPage(pageIndex + 1);
+  };
+
+  const handleEndOfPageClick = () => {
+    gotoPage(pageCount - 1);
   };
 
   return (

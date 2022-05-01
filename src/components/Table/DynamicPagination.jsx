@@ -7,6 +7,7 @@ import {
   BiLastPage,
 } from 'react-icons/bi';
 
+// ! will be deprecated soon.
 export default function DynamicPagination({ controls }) {
   const [gotoPageTimer, setGotoPageTimer] = useState();
 

@@ -17,7 +17,7 @@ export default function Richlist() {
   const { network, getRichlist, getMetrics } = useNetwork();
 
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(100);
   const [pageCount, setPageCount] = useState(Infinity);
 
   const [paginate, setPaginate] = useState(true);
@@ -39,7 +39,9 @@ export default function Richlist() {
   const columns = [
     {
       Header: '#ID',
-      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
+      Cell: (props) => (
+        <div>{parseInt(props.cell.row.id) + 1 + pageIndex * pageSize}</div>
+      ),
     },
     {
       Header: 'Address',
@@ -75,15 +77,6 @@ export default function Richlist() {
     setPageSize: (pageSize) => {
       setPageIndex(0);
       setPageSize(pageSize);
-    },
-    handleStartOfPageClick: () => {
-      setPageIndex(0);
-    },
-    handlePreviousPageClick: () => {
-      setPageIndex(pageIndex - 1);
-    },
-    handleNextPageClick: () => {
-      setPageIndex(pageIndex + 1);
     },
   };
 
@@ -134,7 +127,8 @@ export default function Richlist() {
           {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
 
-        <Table columns={columns} data={data.data || []} />
+        <Table columns={columns} data={data.data || []} paginate={false} />
+        <Pagination controls={dynamicPageControls} />
       </div>
     </>
   );
