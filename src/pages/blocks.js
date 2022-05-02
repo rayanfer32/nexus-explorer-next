@@ -2,15 +2,14 @@ import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import TYPES from 'types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/Table/DynamicPagination';
-import { useEffect } from 'react';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
 import Logger from 'utils/customLog';
 
-export default function Blocks(props) {
+export default function Blocks() {
   // wrap these states in the specific network's state
   const [pageSize, setPageSize] = useState(10);
   const [pageIndex, setPageIndex] = useState(0);
@@ -72,7 +71,7 @@ export default function Blocks(props) {
   }, [data, pageSize]);
 
   useEffect(() => {
-    Logger.log("setting total pages")
+    Logger.log('setting total pages');
     setPageCount(totalPages(totalRows, pageSize));
   }, [totalRows, pageSize, network]);
 
