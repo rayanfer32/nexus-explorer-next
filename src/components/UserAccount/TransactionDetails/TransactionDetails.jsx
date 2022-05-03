@@ -6,7 +6,6 @@ import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
-// import DynamicPagination from 'components/Table/DynamicPagination';
 import DynamicPagination from 'components/atoms/NE_Pagination';
 import ErrorMessage from 'components/atoms/ErrorMessage';
 

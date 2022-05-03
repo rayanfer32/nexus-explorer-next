@@ -1,16 +1,10 @@
 import React from 'react';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import styles from './Table.module.scss';
-// import Pagination from './Pagination';
 import Pagination from 'components/atoms/NE_Pagination';
 
 export default function Table({ columns, data = [], paginate = true }) {
-  const tableInstance = useTable(
-    { data, columns },
-    useSortBy,
-    // useExpanded,
-    usePagination
-  );
+  const tableInstance = useTable({ data, columns }, useSortBy, usePagination);
 
   const {
     getTableProps,
