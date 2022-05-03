@@ -6,7 +6,6 @@ import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/atoms/NE_Pagination';
-// import DynamicPagination from 'components/Table/DynamicPagination';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
