@@ -120,7 +120,6 @@ export default function Richlist() {
           <h3>NXS Distrubution</h3>
           {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
-
         <div className={styles.top_pagination}>
           {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
         </div>

@@ -6,7 +6,7 @@ function index() {
   return (
     <>
       <PageHeader page="Richlist" />
-      <Richlist />;
+      <Richlist />
     </>
   );
 }
