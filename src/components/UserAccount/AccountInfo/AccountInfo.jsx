@@ -5,7 +5,6 @@ import { FaHandshake, FaUserClock } from 'react-icons/fa';
 import { HiChartBar } from 'react-icons/hi';
 import { useQuery } from 'react-query';
 import { fetchMarket } from 'utils/common/fetch';
-import { intlNum } from 'utils';
 
 export function AccountInfo({ data }) {
   const isTrust = data?.rate === undefined ? false : true;
