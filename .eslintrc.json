@@ -1,23 +1,26 @@
 {
-  "extends": ["plugin:storybook/recommended","next/core-web-vitals", "prettier"],
+  "extends": [
+    "plugin:storybook/recommended",
+    "next/core-web-vitals",
+    "prettier"
+  ],
   "rules": {
     "no-unused-vars": "warn",
     "no-undef": "warn",
     "no-console": "warn",
     "no-empty-function": "warn",
-    "react-hooks/exhaustive-deps":"off",
+    "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
+    "@next/next/no-page-custom-font": "off",
+    "no-duplicate-imports": ["error", { "includeExports": true }]
   },
   "overrides": [
     {
-      // or whatever matches stories specified in .storybook/main.js
       "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
       "rules": {
-        // example of overriding a rule
         "storybook/hierarchy-separator": "error",
-        // example of disabling a rule
-        "storybook/default-exports": "off"
+        "storybook/default-exports": "off",
+        "import/no-anonymous-default-export": "off"
       }
     }
   ]

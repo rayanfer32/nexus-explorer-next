@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
 import {
   BiChevronLeft,
@@ -7,11 +7,11 @@ import {
   BiLastPage,
 } from 'react-icons/bi';
 
+// ! will be deprecated soon.
 function Pagination({ controls }) {
   const {
     canPreviousPage,
     canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
     nextPage,
@@ -21,7 +21,7 @@ function Pagination({ controls }) {
     pageSize,
   } = controls;
 
-  const dataPerPage = [10, 20, 30, 40, 50];
+  const dataPerPage = [10, 25, 50, 100];
 
   const handleStartOfPageClick = () => {
     gotoPage(0);
@@ -64,7 +64,7 @@ function Pagination({ controls }) {
           <span className={styles.pagination__btn__page}>
             Page
             <strong>
-              {pageIndex + 1} of {pageOptions.length}
+              {pageIndex + 1} of {pageCount}
             </strong>
           </span>
           <button

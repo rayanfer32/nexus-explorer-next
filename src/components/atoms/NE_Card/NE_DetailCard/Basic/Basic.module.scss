@@ -1,44 +1,81 @@
-.basic {
+/* Default style to card */
+.detailcard {
   position: relative;
-  border-radius: var(--space-xxxs); //4px
-  box-shadow: var(--card-shadow);
-  height: 10.75rem;
-  width: 17.625rem;
-  max-width: 20.375rem; //326px
+  width: 100%;
+  min-width: 17.5rem; /* 280px */
+  max-width: 40rem; /* 600px */
+  height: 10.75rem; /* 175px */
+  background: var(--theme-gradient-radial);
+  box-shadow: var(--card-shadow-border), var(--card-shadow);
+  border-radius: 0.25rem; /* 4px */
+
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-gap: 0.125rem;
+  padding: 0.5rem;
+
+  filter: var(--theme-hue-rotate);
   overflow: hidden;
-  background: var(--them-detail-card);
-  border: solid 0.0625rem var(--theme-page-border);
-  padding: 0;
+  animation: flipCard 2s cubic-bezier(0, 1, 1, 1) forwards;
+}
 
-  .imgBg {
-    width: 100%;
-    height: 100%;
-    padding: var(--space-xs); // 12px
-    background: url('../../../../../assets//images/nexus_water_mark.png')
-      no-repeat;
-    background-repeat: no-repeat;
-    background-position: top left;
-  }
+.body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  z-index: 1;
 
-  .container {
-    z-index: 2;
+  &__text {
     display: flex;
-    flex-direction: column;
-    .header {
+    align-items: center;
+    gap: var(--space-xxxxs);
+    color: var(--theme-page-text);
+    font-weight: normal;
+    &__value {
+      margin: 0;
+      font-size: var(--font-xxl);
     }
-    .body {
+    &__unit {
+      font-size: var(--font-normal);
+    }
+  }
+  .txn {
+    &__block {
+      width: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xxxxs);
+      overflow: hidden;
+
+      &__type {
+        width: 100%;
+        white-space: nowrap;
+        font-weight: normal;
+        font-size: var(--font-normal);
+        color: var(--theme-page-text-secondary);
+        overflow: hidden;
+        &__value,
+        &__label {
+          margin: 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        &__label {
+          font-size: var(--font-s);
+        }
+      }
     }
   }
 }
 
-.card_header {
-}
-
-.card_body {
-  display: flex;
-  opacity: 1;
-  p {
+@keyframes flipCard {
+  0% {
+    transform: rotateY(135deg);
   }
-  label {
+  80% {
+    transform: rotateY(-4deg);
+  }
+  100% {
+    transform: rotateY(0deg);
   }
 }

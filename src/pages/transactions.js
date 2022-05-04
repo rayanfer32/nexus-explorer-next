@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Loader from 'components/atoms/NE_Loader';
 import Table from 'components/Table/Table';
 import { totalPages } from 'utils/helper';
-import DynamicPagination from 'components/Table/DynamicPagination';
+import DynamicPagination from 'components/atoms/NE_Pagination';
 import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
@@ -117,6 +117,15 @@ export default function Transactions() {
       },
       pageIndex: pageIndex,
       pageSize: pageSize,
+      handleStartOfPageClick: () => {
+        setPageIndex(0);
+      },
+      handlePreviousPageClick: () => {
+        setPageIndex(pageIndex - 1);
+      },
+      handleNextPageClick: () => {
+        setPageIndex(pageIndex + 1);
+      },
     };
 
     return (
@@ -125,7 +134,10 @@ export default function Transactions() {
         <div>
           <Table columns={columns} data={rows} paginate={false} />
           <div style={{ marginBottom: '1rem' }}>
-            <DynamicPagination controls={dynamicPaginationControls} />
+            <DynamicPagination
+              controls={dynamicPaginationControls}
+              isStaticPanination={false}
+            />
           </div>
         </div>
       </>

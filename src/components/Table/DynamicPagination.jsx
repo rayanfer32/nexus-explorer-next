@@ -7,6 +7,7 @@ import {
   BiLastPage,
 } from 'react-icons/bi';
 
+// ! will be deprecated soon.
 export default function DynamicPagination({ controls }) {
   const [gotoPageTimer, setGotoPageTimer] = useState();
 
@@ -20,7 +21,7 @@ export default function DynamicPagination({ controls }) {
     pageSize,
   } = controls;
 
-  const dataPerPage = [10, 20, 30, 40, 50];
+  const dataPerPage = [10, 25, 50, 100];
 
   const handleStartOfPageClick = () => {
     gotoPage(0);
@@ -72,8 +73,9 @@ export default function DynamicPagination({ controls }) {
             <BiChevronLeft color="inherit" />
           </button>
           <span className={styles.pagination__btn__page}>
-            Page <strong>
-              {pageIndex + 1} of {pageCount}
+            Page{' '}
+            <strong>
+              {pageIndex + 1} {pageCount != Infinity && `of ${pageCount}`}
             </strong>
           </span>
           <button
@@ -83,17 +85,20 @@ export default function DynamicPagination({ controls }) {
             disabled={!canNextPage}>
             <BiChevronRight color="inherit" />
           </button>
-          <button
-            className={styles.pagination__btn__icon}
-            type="secondary"
-            onClick={handleEndOfPageClick}
-            disabled={!canNextPage}>
-            <BiLastPage color="inherit" />
-          </button>
+          {pageCount != Infinity && (
+            <button
+              className={styles.pagination__btn__icon}
+              type="secondary"
+              onClick={handleEndOfPageClick}
+              disabled={!canNextPage}>
+              <BiLastPage color="inherit" />
+            </button>
+          )}
         </span>
         <div className={styles.pagination__goToPage}>
           <span className={styles.pagination__goToPage__pageSelect}>
-            Go to page: <input
+            Go to page:{' '}
+            <input
               type="number"
               defaultValue={pageIndex + 1}
               onChange={handleGotoPageInputChange}

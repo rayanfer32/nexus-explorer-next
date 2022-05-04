@@ -28,6 +28,7 @@
       background: var(--theme-page-background);
       padding: var(--space-xxxxs) var(--space-l);
       font-size: var(--font-s);
+      font-family: inherit;
       border-radius: var(--space-xxxs);
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;

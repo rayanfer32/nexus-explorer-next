@@ -44,24 +44,34 @@ export function useNetwork() {
     return res.data.result;
   }
 
-  const getTrustlist = async () => {
+  const getTrustlist = async ({ queryKey }) => {
     const res = await axios.get(`${url}/register/list/trust`, {
       headers: { 'Cache-Control': 'max-age=300' },
       params: {
-        // limit: 100,
+        page: queryKey[1],
+        limit: queryKey[2],
         sort: 'trust',
         order: 'desc',
       },
     });
-    return res.data;
+    return res;
   };
 
-  const getRichlist = async () => {
+  const getRichlist = async (page = 0, limit = 111) => {
     // * to consider the users who have moved their balance to trust
     // * query for both trust and normal accounts
     const page0 = await axios.get(
-      `${url}/register/list/trust,accounts?page=0&sort=total&order=desc&limit=111&where=object.token=0`,
-      { headers: { 'Cache-Control': 'max-age=300' } }
+      `${url}/register/list/trust,accounts?page=${page}&sort=total&order=desc&limit=${limit}&where=object.token=0`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+        params: {
+          // page: page,
+          // limit: limit,
+          // sort: 'total',
+          // order: 'desc',
+          // where: 'object.token=0', // * cannot be used as = gets url encoded.
+        },
+      }
     );
 
     return { data: [...page0.data.result] };
@@ -114,21 +124,23 @@ export function useNetwork() {
     return res.data;
   };
 
-  const getTrustTransactions = async (data) => {
+  const getTrustTransactions = async (address, page, limit) => {
     const res = await axios.get(`${url}/finance/transactions/trust`, {
       params: {
-        address: data?.address,
-        limit: 20,
+        address: address,
+        page: page,
+        limit: limit,
       },
     });
     return res.data;
   };
 
-  const getAccountTransactions = async (data) => {
+  const getAccountTransactions = async (address, page, limit) => {
     const res = await axios.get(`${url}/finance/transactions/account`, {
       params: {
-        address: data?.address,
-        limit: 20,
+        address: address,
+        page: page,
+        limit: limit,
       },
     });
     return res.data;

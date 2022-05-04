@@ -1,13 +1,13 @@
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
 import Search from 'components/atoms/NE_SearchBar';
-import { useDarkMode } from 'hooks';
 import TYPES from 'types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useAppContext } from 'contexts/AppContext';
 import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
+import { throttle } from 'utils/common';
 
 /**
  * Header component for the website
@@ -17,7 +17,6 @@ const Header = () => {
   const [toggleMobileMenu, setToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const router = useRouter();
-  const [isDarkMode, setDarkMode] = useDarkMode();
   const { appContext, setAppContext } = useAppContext();
 
   const onClickBrand = () => router.push('/');
@@ -36,18 +35,48 @@ const Header = () => {
     );
   }, [appContext.network]);
 
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+
+    const previousValue = window.pageYOffset;
+
+    function onScroll() {
+      if (window.pageYOffset > previousValue) {
+        // avoid unnecessary increase in scroll offset Value
+        const offsetValue =
+          el.clientHeight * 2 > window.pageYOffset
+            ? window.pageYOffset
+            : el.clientHeight * 2;
+
+        el.style.transform = `translateY(-${offsetValue}px)`;
+      } else {
+        el.style.transform = `translateY(0px)`;
+      }
+      previousValue = window.pageYOffset;
+    }
+
+    if (el) {
+      window.addEventListener('scroll', throttle(onScroll));
+    }
+    return () =>
+      window && window.removeEventListener('scroll', throttle(onScroll));
+  }, []);
+
   return (
     <>
-      <header className={styles.container}>
+      <header ref={headerRef} className={styles.container}>
         <div className={styles.header}>
           <div className={styles.nav}>
-            <Brand isDarkMode={isDarkMode} onClick={onClickBrand} />
+            <Brand
+              isDarkMode={appContext.theme === TYPES.THEME.DARK}
+              onClick={onClickBrand}
+            />
             <DesktopNavbar
-              isDark={isDarkMode}
               activePathname={router.pathname}
               network={appContext.network.name}
               onNetworkChange={handleNetworkChange}
-              onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
             />
             <Hamburger onClick={() => setToggle(!toggleMobileMenu)} />
           </div>
@@ -64,19 +93,17 @@ const Header = () => {
             />
           </div>
         </div>
-        {toggleMobileMenu && (
-          <MobileMenu
-            isOpen={toggleMobileMenu}
-            isDark={isDarkMode}
-            network={appContext.network.name}
-            activePathname={router.pathname}
-            onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
-            onNetworkChange={handleNetworkChange}
-            onClose={() => setToggle(!toggleMobileMenu)}
-            setClose={setToggle}
-          />
-        )}
       </header>
+      {toggleMobileMenu && (
+        <MobileMenu
+          isOpen={toggleMobileMenu}
+          network={appContext.network.name}
+          activePathname={router.pathname}
+          onNetworkChange={handleNetworkChange}
+          onClose={() => setToggle(!toggleMobileMenu)}
+          setClose={setToggle}
+        />
+      )}
     </>
   );
 };

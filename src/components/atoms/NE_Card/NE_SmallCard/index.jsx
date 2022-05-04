@@ -24,7 +24,7 @@ export const NE_SmallCard = (props) => {
         <div className={styles['card-body-upper-part']}>
           <h4
             onClick={props.onClickLabel}
-            className={!!props.onClickLabel && styles['hover']}
+            className={!!props.onClickLabel ? styles['hover'] : ''}
             title={`Label ${props.label}`}>
             {props.label}
           </h4>
@@ -58,4 +58,9 @@ NE_SmallCard.propTypes = {
   onClick: PropTypes.func,
   onClickLabel: PropTypes.func,
   icon: PropTypes.element,
+};
+
+NE_SmallCard.defaultProps = {
+  text: '',
+  value: '',
 };

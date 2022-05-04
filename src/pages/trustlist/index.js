@@ -7,19 +7,23 @@ import CopyText from 'components/atoms/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
+import DynamicPagination from 'components/atoms/NE_Pagination';
+// import DynamicPagination from 'components/Table/DynamicPagination';
+import { useState } from 'react';
+import ErrorMessage from 'components/atoms/ErrorMessage';
 
 export default function Trustlist() {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [pageCount] = useState(Infinity);
+
   const { network, getTrustlist } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['trustlist', network.name],
+    ['trustlist', pageIndex, pageSize, network.name],
     getTrustlist
   );
 
   const columns = [
-    {
-      Header: '#ID',
-      Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
-    },
     {
       Header: 'Address',
       accessor: 'address',
@@ -68,20 +72,54 @@ export default function Trustlist() {
     );
   }
 
-  if (data) {
-    const newData = data.result.map((item, index) => ({
-      key: index,
-      ...item,
-      stake: item.stake,
-      balance: item.balance,
-    }));
-    return (
-      <>
-        <PageHeader page={'trustlist'} />
-        <div className={styles.page} style={{ marginBottom: '1rem' }}>
-          <Table columns={columns} data={newData} />
+  const newData = data.data?.result?.map((item, index) => ({
+    key: index,
+    ...item,
+    stake: item.stake,
+    balance: item.balance,
+  }));
+
+  const dynamicPageControls = {
+    canPreviousPage: pageIndex > 0,
+    canNextPage: pageIndex < pageCount - 1,
+    pageCount: pageCount,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    gotoPage: (pageIndex) => {
+      setPageIndex(pageIndex);
+    },
+    setPageSize: (pageSize) => {
+      setPageIndex(0);
+      setPageSize(pageSize);
+    },
+    handleStartOfPageClick: () => {
+      setPageIndex(0);
+    },
+    handlePreviousPageClick: () => {
+      setPageIndex(pageIndex - 1);
+    },
+    handleNextPageClick: () => {
+      setPageIndex(pageIndex + 1);
+    },
+  };
+
+  return (
+    <>
+      <PageHeader page={'trustlist'} />
+      <div className={styles.page} style={{ marginBottom: '1rem' }}>
+        <Table
+          columns={columns}
+          data={data.data?.error ? [] : newData}
+          paginate={false}
+        />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination
+            controls={dynamicPageControls}
+            isStaticPanination={false}
+          />
         </div>
-      </>
-    );
-  }
+        {data.data?.error && <ErrorMessage error={data.data.error} />}
+      </div>
+    </>
+  );
 }
