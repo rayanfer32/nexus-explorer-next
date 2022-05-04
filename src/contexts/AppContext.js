@@ -8,7 +8,7 @@ export const AppContext = createContext();
  * @constant Object Initial state of App
  */
 const _state = {
-  theme: 'dark',
+  theme: null,
   network: NETWORKS.MAINNET,
 };
 
