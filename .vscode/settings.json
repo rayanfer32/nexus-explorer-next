@@ -2,7 +2,6 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
-    "*.js": "javascript",
     "*.jsx": "javascriptreact"
   },
   "python.linting.pylintEnabled": false,

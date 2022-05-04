@@ -1,15 +1,10 @@
 import React from 'react';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import styles from './Table.module.scss';
-import Pagination from './Pagination';
+import Pagination from 'components/atoms/NE_Pagination';
 
 export default function Table({ columns, data = [], paginate = true }) {
-  const tableInstance = useTable(
-    { data, columns },
-    useSortBy,
-    // useExpanded,
-    usePagination
-  );
+  const tableInstance = useTable({ data, columns }, useSortBy, usePagination);
 
   const {
     getTableProps,
@@ -40,6 +35,10 @@ export default function Table({ columns, data = [], paginate = true }) {
     setPageSize,
     pageIndex,
     pageSize,
+    handleStartOfPageClick: () => gotoPage(0),
+    handlePreviousPageClick: () => previousPage(),
+    handleNextPageClick: () => nextPage(),
+    handleEndOfPageClick: () => gotoPage(pageCount - 1),
   };
 
   return (
@@ -119,7 +118,10 @@ export default function Table({ columns, data = [], paginate = true }) {
       </div>
       {pageCount > 1 && paginate && (
         <div style={{ marginBottom: '1rem' }}>
-          <Pagination controls={paginationControls} />
+          <Pagination
+            controls={paginationControls}
+            isStaticPanination={paginate}
+          />
         </div>
       )}
     </>
