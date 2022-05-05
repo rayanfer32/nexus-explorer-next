@@ -62,4 +62,33 @@ describe('Test homepage', () => {
     cy.contains('Balance');
     cy.contains('Stake');
   });
+
+  it('Goto Richlist page', () => {
+    const pieChartSelector = '[id^="SvgjsCircle"]';
+    cy.visit('/richlist');
+    cy.get(pieChartSelector, { timeout: 10000 }).should('be.visible');
+    cy.contains('Address');
+    cy.contains('Balance');
+    cy.contains('Stake Rate');
+  });
+
+  it('Goto Globalnames page', () => {
+    cy.visit('/globalnames');
+    cy.contains('Name');
+  });
+
+  it('Goto Namespaces page', () => {
+    cy.visit('/namespaces');
+    cy.contains('Namespace');
+  });
+
+  it('Goto Tokens page', () => {
+    cy.visit('/tokens');
+    cy.contains('Token Name');
+    cy.contains('Max Supply');
+  });
+
+  it('Toggle dark mode', () => {
+    cy.get('.ThemeMode_themeMode__tcZ2H').click();
+  });
 });
