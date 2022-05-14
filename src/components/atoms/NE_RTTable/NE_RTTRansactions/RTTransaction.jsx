@@ -40,7 +40,7 @@ function RTTransaction(props) {
           <BlockData
             href={`/scan/${txnId}`}
             data={`${middleElipsis(txnId, 10)}`}
-            dataUnit={'txn_id'}
+            dataUnit="txid"
           />
         </div>
         <div className={styles.tertiaryData}>
