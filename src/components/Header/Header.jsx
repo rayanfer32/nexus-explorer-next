@@ -1,7 +1,6 @@
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
 import Search from 'components/atoms/NE_SearchBar';
-import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import { useEffect, useRef, useState } from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';
@@ -18,7 +17,6 @@ const Header = () => {
   const [toggleMobileMenu, setToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const router = useRouter();
-  const [isDarkMode, setDarkMode] = useDarkMode();
   const { appContext, setAppContext } = useAppContext();
 
   const onClickBrand = () => router.push('/');
@@ -71,13 +69,14 @@ const Header = () => {
       <header ref={headerRef} className={styles.container}>
         <div className={styles.header}>
           <div className={styles.nav}>
-            <Brand isDarkMode={isDarkMode} onClick={onClickBrand} />
+            <Brand
+              isDarkMode={appContext.theme === TYPES.THEME.DARK}
+              onClick={onClickBrand}
+            />
             <DesktopNavbar
-              isDark={isDarkMode}
               activePathname={router.pathname}
               network={appContext.network.name}
               onNetworkChange={handleNetworkChange}
-              onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
             />
             <Hamburger onClick={() => setToggle(!toggleMobileMenu)} />
           </div>
@@ -98,10 +97,8 @@ const Header = () => {
       {toggleMobileMenu && (
         <MobileMenu
           isOpen={toggleMobileMenu}
-          isDark={isDarkMode}
           network={appContext.network.name}
           activePathname={router.pathname}
-          onThemeChange={() => setDarkMode((prevMode) => !prevMode)}
           onNetworkChange={handleNetworkChange}
           onClose={() => setToggle(!toggleMobileMenu)}
           setClose={setToggle}

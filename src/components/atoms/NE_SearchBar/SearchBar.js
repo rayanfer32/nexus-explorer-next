@@ -1,6 +1,5 @@
 import styles from './SearchBar.module.scss';
-import SearchIcon from 'assets/icons/search.svg';
-import Image from 'next/image';
+import { Search_SVG_Icon } from 'assets/icons';
 
 function SearchBar(props) {
   return (
@@ -18,13 +17,7 @@ function SearchBar(props) {
         type="submit"
         onClick={props?.onSearch}
         className={styles.searchBtn}>
-        <Image
-          src={SearchIcon}
-          alt="search"
-          className={styles.searchIcon}
-          width="24"
-          height="24"
-        />
+        <Search_SVG_Icon />
       </button>
     </div>
   );

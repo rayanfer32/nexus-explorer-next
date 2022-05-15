@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
 import {
   BiChevronLeft,
@@ -6,41 +5,50 @@ import {
   BiFirstPage,
   BiLastPage,
 } from 'react-icons/bi';
+import { debounce } from 'utils/common';
 
-// ! will be deprecated soon.
-function Pagination({ controls }) {
+export const Pagination = ({ controls, isStaticPanination }) => {
   const {
     canPreviousPage,
     canNextPage,
     pageCount,
     gotoPage,
-    nextPage,
-    previousPage,
     setPageSize,
     pageIndex,
     pageSize,
   } = controls;
 
+  const currentPage = isStaticPanination
+    ? ` ${pageIndex + 1} of ${pageCount}`
+    : `${pageIndex + 1} ${pageCount != Infinity ? `of ${pageCount}` : ''}`;
+  const defaultPageNumber = pageIndex + 1;
+  const totalPages = pageCount;
   const dataPerPage = [10, 25, 50, 100];
+  const _isStaticPanination = isStaticPanination ? true : pageCount != Infinity;
+
+  const handleGotoPageInputChange = (e) => {
+    const page = e.target.value ? Number(e.target.value) - 1 : 0;
+    debounce(() => gotoPage(page), 2000);
+  };
+
+  const handlePageSizeChange = (e) => {
+    setPageSize(Number(e.target.value));
+  };
 
   const handleStartOfPageClick = () => {
     gotoPage(0);
   };
 
   const handlePreviousPageClick = () => {
-    previousPage();
+    gotoPage(pageIndex - 1);
   };
 
   const handleNextPageClick = () => {
-    nextPage();
+    gotoPage(pageIndex + 1);
   };
 
   const handleEndOfPageClick = () => {
     gotoPage(pageCount - 1);
-  };
-
-  const handlePageSizeChange = (e) => {
-    setPageSize(Number(e.target.value));
   };
 
   return (
@@ -63,9 +71,7 @@ function Pagination({ controls }) {
           </button>
           <span className={styles.pagination__btn__page}>
             Page
-            <strong>
-              {pageIndex + 1} of {pageCount}
-            </strong>
+            <strong>{currentPage}</strong>
           </span>
           <button
             className={styles.pagination__btn__icon}
@@ -74,26 +80,25 @@ function Pagination({ controls }) {
             disabled={!canNextPage}>
             <BiChevronRight color="inherit" />
           </button>
-          <button
-            className={styles.pagination__btn__icon}
-            type="secondary"
-            onClick={handleEndOfPageClick}
-            disabled={!canNextPage}>
-            <BiLastPage color="inherit" />
-          </button>
+          {_isStaticPanination && (
+            <button
+              className={styles.pagination__btn__icon}
+              type="secondary"
+              onClick={handleEndOfPageClick}
+              disabled={!canNextPage}>
+              <BiLastPage color="inherit" />
+            </button>
+          )}
         </span>
         <div className={styles.pagination__goToPage}>
           <span className={styles.pagination__goToPage__pageSelect}>
             Go to page:
             <input
               type="number"
-              defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }}
+              defaultValue={defaultPageNumber}
+              onChange={handleGotoPageInputChange}
               min={1}
-              max={pageCount}
+              max={totalPages}
               style={{ width: '100px' }}
             />
           </span>
@@ -111,6 +116,6 @@ function Pagination({ controls }) {
       </div>
     </>
   );
-}
+};
 
 export default Pagination;

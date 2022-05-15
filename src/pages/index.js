@@ -19,6 +19,7 @@ import PageHeader from 'components/Header/PageHeader';
 // * https://react-query.tanstack.com/guides/ssr
 
 export async function getStaticProps() {
+  // eslint-disable-next-line no-undef
   const responses = await Promise.all([
     fetchMetrics(),
     fetchInfo(),

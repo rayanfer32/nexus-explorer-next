@@ -73,3 +73,15 @@
     U+FEFF, U+FFFD;
 }
 // ------------------------- lato font
+
+// ------------------------- niamey font
+/* niamey */
+@font-face {
+  font-family: 'Niamey';
+  src: url('../assets/fonts/niamey__.ttf') format('truetype');
+}
+
+:root {
+  --font-family: 'Rubik', 'Noto Sans', 'Lato', --apple-system, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, 'Open Sans', sans-serif;
+}

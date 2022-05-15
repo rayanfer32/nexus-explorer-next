@@ -5,6 +5,7 @@
   font-size: 1.25rem;
   color: var(--theme-nav-brand);
   padding: var(--space-xs);
+  font-family: 'Niamey', var(--font-family);
   &:hover {
     opacity: 0.9;
     cursor: pointer;
@@ -13,5 +14,6 @@
     font-style: normal;
     font-weight: lighter;
     font-size: var(--font-xl);
+    font-family: var(--font-family);
   }
 }

@@ -16,7 +16,7 @@ const Brand = ({ isDarkMode = false, onClick = () => null }) => {
         height={32}
         layout="fixed"
         src={isDarkMode ? TYPES.NAVBAR.BRAND.WHITE : TYPES.NAVBAR.BRAND.BLUE}
-        alt="nexus logo"></Image>
+        alt="NEXUS"></Image>
       <div className={styles.explorer}>Explorer</div>
     </div>
   );

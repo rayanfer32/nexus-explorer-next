@@ -1,12 +1,6 @@
 import styles from './ThemeMode.module.scss';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
-
-ThemeMode.propTypes = {
-  isDark: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+import { useDarkMode } from 'hooks';
 
 /**
  * Toggle button Component for theme selection
@@ -14,25 +8,17 @@ ThemeMode.propTypes = {
  * @param {boolean} isDark theme status
  * @param {Function} onClick onClick function
  */
-export default function ThemeMode({ isDark = false, onClick = () => null }) {
-  const [toggle, setToggle] = useState(isDark);
+export default function ThemeMode() {
+  const [isDarkMode, setDarkMode] = useDarkMode();
 
-  const handleOnClick = () => {
-    setToggle(!toggle);
-    onClick();
-  };
-
-  const toggleStyle = toggle
+  const toggleStyle = isDarkMode
     ? { justifyContent: 'flex-end' }
     : { justifyContent: 'flex-start' };
 
-  return (
-    <button
-      className={styles.themeMode}
-      style={toggleStyle}
-      onClick={handleOnClick}>
-      <div className={styles.themeMode__thumb}>
-        {toggle ? (
+  const Icon = ({ isDark }) => {
+    return (
+      <>
+        {isDark ? (
           <BsMoonFill
             color="inherit"
             className={styles.themeMode__thumb__icon}
@@ -43,6 +29,17 @@ export default function ThemeMode({ isDark = false, onClick = () => null }) {
             className={styles.themeMode__thumb__icon}
           />
         )}
+      </>
+    );
+  };
+
+  return (
+    <button
+      className={styles.themeMode}
+      style={toggleStyle}
+      onClick={() => setDarkMode(!isDarkMode)}>
+      <div className={styles.themeMode__thumb}>
+        <Icon isDark={isDarkMode} />
       </div>
     </button>
   );
