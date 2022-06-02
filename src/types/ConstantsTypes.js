@@ -6,7 +6,7 @@ export const API_URLS = {
 export const REFETCH_INTERVALS = {
   MINING: 1000 * 60, // 1 minute
   METRICS: 1000 * 60,
-  MARKET: 1000 * 60,
+  MARKET: 1000 * 60 * 5, // 5 minutes
   INFO: 1000 * 30, // 30 sec
   REGENERATE_SSG_INTERVAL: 1000 * 60 * 5, // 5 min
 };
