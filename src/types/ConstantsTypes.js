@@ -8,7 +8,7 @@ export const REFETCH_INTERVALS = {
   METRICS: 1000 * 60,
   MARKET: 1000 * 60,
   INFO: 1000 * 30, // 30 sec
-  REGENERATE_SSG_INTERVAL: 1000 * 60, // 60 sec
+  REGENERATE_SSG_INTERVAL: 1000 * 60 * 5, // 5 min
 };
 
 export const CARD_TYPES = {
@@ -16,7 +16,7 @@ export const CARD_TYPES = {
   TRANSACTION: 'transaction',
   USER: 'user',
   TRUST: 'trust',
-}
+};
 
 const MAX_SUPPLY = 72586439.41;
 
