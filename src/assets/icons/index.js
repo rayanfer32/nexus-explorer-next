@@ -31,6 +31,7 @@ export const Nexus_SVG_Icon = ({
       width={scale}
       height={scale}
       className={className}
+      transform="scale(0.75)"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <circle cx="16" cy="16" r="16" fill={fill} />
