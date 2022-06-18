@@ -10,6 +10,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/atoms/NE_Pagination';
 import { Log } from 'utils/customLog';
+import { NETWORKS } from 'types/ConstantsTypes';
 
 export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -20,18 +21,23 @@ export default function Richlist(props) {
 
   // * api calls
   const { network, getRichlist, getMetrics } = useNetwork();
+  const isMainnet = network.name === NETWORKS.MAINNET.name;
   const { isLoading, data, error } = useQuery(
     ['richlist', pageIndex, pageSize, network.name],
     () => getRichlist(pageIndex, pageSize),
-    { initialData: props.data }
+    {
+      initialData: isMainnet
+        ? { data: props.data.data.slice(0, pageSize) }
+        : undefined, // * for testnet we don't have data in the props
+    }
   );
 
   // * data for pieChart
   const richlist111 = useQuery(
     ['richlist', network.name],
-    () => getRichlist(0, 111),
+    isMainnet ? () => props.data : () => getRichlist(0, 111),
     {
-      initialData: props.data,
+      initialData: isMainnet ? props.data : undefined, // * for testnet we don't have data in the props
     }
   );
 
