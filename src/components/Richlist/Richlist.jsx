@@ -9,25 +9,33 @@ import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/atoms/NE_Pagination';
+import { Log } from 'utils/customLog';
 
-export default function Richlist() {
-  const { network, getRichlist, getMetrics } = useNetwork();
-
+export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(100);
   const [pageCount, setPageCount] = useState(Infinity);
 
   const [pieData, setPieData] = useState();
 
+  // * api calls
+  const { network, getRichlist, getMetrics } = useNetwork();
   const { isLoading, data, error } = useQuery(
     ['richlist', pageIndex, pageSize, network.name],
-    () => getRichlist(pageIndex, pageSize)
+    () => getRichlist(pageIndex, pageSize),
+    { initialData: props.data }
+  );
+
+  // * data for pieChart
+  const richlist111 = useQuery(
+    ['richlist', network.name],
+    () => getRichlist(0, 111),
+    {
+      initialData: props.data,
+    }
   );
 
   const metricsRQ = useQuery(['metrics', network.name], getMetrics);
-  const richlist111 = useQuery(['richlist', network.name], () =>
-    getRichlist(0, 111)
-  );
   const totalSupply = metricsRQ?.data?.result?.supply?.total;
   const PIE_LABELS = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 
