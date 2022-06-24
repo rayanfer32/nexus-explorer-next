@@ -9,25 +9,44 @@ import CopyText from 'components/atoms/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/atoms/NE_Pagination';
+import { Log } from 'utils/customLog';
+import { NETWORKS } from 'types/ConstantsTypes';
+import ErrorMessage from 'components/atoms/ErrorMessage';
 
-export default function Richlist() {
-  const { network, getRichlist, getMetrics } = useNetwork();
-
+export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(100);
   const [pageCount, setPageCount] = useState(Infinity);
 
   const [pieData, setPieData] = useState();
 
+  // * api calls
+  const { network, getRichlist, getMetrics } = useNetwork();
+  const isMainnet = network.name === NETWORKS.MAINNET.name;
   const { isLoading, data, error } = useQuery(
     ['richlist', pageIndex, pageSize, network.name],
-    () => getRichlist(pageIndex, pageSize)
+    () => getRichlist(pageIndex, pageSize),
+    {
+      placeholderData:
+        pageIndex == 0
+          ? isMainnet
+            ? { data: props.data.data.slice(0, pageSize) }
+            : undefined
+          : undefined, // * for testnet we don't have data in the props
+      staleTime: 1000 * 60, // * 1 min
+    }
+  );
+
+  // * data for pieChart
+  const richlist111 = useQuery(
+    ['richlist', network.name],
+    isMainnet ? () => props.data : () => getRichlist(0, 111),
+    {
+      initialData: isMainnet ? props.data : undefined, // * for testnet we don't have data in the props
+    }
   );
 
   const metricsRQ = useQuery(['metrics', network.name], getMetrics);
-  const richlist111 = useQuery(['richlist', network.name], () =>
-    getRichlist(0, 111)
-  );
   const totalSupply = metricsRQ?.data?.result?.supply?.total;
   const PIE_LABELS = ['Top 1', 'Top 10', 'Top 100', 'Others'];
 
@@ -95,36 +114,39 @@ export default function Richlist() {
     }
   }, [richlist111.data]);
 
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  }
-
   if (error) {
-    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+    return <ErrorMessage error={error?.message} />;
   }
 
   return (
     <>
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
+        {/* // * Pie chart */}
         <div className={styles.chartContainer}>
           <h3>NXS Distrubution</h3>
           {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
-        <div className={styles.top_pagination}>
-          {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
-        </div>
-        <Table columns={columns} data={data.data || []} paginate={false} />
-        <Pagination controls={dynamicPageControls} />
+
+        {/* // * Table with dual pagination */}
+        {isLoading ? (
+          <div
+            style={{
+              display: 'grid',
+              placeItems: 'center',
+              minHeight: '200px',
+              margin: 'auto',
+            }}>
+            <Loader type="circle" size="5rem" />
+          </div>
+        ) : (
+          <div>
+            <div className={styles.top_pagination}>
+              {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
+            </div>
+            <Table columns={columns} data={data.data || []} paginate={false} />
+            <Pagination controls={dynamicPageControls} />
+          </div>
+        )}
       </div>
     </>
   );

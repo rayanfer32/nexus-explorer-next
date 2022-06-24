@@ -29,3 +29,28 @@ export async function fetchRecentBlocks(MAX_ROWS = 6) {
   );
   return res.data.result;
 }
+
+export async function fetchRichlist(
+  url = process.env.NEXT_PUBLIC_NEXUS_BASE_URL,
+  page = 0,
+  limit = 111
+) {
+  // * to consider the users who have moved their balance to trust
+  // * query for both trust and normal accounts
+  const json = JSON.stringify({
+    page: page,
+    sort: 'total',
+    order: 'desc',
+    limit: limit,
+    where: 'object.token=0',
+  });
+
+  const page0 = await axios.post(`${url}/register/list/trust,accounts`, json, {
+    headers: {
+      'Cache-Control': 'max-age=300',
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return { data: [...page0.data.result] };
+}

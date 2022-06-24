@@ -16,6 +16,13 @@ export default function Blocks() {
   const [pageCount, setPageCount] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
 
+  // * api calls
+  const { network, getBlocks } = useNetwork();
+  const { isLoading, data, error } = useQuery(
+    ['blocks', pageSize, pageIndex, network.name],
+    getBlocks
+  );
+
   const columns = [
     {
       Header: 'Block',
@@ -47,13 +54,7 @@ export default function Blocks() {
     },
   ];
 
-  const { network, getBlocks } = useNetwork();
-  const { isLoading, data, error } = useQuery(
-    ['blocks', pageSize, pageIndex, network.name],
-    getBlocks
-  );
-
-  // reset all pagination props on network.name change
+  // * reset all pagination props on network.name change
   useEffect(() => {
     setPageSize(10);
     setPageIndex(0);
@@ -61,6 +62,7 @@ export default function Blocks() {
     setTotalRows(0);
   }, [network.name]);
 
+  // * calculate totalRows from blockHeight for pageCount
   useEffect(() => {
     if (data) {
       let height = data[0].height;
@@ -70,6 +72,7 @@ export default function Blocks() {
     }
   }, [data, pageSize]);
 
+  // * set pagecount based on total rows
   useEffect(() => {
     Logger.log('setting total pages');
     setPageCount(totalPages(totalRows, pageSize));
