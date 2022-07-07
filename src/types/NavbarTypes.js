@@ -7,10 +7,14 @@ const navList = [
 ];
 
 const navDropdowns = {
-  Blockchain: [{ title: 'Blocks', path: '/blocks' },{ title: 'Transactions', path: '/transactions' }],
+  Blockchain: [
+    { title: 'Blocks', path: '/blocks' },
+    { title: 'Transactions', path: '/transactions' },
+  ],
   Statistics: [
     { title: 'Trustlist', path: '/trustlist' },
     { title: 'Richlist', path: '/richlist' },
+    { title: 'Ambassador DAO', path: '/ambassador-dao' },
   ],
   Registers: [
     { title: 'Global', path: '/globalnames' },
