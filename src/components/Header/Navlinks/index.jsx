@@ -1,6 +1,6 @@
 import styles from './Navlinks.module.scss';
 import TYPES from 'types';
-import Dropdown from 'components/atoms/NE_Dropdown';
+import Dropdown from 'components/common/NE_Dropdown';
 import Link from 'next/link';
 import { Fragment } from 'react';
 

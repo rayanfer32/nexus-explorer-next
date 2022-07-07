@@ -1,10 +1,10 @@
 import styles from './Panel2.module.scss';
 
-import DetailCard from 'components/atoms/NE_Card';
+import DetailCard from 'components/common/NE_Card';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
-import Rail from 'components/atoms/Rail';
-import Shimmer from 'components/atoms/NE_Shimmer';
+import Rail from 'components/common/Rail';
+import Shimmer from 'components/common/NE_Shimmer';
 // import { useQuery } from 'react-query';
 import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
@@ -13,7 +13,7 @@ import { MdSpeed } from 'react-icons/md';
 import { StringsTypes } from 'types/StringsTypes';
 import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 
 function Panel2(props) {
   const { network } = useNetwork();

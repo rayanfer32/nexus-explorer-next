@@ -1,11 +1,11 @@
 import PageHeader from 'components/Header/PageHeader';
-import Richlist from 'components/Trustlist/Trustlist';
+import Trustlist from 'components/Views/Trustlist';
 
 export default function index() {
   return (
     <>
       <PageHeader page="Trustlist" />
-      <Richlist />
+      <Trustlist />
     </>
   );
 }

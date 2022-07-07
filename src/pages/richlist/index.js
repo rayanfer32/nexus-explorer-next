@@ -1,5 +1,5 @@
 import PageHeader from 'components/Header/PageHeader';
-import Richlist from 'components/Richlist/Richlist';
+import Richlist from 'components/Views/Richlist';
 import React from 'react';
 import TYPES from 'types';
 

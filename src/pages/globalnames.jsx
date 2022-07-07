@@ -1,9 +1,9 @@
-import CopyText from 'components/atoms/NE_CopyText/CopyText';
-import Loader from 'components/atoms/NE_Loader';
+import CopyText from 'components/common/NE_CopyText/CopyText';
+import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 
 export default function GlobalNames() {

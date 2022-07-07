@@ -2,11 +2,11 @@ import { toTitleCase } from 'utils/converter';
 import PageHeader from 'components/Header/PageHeader';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import { totalPages } from 'utils/helper';
-import DynamicPagination from 'components/atoms/NE_Pagination';
-import CopyText from 'components/atoms/NE_CopyText/CopyText';
+import DynamicPagination from 'components/common/NE_Pagination';
+import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 export default function Transactions() {

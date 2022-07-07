@@ -1,4 +1,4 @@
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import TYPES from 'types';
 
 // eslint-disable-next-line import/no-anonymous-default-export

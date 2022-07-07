@@ -1,5 +1,5 @@
 /* eslint-disable no-empty-function */
-import Card from 'components/atoms/NE_Card';
+import Card from 'components/common/NE_Card';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

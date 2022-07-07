@@ -1,4 +1,4 @@
-import Button from 'components/atoms/NE_Button';
+import Button from 'components/common/NE_Button';
 import TYPES from 'types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
