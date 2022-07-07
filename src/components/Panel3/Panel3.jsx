@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import styles from './Panel3.module.scss';
 import { useEffect, useState } from 'react';
 import { intlNum, toTitleCase } from 'utils/converter';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import RTTable, {
   RTTRowBlock,
   RTTRowTransactions,
-} from 'components/atoms/NE_RTTable';
+} from 'components/common/NE_RTTable';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
@@ -72,7 +72,7 @@ function Panel3({ blocks }) {
               confirmations={newRowData[txidx]?.confirmations}
               contracts={newRowData[txidx]?.contracts?.length}
             />
-          ); 
+          );
         }
       }
 

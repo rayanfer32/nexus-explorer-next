@@ -1,4 +1,4 @@
-import DropdownMenu from 'components/atoms/NE_Dropdown';
+import DropdownMenu from 'components/common/NE_Dropdown';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

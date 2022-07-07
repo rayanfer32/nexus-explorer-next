@@ -1,15 +1,15 @@
 import axios from 'axios';
-import { InfoCard } from 'components/atoms/InfoCard';
-import Button from 'components/atoms/NE_Button';
-import Loader from 'components/atoms/NE_Loader';
-import ErrorMessage from 'components/atoms/ErrorMessage';
+import { InfoCard } from 'components/common/InfoCard';
+import Button from 'components/common/NE_Button';
+import Loader from 'components/common/NE_Loader';
+import ErrorMessage from 'components/common/ErrorMessage';
 import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 

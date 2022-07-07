@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import TYPES from 'types';
 import { useState, useEffect } from 'react';
 import { totalPages } from 'utils/helper';
-import DynamicPagination from 'components/atoms/NE_Pagination';
+import DynamicPagination from 'components/common/NE_Pagination';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
 import Logger from 'utils/customLog';

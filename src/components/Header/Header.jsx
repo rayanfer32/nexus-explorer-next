@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 import { useRouter } from 'next/router';
-import Search from 'components/atoms/NE_SearchBar';
+import Search from 'components/common/NE_SearchBar';
 import TYPES from 'types';
 import { useEffect, useRef, useState } from 'react';
 import { NETWORKS } from 'types/ConstantsTypes';

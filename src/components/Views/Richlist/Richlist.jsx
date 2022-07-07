@@ -1,17 +1,17 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import styles from './richlist.module.scss';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/Chart/ApexPie';
 import TYPES from 'types';
-import CopyText from 'components/atoms/NE_CopyText';
+import CopyText from 'components/common/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
-import Pagination from 'components/atoms/NE_Pagination';
+import Pagination from 'components/common/NE_Pagination';
 import { Log } from 'utils/customLog';
 import { NETWORKS } from 'types/ConstantsTypes';
-import ErrorMessage from 'components/atoms/ErrorMessage';
+import ErrorMessage from 'components/common/ErrorMessage';
 
 export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);

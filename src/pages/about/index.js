@@ -6,6 +6,7 @@ import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
 import { LinksTypes } from 'types/LinksTypes';
 import PageHeader from 'components/Header/PageHeader';
+import { Log } from 'utils';
 
 export const getStaticProps = async () => {
   const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);
@@ -63,18 +64,23 @@ const About = ({ data }) => {
             <p className={styles.contributer}>Made with ❤️ in India, by</p>
             <p className={styles.contributer}>
               {Array.isArray(data) &&
-                data?.map((item) => (
-                  <span key={item.author.login} className={styles.links}>
-                    <a
-                      href={item.author.html_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.link}>
-                      <ThemedVscLogo />
-                      {item.author.login}
-                    </a>
-                  </span>
-                ))}
+                data?.map((item) => {
+                  if (item.author.type === 'Bot') {
+                    return;
+                  }
+                  return (
+                    <span key={item.author.login} className={styles.links}>
+                      <a
+                        href={item.author.html_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}>
+                        <ThemedVscLogo />
+                        {item.author.login}
+                      </a>
+                    </span>
+                  );
+                })}
             </p>
           </div>
         </article>

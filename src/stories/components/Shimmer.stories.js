@@ -1,4 +1,4 @@
-import Shimmer from 'components/atoms/NE_Shimmer';
+import Shimmer from 'components/common/NE_Shimmer';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

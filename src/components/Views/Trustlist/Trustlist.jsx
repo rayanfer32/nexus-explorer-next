@@ -1,16 +1,16 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import styles from './trustlist.module.scss';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import { intlNum } from 'utils/converter';
-import CopyText from 'components/atoms/NE_CopyText/CopyText';
+import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
-import DynamicPagination from 'components/atoms/NE_Pagination';
+import DynamicPagination from 'components/common/NE_Pagination';
 // import DynamicPagination from 'components/Table/DynamicPagination';
 import { useState } from 'react';
-import ErrorMessage from 'components/atoms/ErrorMessage';
+import ErrorMessage from 'components/common/ErrorMessage';
 
 export default function Trustlist() {
   const [pageIndex, setPageIndex] = useState(0);
