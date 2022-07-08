@@ -114,12 +114,12 @@ export function useNetwork() {
   // todo: add suppprt for adresses also
   const getAccount = async (username) => {
     const res = await axios.get(`${url}/finance/get/account?name=${username}`);
-    return res.data;
+    return res.data.result;
   };
 
   const getTrust = async (username) => {
     const res = await axios.get(`${url}/finance/get/trust?name=${username}`);
-    return res.data;
+    return res.data.result;
   };
 
   const getTrustTransactions = async (address, page, limit) => {

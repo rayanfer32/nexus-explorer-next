@@ -5,6 +5,7 @@ export const DAO_KEYS = [
   'US:Relationships',
   'US:Media',
   'US:Communications',
+  'US:Miners',
   'US:Interface',
   'US:Logical',
   'US:TAO',
@@ -17,6 +18,12 @@ export const DAO_INFO = {
     desc: 'Support, Social Media, and Promotions',
     audit: 'US:Interactions',
   },
+  impressions: {
+    chair: 'Mike Trick',
+    social: '@MikeTrick',
+    desc: 'Website, Landing Pages, and Ads',
+    audit: 'US:Impressions',
+  },
   relationships: {
     chair: 'Guidi',
     social: '@guidisix',
@@ -28,12 +35,6 @@ export const DAO_INFO = {
     social: '@themadblacksmith',
     desc: 'Graphics, Videos, and Animations',
     audit: 'US:Media',
-  },
-  impressions: {
-    chair: 'Mike Trick',
-    social: '@MikeTrick',
-    desc: 'Website, Landing Pages, and Ads',
-    audit: 'US:Impressions',
   },
   communications: {
     chair: 'Independence Henry',
