@@ -1,24 +1,24 @@
+import Button from 'components/common/NE_Button';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { DAO_DEVELOPERS } from 'types/DaoAccounts';
 import { cls } from 'utils';
-import styles from '../dao.module.scss';
+import styles from './dao.module.scss';
 
-export const DeveloperDao = (props) => {
-  const {} = props;
+export const DaoInfo = (props) => {
+  const { title, daoObject } = props;
   const { getAccount } = useNetwork();
   const multiQuery = useQuery;
 
   // * make balance fetch for each dao account using useQuery hook and store it in an array
-  const daoInfoArr = Object.entries(DAO_DEVELOPERS);
+  const daoInfoArr = Object.entries(daoObject);
   const accountQuerys = daoInfoArr.map(([k, v]) =>
-    multiQuery([v.audit], () => getAccount(v.audit))
+    multiQuery([v.audit, 'account'], () => getAccount(v.audit))
   );
 
   return (
     <section className={cls(styles.container)}>
-      <h1>Developer DAO</h1>
+      <h1>{title}</h1>
       {daoInfoArr.map(([daoKey, daoInfo], index) => (
         <div key={daoKey} className={cls(styles.block)}>
           <div>
@@ -26,6 +26,7 @@ export const DeveloperDao = (props) => {
             {accountQuerys[index]?.data?.ticker}
             <pre>DAO Info: {JSON.stringify(daoInfo, null, 2)}</pre>
           </div>
+          <Button type="primary">Check Invoices</Button>
         </div>
       ))}
     </section>

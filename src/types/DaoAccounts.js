@@ -42,30 +42,6 @@ export const DAO_AMBASSADORS = {
     desc: 'Content, Translations',
     audit: 'US:Communications',
   },
-  miners: {
-    chair: '',
-    social: '@LHefe',
-    desc: 'Mining Pools, Miners, Ledger Level Adjustments',
-    audit: 'US:Miners',
-  },
-  interface: {
-    chair: '',
-    social: '@kwyiz',
-    desc: 'Mobile Wallet, Desktop Wallet, and Modules',
-    audit: 'US:Interface',
-  },
-  logical: {
-    chair: 'Kendal Cormany',
-    social: '@KendalCormany_nexusio',
-    desc: 'Mobile Wallet Backend, Desktop Wallet Backend, Developer Operations (Builds), Modules',
-    audit: 'US:Logical',
-  },
-  tao: {
-    chair: 'Colin Cantrell',
-    social: '@Videlicet',
-    desc: 'TAO Framework, LX-OS, and LLL',
-    audit: 'US:TAO',
-  },
 };
 
 export const DAO_DEVELOPERS = {
