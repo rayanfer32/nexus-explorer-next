@@ -11,6 +11,10 @@ body {
   background: var(--theme-bg-under) no-repeat;
 }
 
+pre {
+  color: var(--theme-page-text);
+}
+
 .themeText {
   color: var(--theme-page-text);
 }

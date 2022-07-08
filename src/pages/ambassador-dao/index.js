@@ -1,7 +1,8 @@
 import React from 'react';
+import Page from './Page';
 
 function AmbassadorDao() {
-  return <h1>Ambassador Dao</h1>;
+  return <Page />;
 }
 
 export default AmbassadorDao;
