@@ -2,15 +2,15 @@ import Button from 'components/common/NE_Button';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { cls } from 'utils';
+import { cls, intlNum, toTitleCase } from 'utils';
 import styles from './dao.module.scss';
 
 export const DaoInfo = (props) => {
   const { title, daoObject } = props;
   const { getAccount } = useNetwork();
-  const multiQuery = useQuery;
 
   // * make balance fetch for each dao account using useQuery hook and store it in an array
+  const multiQuery = useQuery;
   const daoInfoArr = Object.entries(daoObject);
   const accountQuerys = daoInfoArr.map(([k, v]) =>
     multiQuery([v.audit, 'account'], () => getAccount(v.audit))
@@ -22,9 +22,21 @@ export const DaoInfo = (props) => {
       {daoInfoArr.map(([daoKey, daoInfo], index) => (
         <div key={daoKey} className={cls(styles.block)}>
           <div>
-            Balance: {accountQuerys[index]?.data?.balance.toFixed(2)}{' '}
-            {accountQuerys[index]?.data?.ticker}
-            <pre>DAO Info: {JSON.stringify(daoInfo, null, 2)}</pre>
+            <p>
+              <h3>{daoInfo.audit} </h3>
+              <h4>{daoInfo.desc} </h4>
+              <div>Chair : {daoInfo.chair} </div>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={daoInfo.social.replace('@', 'https://t.me/')}>
+                Social : {daoInfo.social}{' '}
+              </a>
+              <div>
+                Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
+                {accountQuerys[index]?.data?.ticker}
+              </div>
+            </p>
           </div>
           <Button type="primary">Check Invoices</Button>
         </div>

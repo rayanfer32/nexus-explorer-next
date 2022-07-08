@@ -15,7 +15,7 @@ export const DAO_AMBASSADORS = {
   interactions: {
     chair: 'Arun Pais',
     social: '@aeonwise',
-    desc: 'Support, Social Media, and Promotions',
+    desc: 'Wallet Support, Developer support, Social Media, and Promotions',
     audit: 'US:Interactions',
   },
   impressions: {
@@ -27,7 +27,7 @@ export const DAO_AMBASSADORS = {
   relationships: {
     chair: 'Guidi',
     social: '@guidisix',
-    desc: 'Relationships: Outreach, Use-Cases, and Exchanges',
+    desc: 'Outreach, Use-Cases, and Exchanges',
     audit: 'US:Relationships',
   },
   media: {
