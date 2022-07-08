@@ -14,7 +14,8 @@ const navDropdowns = {
   Statistics: [
     { title: 'Trustlist', path: '/trustlist' },
     { title: 'Richlist', path: '/richlist' },
-    { title: 'Ambassador DAO', path: '/ambassador-dao' },
+    { title: 'Ambassador DAO', path: '/dao/ambassador' },
+    { title: 'Developer DAO', path: '/dao/developer' },
   ],
   Registers: [
     { title: 'Global', path: '/globalnames' },

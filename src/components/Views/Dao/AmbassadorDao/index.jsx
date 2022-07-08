@@ -3,9 +3,9 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { DAO_INFO } from 'types/DaoAccounts';
 import { cls } from 'utils';
-import styles from './ambassadorDao.module.scss';
+import styles from '../dao.module.scss';
 
-const AmbassadorDao = (props) => {
+export const AmbassadorDao = (props) => {
   const {} = props;
   const { getAccount } = useNetwork();
   const multiQuery = useQuery;
@@ -31,5 +31,3 @@ const AmbassadorDao = (props) => {
     </section>
   );
 };
-
-export default AmbassadorDao;
