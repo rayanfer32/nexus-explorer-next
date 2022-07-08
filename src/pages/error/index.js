@@ -1,5 +1,5 @@
 import ASSEST from 'assets';
-import Button from 'components/atoms/NE_Button';
+import Button from 'components/common/NE_Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';

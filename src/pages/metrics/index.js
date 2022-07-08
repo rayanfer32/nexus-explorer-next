@@ -1,5 +1,5 @@
 import PageHeader from 'components/Header/PageHeader';
-import Metrics from 'components/Metrics/Metrics';
+import Metrics from 'components/Views/Metrics';
 
 export default function index() {
   return (

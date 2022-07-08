@@ -1,5 +1,5 @@
 import styles from './AccountInfo.module.scss';
-import { NE_SmallCard as SmallCard } from 'components/atoms/NE_Card';
+import { NE_SmallCard as SmallCard } from 'components/common/NE_Card';
 import { BsBank, BsFillClockFill } from 'react-icons/bs';
 import { FaHandshake, FaUserClock } from 'react-icons/fa';
 import { HiChartBar } from 'react-icons/hi';
