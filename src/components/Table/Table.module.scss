@@ -14,12 +14,10 @@
   font-size: var(--font-normal);
   font-variant-numeric: tabular-nums;
   overflow: auto;
-  /* font-family: Fira Code; */
 }
 
 .thead {
   text-align: left;
-  /* font-family: Google Sans; */
 }
 
 .thead > tr > th {
@@ -42,4 +40,23 @@
 
 .td {
   padding: 10px;
+}
+
+.thead tr {
+  border: none;
+  & th:first-child {
+    border-top-left-radius: var(--space-xxxs);
+  }
+  & th:last-child {
+    border-top-right-radius: var(--space-xxxs);
+  }
+}
+
+.tbody tr:last-child {
+  & td:first-child {
+    border-bottom-left-radius: var(--space-xxxs);
+  }
+  & td:last-child {
+    border-bottom-right-radius: var(--space-xxxs);
+  }
 }

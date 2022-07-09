@@ -1,8 +1,8 @@
 import { FiInfo } from 'react-icons/fi';
-import { intlNum, timestampToDate } from 'utils';
+import { intlNum, timestampToDate, Log } from 'utils';
 
 function handleMoreInfo(rowInfo) {
-  console.log(rowInfo);
+  Log(rowInfo);
   alert(JSON.stringify(rowInfo, null, 2));
 }
 
