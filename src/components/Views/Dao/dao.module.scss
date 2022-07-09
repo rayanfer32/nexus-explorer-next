@@ -4,6 +4,10 @@
   color: var(--theme-page-text);
   gap: 1rem;
 
+  h1 {
+    margin-bottom: 0;
+  }
+
   .block {
     background-color: var(--theme-page-background);
     border-radius: var(--space-xxxs);

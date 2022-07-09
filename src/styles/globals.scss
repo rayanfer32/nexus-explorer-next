@@ -123,6 +123,14 @@ a {
   animation: slideLeft 3s;
 }
 
+.dot-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  height: 50vh;
+}
+
 @keyframes blueTinge {
   0% {
     box-shadow: 2px 2px 10px;
