@@ -1,20 +1,20 @@
 import NE_CopyText from 'components/common/NE_CopyText';
-import { intlNum } from 'utils';
+import { intlNum, timestampToDate } from 'utils';
 
 export const columns = [
   {
     Header: 'Time',
     accessor: 'modified',
-    Cell: (props) => new Date(props.value * 1000).toLocaleTimeString(),
+    Cell: (props) => timestampToDate(props.value),
   },
   {
     Header: 'Status',
-    accessor: 'status',
+    accessor: 'json.status',
     Cell: (props) => <div>{props.value}</div>,
   },
   {
     Header: 'Amount',
-    accessor: 'amount',
+    accessor: 'json.amount',
     Cell: (props) => (
       <div>
         {intlNum(props.value)}{' '}
@@ -24,25 +24,25 @@ export const columns = [
   },
   {
     Header: 'Reference',
-    accessor: 'reference',
+    accessor: 'json.reference',
     Cell: (props) => <div>{props.value}</div>,
   },
   {
     Header: 'Sender Detail',
-    accessor: 'sender_detail',
+    accessor: 'json.sender_detail',
   },
-  {
-    Header: 'Account Payable',
-    accessor: 'account',
-    Cell: (props) => (
-      <NE_CopyText value={props.value} link={`/scan/${props.value}`} />
-    ),
-  },
-  {
-    Header: 'Recipient',
-    accessor: 'recipient',
-    Cell: (props) => (
-      <NE_CopyText value={props.value} link={`/scan/${props.value}`} />
-    ),
-  },
+  // {
+  //   Header: 'Account Payable',
+  //   accessor: 'json.account',
+  //   Cell: (props) => (
+  //     <NE_CopyText value={props.value} link={`/scan/${props.value}`} />
+  //   ),
+  // },
+  // {
+  //   Header: 'Recipient',
+  //   accessor: 'json.recipient',
+  //   Cell: (props) => (
+  //     <NE_CopyText value={props.value} link={`/scan/${props.value}`} />
+  //   ),
+  // },
 ];

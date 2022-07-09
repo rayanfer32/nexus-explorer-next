@@ -10,6 +10,10 @@ export function middleElipsis(text, sliceAt) {
   return text;
 }
 
+export function timestampToDate(timestamp) {
+  return new Date(timestamp * 1000).toLocaleString();
+}
+
 export function timeConverter(UNIX_timestamp) {
   let a = new Date(UNIX_timestamp * 1000);
   // var months = [

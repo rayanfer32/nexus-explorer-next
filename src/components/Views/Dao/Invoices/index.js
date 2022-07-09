@@ -10,25 +10,6 @@ function InvoicesView({ username }) {
     getInvoices(username)
   );
 
-  const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    if (data) {
-      setTableData(
-        data.map((invoice) => ({
-          modified: invoice.modified,
-          amount: invoice.json.amount,
-          ticker: invoice.json.token,
-          status: invoice.json.status,
-          account: invoice.json.account,
-          recipient: invoice.json.recipient,
-          description: invoice.json.description,
-          sender_detail: invoice.json.sender_detail,
-        }))
-      );
-    }
-  }, [data]);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -37,8 +18,7 @@ function InvoicesView({ username }) {
     return <div>Error: {error.message}</div>;
   }
 
-  // return <pre>{JSON.stringify(tableData, null, 2)}</pre>;
-  return <Table columns={columns} data={tableData} paginate={true} />;
+  return <Table columns={columns} data={data} paginate={true} />;
 }
 
 export default InvoicesView;

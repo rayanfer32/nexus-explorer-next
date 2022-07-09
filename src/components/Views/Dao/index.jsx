@@ -1,5 +1,6 @@
 import Button from 'components/common/NE_Button';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import Link from 'next/link';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { cls, intlNum, toTitleCase } from 'utils';
@@ -38,7 +39,9 @@ export const DaoInfo = (props) => {
               </div>
             </p>
           </div>
-          <Button type="primary">Check Invoices</Button>
+          <Link href={`/dao/invoices/${daoInfo.audit}`}>
+            <Button type="primary"> Check Invoices</Button>
+          </Link>
         </div>
       ))}
     </section>
