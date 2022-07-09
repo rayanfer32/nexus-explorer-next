@@ -8,6 +8,7 @@ import TYPES from 'types';
 import { useEffect, useState } from 'react';
 import DynamicPagination from 'components/common/NE_Pagination';
 import ErrorMessage from 'components/common/ErrorMessage';
+import { intlNum } from 'utils';
 
 export const TransactionDetails = ({ type, data }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -101,7 +102,7 @@ export const TransactionDetails = ({ type, data }) => {
           txid: txn.txid,
           timestamp: txn.timestamp,
           operation: txn.contracts[0].OP,
-          amount: `${txn.contracts[0].amount || 0} ${
+          amount: `${intlNum(txn.contracts[0].amount || 0)} ${
             txn.contracts[0].ticker || ''
           }`,
         };

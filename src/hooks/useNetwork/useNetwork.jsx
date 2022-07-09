@@ -150,7 +150,7 @@ export function useNetwork() {
         username: username,
       },
     });
-    return res.data;
+    return res.data.result;
   };
 
   return {
