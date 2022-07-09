@@ -3,12 +3,25 @@ import Image from 'next/image';
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
 import TYPES from 'types';
-import { cls } from 'utils';
+import { cls, timestampToDate } from 'utils';
 import { InvoiceStatus } from '../InvoiceStatus/invoiceStatus';
 import styles from './invoiceModal.module.scss';
 
 export function InvoiceModal(props) {
   const { onClose, data } = props;
+  const { address, created, modified, owner, json } = data;
+  const {
+    account = 0,
+    amount = 0,
+    sender_detail = '',
+    reference = '',
+    description = '',
+    status = '',
+    recipient = '',
+    recipient_detail = '',
+    items = [],
+  } = json;
+
   return (
     <section className={styles.backdrop} onClick={onClose}>
       <article className={styles.modal}>
@@ -28,16 +41,16 @@ export function InvoiceModal(props) {
               <div>
                 <h1> Invoice Details</h1>
                 <label className={styles.createdDate}>
-                  Created on 12/12/1212
+                  Created on {timestampToDate(created)}
                 </label>
               </div>
             </div>
             <div className={styles.dueStatus}>
               <label>
-                <i>Modified on:</i> 12/12/2121
+                <i>Modified on:</i> {timestampToDate(modified)}
               </label>
               <label className={styles.status}>
-                <i>Status:</i> <InvoiceStatus status={'paid'} />
+                <i>Status:</i> <InvoiceStatus status={status} />
               </label>
             </div>
           </header>
@@ -46,30 +59,42 @@ export function InvoiceModal(props) {
               <div>
                 <i>From:</i>
                 <div>
-                  <p>{}</p>
-                  <label>name</label>
+                  <p>{owner}</p>
+                  <label>{sender_detail}</label>
                 </div>
               </div>
               <div>
                 <i>Recipient:</i>
                 <div>
-                  <p>address</p>
-                  <label>name</label>
+                  <p>{recipient}</p>
+                  <label>{recipient_detail}</label>
                 </div>
               </div>
               <div>
                 <i>Account:</i>
-                <p>address</p>
+                <p>{account}</p>
               </div>
+              {address && (
+                <div>
+                  <i>Address: </i>
+                  <p>{address}</p>
+                </div>
+              )}
             </div>
             <div className={styles.details__summary}>
               <h3>Summary</h3>
-              <p>
-                <i>Reference:</i>
-              </p>
-              <p>
-                <i>Description:</i>
-              </p>
+              {reference && (
+                <p>
+                  <i>Reference: </i>
+                  {reference}
+                </p>
+              )}
+              {description && (
+                <p>
+                  <i>Description: </i>
+                  {description}
+                </p>
+              )}
             </div>
             <div className={styles.details__items}>
               <div className={cls(styles.item, styles.header)}>
@@ -77,14 +102,16 @@ export function InvoiceModal(props) {
                 <i>Unit</i>
                 <i>Unit Amount(NXS)</i>
               </div>
-              <div className={styles.item}>
-                <label>Lorem ipsum dolor sit amet.</label>
-                <label>1000</label>
-                <label>121212</label>
-              </div>
+              {items.map((item, idx) => (
+                <div key={idx} className={styles.item}>
+                  <label>{item?.description}</label>
+                  <label>{item.unit}</label>
+                  <label>{item?.unit_amount}</label>
+                </div>
+              ))}
               <div className={cls(styles.item, styles.total)}>
                 <h3>Total Amount(NXS):</h3>
-                <h2>43434</h2>
+                <h2>{amount}</h2>
               </div>
             </div>
           </main>

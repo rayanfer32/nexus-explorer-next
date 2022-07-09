@@ -1,22 +1,7 @@
-import { FiInfo } from 'react-icons/fi';
-import { intlNum, timestampToDate, Log } from 'utils';
+import { intlNum, timestampToDate } from 'utils';
 import { InvoiceStatus } from '../InvoiceStatus/invoiceStatus';
 
-function handleMoreInfo(rowInfo) {
-  Log(rowInfo);
-  alert(JSON.stringify(rowInfo, null, 2));
-}
-
 export const columns = [
-  {
-    Header: '',
-    accessor: 'address',
-    Cell: (props) => (
-      <div onClick={() => handleMoreInfo(props.row.original)}>
-        <FiInfo />
-      </div>
-    ),
-  },
   {
     Header: 'Time',
     accessor: 'modified',
