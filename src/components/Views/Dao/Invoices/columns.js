@@ -1,7 +1,21 @@
-import NE_CopyText from 'components/common/NE_CopyText';
+import { FiInfo } from 'react-icons/fi';
 import { intlNum, timestampToDate } from 'utils';
 
+function handleMoreInfo(rowInfo) {
+  console.log(rowInfo);
+  alert(JSON.stringify(rowInfo, null, 2));
+}
+
 export const columns = [
+  {
+    Header: '',
+    accessor: 'address',
+    Cell: (props) => (
+      <div onClick={() => handleMoreInfo(props.row.original)}>
+        <FiInfo />
+      </div>
+    ),
+  },
   {
     Header: 'Time',
     accessor: 'modified',
@@ -31,6 +45,7 @@ export const columns = [
     Header: 'Sender Detail',
     accessor: 'json.sender_detail',
   },
+
   // {
   //   Header: 'Account Payable',
   //   accessor: 'json.account',
