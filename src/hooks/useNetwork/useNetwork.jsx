@@ -144,10 +144,12 @@ export function useNetwork() {
     return res.data;
   };
 
-  const getInvoices = async (username) => {
+  const getInvoices = async (username, page, limit) => {
     const res = await axios.get(`${url}/invoices/list/invoices`, {
       params: {
         username: username,
+        page: page,
+        limit: limit,
       },
     });
     return res.data.result;

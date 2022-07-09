@@ -41,6 +41,10 @@ export default function Table({ columns, data = [], paginate = true }) {
     handleEndOfPageClick: () => gotoPage(pageCount - 1),
   };
 
+  // if (data?.length === 0) {
+  //   return <div className={styles.tableContainer}>No Records</div>;
+  // }
+
   return (
     // apply the table props
     <>
@@ -84,6 +88,7 @@ export default function Table({ columns, data = [], paginate = true }) {
             }
           </thead>
           {/* Apply the table body props */}
+
           <tbody className={styles.tbody} {...getTableBodyProps()}>
             {
               // Loop over the table rows
@@ -115,6 +120,9 @@ export default function Table({ columns, data = [], paginate = true }) {
             }
           </tbody>
         </table>
+        {data.length === 0 && (
+          <div className={styles.noRecords}>No Records</div>
+        )}
       </div>
       {pageCount > 1 && paginate && (
         <div style={{ marginBottom: '1rem' }}>

@@ -60,3 +60,11 @@
     border-bottom-right-radius: var(--space-xxxs);
   }
 }
+
+.noRecords {
+  color: var(--theme-page-text);
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+}
