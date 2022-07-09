@@ -1,6 +1,6 @@
 import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { columns } from './columns';
 import { BsBoxArrowLeft } from 'react-icons/bs';
@@ -9,14 +9,15 @@ import styles from './invoices.module.scss';
 import { useRouter } from 'next/router';
 import Loader from 'components/common/NE_Loader';
 import TYPES from 'types';
+import { InvoiceModal } from '../InvoiceModal';
 
 function InvoicesView({ username }) {
+  const [isOpen, setIsOpen] = useState(false);
   const { getInvoices } = useNetwork();
   const { isLoading, data, error } = useQuery(['invoices', username], () =>
     getInvoices(username)
   );
   const router = useRouter();
-
   if (isLoading) {
     return (
       <div className={'dot-loader'}>
@@ -37,6 +38,7 @@ function InvoicesView({ username }) {
         </p>
       </div>
       <Table columns={columns} data={data} paginate={true} />
+      <InvoiceModal data={data}></InvoiceModal>
     </>
   );
 }
