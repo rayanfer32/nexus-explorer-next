@@ -1,4 +1,3 @@
-import NE_CopyText from 'components/common/NE_CopyText';
 import { intlNum, timestampToDate } from 'utils';
 
 export const columns = [

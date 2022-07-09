@@ -3,7 +3,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import Link from 'next/link';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { cls, intlNum, toTitleCase } from 'utils';
+import { cls, intlNum } from 'utils';
 import styles from './dao.module.scss';
 
 export const DaoInfo = (props) => {
@@ -13,7 +13,7 @@ export const DaoInfo = (props) => {
   // * make balance fetch for each dao account using useQuery hook and store it in an array
   const multiQuery = useQuery;
   const daoInfoArr = Object.entries(daoObject);
-  const accountQuerys = daoInfoArr.map(([k, v]) =>
+  const accountQuerys = daoInfoArr.map(([, v]) =>
     multiQuery([v.audit, 'account'], () => getAccount(v.audit))
   );
 
@@ -39,7 +39,7 @@ export const DaoInfo = (props) => {
               </div>
             </p>
           </div>
-          <Link href={`/dao/invoices/${daoInfo.audit}`}>
+          <Link href={`/dao/invoices/${daoInfo.audit}`} passHref>
             <Button type="primary"> Check Invoices</Button>
           </Link>
         </div>
