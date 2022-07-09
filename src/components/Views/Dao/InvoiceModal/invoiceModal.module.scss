@@ -1,0 +1,131 @@
+.backdrop {
+  position: fixed;
+  z-index: 101;
+  background-color: rgba(black, 0.95);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  position: relative;
+  z-index: 102;
+  background-color: var(--theme-page-background);
+  width: 100%;
+  height: 100%;
+  max-width: min(100% - var(--space-xl), 60rem);
+  max-height: min(100% - var(--space-xl), 60rem);
+  color: var(--theme-page-text);
+  border-radius: var(--space-xxxs);
+  padding: var(--space-s) var(--space-xl);
+
+  .close {
+    position: absolute;
+    right: calc(var(--space-xxs) * -1);
+    top: calc(var(--space-xxs) * -1);
+    background-color: var(--white);
+    width: var(--space-l, 1rem);
+    height: var(--space-l, 1rem);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+
+.content {
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .stamp {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    h1 {
+      margin: var(--space-s) 0 0 0;
+      font-size: var(--font-xxxl);
+    }
+    .createdDate {
+      font-size: var(--font-s);
+      color: var(--sky-blue);
+    }
+  }
+  .dueStatus {
+    margin-top: var(--space-s);
+    font-size: var(--font-normal);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxxs);
+    .status {
+      display: flex;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+  }
+}
+
+.details {
+  i {
+    color: var(--sky-blue);
+    opacity: 0.8;
+  }
+  &__transaction {
+    i {
+      min-width: 4.6rem;
+    }
+    & > div {
+      display: flex;
+      gap: var(--space-xs);
+      align-items: center;
+      div {
+        p {
+          margin-bottom: 0;
+        }
+        label {
+          font-size: var(--font-normal);
+        }
+      }
+    }
+  }
+  &__summary {
+    h3 {
+      color: var(--sky-blue);
+    }
+  }
+  &__items {
+    i,
+    label {
+      opacity: 1;
+      padding-inline: var(--space-s);
+      text-align: center;
+      &:first-child {
+        text-align: justify;
+      }
+      &:last-child {
+        text-align: right;
+      }
+    }
+
+    display: flex;
+    flex-direction: column;
+    padding-inline: var(--space-s);
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 4fr 0.5fr 2fr;
+    line-height: 1.5;
+  }
+  .header {
+    border-bottom: 1px solid var(--sky-blue);
+  }
+  .total {
+    grid-template-columns: 2fr 1fr;
+    text-align: right;
+  }
+}

@@ -10,11 +10,16 @@ import { useRouter } from 'next/router';
 import Loader from 'components/common/NE_Loader';
 import TYPES from 'types';
 import NE_Pagination from 'components/common/NE_Pagination';
+import { InvoiceModal } from '../InvoiceModal';
 
 function InvoicesView({ username }) {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [pageCount] = useState(Infinity);
+
+  // * modal
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   const { getInvoices } = useNetwork();
   const { isLoading, data, error } = useQuery(
@@ -22,7 +27,6 @@ function InvoicesView({ username }) {
     () => getInvoices(username, pageIndex, pageSize)
   );
   const router = useRouter();
-
   if (isLoading) {
     return (
       <div className={'dot-loader'}>
@@ -60,6 +64,7 @@ function InvoicesView({ username }) {
       </div>
       <Table columns={columns} data={data} paginate={false} />
       <NE_Pagination controls={dynamicPageControls} />
+      {isOpen && <InvoiceModal data={modalData}></InvoiceModal>}
     </>
   );
 }
