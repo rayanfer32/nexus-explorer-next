@@ -11,7 +11,8 @@ export const DAO_KEYS = [
   'US:TAO',
 ];
 
-export const DAO_AMBASSADORS = {
+// * done: first try to load this info from the env
+let DAO_AMBASSADORS = {
   interactions: {
     chair: 'Arun Pais',
     social: '@aeonwise',
@@ -31,7 +32,7 @@ export const DAO_AMBASSADORS = {
     audit: 'US:Relationships',
   },
   media: {
-    chair: 'Themad',
+    chair: 'LeventeKovacs',
     social: '@themadblacksmith',
     desc: 'Graphics, Videos, and Animations',
     audit: 'US:Media',
@@ -44,7 +45,7 @@ export const DAO_AMBASSADORS = {
   },
 };
 
-export const DAO_DEVELOPERS = {
+let DAO_DEVELOPERS = {
   miners: {
     chair: '',
     social: '@LHefe',
@@ -52,7 +53,7 @@ export const DAO_DEVELOPERS = {
     audit: 'US:Miners',
   },
   interface: {
-    chair: '',
+    chair: 'Krysto',
     social: '@kwyiz',
     desc: 'Mobile Wallet, Desktop Wallet, and Modules',
     audit: 'US:Interface',
@@ -70,3 +71,19 @@ export const DAO_DEVELOPERS = {
     audit: 'US:TAO',
   },
 };
+
+try {
+  DAO_DEVELOPERS = JSON.parse(process.env.NEXT_PUBLIC_DAO_DEVELOPERS);
+  console.log(err, 'Using DAO DEVELOPERS from .env.local');
+} catch (err) {
+  console.log(err, 'Using DAO DEVELOPERS from Types/DaoAccounts.js');
+}
+
+try {
+  DAO_AMBASSADORS = JSON.parse(process.env.NEXT_PUBLIC_DAO_AMBASSADORS);
+  console.log(err, 'Using DAO AMBASSADORS from .env.local');
+} catch (err) {
+  console.log(err, 'Using DAO AMBASSADORS from Types/DaoAccounts.js');
+}
+
+export { DAO_DEVELOPERS, DAO_AMBASSADORS };
