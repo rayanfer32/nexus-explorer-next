@@ -1,5 +1,6 @@
 import { FiInfo } from 'react-icons/fi';
 import { intlNum, timestampToDate, Log } from 'utils';
+import { InvoiceStatus } from '../InvoiceStatus/invoiceStatus';
 
 function handleMoreInfo(rowInfo) {
   Log(rowInfo);
@@ -24,7 +25,7 @@ export const columns = [
   {
     Header: 'Status',
     accessor: 'json.status',
-    Cell: (props) => <div>{props.value}</div>,
+    Cell: (props) => <InvoiceStatus status={props.value} />,
   },
   {
     Header: 'Amount',
