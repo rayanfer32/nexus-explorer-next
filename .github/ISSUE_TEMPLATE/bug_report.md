@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: '🐛bug'
+labels: 'bug'
 assignees: ''
 ---
 
@@ -13,9 +13,9 @@ assignees: ''
 **To Reproduce**
 Steps to reproduce the behavior:
 
-1. Go to ...
-2. Click on ....
-3. Scroll down to ....
+1. Go to
+2. Click on
+3. Scroll down to
 4. See error
 
 **Expected behavior**
@@ -24,20 +24,19 @@ Steps to reproduce the behavior:
 
 **Device Details (please complete the following information):**
 
-| Desktop | Smartphone |
-| :-----: | :--------: |
-|  - [ ]  |   - [ ]    |
+- [ ] Desktop
+- [ ] Mobile
 
-- Device name: <!-- [e.g. iPhone6] -->
-- OS: <!-- [e.g. iOS] -->
-- Browser <!-- [e.g. chrome, safari] -->
-- Version <!-- [e.g. 22] -->
+- Device name:
+- OS:
+- Browser: chrome
+- Version: -
 
 **Screenshots**
 
 <!-- If applicable, add screenshots to help explain your problem. -->
 
--
+- none
 
 **Additional context**
 
