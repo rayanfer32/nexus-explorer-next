@@ -99,13 +99,7 @@ function Scan({ addr }) {
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
+      <div className={'center-loader'}>
         <Loader type="circle" size="5rem" />
       </div>
     );
