@@ -65,10 +65,7 @@ export function InvoiceModal(props) {
               </div>
               <div>
                 <i>Recipient:</i>
-                <div>
-                  <p>{recipient}</p>
-                  <label>{recipient_detail}</label>
-                </div>
+                <p>{recipient}</p>
               </div>
               <div>
                 <i>Account:</i>
@@ -111,7 +108,7 @@ export function InvoiceModal(props) {
               ))}
               <div className={cls(styles.item, styles.total)}>
                 <h3>Total Amount(NXS):</h3>
-                <h2>{intlNum(amount)}</h2>
+                <h3>{intlNum(amount)}</h3>
               </div>
             </div>
           </main>
