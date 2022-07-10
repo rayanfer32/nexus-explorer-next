@@ -18,7 +18,6 @@ export function InvoiceModal(props) {
     description = '',
     status = '',
     recipient = '',
-    recipient_detail = '',
     items = [],
   } = json;
 
@@ -54,6 +53,7 @@ export function InvoiceModal(props) {
               </label>
             </div>
           </header>
+          <i className={styles.address}>Address/InvoiceID: {address}</i>
           <main className={styles.details}>
             <div className={styles.details__transaction}>
               <div>
@@ -71,12 +71,6 @@ export function InvoiceModal(props) {
                 <i>Account:</i>
                 <p>{account}</p>
               </div>
-              {address && (
-                <div>
-                  <i>Address: </i>
-                  <p>{address}</p>
-                </div>
-              )}
             </div>
             <div className={styles.details__summary}>
               <h3>Summary</h3>
