@@ -3,6 +3,7 @@ import { middleElipsis } from 'utils/converter';
 import PropTypes from 'prop-types';
 import { BlockData } from '../NE_BlockData';
 import { RTTRow, RTTRowTop } from '../NE_RTRow';
+import PushLink from 'components/common/PushLink';
 
 /**
  * RTT Table Row for Transaction data
@@ -31,12 +32,12 @@ function RTTransaction(props) {
         {/* row bottom */}
         <div className={styles.rttrowBottom}>
           <BlockData data={`${txType}`} dataUnit={'type'} />
-          <a
+          <PushLink
             href={`/scan/${txnId}`}
             className={styles.amountValue}
             title={`${amount || 0} ${amountUnit}`}>{`${
             amount || 0
-          } ${amountUnit}`}</a>
+          } ${amountUnit}`}</PushLink>
           <BlockData
             href={`/scan/${txnId}`}
             data={`${middleElipsis(txnId, 10)}`}
