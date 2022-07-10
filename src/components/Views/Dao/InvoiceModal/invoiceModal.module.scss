@@ -80,7 +80,10 @@
       }
     }
   }
-
+  .address {
+    font-size: var(--font-normal);
+    color: var(--theme-page-text-secondary);
+  }
   .details {
     margin-top: var(--space-xxl);
     @media screen and (max-width: 576px) {
@@ -158,7 +161,6 @@
       text-align: right;
 
       h3 {
-        margin: auto;
         white-space: nowrap;
       }
     }

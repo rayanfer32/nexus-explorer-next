@@ -24,8 +24,17 @@ export const DaoInfo = (props) => {
         <div key={daoKey} className={cls(styles.block)}>
           <div>
             <p>
-              <h3>{daoInfo.audit} </h3>
+              <h3>
+                <Link href={`/scan/${daoInfo.audit}`}>{daoInfo.audit}</Link>
+              </h3>
+
               <h4>{daoInfo.desc} </h4>
+              <Link href={`/scan/${daoInfo.audit}`} passHref>
+                <a>
+                  Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
+                  {accountQuerys[index]?.data?.ticker}
+                </a>
+              </Link>
               <div>Chair : {daoInfo.chair} </div>
               <a
                 target="_blank"
@@ -33,10 +42,6 @@ export const DaoInfo = (props) => {
                 href={daoInfo.social.replace('@', 'https://t.me/')}>
                 Social : {daoInfo.social}{' '}
               </a>
-              <div>
-                Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
-                {accountQuerys[index]?.data?.ticker}
-              </div>
             </p>
           </div>
           <Link href={`/dao/invoices/${daoInfo.audit}`} passHref>

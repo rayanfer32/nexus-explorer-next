@@ -43,7 +43,7 @@ function InvoicesView({ username }) {
 
   if (isLoading) {
     return (
-      <div className={'dot-loader'}>
+      <div className={'center-loader'}>
         <Loader type={TYPES.LOADER.DOT} />
       </div>
     );

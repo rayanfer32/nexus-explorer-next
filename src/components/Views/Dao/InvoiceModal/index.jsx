@@ -18,7 +18,6 @@ export function InvoiceModal(props) {
     description = '',
     status = '',
     recipient = '',
-    recipient_detail = '',
     items = [],
   } = json;
 
@@ -26,9 +25,11 @@ export function InvoiceModal(props) {
     <section className={styles.backdrop}>
       <div className={styles.backdrop__action} onClick={onClose}></div>
       <article className={styles.modal}>
-        <div className={styles.close} onClick={onClose}>
-          <IoClose color={TYPES.COLORS.MARKET_RED} />
-        </div>
+        {onClose && (
+          <div className={styles.close} onClick={onClose}>
+            <IoClose color={TYPES.COLORS.MARKET_RED} />
+          </div>
+        )}
         <div className={styles.content}>
           <header>
             <div className={styles.stamp}>
@@ -54,6 +55,7 @@ export function InvoiceModal(props) {
               </label>
             </div>
           </header>
+          <i className={styles.address}>Address/InvoiceID: {address}</i>
           <main className={styles.details}>
             <div className={styles.details__transaction}>
               <div>
@@ -65,21 +67,12 @@ export function InvoiceModal(props) {
               </div>
               <div>
                 <i>Recipient:</i>
-                <div>
-                  <p>{recipient}</p>
-                  <label>{recipient_detail}</label>
-                </div>
+                <p>{recipient}</p>
               </div>
               <div>
                 <i>Account:</i>
                 <p>{account}</p>
               </div>
-              {address && (
-                <div>
-                  <i>Address: </i>
-                  <p>{address}</p>
-                </div>
-              )}
             </div>
             <div className={styles.details__summary}>
               <h3>Summary</h3>
@@ -111,7 +104,7 @@ export function InvoiceModal(props) {
               ))}
               <div className={cls(styles.item, styles.total)}>
                 <h3>Total Amount(NXS):</h3>
-                <h2>{intlNum(amount)}</h2>
+                <h3>{intlNum(amount)}</h3>
               </div>
             </div>
           </main>
