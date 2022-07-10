@@ -151,7 +151,7 @@
     }
     .header {
       white-space: nowrap;
-      border-bottom: 1px solid var(--theme-page-text-secondary);
+      border-color: var(--theme-page-text-secondary);
     }
     .total {
       grid-template-columns: 2fr 1fr;
