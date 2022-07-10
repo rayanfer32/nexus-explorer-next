@@ -5,6 +5,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { cls, intlNum } from 'utils';
 import styles from './dao.module.scss';
+import { CgExternal } from 'react-icons/cg';
 
 export const DaoInfo = (props) => {
   const { title, daoObject } = props;
@@ -33,6 +34,7 @@ export const DaoInfo = (props) => {
                 <a>
                   Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
                   {accountQuerys[index]?.data?.ticker}
+                  <CgExternal />
                 </a>
               </Link>
               <div>Chair : {daoInfo.chair} </div>
@@ -40,7 +42,7 @@ export const DaoInfo = (props) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={daoInfo.social.replace('@', 'https://t.me/')}>
-                Social : {daoInfo.social}{' '}
+                Social : {daoInfo.social} <CgExternal />
               </a>
             </p>
           </div>
