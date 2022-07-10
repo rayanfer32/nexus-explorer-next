@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
 import TYPES from 'types';
-import { cls, timestampToDate } from 'utils';
+import { cls, intlNum, timestampToDate } from 'utils';
 import { InvoiceStatus } from '../InvoiceStatus/invoiceStatus';
 import styles from './invoiceModal.module.scss';
 
@@ -36,7 +36,6 @@ export function InvoiceModal(props) {
                 src={nexus_blue64}
                 width={48}
                 height={48}
-                layout={'fixed'}
                 alt={'nexus logo'}
               />
               <div>
@@ -106,13 +105,13 @@ export function InvoiceModal(props) {
               {items.map((item, idx) => (
                 <div key={idx} className={styles.item}>
                   <label>{item?.description}</label>
-                  <label>{item.unit}</label>
+                  <label>{item.units}</label>
                   <label>{item?.unit_amount}</label>
                 </div>
               ))}
               <div className={cls(styles.item, styles.total)}>
                 <h3>Total Amount(NXS):</h3>
-                <h2>{amount}</h2>
+                <h2>{intlNum(amount)}</h2>
               </div>
             </div>
           </main>

@@ -120,10 +120,15 @@
       }
     }
     &__items {
+      @media screen and (max-width: 576px) {
+        padding-inline: 0;
+      }
+
       i,
       label {
         opacity: 1;
         padding-inline: var(--space-s);
+
         text-align: center;
         &:first-child {
           text-align: justify;
@@ -142,13 +147,20 @@
       display: grid;
       grid-template-columns: 4fr 0.5fr 2fr;
       line-height: 1.5;
+      border-bottom: 1px solid var(--theme-tab-bg);
     }
     .header {
+      white-space: nowrap;
       border-bottom: 1px solid var(--theme-page-text-secondary);
     }
     .total {
       grid-template-columns: 2fr 1fr;
       text-align: right;
+
+      h3 {
+        margin: auto;
+        white-space: nowrap;
+      }
     }
   }
 }

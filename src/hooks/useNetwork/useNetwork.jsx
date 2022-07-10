@@ -155,6 +155,18 @@ export function useNetwork() {
     return res.data.result;
   };
 
+  /**
+   * Get Invoice info for a given address
+   * @param {string} address
+   * @returns {Promise}
+   */
+  const getInvoice = async (address) => {
+    const res = await axios.get(
+      `${url}/invoices/get/invoice?address=${address}`
+    );
+    return res.data.result;
+  };
+
   return {
     network: { name: appContext.network.name, url },
     getInfo,
@@ -163,6 +175,7 @@ export function useNetwork() {
     getTokens,
     getMining,
     getAccount,
+    getInvoice,
     getMetrics,
     getRichlist,
     getInvoices,

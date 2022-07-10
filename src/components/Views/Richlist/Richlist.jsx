@@ -93,6 +93,7 @@ export default function Richlist(props) {
     },
   };
 
+  // * effect to calculate and load piechart data when the richlist111 data is loaded  
   useEffect(() => {
     if (richlist111.data) {
       const sortedData = richlist111.data.data;
