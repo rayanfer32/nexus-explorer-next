@@ -1,7 +1,10 @@
 .backdrop {
   position: fixed;
   z-index: 101;
-  background-color: rgba(black, 0.95);
+  background-color: rgba(hsl(200, 30%, 30%), 0.8);
+  @supports (backdrop-filter: blur(0.5rem)) {
+    backdrop-filter: blur(0.5rem);
+  }
   width: 100%;
   height: 100%;
   top: 0;
@@ -11,6 +14,8 @@
   justify-content: center;
 }
 .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   z-index: 102;
   background-color: var(--theme-page-background);
@@ -24,9 +29,9 @@
 
   .close {
     position: absolute;
-    right: calc(var(--space-xxs) * -1);
-    top: calc(var(--space-xxs) * -1);
-    background-color: var(--white);
+    right: calc(var(--space-xxxxs));
+    top: calc(var(--space-xxxxs));
+    background-color: var(--theme-page-background);
     width: var(--space-l, 1rem);
     height: var(--space-l, 1rem);
     border-radius: 50%;
@@ -41,6 +46,8 @@
   header {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-xxxxs);
     .stamp {
       display: flex;
       gap: var(--space-xs);
@@ -70,7 +77,11 @@
 
   .details {
     margin-top: var(--space-xxl);
-    overflow: auto;
+    @media screen and (max-width: 576px) {
+      margin-top: var(--space-l);
+    }
+    overflow-y: hidden;
+    overflow-x: auto;
 
     i {
       color: var(--theme-page-text-secondary);
@@ -132,6 +143,30 @@
     .total {
       grid-template-columns: 2fr 1fr;
       text-align: right;
+    }
+  }
+}
+
+.modal,
+.details {
+  &::-webkit-scrollbar {
+    width: var(--space-xxxxs);
+    height: var(--space-xxxxs);
+    background: transparent;
+  }
+}
+
+.modal {
+  animation: pop-up 0.25s ease-in-out forwards;
+
+  @keyframes pop-up {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
