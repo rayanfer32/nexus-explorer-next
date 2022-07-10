@@ -13,6 +13,7 @@ import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceModal } from 'components/Views/Dao/InvoiceModal';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -24,11 +25,10 @@ export const getServerSideProps = async (context) => {
 };
 
 function Scan({ addr }) {
+  const router = useRouter();
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [cardType, setCardType] = useState();
   const { network, getScanResults } = useNetwork();
-
-  console.log(addr);
 
   /**
    * identify the endpoint to use from the scan
@@ -151,7 +151,7 @@ function Scan({ addr }) {
         {cardType === CARD_TYPES.INVOICE && (
           <>
             {/* <InfoCard type={cardType} data={data?.result} /> */}
-            <InvoiceModal data={data?.result}></InvoiceModal>
+            <InvoiceModal data={data?.result} onClose={router.back} />
           </>
         )}
         {isDev && rawInfo}
