@@ -7,6 +7,18 @@
   h1 {
     margin-bottom: 0;
   }
+  h3 {
+    color: var(--theme-page-text-secondary);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   .block {
     background-color: var(--theme-page-background);
