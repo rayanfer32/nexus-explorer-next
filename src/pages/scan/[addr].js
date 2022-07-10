@@ -12,6 +12,7 @@ import { Log } from 'utils/customLog';
 import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
+import { InvoiceModal } from 'components/Views/Dao/InvoiceModal';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -26,6 +27,8 @@ function Scan({ addr }) {
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [cardType, setCardType] = useState();
   const { network, getScanResults } = useNetwork();
+
+  console.log(addr);
 
   /**
    * identify the endpoint to use from the scan
@@ -49,6 +52,12 @@ function Scan({ addr }) {
         name: addr,
       };
       type = 'user';
+    } else if (addr.includes('invoice-')) {
+      endpoint = 'invoices/get/invoice';
+      params = {
+        address: addr.substring(8),
+      };
+      type = 'invoice';
     } else if (addr.length === 51) {
       // ? might be trust acc or user acc address, so query for both and identify which one is correct
       endpoint = 'finance/get/account';
@@ -138,6 +147,12 @@ function Scan({ addr }) {
         )}
         {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
           <UserAccount type={cardType} data={data?.result} />
+        )}
+        {cardType === CARD_TYPES.INVOICE && (
+          <>
+            {/* <InfoCard type={cardType} data={data?.result} /> */}
+            <InvoiceModal data={data?.result}></InvoiceModal>
+          </>
         )}
         {isDev && rawInfo}
       </div>

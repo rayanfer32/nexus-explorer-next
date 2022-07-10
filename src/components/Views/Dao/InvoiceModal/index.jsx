@@ -25,9 +25,11 @@ export function InvoiceModal(props) {
     <section className={styles.backdrop}>
       <div className={styles.backdrop__action} onClick={onClose}></div>
       <article className={styles.modal}>
-        <div className={styles.close} onClick={onClose}>
-          <IoClose color={TYPES.COLORS.MARKET_RED} />
-        </div>
+        {onClose && (
+          <div className={styles.close} onClick={onClose}>
+            <IoClose color={TYPES.COLORS.MARKET_RED} />
+          </div>
+        )}
         <div className={styles.content}>
           <header>
             <div className={styles.stamp}>
