@@ -11,6 +11,10 @@ body {
   background: var(--theme-bg-under) no-repeat;
 }
 
+pre {
+  color: var(--theme-page-text);
+}
+
 .themeText {
   color: var(--theme-page-text);
 }
@@ -117,6 +121,14 @@ a {
 
 #chartRight {
   animation: slideLeft 3s;
+}
+
+.dot-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  height: 50vh;
 }
 
 @keyframes blueTinge {

@@ -3,6 +3,7 @@ import TYPES from 'types';
 import Dropdown from 'components/common/NE_Dropdown';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { cls } from 'utils';
 
 /**
  * Static link structure component
@@ -54,9 +55,10 @@ export const NestedNavLinks = ({
       {options.map((item, index) => (
         <Link key={title + index} href={item.path} passHref>
           <span
-            className={
-              activePathname === item.path ? styles.dropDown__active : undefined
-            }>
+            className={cls(
+              activePathname === item.path && styles.dropDown__active,
+              styles.dropDown__item
+            )}>
             {item.title}
           </span>
         </Link>

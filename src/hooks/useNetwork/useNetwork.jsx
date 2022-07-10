@@ -103,11 +103,23 @@ export function useNetwork() {
       `${url}/ledger/list/blocks?verbose=summary&page=${queryKey[1]}&limit=${queryKey[2]}`
     );
 
+  // todo: need seperate api functions for the finance/get/account, finance/get/trust
   const getScanResults = async (endpoint, params) => {
     const res = await axios.get(`${url}/${endpoint}`, {
       params: params,
     });
     return res.data;
+  };
+
+  // todo: add suppprt for adresses also
+  const getAccount = async (username) => {
+    const res = await axios.get(`${url}/finance/get/account?name=${username}`);
+    return res.data.result;
+  };
+
+  const getTrust = async (username) => {
+    const res = await axios.get(`${url}/finance/get/trust?name=${username}`);
+    return res.data.result;
   };
 
   const getTrustTransactions = async (address, page, limit) => {
@@ -132,14 +144,41 @@ export function useNetwork() {
     return res.data;
   };
 
+  const getInvoices = async (username, page, limit) => {
+    const res = await axios.get(`${url}/invoices/list/invoices`, {
+      params: {
+        username: username,
+        page: page,
+        limit: limit,
+      },
+    });
+    return res.data.result;
+  };
+
+  /**
+   * Get Invoice info for a given address
+   * @param {string} address
+   * @returns {Promise}
+   */
+  const getInvoice = async (address) => {
+    const res = await axios.get(
+      `${url}/invoices/get/invoice?address=${address}`
+    );
+    return res.data.result;
+  };
+
   return {
     network: { name: appContext.network.name, url },
     getInfo,
+    getTrust,
     getBlocks,
     getTokens,
     getMining,
+    getAccount,
+    getInvoice,
     getMetrics,
     getRichlist,
+    getInvoices,
     getTrustlist,
     getNamespaces,
     getScanResults,

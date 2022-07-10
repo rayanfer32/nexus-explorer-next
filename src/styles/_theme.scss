@@ -73,4 +73,57 @@
 
 .testnet-filter {
   filter: hue-rotate(-30deg) contrast(0.98);
+  // --nexus-blue: hsl(calc(202 - 30), 97%, 52%);
+  // --sky-blue: hsl(calc(200 - 30), 99%, 71%);
+  // --ocean-blue: hsl(calc(202 - 30), 97%, 29%);
+  // --midnight-blue: hsl(calc(202 - 30), 96%, 11%);
+  // --white: hsl(-30, 0%, 100%);
+  // --dark-grey: hsl(290, 7%, 17%);
+  // --market-green: hsl(calc(134 - 30), 61%, 41%);
+  // --market-red: hsl(354, 70%, 54%);
+  // --market-yellow: hsl(50, 70%, 50%);
+  // --paper-white: hsl(calc(210 - 30), 17%, 98%);
+  // --pale-white: hsl(calc(210 - 30), 25%, 97%);
+  // --frost-white: hsl(calc(201 - 30), 54%, 91%);
+
+  // /* gradient */
+  // --linear-frost-white: linear-gradient(
+  //   180deg,
+  //   var(--white) 0%,
+  //   hsl(calc(201 - 30), 54%, 91%) 100%
+  // );
+
+  // --linear-frost-white-reverse: linear-gradient(
+  //   0deg,
+  //   hsla(calc(0 - 30), 0%, 100%, 0.5) 0%,
+  //   hsl(calc(201 - 30), 54%, 91%) 100%
+  // );
+
+  // --linear-ocean-midnight: linear-gradient(
+  //   175.94deg,
+  //   hsla(calc(202 - 30), 96%, 11%, 0.702) 5.59%,
+  //   hsla(calc(202 - 30), 97%, 29%, 0.702) 73.28%
+  // );
+  // --linear-sky-white: linear-gradient(
+  //   175.94deg,
+  //   hsla(calc(202 - 30), 97%, 52%, 0.7) 5.59%,
+  //   hsla(calc(200 - 30), 99%, 71%, 0.35) 73.28%
+  // );
+  // --linear-nexus-sky: linear-gradient(
+  //   328deg,
+  //   var(--nexus-blue) 0%,
+  //   var(--sky-blue) 80%,
+  //   var(--white) 100%
+  // );
+  // --radial-ocean-midnight: radial-gradient(
+  //   circle,
+  //   hsl(calc(202 - 30), 79%, 11%) 0%,
+  //   hsl(calc(202 - 30), 92%, 14%) 100%
+  // );
+
+  // --radial-sky-white: radial-gradient(
+  //   114.53% 197.34% at 25.54% -14.53%,
+  //   var(--white) 26.66%,
+  //   var(--sky-blue) 100%
+  // );
 }

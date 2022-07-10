@@ -6,7 +6,6 @@ import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
 import { LinksTypes } from 'types/LinksTypes';
 import PageHeader from 'components/Header/PageHeader';
-import { Log } from 'utils';
 
 export const getStaticProps = async () => {
   const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);

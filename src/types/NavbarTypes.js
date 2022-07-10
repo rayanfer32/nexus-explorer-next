@@ -14,12 +14,15 @@ const navDropdowns = {
   Statistics: [
     { title: 'Trustlist', path: '/trustlist' },
     { title: 'Richlist', path: '/richlist' },
-    { title: 'Ambassador DAO', path: '/ambassador-dao' },
   ],
   Registers: [
     { title: 'Global', path: '/globalnames' },
     { title: 'Namespaces', path: '/namespaces' },
     { title: 'Tokens', path: '/tokens' },
+  ],
+  DAO: [
+    { title: 'Ambassador', path: '/dao/ambassador' },
+    { title: 'Developer', path: '/dao/developer' },
   ],
 };
 

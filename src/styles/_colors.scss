@@ -16,13 +16,13 @@
   /* gradient */
   --linear-frost-white: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 1) 0%,
+    var(--white) 0%,
     hsl(201, 54%, 91%) 100%
   );
 
   --linear-frost-white-reverse: linear-gradient(
     0deg,
-    rgba(255, 255, 255, 0.5) 0%,
+    hsla(0, 0%, 100%, 0.5) 0%,
     hsl(201, 54%, 91%) 100%
   );
 
@@ -33,14 +33,14 @@
   );
   --linear-sky-white: linear-gradient(
     175.94deg,
-    rgba(12, 164, 251, 0.7) 5.59%,
+    hsla(202, 97%, 52%, 0.7) 5.59%,
     hsla(200, 99%, 71%, 0.35) 73.28%
   );
   --linear-nexus-sky: linear-gradient(
     328deg,
-    hsl(202, 97%, 52%) 0%,
-    hsl(200, 99%, 71%) 80%,
-    hsl(0, 0%, 100%) 100%
+    var(--nexus-blue) 0%,
+    var(--sky-blue) 80%,
+    var(--white) 100%
   );
   --radial-ocean-midnight: radial-gradient(
     circle,

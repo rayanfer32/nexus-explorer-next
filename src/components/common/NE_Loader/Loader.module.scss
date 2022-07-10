@@ -41,6 +41,7 @@
   .holder {
     display: inline-block;
     position: relative;
+    transform: translateX(calc(var(--d-size) * -0.3));
     width: calc(var(--d-size) * 0.3);
     height: calc(var(--d-size) * 0.3);
 

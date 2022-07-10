@@ -1,0 +1,18 @@
+.invoiceStatus {
+  color: var(--white);
+  padding: var(--space-xxxs) var(--space-xxxs);
+  border-radius: var(--space-xxxs);
+  width: fit-content;
+}
+
+.paid {
+  background-color: var(--market-green);
+}
+
+.outstanding {
+  background-color: var(--market-yellow);
+}
+
+.cancelled {
+  background-color: var(--market-red);
+}
