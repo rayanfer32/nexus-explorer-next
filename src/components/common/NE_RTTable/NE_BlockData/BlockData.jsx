@@ -1,5 +1,6 @@
 import styles from './BlockData.module.scss';
 import PropTypes from 'prop-types';
+import PushLink from 'components/common/PushLink';
 
 /**
  * Component to display Data with its unit
@@ -13,13 +14,13 @@ export const BlockData = ({ data, dataUnit, href }) => {
   return (
     <>
       {data ? (
-        <a
+        <PushLink
           href={href}
           className={styles.blockDetail}
           title={`${data} ${dataUnit}`}>
           <span className={styles.blockData}>{data}</span>
           <div className={styles.lowerThirdText}>{dataUnit}</div>
-        </a>
+        </PushLink>
       ) : null}
     </>
   );
