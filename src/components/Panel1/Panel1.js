@@ -1,14 +1,14 @@
-import { NE_SmallCard } from '../atoms/NE_Card/NE_SmallCard';
+import { NE_SmallCard } from '../common/NE_Card/NE_SmallCard';
 import styles from 'components/Panel1/Panel1.module.scss';
 import ChartsApex from 'components/Chart/ChartsApex';
 import { useState, useEffect } from 'react';
-import Shimmer from 'components/atoms/NE_Shimmer';
+import Shimmer from 'components/common/NE_Shimmer';
 import { GrStackOverflow } from 'react-icons/gr';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, miningRQ } = props;
@@ -49,7 +49,12 @@ function Panel1(props) {
       </article>
     );
 
-  if (metricsRQ.isError) return <p><ErrorCard/></p>;
+  if (metricsRQ.isError)
+    return (
+      <p>
+        <ErrorCard />
+      </p>
+    );
 
   return (
     <article className={styles.container}>

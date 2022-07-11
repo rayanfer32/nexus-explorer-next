@@ -1,0 +1,18 @@
+.header {
+  color: var(--theme-page-text);
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  .backIcon {
+    cursor: pointer;
+  }
+}
+
+.info_icon {
+  cursor: pointer;
+  :hover {
+    transition: all 0.2s ease;
+    transform: scale(1.1);
+    transform-origin: center;
+  }
+}

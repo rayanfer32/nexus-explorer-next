@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useAppContext } from 'contexts/AppContext';
-import { NETWORKS } from 'types/ConstantsTypes';
-import { API_URLS } from 'types/ConstantsTypes';
+import { NETWORKS, API_URLS } from 'types/ConstantsTypes';
+import { fetchRichlist } from 'utils/common/fetch';
 
 export function useNetwork() {
   const { appContext } = useAppContext();
@@ -10,9 +10,11 @@ export function useNetwork() {
   const TESTNET_URL = process.env.NEXT_PUBLIC_TESTNET_BASE_URL;
   const { MAINNET: MAINNET_PROXY_URL, TESTNET: TESTNET_PROXY_URL } = API_URLS;
 
-  // Change network url based on the NEXT_PUBLIC_USE_PROXY_MIDDLEWARE env variable
+  // * Change network url based on the NEXT_PUBLIC_USE_PROXY_MIDDLEWARE env variable
   const isProxyEnabled =
-    process.env.NEXT_PUBLIC_USE_PROXY_MIDDLEWARE == 'true' ? true : false;
+    process.env.NEXT_PUBLIC_USE_PROXY_MIDDLEWARE.toLowerCase() == 'true'
+      ? true
+      : false;
   const isMainnetSelected = appContext.network.name === NETWORKS.MAINNET.name;
 
   const url = isMainnetSelected
@@ -58,28 +60,7 @@ export function useNetwork() {
   };
 
   const getRichlist = async (page = 0, limit = 111) => {
-    // * to consider the users who have moved their balance to trust
-    // * query for both trust and normal accounts
-    const json = JSON.stringify({
-      page: page,
-      sort: 'total',
-      order: 'desc',
-      limit: limit,
-      where: 'object.token=0',
-    });
-
-    const page0 = await axios.post(
-      `${url}/register/list/trust,accounts`,
-      json,
-      {
-        headers: {
-          'Cache-Control': 'max-age=300',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    return { data: [...page0.data.result] };
+    return fetchRichlist(url, page, limit);
   };
 
   const getGlobalNames = async () => {
@@ -122,11 +103,23 @@ export function useNetwork() {
       `${url}/ledger/list/blocks?verbose=summary&page=${queryKey[1]}&limit=${queryKey[2]}`
     );
 
+  // todo: need seperate api functions for the finance/get/account, finance/get/trust
   const getScanResults = async (endpoint, params) => {
     const res = await axios.get(`${url}/${endpoint}`, {
       params: params,
     });
     return res.data;
+  };
+
+  // todo: add suppprt for adresses also
+  const getAccount = async (username) => {
+    const res = await axios.get(`${url}/finance/get/account?name=${username}`);
+    return res.data.result;
+  };
+
+  const getTrust = async (username) => {
+    const res = await axios.get(`${url}/finance/get/trust?name=${username}`);
+    return res.data.result;
   };
 
   const getTrustTransactions = async (address, page, limit) => {
@@ -151,20 +144,48 @@ export function useNetwork() {
     return res.data;
   };
 
+  const getInvoices = async (username, page, limit) => {
+    const res = await axios.get(`${url}/invoices/list/invoices`, {
+      headers: { 'Cache-Control': 'max-age=120' },
+      params: {
+        username: username,
+        page: page,
+        limit: limit,
+      },
+    });
+    return res.data.result;
+  };
+
+  /**
+   * Get Invoice info for a given address
+   * @param {string} address
+   * @returns {Promise}
+   */
+  const getInvoice = async (address) => {
+    const res = await axios.get(
+      `${url}/invoices/get/invoice?address=${address}`
+    );
+    return res.data.result;
+  };
+
   return {
     network: { name: appContext.network.name, url },
-    getMetrics,
     getInfo,
-    getMining,
-    getRecentBlocks,
-    getTrustlist,
-    getRichlist,
-    getGlobalNames,
-    getNamespaces,
-    getTokens,
+    getTrust,
     getBlocks,
-    getTransactions,
+    getTokens,
+    getMining,
+    getAccount,
+    getInvoice,
+    getMetrics,
+    getRichlist,
+    getInvoices,
+    getTrustlist,
+    getNamespaces,
     getScanResults,
+    getGlobalNames,
+    getRecentBlocks,
+    getTransactions,
     getTrustTransactions,
     getAccountTransactions,
   };

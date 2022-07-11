@@ -38,7 +38,7 @@ export async function getStaticProps() {
       metrics: { data: metrics.data },
       info: { data: info.data },
       mining: { data: mining.data },
-      market: { data: market.data },
+      market: { data: market?.data || null },
       blocks,
     },
 
