@@ -12,6 +12,7 @@ import TYPES from 'types';
 import NE_Pagination from 'components/common/NE_Pagination';
 import { InvoiceModal } from '../InvoiceModal';
 import { FiInfo } from 'react-icons/fi';
+import ErrorMessage from 'components/common/ErrorMessage';
 
 function InvoicesView({ username }) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -33,7 +34,9 @@ function InvoicesView({ username }) {
       Header: '',
       accessor: 'address',
       Cell: (props) => (
-        <div onClick={() => handleModal(props.row.original)}>
+        <div
+          className={styles.info_icon}
+          onClick={() => handleModal(props.row.original)}>
           <FiInfo />
         </div>
       ),
@@ -50,7 +53,7 @@ function InvoicesView({ username }) {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorMessage error={error.message}></ErrorMessage>;
   }
 
   const dynamicPageControls = {
@@ -78,7 +81,7 @@ function InvoicesView({ username }) {
       <div className={cls(styles.header)}>
         <BsBoxArrowLeft className={styles.backIcon} onClick={router.back} />
         <p>
-          Invoices {'>>'} {username}
+          Invoices {' > '} {username}
         </p>
       </div>
       <Table columns={updatedColumn} data={data} paginate={false} />
