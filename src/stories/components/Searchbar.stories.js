@@ -1,4 +1,4 @@
-import SearchBar from '../../components/atoms/NE_SearchBar';
+import SearchBar from '../../components/common/NE_SearchBar';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

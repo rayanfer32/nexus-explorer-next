@@ -1,7 +1,7 @@
 import PageHeader from 'components/Header/PageHeader';
-import CopyText from 'components/atoms/NE_CopyText/CopyText';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
-import Loader from 'components/atoms/NE_Loader';
+import CopyText from 'components/common/NE_CopyText/CopyText';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useQuery } from 'react-query';

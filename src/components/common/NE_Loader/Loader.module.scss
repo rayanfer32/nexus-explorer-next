@@ -1,0 +1,119 @@
+.loader {
+  // css local variable
+  --c-size: 3rem;
+  --d-size: 3rem;
+  --border: calc(var(--c-size) * 0.09);
+  --color: #0ca4fb;
+  --shadow-color: #0ea4fb1a;
+
+  position: relative;
+
+  .circle {
+    display: inline-block;
+    position: relative;
+    width: var(--c-size);
+    height: var(--c-size);
+    &-chord {
+      box-sizing: border-box;
+      position: absolute;
+      display: block;
+      width: var(--c-size);
+      height: var(--c-size);
+      border: solid var(--border);
+      border-radius: 50%;
+      -webkit-animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; /* Safari */
+      animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: var(--color) var(--shadow-color) var(--shadow-color)
+        var(--shadow-color);
+      &:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      &:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      &:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+    }
+  }
+
+  // dot loader
+  .holder {
+    display: inline-block;
+    position: relative;
+    transform: translateX(calc(var(--d-size) * -0.3));
+    width: calc(var(--d-size) * 0.3);
+    height: calc(var(--d-size) * 0.3);
+
+    .dot {
+      position: absolute;
+      top: calc(var(--d-size) * 0.1);
+      width: calc(var(--d-size) * 0.25);
+      height: calc(var(--d-size) * 0.25);
+      border-radius: 50%;
+      background: var(--color);
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      &:nth-child(1) {
+        left: calc(var(--d-size) * 0.1);
+        animation: motion1 0.6s infinite;
+      }
+      &:nth-child(2) {
+        left: calc(var(--d-size) * 0.1);
+        animation: motion2 0.6s infinite;
+      }
+      &:nth-child(3) {
+        left: calc(var(--d-size) * 0.62);
+        animation: motion2 0.6s infinite;
+      }
+      &:nth-child(4) {
+        left: calc(var(--d-size) * 1.15);
+        animation: motion3 0.6s infinite;
+      }
+    }
+  }
+}
+
+// circular loader
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// dot loader
+@keyframes motion1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes motion3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes motion2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(var(--d-size) * 0.415), 0);
+  }
+}

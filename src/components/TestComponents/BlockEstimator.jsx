@@ -1,6 +1,6 @@
-import InfoCard from 'components/atoms/InfoCard';
+import InfoCard from 'components/common/InfoCard';
 import React, { useState, useEffect } from 'react';
-import Loader from 'components/atoms/NE_Loader';
+import Loader from 'components/common/NE_Loader';
 import { useDarkMode } from 'hooks';
 import Logger from 'utils/customLog';
 

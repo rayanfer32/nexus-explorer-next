@@ -1,4 +1,4 @@
-import ToastMessage from '../atoms/NE_ToastMessage';
+import ToastMessage from '../common/NE_ToastMessage';
 import { useState, useEffect } from 'react';
 import styles from './Toast.module.scss';
 import PropTypes, { element, node, number, string } from 'prop-types';

@@ -1,4 +1,4 @@
-import Text from 'components/atoms/NE_Text';
+import Text from 'components/common/NE_Text';
 import TYPES from 'types';
 
 export default {

@@ -1,17 +1,19 @@
 import axios from 'axios';
-import { InfoCard } from 'components/atoms/InfoCard';
-import Button from 'components/atoms/NE_Button';
-import Loader from 'components/atoms/NE_Loader';
-import ErrorMessage from 'components/atoms/ErrorMessage';
+import { InfoCard } from 'components/common/InfoCard';
+import Button from 'components/common/NE_Button';
+import Loader from 'components/common/NE_Loader';
+import ErrorMessage from 'components/common/ErrorMessage';
 import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
-import ErrorCard from 'components/atoms/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
+import { InvoiceModal } from 'components/Views/Dao/InvoiceModal';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -23,6 +25,7 @@ export const getServerSideProps = async (context) => {
 };
 
 function Scan({ addr }) {
+  const router = useRouter();
   const [showRawResponse, setShowRawResponse] = useState(false);
   const [cardType, setCardType] = useState();
   const { network, getScanResults } = useNetwork();
@@ -49,6 +52,12 @@ function Scan({ addr }) {
         name: addr,
       };
       type = 'user';
+    } else if (addr.includes('invoice-')) {
+      endpoint = 'invoices/get/invoice';
+      params = {
+        address: addr.substring(8),
+      };
+      type = 'invoice';
     } else if (addr.length === 51) {
       // ? might be trust acc or user acc address, so query for both and identify which one is correct
       endpoint = 'finance/get/account';
@@ -90,13 +99,7 @@ function Scan({ addr }) {
 
   if (isLoading) {
     return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
+      <div className={'center-loader'}>
         <Loader type="circle" size="5rem" />
       </div>
     );
@@ -138,6 +141,12 @@ function Scan({ addr }) {
         )}
         {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
           <UserAccount type={cardType} data={data?.result} />
+        )}
+        {cardType === CARD_TYPES.INVOICE && (
+          <>
+            {/* <InfoCard type={cardType} data={data?.result} /> */}
+            <InvoiceModal data={data?.result} onClose={router.back} />
+          </>
         )}
         {isDev && rawInfo}
       </div>

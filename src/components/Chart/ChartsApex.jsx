@@ -6,7 +6,7 @@ import styles from './ChartsApex.module.scss';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
-import Shimmer from 'components/atoms/NE_Shimmer';
+import Shimmer from 'components/common/NE_Shimmer';
 import TYPES from 'types';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });

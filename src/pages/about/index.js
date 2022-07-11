@@ -63,18 +63,23 @@ const About = ({ data }) => {
             <p className={styles.contributer}>Made with ❤️ in India, by</p>
             <p className={styles.contributer}>
               {Array.isArray(data) &&
-                data?.map((item) => (
-                  <span key={item.author.login} className={styles.links}>
-                    <a
-                      href={item.author.html_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.link}>
-                      <ThemedVscLogo />
-                      {item.author.login}
-                    </a>
-                  </span>
-                ))}
+                data?.map((item) => {
+                  if (item.author.type === 'Bot') {
+                    return;
+                  }
+                  return (
+                    <span key={item.author.login} className={styles.links}>
+                      <a
+                        href={item.author.html_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}>
+                        <ThemedVscLogo />
+                        {item.author.login}
+                      </a>
+                    </span>
+                  );
+                })}
             </p>
           </div>
         </article>

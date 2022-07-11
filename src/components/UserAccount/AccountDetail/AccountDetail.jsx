@@ -1,6 +1,6 @@
 import styles from './AccountDetail.module.scss';
 import QRCode from 'react-qr-code';
-import CopyText from 'components/atoms/NE_CopyText';
+import CopyText from 'components/common/NE_CopyText';
 import TYPES from 'types';
 import { useRouter } from 'next/router';
 

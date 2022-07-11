@@ -1,0 +1,9 @@
+.header {
+  color: var(--theme-page-text);
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  .backIcon {
+    cursor: pointer;
+  }
+}
