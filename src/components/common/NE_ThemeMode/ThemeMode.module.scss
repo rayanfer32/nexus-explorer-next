@@ -16,19 +16,23 @@
   cursor: pointer;
 
   &__thumb {
+    all: unset;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(var(--tm-height) - 0.1rem);
+    height: calc(var(--tm-height, 1.5rem) - 0.1rem);
     padding: 0 0.25rem;
     margin: 0 0.125rem;
-    border-radius: var(--tm-border-radius);
+    border-radius: var(--tm-border-radius, 50%);
     color: var(--theme-page-background);
     background: var(--nexus-blue);
 
     &__icon {
-      height: calc(var(--tm-height) - 0.5rem);
-      width: calc(var(--tm-height) - 0.5rem);
+      height: calc(var(--tm-height, 1.5rem) - 0.5rem);
+      width: calc(var(--tm-height, 1.5rem) - 0.5rem);
+    }
+    &__desktop {
+      border: var(--space-xxxxs) solid var(--nexus-blue);
     }
   }
 }
