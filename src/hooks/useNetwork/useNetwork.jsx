@@ -146,6 +146,7 @@ export function useNetwork() {
 
   const getInvoices = async (username, page, limit) => {
     const res = await axios.get(`${url}/invoices/list/invoices`, {
+      headers: { 'Cache-Control': 'max-age=120' },
       params: {
         username: username,
         page: page,
