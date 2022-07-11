@@ -35,7 +35,7 @@ export const NE_SmallCard = (props) => {
           onClick={props.onClick}>
           {props.text && <label data-right>{props.text}</label>}
           <h3
-            className={!!props.onClick && styles['hover']}
+            className={!!props.onClick ? styles['hover'] : ''}
             title={`Value ${props.value}`}>
             {props.value}
           </h3>
