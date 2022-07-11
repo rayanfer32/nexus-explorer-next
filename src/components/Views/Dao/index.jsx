@@ -23,28 +23,26 @@ export const DaoInfo = (props) => {
       <h1>{title}</h1>
       {daoInfoArr.map(([daoKey, daoInfo], index) => (
         <div key={daoKey} className={cls(styles.block)}>
-          <div>
-            <p>
-              <h3>
-                <Link href={`/scan/${daoInfo.audit}`}>{daoInfo.audit}</Link>
-              </h3>
+          <div className={styles.block__details}>
+            <h3>
+              <Link href={`/scan/${daoInfo.audit}`}>{daoInfo.audit}</Link>
+            </h3>
 
-              <h4>{daoInfo.desc} </h4>
-              <Link href={`/scan/${daoInfo.audit}`} passHref>
-                <a>
-                  Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
-                  {accountQuerys[index]?.data?.ticker}
-                  <CgExternal />
-                </a>
-              </Link>
-              <div>Chair : {daoInfo.chair} </div>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={daoInfo.social.replace('@', 'https://t.me/')}>
-                Social : {daoInfo.social} <CgExternal />
+            <h4>{daoInfo.desc} </h4>
+            <Link href={`/scan/${daoInfo.audit}`} passHref>
+              <a>
+                Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
+                {accountQuerys[index]?.data?.ticker}
+                <CgExternal />
               </a>
-            </p>
+            </Link>
+            <div>Chair : {daoInfo.chair} </div>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={daoInfo.social.replace('@', 'https://t.me/')}>
+              Social : {daoInfo.social} <CgExternal />
+            </a>
           </div>
           <Link href={`/dao/invoices/${daoInfo.audit}`} passHref>
             <Button type="primary"> Check Invoices</Button>

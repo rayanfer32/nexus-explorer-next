@@ -27,7 +27,7 @@ export const BlockData = ({ data, dataUnit, href }) => {
 };
 
 BlockData.propTypes = {
-  data: PropTypes.string,
+  data: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   dataUnit: PropTypes.string,
   href: PropTypes.string,
 };

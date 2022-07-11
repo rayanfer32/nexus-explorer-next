@@ -27,5 +27,8 @@
     min-height: 100px;
     padding: var(--space-xs);
     box-shadow: var(--card-shadow-border), var(--card-shadow);
+    &__details {
+      margin-block: var(--space-xxs);
+    }
   }
 }
