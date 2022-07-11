@@ -74,7 +74,11 @@ function InvoicesView({ username }) {
   const handleModal = (data) => {
     setModalData(data);
     setIsOpen(true);
-    router.push('/scan?invoice=' + data.address, undefined, { shallow: true });
+    window.history.replaceState(
+      'InvoiceInfo',
+      'Title',
+      '/scan?invoice=' + data.address
+    );
   };
 
   return (
