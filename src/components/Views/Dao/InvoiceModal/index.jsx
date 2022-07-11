@@ -1,6 +1,9 @@
 import nexus_blue64 from 'assets/icons/nexus_blue64.png';
+import PushLink from 'components/common/PushLink';
 import Image from 'next/image';
 import React from 'react';
+import { BiLink } from 'react-icons/bi';
+import { FaLink } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import TYPES from 'types';
 import { cls, intlNum, timestampToDate } from 'utils';
@@ -55,7 +58,12 @@ export function InvoiceModal(props) {
               </label>
             </div>
           </header>
-          <i className={styles.address}>Address/InvoiceID: {address}</i>
+          <PushLink href={`/scan?invoice=${address}`}>
+            <i className={styles.address}>
+              Address/InvoiceID: {address}
+              <BiLink />
+            </i>
+          </PushLink>
           <main className={styles.details}>
             <div className={styles.details__transaction}>
               <div>

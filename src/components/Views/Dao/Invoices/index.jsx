@@ -74,6 +74,7 @@ function InvoicesView({ username }) {
   const handleModal = (data) => {
     setModalData(data);
     setIsOpen(true);
+    router.push('/scan?invoice=' + data.address, undefined, { shallow: true });
   };
 
   return (
