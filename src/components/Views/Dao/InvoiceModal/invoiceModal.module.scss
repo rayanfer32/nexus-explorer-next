@@ -33,6 +33,7 @@
   border-radius: var(--space-xxxs);
   padding: var(--space-s) var(--space-xl);
   animation: pop-up 0.25s ease-in-out forwards;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
   .close {
     position: absolute;
@@ -53,7 +54,7 @@
   max-width: 100%;
   z-index: 1;
   margin-inline: auto;
-  box-shadow: var(--card-shadow-border);
+  box-shadow: var(--card-shadow), var(--card-shadow-border);
   animation: none;
 }
 
@@ -179,7 +180,7 @@
 .onclose_back {
   color: var(--theme-page-text-secondary);
   cursor: pointer;
-  margin-block: var(--space-xxs);
+  margin: var(--space-xs);
   opacity: 0.8;
 }
 
