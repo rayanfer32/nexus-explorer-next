@@ -36,7 +36,7 @@ function InvoicesView({ username }) {
       Cell: (props) => (
         <div
           className={styles.info_icon}
-          onClick={() => handleModal(props.row.original)}>
+          onClick={() => handleModalOpen(props.row.original)}>
           <FiInfo />
         </div>
       ),
@@ -71,14 +71,20 @@ function InvoicesView({ username }) {
     },
   };
 
-  const handleModal = (data) => {
+  const handleModalOpen = (data) => {
     setModalData(data);
     setIsOpen(true);
-    window.history.replaceState(
-      'InvoiceInfo',
-      'Title',
-      '/scan?invoice=' + data.address
-    );
+    window &&
+      window.history.replaceState(
+        'InvoiceInfo',
+        'Title',
+        '/scan?invoice=' + data.address
+      );
+  };
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+    // TODO: need to restore prevoius url after modal close
   };
 
   return (
@@ -94,7 +100,7 @@ function InvoicesView({ username }) {
       {isOpen && (
         <InvoiceModal
           data={modalData}
-          onClose={() => setIsOpen(false)}></InvoiceModal>
+          onClose={handleModalClose}></InvoiceModal>
       )}
     </>
   );

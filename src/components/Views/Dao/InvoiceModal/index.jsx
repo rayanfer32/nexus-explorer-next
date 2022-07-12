@@ -2,8 +2,7 @@ import nexus_blue64 from 'assets/icons/nexus_blue64.png';
 import PushLink from 'components/common/PushLink';
 import Image from 'next/image';
 import React from 'react';
-import { BiLink } from 'react-icons/bi';
-import { FaLink } from 'react-icons/fa';
+import { BiLink, BiArrowBack } from 'react-icons/bi';
 import { IoClose } from 'react-icons/io5';
 import TYPES from 'types';
 import { cls, intlNum, timestampToDate } from 'utils';
@@ -12,6 +11,16 @@ import styles from './invoiceModal.module.scss';
 
 export function InvoiceModal(props) {
   const { onClose, data } = props;
+
+  return (
+    <section className={styles.backdrop}>
+      <div className={styles.backdrop__action} onClick={onClose}></div>
+      <InvoiceWithData data={data} onClose={onClose} {...props} />
+    </section>
+  );
+}
+
+export const InvoiceWithData = ({ data, onBack, onClose, isPage }) => {
   const { address, created, modified, owner, json } = data;
   const {
     account = 0,
@@ -23,11 +32,15 @@ export function InvoiceModal(props) {
     recipient = '',
     items = [],
   } = json;
-
   return (
-    <section className={styles.backdrop}>
-      <div className={styles.backdrop__action} onClick={onClose}></div>
-      <article className={styles.modal}>
+    <>
+      {isPage && onBack && (
+        <span className={styles.onclose_back} onClick={onClose}>
+          <BiArrowBack />
+          Back
+        </span>
+      )}
+      <article className={cls(styles.modal, isPage && styles.page)}>
         {onClose && (
           <div className={styles.close} onClick={onClose}>
             <IoClose color={TYPES.COLORS.MARKET_RED} />
@@ -58,10 +71,10 @@ export function InvoiceModal(props) {
               </label>
             </div>
           </header>
-          <PushLink href={`/scan?invoice=${address}`}>
+          <PushLink href={!isPage && `/scan?invoice=${address}`}>
             <i className={styles.address}>
               Address/InvoiceID: {address}
-              <BiLink />
+              {!isPage && <BiLink />}
             </i>
           </PushLink>
           <main className={styles.details}>
@@ -118,6 +131,6 @@ export function InvoiceModal(props) {
           </main>
         </div>
       </article>
-    </section>
+    </>
   );
-}
+};

@@ -32,6 +32,7 @@
   color: var(--theme-page-text);
   border-radius: var(--space-xxxs);
   padding: var(--space-s) var(--space-xl);
+  animation: pop-up 0.25s ease-in-out forwards;
 
   .close {
     position: absolute;
@@ -46,6 +47,14 @@
     justify-content: center;
     cursor: pointer;
   }
+}
+
+.page {
+  max-width: 100%;
+  z-index: 1;
+  margin-inline: auto;
+  box-shadow: var(--card-shadow-border);
+  animation: none;
 }
 
 .content {
@@ -167,6 +176,13 @@
   }
 }
 
+.onclose_back {
+  color: var(--theme-page-text-secondary);
+  cursor: pointer;
+  margin-block: var(--space-xxs);
+  opacity: 0.8;
+}
+
 .modal,
 .details {
   &::-webkit-scrollbar {
@@ -176,17 +192,13 @@
   }
 }
 
-.modal {
-  animation: pop-up 0.25s ease-in-out forwards;
-
-  @keyframes pop-up {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+@keyframes pop-up {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
