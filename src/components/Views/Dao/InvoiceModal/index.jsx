@@ -35,7 +35,7 @@ export const InvoiceWithData = ({ data, onBack, onClose, isPage }) => {
   return (
     <>
       {isPage && onBack && (
-        <span className={styles.onclose_back} onClick={onClose}>
+        <span className={styles.onclose_back} onClick={onBack}>
           <BiArrowBack />
           Back
         </span>
