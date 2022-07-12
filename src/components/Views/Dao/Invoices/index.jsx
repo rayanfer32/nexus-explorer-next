@@ -74,6 +74,11 @@ function InvoicesView({ username }) {
   const handleModal = (data) => {
     setModalData(data);
     setIsOpen(true);
+    window.history.replaceState(
+      'InvoiceInfo',
+      'Title',
+      '/scan?invoice=' + data.address
+    );
   };
 
   return (
