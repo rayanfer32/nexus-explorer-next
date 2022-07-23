@@ -4,6 +4,7 @@ import { NE_DetailCard } from './NE_DetailCard';
 import PropTypes from 'prop-types';
 import styles from './Card.module.scss';
 import TYPES from 'types';
+import { cls } from 'utils';
 
 const Card = ({ type = 'default', ...props }) => {
   if (type === 'small') return <NE_SmallCard {...props} />;
@@ -12,10 +13,9 @@ const Card = ({ type = 'default', ...props }) => {
     return <NE_DetailCard type={type} {...props} />;
 
   return (
-    <section {...props} className={[props.className, styles['card']].join(' ')}>
+    <section {...props} className={cls(props.className, styles['card'])}>
       {props.children}
-      <div
-        className={[styles['card-live-state'], 'live-color'].join(' ')}></div>
+      <div className={cls(styles['card-live-state'], 'live-color')}></div>
       <style jsx>{`
         .live-color {
           background-color: ${props.isLive

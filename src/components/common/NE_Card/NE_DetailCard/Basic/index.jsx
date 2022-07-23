@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './Basic.module.scss';
 import { Card_Watermark, Card_Header, Card_Footer } from '..';
+import { cls } from 'utils';
 
 /* Card body section */
 const Card_Body = ({
@@ -11,7 +12,7 @@ const Card_Body = ({
   reward,
   unit,
 }) => (
-  <div className={[styles.body].join(' ')}>
+  <div className={cls(styles.body)}>
     {/* Card main value */}
     <div className={styles.body__text}>
       <p className={styles.body__text__value} title={text}>
