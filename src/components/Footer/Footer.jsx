@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ObjectToArray } from 'utils/helper';
 import ASSESTS from 'assets';
 import TYPES from 'types';
+import { cls } from 'utils';
 
 /**
  * Footer component for the website
@@ -29,10 +30,10 @@ export default function Footer() {
         {/* Map and display second section of footer */}
         {ObjectToArray(TYPES.FOOTER_ITEMS.SECONDARY).map((info, idx) => (
           <div
-            className={[
+            className={cls(
               styles[`footer__info`],
-              styles[`footer__secondary__info`],
-            ].join(' ')}
+              styles[`footer__secondary__info`]
+            )}
             key={idx}>
             {/* Map links and it's icon/image */}
             {info.items.map((item, i) => (

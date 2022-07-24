@@ -6,6 +6,7 @@ import { VscGithub, VscGithubInverted } from 'react-icons/vsc';
 import { useAppContext } from 'contexts/AppContext';
 import { LinksTypes } from 'types/LinksTypes';
 import PageHeader from 'components/Header/PageHeader';
+import { cls } from 'utils';
 
 export const getStaticProps = async () => {
   const res = await fetch(LinksTypes.LINKS.CONTRIBUTORS_API);
@@ -89,7 +90,7 @@ const About = ({ data }) => {
               src={ASSESTS.IMAGE.BLOB.THREE}
               alt="blob_three"
               layout="fill"
-              className={[styles.blob, styles.three].join(' ')}
+              className={cls(styles.blob, styles.three)}
             />
           </span>
           <span>
@@ -97,7 +98,7 @@ const About = ({ data }) => {
               src={ASSESTS.IMAGE.BLOB.TWO}
               alt="blob_two"
               layout="fill"
-              className={[styles.blob, styles.two].join(' ')}
+              className={cls(styles.blob, styles.two)}
             />
           </span>
           <span>
@@ -105,7 +106,7 @@ const About = ({ data }) => {
               src={ASSESTS.IMAGE.BLOB.ONE}
               alt="blob_one"
               layout="fill"
-              className={[styles.blob, styles.one].join(' ')}
+              className={cls(styles.blob, styles.one)}
             />
           </span>
           <span className={styles.developImg}>
