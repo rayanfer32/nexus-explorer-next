@@ -4,10 +4,11 @@ import styles from './Market.module.scss';
 import { Card_Watermark, Card_Header, Card_Footer } from '..';
 import { AiOutlineFall, AiOutlineRise } from 'react-icons/ai';
 import TYPES from 'types';
+import { cls } from 'utils';
 
 const MarketIconValue = ({ label, value }) => {
   return (
-    <span className={[styles.market__price].join(' ')}>
+    <span className={cls(styles.market__price)}>
       {value.match(/[-]/g) != '-' ? (
         <AiOutlineRise
           className={styles.market__price__icon}
@@ -23,7 +24,7 @@ const MarketIconValue = ({ label, value }) => {
       )}
       <p
         data-state={`${value.match(/[-]/g) != '-'}`}
-        className={[styles.market__price__value].join(' ')}
+        className={cls(styles.market__price__value)}
         title={value}>
         {value}
       </p>
@@ -39,7 +40,7 @@ const Card_Body = ({
   reward,
   unit,
 }) => (
-  <div className={[classes.body].join(' ')}>
+  <div className={cls(classes.body)}>
     {/* Card main value */}
     <div className={classes.body__text}>
       <p className={classes.body__text__value} title={text}>

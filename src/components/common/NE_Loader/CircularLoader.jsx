@@ -1,6 +1,7 @@
 import TYPES from 'types';
 import styles from './Loader.module.scss';
 import PropTypes from 'prop-types';
+import { cls } from 'utils';
 
 const CircleLoader = ({
   className = '',
@@ -9,7 +10,7 @@ const CircleLoader = ({
 }) => {
   const style = { '--color': color, '--c-size': size };
   return (
-    <div className={[className, styles.loader].join(' ')} style={style}>
+    <div className={cls(className, styles.loader)} style={style}>
       <div className={styles['circle']}>
         <div className={styles['circle-chord']} />
         <div className={styles['circle-chord']} />

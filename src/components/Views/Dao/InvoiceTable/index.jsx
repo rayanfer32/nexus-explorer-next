@@ -12,6 +12,7 @@ import TYPES from 'types';
 import NE_Pagination from 'components/common/NE_Pagination';
 import { InvoiceModal } from '../InvoiceModal';
 import { FiInfo } from 'react-icons/fi';
+import ErrorMessage from 'components/common/ErrorMessage';
 
 function InvoicesView({ username }) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -33,7 +34,9 @@ function InvoicesView({ username }) {
       Header: '',
       accessor: 'address',
       Cell: (props) => (
-        <div onClick={() => handleModal(props.row.original)}>
+        <div
+          className={styles.info_icon}
+          onClick={() => handleModalOpen(props.row.original)}>
           <FiInfo />
         </div>
       ),
@@ -50,7 +53,7 @@ function InvoicesView({ username }) {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErrorMessage error={error.message}></ErrorMessage>;
   }
 
   const dynamicPageControls = {
@@ -68,9 +71,20 @@ function InvoicesView({ username }) {
     },
   };
 
-  const handleModal = (data) => {
+  const handleModalOpen = (data) => {
     setModalData(data);
     setIsOpen(true);
+    window &&
+      window.history.replaceState(
+        'InvoiceInfo',
+        'Title',
+        '/scan?invoice=' + data.address
+      );
+  };
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+    // TODO: need to restore prevoius url after modal close
   };
 
   return (
@@ -78,7 +92,7 @@ function InvoicesView({ username }) {
       <div className={cls(styles.header)}>
         <BsBoxArrowLeft className={styles.backIcon} onClick={router.back} />
         <p>
-          Invoices {'>>'} {username}
+          Invoices {' > '} {username}
         </p>
       </div>
       <Table columns={updatedColumn} data={data} paginate={false} />
@@ -86,7 +100,7 @@ function InvoicesView({ username }) {
       {isOpen && (
         <InvoiceModal
           data={modalData}
-          onClose={() => setIsOpen(false)}></InvoiceModal>
+          onClose={handleModalClose}></InvoiceModal>
       )}
     </>
   );

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './ToastMessage.module.scss';
 import PropTypes from 'prop-types';
+import { cls } from 'utils';
 
 /**
  * ToastMessage
@@ -36,7 +37,7 @@ const ToastMessage = ({
   return (
     <>
       <div
-        className={[styles.container, styles[type]].join(' ')}
+        className={cls(styles.container, styles[type])}
         style={{ ...props.style, '--duration': animationDuration }}>
         {!autoDelete && (
           <button onClick={onClose} className={styles.close}>

@@ -12,7 +12,7 @@ import { Log } from 'utils/customLog';
 import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
-import { InvoiceModal } from 'components/Views/Dao/InvoiceModal';
+import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (context) => {
@@ -145,7 +145,7 @@ function Scan({ addr }) {
         {cardType === CARD_TYPES.INVOICE && (
           <>
             {/* <InfoCard type={cardType} data={data?.result} /> */}
-            <InvoiceModal data={data?.result} onClose={router.back} />
+            <InvoiceWithData data={data?.result} onBack={router.back} isPage />
           </>
         )}
         {isDev && rawInfo}

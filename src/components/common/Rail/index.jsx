@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import styles from './rail.module.scss';
 import PropTypes from 'prop-types';
+import { cls } from 'utils';
 
 const Rail = (props) => {
   const railRef = useRef(null);
@@ -27,9 +28,7 @@ const Rail = (props) => {
   }, []);
 
   return (
-    <main
-      className={[props.className, styles.railContainer].join(' ')}
-      ref={railRef}>
+    <main className={cls(props.className, styles.railContainer)} ref={railRef}>
       {props.children}
     </main>
   );

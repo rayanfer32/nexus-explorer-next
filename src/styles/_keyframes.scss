@@ -1,0 +1,71 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 70%;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0%;
+    color: rgb(58, 119, 231);
+  }
+  70% {
+    transform: translateX(0px);
+    opacity: 100%;
+    color: blue;
+  }
+  100% {
+    color: black;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes blueTinge {
+  0% {
+    box-shadow: 2px 2px 10px;
+  }
+  100% {
+    background-color: 2px 2px 20px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
