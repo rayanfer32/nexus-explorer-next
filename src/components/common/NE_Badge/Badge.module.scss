@@ -1,0 +1,9 @@
+.badge {
+  display: inline-block;
+  padding: var(--space-xxxs, 0.2em) var(--space-xxxs, 0.25em);
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  text-transform: capitalize;
+  color: var(--theme-badge-text, #000);
+  background-color: var(--theme-badge-bg, #fff);
+}
