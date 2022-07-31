@@ -1,4 +1,4 @@
-import InvoicesView from 'components/Views/Dao/Invoices';
+import InvoicesView from 'components/Views/Dao/InvoiceTable';
 import { useRouter } from 'next/router';
 import React from 'react';
 

@@ -1,11 +1,12 @@
 import styles from './Dropdown.module.scss';
 import { FiChevronDown } from 'react-icons/fi';
 import { Children } from 'react';
+import { cls } from 'utils';
 
 const Dropdown = ({ title = 'Dropdown', children, selected = false }) => {
   return (
     <div className={styles.dropDown}>
-      <button className={[styles.dropDown__btn, 'btn__selected'].join(' ')}>
+      <button className={cls(styles.dropDown__btn, 'btn__selected')}>
         {title}
         <FiChevronDown size="1rem" color="inherit" />
       </button>

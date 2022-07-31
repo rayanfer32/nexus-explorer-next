@@ -1,3 +1,5 @@
+import Logger from 'utils/customLog';
+
 // todo: rename these to DAO keys
 export const DAO_KEYS = [
   'US:Interactions',
@@ -74,16 +76,16 @@ let DAO_DEVELOPERS = {
 
 try {
   DAO_DEVELOPERS = JSON.parse(process.env.NEXT_PUBLIC_DAO_DEVELOPERS);
-  console.log(err, 'Using DAO DEVELOPERS from .env.local');
+  Logger.error('Using DAO DEVELOPERS from .env.local');
 } catch (err) {
-  console.log(err, 'Using DAO DEVELOPERS from Types/DaoAccounts.js');
+  Logger.error(err, 'Using DAO DEVELOPERS from Types/DaoAccounts.js');
 }
 
 try {
   DAO_AMBASSADORS = JSON.parse(process.env.NEXT_PUBLIC_DAO_AMBASSADORS);
-  console.log(err, 'Using DAO AMBASSADORS from .env.local');
-} catch (err) {
-  console.log(err, 'Using DAO AMBASSADORS from Types/DaoAccounts.js');
+  Logger.error('Using DAO AMBASSADORS from .env.local');
+} catch (error) {
+  Logger.error(error, 'Using DAO AMBASSADORS from Types/DaoAccounts.js');
 }
 
 export { DAO_DEVELOPERS, DAO_AMBASSADORS };

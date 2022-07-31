@@ -10,14 +10,14 @@ const PushLink = ({ children, href = '', ...props }) => {
   };
 
   return (
-    <span {...props} onClick={handleClick}>
+    <a href={href} {...props} onClick={handleClick}>
       {children}
       <style jsx>{`
         span {
           cursor: pointer;
         }
       `}</style>
-    </span>
+    </a>
   );
 };
 

@@ -3,6 +3,7 @@ import { Market } from './Market';
 import { Nexus_SVG_Icon } from 'assets/icons';
 import styles from './DetailCard.module.scss';
 import TYPES from 'types';
+import { cls } from 'utils';
 
 const NE_DetailCard = ({ type, ...props }) => {
   if (type === 'market') return <Market {...props} />;
@@ -28,7 +29,7 @@ const Card_Watermark = ({ icon }) => (
 
 /* Card Header section */
 const Card_Header = ({ label, sublabel, ticker }) => (
-  <div className={[styles.header].join(' ')}>
+  <div className={cls(styles.header)}>
     <span className={styles.label__container}>
       {/* card name*/}
       <h3 className={styles.label__title}>{label}</h3>
@@ -42,7 +43,7 @@ const Card_Header = ({ label, sublabel, ticker }) => (
 
 /* Card footer section */
 const Card_Footer = ({ footerLabel, footerValue }) => (
-  <div className={[styles.footer].join(' ')}>
+  <div className={cls(styles.footer)}>
     <label className={styles.footer__label}>{footerLabel}</label>
     <p className={styles.footer__value}>{footerValue}</p>
   </div>
