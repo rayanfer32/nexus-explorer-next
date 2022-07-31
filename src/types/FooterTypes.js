@@ -1,3 +1,4 @@
+import NE_Version from 'components/common/NE_Version/NE_Version';
 import {
   BsApple,
   BsBook,
@@ -124,6 +125,12 @@ export const FooterTypes = {
       SUPPORT: {
         title: undefined,
         items: [
+          {
+            href: '#',
+            label: <NE_Version />,
+            target: '_self',
+            icon: undefined,
+          },
           {
             href: '/about',
             label: 'About Nexplorer',
