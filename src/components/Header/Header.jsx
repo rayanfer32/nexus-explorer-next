@@ -64,6 +64,16 @@ const Header = () => {
       window && window.removeEventListener('scroll', throttle(onScroll));
   }, []);
 
+  const handleMenuToggle = () => {
+    const body = document.querySelector('body');
+    setToggle((prev) => {
+      !prev
+        ? body.setAttribute('style', 'overflow: hidden')
+        : body.removeAttribute('style');
+      return !prev;
+    });
+  };
+
   return (
     <>
       <header ref={headerRef} className={styles.container}>
@@ -78,7 +88,7 @@ const Header = () => {
               network={appContext.network.name}
               onNetworkChange={handleNetworkChange}
             />
-            <Hamburger onClick={() => setToggle(!toggleMobileMenu)} />
+            <Hamburger onClick={handleMenuToggle} />
           </div>
           <div className={styles.searchBar}>
             <Search
@@ -100,8 +110,8 @@ const Header = () => {
           network={appContext.network.name}
           activePathname={router.pathname}
           onNetworkChange={handleNetworkChange}
-          onClose={() => setToggle(!toggleMobileMenu)}
-          setClose={setToggle}
+          onClose={handleMenuToggle}
+          setClose={handleMenuToggle}
         />
       )}
     </>
