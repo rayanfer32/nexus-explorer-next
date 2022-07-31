@@ -1,4 +1,4 @@
-import NE_Badge from 'components/common/NE_Badge';
+import NE_Version from 'components/common/NE_Version/NE_Version';
 import {
   BsApple,
   BsBook,
@@ -17,7 +17,6 @@ import {
 } from 'react-icons/bs';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
 import { SiGitbook } from 'react-icons/si';
-import { getVersion } from 'utils/getVersion';
 
 export const FooterTypes = {
   FOOTER_ITEMS: {
@@ -128,7 +127,7 @@ export const FooterTypes = {
         items: [
           {
             href: '#',
-            label: <NE_Badge>{'explorer v' + getVersion()}</NE_Badge>,
+            label: <NE_Version />,
             target: '_self',
             icon: undefined,
           },
