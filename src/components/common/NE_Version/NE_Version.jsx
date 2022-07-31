@@ -14,7 +14,9 @@ export default function NE_Version() {
   return (
     <div>
       <NE_Badge>{'explorer v' + getVersion()}</NE_Badge>
-      <NE_Badge>{'Node v' + data?.data?.result?.version}</NE_Badge>
+      {data?.data?.result?.version && (
+        <NE_Badge>{'Node v' + data?.data?.result?.version}</NE_Badge>
+      )}
       <style jsx>{`
         div {
           display: flex;
