@@ -1,0 +1,17 @@
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 50vh;
+  flex-wrap: wrap;
+  color: var(--theme-page-text);
+  h1 {
+    font-size: var(--font-xxxl, black);
+    margin-bottom: var(--space-xl, 1rem);
+  }
+  small {
+    color: var(--theme-page-text-secondary, grey);
+    opacity: 0.6;
+  }
+}

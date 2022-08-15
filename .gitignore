@@ -44,6 +44,7 @@ yarn-error.log*
 
 # PWA files
 **/public/sw.js
+**/public/fallback-development.js
 **/public/workbox-*.js
 **/public/worker-*.js
 **/public/sw.js.map

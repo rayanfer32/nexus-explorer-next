@@ -11,5 +11,9 @@ module.exports = withPWA({
     dest: 'public',
     register: true,
     skipWaiting: true,
+    fallbacks: {
+      image: '/wifi-strike.svg'
+    },
+    disable: process.env.NODE_ENV === 'development',
   }
 })
