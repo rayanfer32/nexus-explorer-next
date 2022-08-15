@@ -12,7 +12,7 @@ module.exports = withPWA({
     register: true,
     skipWaiting: true,
     fallbacks: {
-      image: ['/wifi-strike.svg','/NexusLogoBlue1000x225.png', '/NexusLogoBlue1000x225.png'],
+      image: '/wifi-strike.svg'
     },
     disable: process.env.NODE_ENV === 'development',
   }
