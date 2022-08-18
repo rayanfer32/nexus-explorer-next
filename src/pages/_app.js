@@ -6,7 +6,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { IconContext } from 'react-icons';
 import TYPES from 'types';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 function MyApp({ Component, pageProps }) {
   return (
