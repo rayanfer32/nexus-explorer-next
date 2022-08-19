@@ -7,7 +7,7 @@ import { intlNum, toTitleCase } from 'utils/converter';
 import Loader from 'components/common/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { METRICS_META } from 'types/StringsTypes';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard';
 
 export default function Metrics() {
   //* fetchMetrics should be created from a custom hook which

@@ -4,6 +4,8 @@ import Dropdown from 'components/common/NE_Dropdown';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { cls } from 'utils';
+import { NETWORKS } from 'types/ConstantsTypes';
+import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
 /**
  * Static link structure component
@@ -72,7 +74,7 @@ export const NestedNavLinks = ({
  * @param {string} param0 current pathname of page
  * @returns {JSX.Element}
  */
-export const DesktopNavLinks = ({ pathname }) => {
+export const DesktopNavLinks = ({ pathname, network }) => {
   return (
     <nav className={styles.links}>
       {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
@@ -88,6 +90,10 @@ export const DesktopNavLinks = ({ pathname }) => {
 
       {/* Nested navigation options */}
       {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value]) => {
+        if (network === NETWORKS.TESTNET.name && TYPES.OPTNAV.includes(key)) {
+          return <></>;
+        }
+
         return (
           <NestedNavLinks
             key={key}
@@ -107,7 +113,11 @@ export const DesktopNavLinks = ({ pathname }) => {
  * @param {Function} setToggle toggle function on option-click/close
  * @returns {JSX.Element}
  */
-export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
+export const MobileNavLinks = ({
+  pathname,
+  setToggle = () => null,
+  network,
+}) => {
   const Toggle = () => setToggle((prev) => !prev);
   return (
     <nav className={styles.mlinks}>
@@ -123,19 +133,24 @@ export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
       })}
 
       {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value], index) => {
+        if (network === NETWORKS.TESTNET.name && TYPES.OPTNAV.includes(key)) {
+          return <></>;
+        }
         return (
           <Fragment key={`${key}${index}`}>
-            {value.map((item, index) => (
-              <Link key={key + index} href={item.path} passHref>
-                <span
-                  className={
-                    pathname === item.path ? styles.mactive : undefined
-                  }
-                  onClick={Toggle}>
-                  {item.title}
-                </span>
-              </Link>
-            ))}
+            {value.map((item, index) => {
+              return (
+                <Link key={key + index} href={item.path} passHref>
+                  <span
+                    className={
+                      pathname === item.path ? styles.mactive : undefined
+                    }
+                    onClick={Toggle}>
+                    {item.title}
+                  </span>
+                </Link>
+              );
+            })}
           </Fragment>
         );
       })}
@@ -147,8 +162,15 @@ export const MobileNavLinks = ({ pathname, setToggle = () => null }) => {
  * Navigation link component
  */
 const NavLinks = ({ activePathname = '', isMobile = false, ...props }) => {
-  if (isMobile) return <MobileNavLinks {...props} pathname={activePathname} />;
-  return <DesktopNavLinks {...props} pathname={activePathname} />;
+  const { network: { name = '' } = '' } = useNetwork();
+
+  if (isMobile)
+    return (
+      <MobileNavLinks {...props} pathname={activePathname} network={name} />
+    );
+  return (
+    <DesktopNavLinks {...props} pathname={activePathname} network={name} />
+  );
 };
 
 export default NavLinks;

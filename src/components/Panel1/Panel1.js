@@ -8,7 +8,7 @@ import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard';
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, miningRQ } = props;

@@ -1,7 +1,7 @@
 import { NE_SmallCard as NESmallCard } from 'components/common/NE_Card/NE_SmallCard';
 import React from 'react';
 import { BsApp } from 'react-icons/bs';
-import ErrorCard from '../common/NE_ErrorCard/ErrorCard';
+import ErrorCard from '../common/NE_ErrorCard';
 
 export default function TestComponents() {
   return (

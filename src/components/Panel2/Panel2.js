@@ -13,7 +13,7 @@ import { MdSpeed } from 'react-icons/md';
 import { StringsTypes } from 'types/StringsTypes';
 import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard';
 
 function Panel2(props) {
   const { network } = useNetwork();

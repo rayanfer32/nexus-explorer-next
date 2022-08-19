@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BsArrowUpShort } from 'react-icons/bs';
 import styles from './ScrollToTop.module.scss';
 
-const ScrollToTop = () => {
+export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   // Top: 0 takes us all the way back to the top of the page

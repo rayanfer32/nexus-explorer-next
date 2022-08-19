@@ -1,16 +1,15 @@
-import CopyText from 'components/common/NE_CopyText/CopyText';
+import CopyText from 'components/common/NE_CopyText';
+import ErrorCard from 'components/common/NE_ErrorCard';
 import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
+import { useNetwork } from 'hooks';
 import { useQuery } from 'react-query';
-import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
-import PageHeader from 'components/Header/PageHeader';
 
-export default function GlobalNames() {
-  const { network, getGlobalNames } = useNetwork();
+export default function Namespaces() {
+  const { network, getNamespaces } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['global_namespaces', network.name],
-    getGlobalNames
+    ['namespaces', network.name],
+    getNamespaces
   );
 
   const columns = [
@@ -18,14 +17,15 @@ export default function GlobalNames() {
       Header: '#ID',
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
+
     {
       Header: 'Address',
       accessor: 'address',
       Cell: ({ value }) => <CopyText value={value} />,
     },
     {
-      Header: 'Name',
-      accessor: 'name',
+      Header: 'Namespace',
+      accessor: 'namespace',
     },
     {
       Header: 'Created',
@@ -58,12 +58,9 @@ export default function GlobalNames() {
 
   if (data) {
     return (
-      <>
-        <PageHeader page={'GLOBALNAMES'} />
-        <div>
-          <Table columns={columns} data={data.result} />
-        </div>
-      </>
+      <div>
+        <Table columns={columns} data={data.data.result} />
+      </div>
     );
   }
 }

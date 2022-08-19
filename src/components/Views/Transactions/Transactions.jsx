@@ -1,13 +1,12 @@
 import { toTitleCase } from 'utils/converter';
-import PageHeader from 'components/Header/PageHeader';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/common/NE_Pagination';
-import CopyText from 'components/common/NE_CopyText/CopyText';
-import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import CopyText from 'components/common/NE_CopyText';
+import { useNetwork } from 'hooks';
 
 export default function Transactions() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -129,18 +128,15 @@ export default function Transactions() {
     };
 
     return (
-      <>
-        <PageHeader page={'transactions'} />
-        <div>
-          <Table columns={columns} data={rows} paginate={false} />
-          <div style={{ marginBottom: '1rem' }}>
-            <DynamicPagination
-              controls={dynamicPaginationControls}
-              isStaticPanination={false}
-            />
-          </div>
+      <div>
+        <Table columns={columns} data={rows} paginate={false} />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination
+            controls={dynamicPaginationControls}
+            isStaticPanination={false}
+          />
         </div>
-      </>
+      </div>
     );
   }
 }
