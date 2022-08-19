@@ -1,4 +1,4 @@
-import Layout from 'components/Layout/Layout';
+import Layout from 'components/Layout';
 import 'styles/globals.scss';
 import { ContextWrapper } from 'contexts/AppContext';
 import { QueryClientProvider, QueryClient } from 'react-query';

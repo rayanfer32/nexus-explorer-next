@@ -1,5 +1,5 @@
 import ErrorMessage from 'components/common/ErrorMessage';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard';
 import Loader from 'components/common/NE_Loader';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';

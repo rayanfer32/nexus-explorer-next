@@ -1,7 +1,7 @@
 import styles from './Layout.module.scss';
 import Header from '../Header';
 import Footer from '../Footer';
-import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import ScrollToTop from 'components/common/NE_ScrollToTop';
 
 /**
  * Common layout for the nexplorer website

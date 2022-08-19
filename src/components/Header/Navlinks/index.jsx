@@ -4,7 +4,6 @@ import Dropdown from 'components/common/NE_Dropdown';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { cls } from 'utils';
-import Logger from 'utils/customLog';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 
