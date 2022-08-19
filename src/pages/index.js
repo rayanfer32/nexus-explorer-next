@@ -45,7 +45,7 @@ export default function Home(props) {
   return (
     <>
       <PageHeader title={TYPES.PAGEMETA.TITLE} />
-      <HomeView props={props} />
+      <HomeView {...props} />
     </>
   );
 }
