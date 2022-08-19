@@ -4,7 +4,7 @@ import { BiClipboard, BiCopy, BiCheck } from 'react-icons/bi';
 import { middleElipsis } from 'utils/converter';
 import { handleCopy } from 'utils/helper';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
-import Link from '../PushLink';
+import Link from '../NE_Link';
 
 export default function CopyText({ value, ellipsisAfter, link, className }) {
   const windowSize = useWindowSize();

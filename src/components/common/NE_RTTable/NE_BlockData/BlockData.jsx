@@ -1,6 +1,6 @@
 import styles from './BlockData.module.scss';
 import PropTypes from 'prop-types';
-import PushLink from 'components/common/PushLink';
+import PushLink from 'components/common/NE_Link';
 
 /**
  * Component to display Data with its unit

@@ -1,6 +1,6 @@
 import TestComponents from 'components/TestComponents';
 import { isDev } from 'utils';
-import CustomError from './error';
+import CustomError from 'components/Views/error';
 
 export default function test() {
   // make use of single test component to avoid page reload while testing

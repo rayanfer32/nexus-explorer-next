@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import ErrorCard from 'components/common/NE_ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';

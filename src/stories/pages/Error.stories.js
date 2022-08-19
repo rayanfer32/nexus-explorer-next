@@ -1,4 +1,4 @@
-import Error from 'pages/error/index';
+import Error from 'components/Views/error/index';
 
 export default {
   title: 'Pages/Error',
