@@ -1,5 +1,5 @@
 import nexus_blue64 from 'assets/icons/nexus_blue64.png';
-import PushLink from 'components/common/PushLink';
+import PushLink from 'components/common/NE_Link';
 import Image from 'next/image';
 import React from 'react';
 import { BiLink, BiArrowBack } from 'react-icons/bi';

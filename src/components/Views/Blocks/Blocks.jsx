@@ -1,12 +1,11 @@
 import { useQuery } from 'react-query';
 import Loader from 'components/common/NE_Loader';
-import Table from 'components/Table/Table';
+import Table from 'components/Table';
 import TYPES from 'types';
 import { useState, useEffect } from 'react';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/common/NE_Pagination';
-import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import PageHeader from 'components/Header/PageHeader';
+import { useNetwork } from 'hooks';
 import Logger from 'utils/customLog';
 
 export default function Blocks() {
@@ -119,18 +118,15 @@ export default function Blocks() {
     };
 
     return (
-      <>
-        <PageHeader page="blocks" />
-        <div style={{ overflow: 'visible' }}>
-          <Table columns={columns} data={data} paginate={false} />
-          <div style={{ marginBottom: '1rem' }}>
-            <DynamicPagination
-              controls={dynamicPageControls}
-              isStaticPanination={false}
-            />
-          </div>
+      <div style={{ overflow: 'visible' }}>
+        <Table columns={columns} data={data} paginate={false} />
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination
+            controls={dynamicPageControls}
+            isStaticPanination={false}
+          />
         </div>
-      </>
+      </div>
     );
   }
 }

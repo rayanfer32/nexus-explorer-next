@@ -1,4 +1,4 @@
-import Layout from 'components/Layout/Layout';
+import Layout from 'components/Layout';
 import 'styles/globals.scss';
 import { ContextWrapper } from 'contexts/AppContext';
 import { QueryClientProvider, QueryClient } from 'react-query';
@@ -6,7 +6,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { IconContext } from 'react-icons';
 import TYPES from 'types';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 function MyApp({ Component, pageProps }) {
   return (

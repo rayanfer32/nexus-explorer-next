@@ -1,16 +1,16 @@
-import PageHeader from 'components/Header/PageHeader';
-import CopyText from 'components/common/NE_CopyText/CopyText';
-import ErrorCard from 'components/common/NE_ErrorCard/ErrorCard';
+import CopyText from 'components/common/NE_CopyText';
+import ErrorCard from 'components/common/NE_ErrorCard';
 import Loader from 'components/common/NE_Loader';
-import Table from 'components/Table/Table';
+import Table from 'components/Table';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useQuery } from 'react-query';
+import { intlNum } from 'utils/converter';
 
-export default function Namespaces() {
-  const { network, getNamespaces } = useNetwork();
+export default function Tokens() {
+  const { network, getTokens } = useNetwork();
   const { isLoading, data, error } = useQuery(
-    ['namespaces', network.name],
-    getNamespaces
+    ['tokens', network.name],
+    getTokens
   );
 
   const columns = [
@@ -18,20 +18,24 @@ export default function Namespaces() {
       Header: '#ID',
       Cell: (props) => <div>{parseInt(props.cell.row.id) + 1}</div>,
     },
-
     {
-      Header: 'Address',
-      accessor: 'address',
+      Header: 'Token Register Address',
+      accessor: 'token',
       Cell: ({ value }) => <CopyText value={value} />,
     },
     {
-      Header: 'Namespace',
-      accessor: 'namespace',
+      Header: 'Token Name',
+      accessor: 'ticker',
     },
     {
-      Header: 'Created',
-      accessor: 'created',
-      Cell: ({ value }) => new Date(value * 1000).toDateString(),
+      Header: 'Max Supply',
+      accessor: 'maxsupply',
+      Cell: ({ value }) => intlNum(value),
+    },
+    {
+      Header: 'Current Supply',
+      accessor: 'currentsupply',
+      Cell: ({ value }) => intlNum(value),
     },
   ];
 
@@ -59,12 +63,9 @@ export default function Namespaces() {
 
   if (data) {
     return (
-      <>
-        <PageHeader page={'namespaces'} />
-        <div>
-          <Table columns={columns} data={data.data.result} />
-        </div>
-      </>
+      <div>
+        <Table columns={columns} data={data.data.result} />
+      </div>
     );
   }
 }

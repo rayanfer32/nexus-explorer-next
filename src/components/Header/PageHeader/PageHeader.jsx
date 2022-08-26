@@ -21,7 +21,7 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
       <title key="title">{_title}</title>
       <meta name="description" content={_description} />
       <link rel="canonical" href={_explorer_domain} />
-      <link rel="shortcut icon" href="/favicon2.ico" />
+      <link rel="shortcut icon" href="/favicon.ico" />
       <meta
         name="keywords"
         content="nexus, explorer, nxs, search, blockchain, nexplorer, quantum resistance"

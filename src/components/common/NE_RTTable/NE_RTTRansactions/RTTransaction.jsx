@@ -3,7 +3,7 @@ import { middleElipsis } from 'utils/converter';
 import PropTypes from 'prop-types';
 import { BlockData } from '../NE_BlockData';
 import { RTTRow, RTTRowTop } from '../NE_RTRow';
-import PushLink from 'components/common/PushLink';
+import PushLink from 'components/common/NE_Link';
 
 /**
  * RTT Table Row for Transaction data

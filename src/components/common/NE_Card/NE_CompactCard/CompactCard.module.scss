@@ -1,11 +1,10 @@
 .card {
   &-compact {
     width: 100%;
-    // max-width: 14.5rem; /* 232px */
     height: 6.5rem; /* 104px */
+    min-height: 6.5rem; /* 104px */
     display: flex;
     justify-content: space-between;
-    align-items: center;
     overflow: hidden;
     transition: all 0.2s ease;
   }
@@ -32,6 +31,7 @@
     &-upper-part {
       display: flex;
       flex-direction: column;
+      opacity: 0.9;
     }
     &-lowwer-part {
       display: flex;
@@ -74,5 +74,7 @@
     right: 5%;
     bottom: 10%;
     opacity: 0.8;
+    display: grid;
+    place-items: center;
   }
 }
