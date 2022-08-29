@@ -1,0 +1,45 @@
+name: "Update the package version"
+on:
+  pull_request:
+    types: [labeled]
+    branches:
+      - main
+jobs:
+  release_label:
+      name: Prepare version update
+      runs-on: ubuntu-latest
+      outputs:
+        version_type: ${{steps.version_label_check.outputs.is_version}}
+      steps:
+        - name: Set major release
+          id: version_label_check
+          run: |
+            echo "::set-output name=is_version::${{ github.event.label.name }}"
+  
+  package_bump_scripts:
+    runs-on: ubuntu-latest
+    needs: release_label
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set major release
+        if: ${{ needs.release_label.outputs.version_type == 'release:major' }}
+        run: |
+          chmod +x ./scripts/incrementMajor.js
+          ./scripts/incrementMajor.js
+      - name: Set minor release
+        if: ${{ needs.release_label.outputs.version_type == 'release:minor' }}
+        run: |
+          chmod +x ./scripts/incrementMinor.js
+          ./scripts/incrementMinor.js
+      - name: Set patch release
+        if: ${{ needs.release_label.outputs.version_type == 'release:patch' }}
+        run: |
+          chmod +x ./scripts/incrementPatch.js
+          ./scripts/incrementPatch.js
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "ci: automated version bump on merge to main"
