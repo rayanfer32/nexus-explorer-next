@@ -1,7 +1,7 @@
 name: 'Update the package version'
 on:
   pull_request:
-    types: [labeled]
+    types: [opened, reopened]
     branches:
       - main
 jobs:
@@ -35,7 +35,7 @@ jobs:
           chmod +x ./scripts/incrementMinor.js
           ./scripts/incrementMinor.js
       - name: Set patch release
-        if: ${{ needs.release_label.outputs.version_type == 'patch' }}
+        if: ${{ needs.release_label.outputs.version_type == 'patch' || needs.release_label.outputs.version_type == '' }}
         run: |
           chmod +x ./scripts/incrementPatch.js
           ./scripts/incrementPatch.js
