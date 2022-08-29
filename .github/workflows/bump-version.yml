@@ -41,9 +41,9 @@ jobs:
           chmod +x ./scripts/incrementPatch.js
           ./scripts/incrementPatch.js
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'ci: automated version bump on merge to main'
+#       - uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: 'ci: automated version bump on merge to main'
       
       - name: Push to protected branch
         uses: CasperWA/push-protected@v2
