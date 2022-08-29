@@ -1,7 +1,7 @@
 name: 'Update the package version'
 on:
   pull_request:
-    types: [labeled]
+    types: [opened, reopened]
     branches:
       - main
 jobs:
