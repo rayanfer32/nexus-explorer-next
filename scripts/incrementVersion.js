@@ -34,9 +34,10 @@ const splitVersion =
     if (isNaN(Number(versionArr[position])))
       throw Error(`Version is not made up of numbers! "${version}"`);
 
-    const newVersion = versionArr.map((ver, idx) =>
-      idx === position ? String(Number(versionArr[position]) + 1) : ver
-    );
+    const newVersion = versionArr.map((ver, idx) => {
+      if(position === 0) return idx === position ? String(Number(versionArr[position]) + 1) : 0;
+      return idx === position ? String(Number(versionArr[position]) + 1) : ver;
+    });
     return newVersion.join(".");
   };
 
