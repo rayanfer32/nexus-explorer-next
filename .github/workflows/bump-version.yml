@@ -68,3 +68,24 @@ jobs:
               ## Reminder: delete after merge!!!
               > # This PR was created in response workflow running.
               
+      - name: Find Pull Request
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        with:
+          branch: auto-release-branch
+      - run: echo "Pull Request ${number} (${sha})"
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
+
+      - name: Comment on PR 
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "Merge pull request #${{ steps.find-pull-request.outputs.number }} first, before mergeing this!!"
+            })
