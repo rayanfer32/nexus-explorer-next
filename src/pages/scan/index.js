@@ -1,6 +1,7 @@
 import ErrorMessage from 'components/common/ErrorMessage';
 import ErrorCard from 'components/common/NE_ErrorCard';
 import Loader from 'components/common/NE_Loader';
+import Layout from 'components/Layout';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useRouter } from 'next/router';
@@ -36,7 +37,11 @@ export default function Index() {
     return <ErrorMessage error={data.error} />;
   }
 
-  return <InvoiceWithData data={data} onBack={router.back} isPage />;
+  return (
+    <Layout>
+      <InvoiceWithData data={data} onBack={router.back} isPage />
+    </Layout>
+  );
 
   // return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }
