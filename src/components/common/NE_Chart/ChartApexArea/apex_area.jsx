@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
-import styles from './ChartsApex.module.scss';
+import styles from '../ChartsApex.module.scss';
 
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
@@ -15,7 +15,7 @@ import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { NETWORKS } from 'types/ConstantsTypes';
 
-function ChartsApex({ initialData }) {
+function AreaChart({ initialData }) {
   const { sharedState } = useAppContext();
   const [isDarkMode] = useDarkMode();
   const windowSize = useWindowSize();
@@ -217,4 +217,4 @@ function ChartsApex({ initialData }) {
   );
 }
 
-export default ChartsApex;
+export default AreaChart;

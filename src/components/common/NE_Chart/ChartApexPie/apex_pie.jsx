@@ -4,9 +4,9 @@ import { useDarkMode } from 'hooks';
 import TYPES from 'types';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
-import styles from './ChartsApex.module.scss';
+import styles from '../ChartsApex.module.scss';
 
-function ApexPie({ series, options, labels, ...rest }) {
+function PieChart({ series, options, labels, ...rest }) {
   const windowSize = useWindowSize();
 
   const [isDarkMode] = useDarkMode();
@@ -70,4 +70,4 @@ function ApexPie({ series, options, labels, ...rest }) {
   );
 }
 
-export default ApexPie;
+export default PieChart;
