@@ -1,35 +1,37 @@
 import PropTypes from 'prop-types';
 import classes from '../Basic/Basic.module.scss';
 import styles from './Market.module.scss';
-import { Card_Watermark, Card_Header, Card_Footer } from '..';
+import { Card_Watermark, Card_Header, Card_Footer, ValueUnit } from '..';
 import { AiOutlineFall, AiOutlineRise } from 'react-icons/ai';
 import TYPES from 'types';
 import { cls } from 'utils';
 
 const MarketIconValue = ({ label, value }) => {
-  return (
-    <span className={cls(styles.market__price)}>
-      {value.match(/[-]/g) != '-' ? (
-        <AiOutlineRise
-          className={styles.market__price__icon}
-          title={label}
-          color={TYPES.COLORS.MARKET_GREEN}
-        />
-      ) : (
-        <AiOutlineFall
-          className={styles.market__price__icon}
-          title={label}
-          color={TYPES.COLORS.MARKET_RED}
-        />
-      )}
-      <p
-        data-state={`${value.match(/[-]/g) != '-'}`}
-        className={cls(styles.market__price__value)}
-        title={value}>
-        {value}
-      </p>
-    </span>
-  );
+  if (value)
+    return (
+      <span className={cls(styles.market__price)}>
+        {value.match(/[-]/g) != '-' ? (
+          <AiOutlineRise
+            className={styles.market__price__icon}
+            title={label}
+            color={TYPES.COLORS.MARKET_GREEN}
+          />
+        ) : (
+          <AiOutlineFall
+            className={styles.market__price__icon}
+            title={label}
+            color={TYPES.COLORS.MARKET_RED}
+          />
+        )}
+        <p
+          data-state={`${value.match(/[-]/g) != '-'}`}
+          className={cls(styles.market__price__value)}
+          title={value}>
+          {value}
+        </p>
+      </span>
+    );
+  return null;
 };
 
 const Card_Body = ({
@@ -43,12 +45,9 @@ const Card_Body = ({
   <div className={cls(classes.body)}>
     {/* Card main value */}
     <div className={classes.body__text}>
-      <p className={classes.body__text__value} title={text}>
-        {text}
-      </p>
-      <sub className={classes.body__text__unit} title={unit}>
-        {unit}
-      </sub>
+      <ValueUnit value={'1'} unit={'NXS'} />
+      <ValueUnit value={' = '} />
+      <ValueUnit value={text} unit={unit} />
       {reserve && <MarketIconValue label={reserveLabel} value={reserve} />}{' '}
     </div>
     <div className={classes.txn__block}>
