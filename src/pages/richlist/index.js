@@ -1,4 +1,5 @@
 import PageHeader from 'components/Header/PageHeader';
+import Layout from 'components/Layout';
 import Richlist from 'components/Views/Richlist';
 import React from 'react';
 import TYPES from 'types';
@@ -16,10 +17,10 @@ export async function getStaticProps() {
 
 function index(props) {
   return (
-    <>
+    <Layout>
       <PageHeader page="Richlist" />
       <Richlist data={props.richlistData} />
-    </>
+    </Layout>
   );
 }
 
