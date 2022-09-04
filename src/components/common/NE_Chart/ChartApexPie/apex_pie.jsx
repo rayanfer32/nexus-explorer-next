@@ -5,6 +5,7 @@ import TYPES from 'types';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import styles from '../ChartsApex.module.scss';
+import { initialOptions } from './essentials';
 
 function PieChart({ series, options, labels, ...rest }) {
   const windowSize = useWindowSize();
@@ -12,28 +13,11 @@ function PieChart({ series, options, labels, ...rest }) {
   const [isDarkMode] = useDarkMode();
   const [_series, setSeries] = useState(series);
   const [_options, setOptions] = useState(
-    options || {
-      chart: {
-        background: 'rgba(0, 0, 0, 0)',
-      },
-      theme: {
-        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
-      },
-      labels: labels || [],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: 'bottom',
-            },
-          },
-        },
-      ],
-    }
+    options ||
+      initialOptions({
+        labels,
+        theme: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
+      })
   );
 
   // * update internal state when props udpate

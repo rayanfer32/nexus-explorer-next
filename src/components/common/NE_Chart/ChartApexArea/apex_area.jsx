@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 // import contracts24h from 'assets/data/contracts24h';
 import styles from '../ChartsApex.module.scss';
-
 // https://github.com/apexcharts/react-apexcharts/issues/240
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
 import Shimmer from 'components/common/NE_Shimmer';
-import TYPES from 'types';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
-
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
+import TYPES from 'types';
 import { NETWORKS } from 'types/ConstantsTypes';
+import { initialEssentials } from './essentials';
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 function AreaChart({ initialData }) {
   const { sharedState } = useAppContext();
@@ -34,123 +33,86 @@ function AreaChart({ initialData }) {
     }
   );
 
-  // useEffect(() => {
-  //   console.log('windowsize', windowSize);
-  // }, [windowSize]);
-
-  let [chartState, setChartState] = useState({
-    options: {
-      chart: {
-        id: 'tx_chart',
-
-        background: 'rgba(0, 0, 0, 0)',
-        // TODO: work arround for apexcharts toolbar issue
-        toolbar: {
-          show: windowSize.width > 1000,
-          offsetX: -48,
-          offsetY: 8,
-          tools: {
-            download: false,
-            selection: true,
-            zoom: true,
-            zoomin: true,
-            zoomout: true,
-            pan: true,
-            customIcons: [
-              {
-                // icon: `<img src="/nexus-nxs-logo.svg" width="24" />`,
-                icon: `2H`,
-                index: 2,
-                title: '2H',
-                class: 'custom-icon',
-                click: () => {
-                  setLimit(2 * 60);
+  let [chartState, setChartState] = useState(
+    initialEssentials({
+      options: {
+        chart: {
+          id: 'tx_chart',
+          background: 'rgba(0, 0, 0, 0)',
+          // TODO: work arround for apexcharts toolbar issue
+          toolbar: {
+            show: windowSize.width > 1000,
+            offsetX: -48,
+            offsetY: 8,
+            tools: {
+              download: false,
+              selection: true,
+              zoom: true,
+              zoomin: true,
+              zoomout: true,
+              pan: true,
+              customIcons: [
+                {
+                  // icon: `<img src="/nexus-nxs-logo.svg" width="24" />`,
+                  icon: `2H`,
+                  index: 2,
+                  title: '2H',
+                  class: 'custom-icon',
+                  click: () => {
+                    setLimit(2 * 60);
+                  },
                 },
-              },
-              {
-                icon: '6H',
-                index: 3,
-                title: '6H',
-                class: 'custom-icon',
-                click: () => {
-                  setLimit(6 * 60);
+                {
+                  icon: '6H',
+                  index: 3,
+                  title: '6H',
+                  class: 'custom-icon',
+                  click: () => {
+                    setLimit(6 * 60);
+                  },
                 },
-              },
-              {
-                icon: '12H',
-                index: 4,
-                title: '12H',
-                class: 'custom-icon',
-                click: () => {
-                  setLimit(12 * 60);
+                {
+                  icon: '12H',
+                  index: 4,
+                  title: '12H',
+                  class: 'custom-icon',
+                  click: () => {
+                    setLimit(12 * 60);
+                  },
                 },
-              },
-              {
-                icon: '1D',
-                index: 5,
-                title: '24H',
-                class: 'custom-icon',
-                click: () => {
-                  setLimit(24 * 60);
+                {
+                  icon: '1D',
+                  index: 5,
+                  title: '24H',
+                  class: 'custom-icon',
+                  click: () => {
+                    setLimit(24 * 60);
+                  },
                 },
-              },
-            ],
+              ],
+            },
           },
         },
-      },
-      theme: {
-        mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
-      },
-      fill: {
-        type: 'gradient',
-        gradient: {
-          gradientToColors: isDarkMode
-            ? [TYPES.COLORS.SKY_BLUE]
-            : [TYPES.COLORS.NEXUS_BLUE],
+        theme: {
+          mode: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
         },
-        opacityFrom: 0.7,
-        opacityTo: 0.3,
-        stops: [0, 90, 100],
-      },
-      colors: isDarkMode ? [TYPES.COLORS.SKY_BLUE] : [TYPES.COLORS.NEXUS_BLUE],
-      grid: {
-        show: false,
-      },
-      title: {
-        text: 'Transaction History',
-        align: 'left',
-        style: {
-          fontFamily: 'inherit',
-          fontWeight: 'normal',
+        fill: {
+          type: 'gradient',
+          gradient: {
+            gradientToColors: isDarkMode
+              ? [TYPES.COLORS.SKY_BLUE]
+              : [TYPES.COLORS.NEXUS_BLUE],
+          },
+          opacityFrom: 0.7,
+          opacityTo: 0.3,
+          stops: [0, 90, 100],
         },
+        colors: isDarkMode
+          ? [TYPES.COLORS.SKY_BLUE]
+          : [TYPES.COLORS.NEXUS_BLUE],
       },
-      stroke: {
-        curve: 'smooth',
-        width: 2,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      xaxis: {
-        type: 'datetime',
-        categories: [],
-        labels: {
-          datetimeUTC: false,
-        },
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-      },
-    },
-    series: [
-      {
-        name: 'Contracts',
-        data: [],
-      },
-    ],
-  });
+    })
+  );
 
   useEffect(() => {
     if (data) {
@@ -186,7 +148,7 @@ function AreaChart({ initialData }) {
     const isDark = sharedState.theme === TYPES.THEME.DARK;
     // update chart theme mode
     setChartState((prev) => {
-      (prev.options.chart.toolbar.show = windowSize.width > 500),
+      (prev.options.chart.toolbar.show = windowSize.width > 512),
         (prev.options.theme.mode = sharedState.theme);
       // update colors property of the chart
       prev.options.colors = isDark
@@ -200,7 +162,7 @@ function AreaChart({ initialData }) {
     });
   }, [sharedState.theme, windowSize]);
 
-  if (isLoading) return <Shimmer width="100%" height="12.5rem" />;
+  if (isLoading) return <Shimmer width="100%" height="12.6rem" />;
 
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
