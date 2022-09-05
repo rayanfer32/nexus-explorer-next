@@ -35,7 +35,7 @@ function Panel2(props) {
         ...prev,
         price: {
           sublabel: marketData?.current_price.btc,
-          text: marketData?.current_price.usd.toFixed(2),
+          text: marketData?.current_price.usd,
           reserve: marketData?.price_change_percentage_24h.toFixed(2),
           reward: marketData?.total_volume.usd,
           footer: (
