@@ -137,7 +137,8 @@ function Panel2(props) {
           icon={<GiTwoCoins color="white" size="2.25rem" />}
           label="Price"
           sublabel={`${state.price?.sublabel} BTC`}
-          text={`1 NXS = ${state.price?.text} $`}
+          text={`${state.price?.text}`}
+          unit={'$'}
           reserveLabel="Change 24h"
           reserve={`${state.price?.reserve} %`}
           rewardLabel="Total Volume"

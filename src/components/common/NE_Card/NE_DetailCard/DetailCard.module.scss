@@ -77,16 +77,31 @@
     }
   }
   .ticker {
+    width: 0.75rem;
+    height: 0.75rem;
     background: var(--market-green);
-    width: 1.75rem;
-    height: 1rem;
-    border-radius: 0.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: var(--font-xs);
     color: var(--white);
     overflow: hidden;
+    border-radius: 1vmax;
+    justify-self: end;
+    position: relative;
+    animation: pulse 1s infinite linear;
+    transition: width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &:hover {
+    .ticker {
+      width: 1.75rem;
+      height: 1rem;
+      &::after {
+        content: attr(data-ticker);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        @include flex-center;
+      }
+    }
   }
 }
 
@@ -114,5 +129,22 @@
   &__label {
     font-weight: normal;
     font-size: var(--font-normal);
+  }
+}
+
+.value__unit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxxxs);
+  color: var(--theme-page-text);
+  font-weight: normal;
+  .value {
+    margin: 0;
+    font-size: var(--font-xxxl);
+  }
+  .unit {
+    font-size: var(--font-l);
+    align-self: flex-end;
+    line-height: 1.5;
   }
 }
