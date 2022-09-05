@@ -4,34 +4,35 @@ import styles from './Market.module.scss';
 import { Card_Watermark, Card_Header, Card_Footer, ValueUnit } from '..';
 import { AiOutlineFall, AiOutlineRise } from 'react-icons/ai';
 import TYPES from 'types';
-import { cls } from 'utils';
+import { cls, isNullOrUndefined } from 'utils';
+import { toFixedDigit } from 'utils/common';
 
 const MarketIconValue = ({ label, value }) => {
-  if (value)
-    return (
-      <span className={cls(styles.market__price)}>
-        {value.match(/[-]/g) != '-' ? (
-          <AiOutlineRise
-            className={styles.market__price__icon}
-            title={label}
-            color={TYPES.COLORS.MARKET_GREEN}
-          />
-        ) : (
-          <AiOutlineFall
-            className={styles.market__price__icon}
-            title={label}
-            color={TYPES.COLORS.MARKET_RED}
-          />
-        )}
-        <p
-          data-state={`${value.match(/[-]/g) != '-'}`}
-          className={cls(styles.market__price__value)}
-          title={value}>
-          {value}
-        </p>
-      </span>
-    );
-  return null;
+  if (isNullOrUndefined(value)) return null;
+
+  return (
+    <span className={cls(styles.market__price)}>
+      {value.match(/[-]/g) != '-' ? (
+        <AiOutlineRise
+          className={styles.market__price__icon}
+          title={label}
+          color={TYPES.COLORS.MARKET_GREEN}
+        />
+      ) : (
+        <AiOutlineFall
+          className={styles.market__price__icon}
+          title={label}
+          color={TYPES.COLORS.MARKET_RED}
+        />
+      )}
+      <p
+        data-state={`${value.match(/[-]/g) != '-'}`}
+        className={cls(styles.market__price__value)}
+        title={value}>
+        {value}
+      </p>
+    </span>
+  );
 };
 
 const Card_Body = ({
@@ -47,7 +48,7 @@ const Card_Body = ({
     <div className={classes.body__text}>
       <ValueUnit value={'1'} unit={'NXS'} />
       <ValueUnit value={' = '} />
-      <ValueUnit value={text} unit={unit} />
+      <ValueUnit value={toFixedDigit(Number(text), 6)} unit={unit} />
       {reserve && <MarketIconValue label={reserveLabel} value={reserve} />}{' '}
     </div>
     <div className={classes.txn__block}>
