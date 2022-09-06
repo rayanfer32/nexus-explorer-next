@@ -1,6 +1,6 @@
 import { middleElipsis, toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.scss';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import CopyText from '../NE_CopyText';
 
@@ -37,50 +37,51 @@ export const InfoCard = (props) => {
           )}
         </div>
 
-        {Object.entries(props?.data).map(([key, value]) => {
-          if (Array.isArray(value)) {
-            return (
-              <InfoCard collapse={true} type={key} data={value}>
-                {value.map((item, index) => (
-                  <InfoCard
-                    collapse={true}
-                    key={Math.random()}
-                    type={(index + 1).toString()}
-                    data={item}
-                  />
-                ))}
-              </InfoCard>
-            );
-          } else if (typeof value === 'object') {
-            return (
-              <InfoCard
-                key={Math.random()}
-                collapse={true}
-                type={isNaN(key) ? key : (parseInt(key) + 1).toString()}
-                data={value}
-              />
-            );
-          }
+        {props?.data &&
+          Object.entries(props.data).map(([key, value]) => {
+            if (Array.isArray(value)) {
+              return (
+                <InfoCard
+                  key={`${key}-${value}`}
+                  collapse={true}
+                  type={key}
+                  data={value}>
+                  {value.map((item, index) => (
+                    <InfoCard
+                      collapse={true}
+                      key={index}
+                      type={(index + 1).toString()}
+                      data={item}
+                    />
+                  ))}
+                </InfoCard>
+              );
+            } else if (typeof value === 'object') {
+              return (
+                <InfoCard
+                  key={Math.random()}
+                  collapse={true}
+                  type={isNaN(key) ? key : (parseInt(key) + 1).toString()}
+                  data={value}
+                />
+              );
+            }
 
-          return <InfoRow key={Math.random()} label={key} value={value} />;
-        })}
+            return <InfoRow key={Math.random()} label={key} value={value} />;
+          })}
 
         {/* contracts inside the transaction */}
         <div style={{ display: 'none', flexDirection: 'row', gap: '1rem' }}>
           <div>
             {/* info cards of contracts */}
             {props.data?.contracts?.map((contract, index) => (
-              <>
+              <React.Fragment key={`contract-${index}`}>
                 <hr />
-                <InfoCard
-                  key={`contract-${index}`}
-                  type="contract"
-                  data={contract}
-                />
+                <InfoCard type="contract" data={contract} />
                 {contract?.object && (
                   <InfoCard type="object" data={contract?.object} />
                 )}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>

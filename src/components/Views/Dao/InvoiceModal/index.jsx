@@ -119,7 +119,7 @@ export const InvoiceWithData = ({ data, onBack, onClose, isPage }) => {
               {items.map((item, idx) => (
                 <div key={idx} className={styles.item}>
                   <label>{item?.description}</label>
-                  <label>{item.units}</label>
+                  <label>{item?.units}</label>
                   <label>{item?.unit_amount}</label>
                 </div>
               ))}

@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/common/Rail';
 import Shimmer from 'components/common/NE_Shimmer';
-// import { useQuery } from 'react-query';
 import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
@@ -94,14 +93,14 @@ function Panel2(props) {
         },
       }));
     }
-  }, [marketRQ.data, miningRQ.data, metricsRQ.data]);
+  }, [marketRQ?.data, miningRQ?.data, metricsRQ?.data]);
 
   // reset card refresh timeout when RQ gets updated
   useEffect(() => {
     if (metricsRQ.data) {
       setCardRefreshTimeout(ConstantsTypes.REFETCH_INTERVALS.MINING / 1000);
     }
-  }, [metricsRQ.data]);
+  }, [metricsRQ?.data]);
 
   // increment the card timeout evry second
   useEffect(() => {

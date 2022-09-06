@@ -51,7 +51,7 @@ const About = ({ data }) => {
           <p className={styles.contributer}>Made with ❤️ in India, by</p>
           <p className={styles.contributer}>
             {Array.isArray(data) &&
-              data?.map((item) => {
+              data.map((item) => {
                 if (item.author.type === 'Bot') {
                   return;
                 }
