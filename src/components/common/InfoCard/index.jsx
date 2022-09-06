@@ -1,6 +1,6 @@
 import { middleElipsis, toTitleCase } from 'utils/converter';
 import styles from './InfoCard.module.scss';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import CopyText from '../NE_CopyText';
 
@@ -75,13 +75,13 @@ export const InfoCard = (props) => {
           <div>
             {/* info cards of contracts */}
             {props.data?.contracts?.map((contract, index) => (
-              <React.Fragment key={`contract-${index}`}>
+              <Fragment key={`contract-${index}`}>
                 <hr />
                 <InfoCard type="contract" data={contract} />
                 {contract?.object && (
                   <InfoCard type="object" data={contract?.object} />
                 )}
-              </React.Fragment>
+              </Fragment>
             ))}
           </div>
         </div>
