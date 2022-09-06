@@ -1,3 +1,5 @@
+[![DeepScan grade](https://deepscan.io/api/teams/18758/projects/22054/branches/652904/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=18758&pid=22054&bid=652904)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Welcome to the Nexus Explorer V2 Project
