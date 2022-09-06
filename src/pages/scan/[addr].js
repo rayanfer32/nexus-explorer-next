@@ -114,7 +114,7 @@ function Scan({ addr }) {
     );
   }
 
-  if (data.error) {
+  if (data?.error) {
     return <ErrorMessage error={data.error} />;
   }
 

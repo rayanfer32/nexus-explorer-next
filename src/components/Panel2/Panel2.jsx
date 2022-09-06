@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/common/Rail';
 import Shimmer from 'components/common/NE_Shimmer';
-// import { useQuery } from 'react-query';
 import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
@@ -25,9 +24,9 @@ function Panel2(props) {
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
 
-  const marketData = marketRQ?.data?.data?.market_data;
-  const miningData = miningRQ?.data?.data?.result;
-  const metricsData = metricsRQ?.data?.data?.result;
+  const marketData = marketRQ.data?.data?.market_data;
+  const miningData = miningRQ.data?.data?.result;
+  const metricsData = metricsRQ.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {

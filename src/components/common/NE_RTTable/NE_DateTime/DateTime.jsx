@@ -24,5 +24,5 @@ export const DateTime = ({ date, time, timeFormat }) => {
 DateTime.propTypes = {
   date: PropTypes.string,
   time: PropTypes.string,
-  timeUnit: PropTypes.string,
+  timeFormat: PropTypes.string,
 };

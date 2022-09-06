@@ -62,7 +62,7 @@ const Toast = ({ toastList = [], autoDelete = true, duration = 4000 }) => {
    * @param {string|number} id id of the toast message
    */
   const onClose = (id) => {
-    deleteToast(id) || false;
+    return deleteToast(id);
   };
 
   return (

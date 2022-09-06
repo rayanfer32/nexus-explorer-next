@@ -97,7 +97,7 @@ export const TransactionDetails = ({ type, data }) => {
 
   useEffect(() => {
     if (accountTransactionsRQ.data) {
-      let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
+      let _tableData = accountTransactionsRQ.data.result?.map((txn) => {
         return {
           txid: txn.txid,
           timestamp: txn.timestamp,
