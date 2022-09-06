@@ -37,7 +37,7 @@ export const InfoCard = (props) => {
           )}
         </div>
 
-        {props?.data &&
+        {props.data &&
           Object.entries(props.data).map(([key, value]) => {
             if (Array.isArray(value)) {
               return (

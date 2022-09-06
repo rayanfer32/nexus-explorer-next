@@ -24,9 +24,9 @@ function Panel2(props) {
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
 
-  const marketData = marketRQ?.data?.data?.market_data;
-  const miningData = miningRQ?.data?.data?.result;
-  const metricsData = metricsRQ?.data?.data?.result;
+  const marketData = marketRQ.data?.data?.market_data;
+  const miningData = miningRQ.data?.data?.result;
+  const metricsData = metricsRQ.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {
@@ -93,14 +93,14 @@ function Panel2(props) {
         },
       }));
     }
-  }, [marketRQ?.data, miningRQ?.data, metricsRQ?.data]);
+  }, [marketRQ.data, miningRQ.data, metricsRQ.data]);
 
   // reset card refresh timeout when RQ gets updated
   useEffect(() => {
     if (metricsRQ.data) {
       setCardRefreshTimeout(ConstantsTypes.REFETCH_INTERVALS.MINING / 1000);
     }
-  }, [metricsRQ?.data]);
+  }, [metricsRQ.data]);
 
   // increment the card timeout evry second
   useEffect(() => {

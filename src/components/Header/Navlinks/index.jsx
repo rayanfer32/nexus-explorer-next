@@ -134,7 +134,7 @@ export const MobileNavLinks = ({
 
       {Object.entries(TYPES.NAVBAR.NAVDROPDOWN).map(([key, value], index) => {
         if (network === NETWORKS.TESTNET.name && TYPES.OPTNAV.includes(key)) {
-          return <></>;
+          return null;
         }
         return (
           <Fragment key={`${key}${index}`}>
