@@ -1,6 +1,4 @@
-# Storybook
 '📝documentation':
-  - src/stories/**/*
   - README.md
   - CONTRIBUTING.md
   - '*.md'
@@ -12,7 +10,6 @@
   - package.json
   - .github/**/*
   - .vscode/**/*
-  - .storybook/**/*
   - '*'
 
 '⚠️BREAKING CHANGES!!!':
