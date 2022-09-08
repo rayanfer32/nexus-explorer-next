@@ -28,9 +28,7 @@ export default function Richlist(props) {
     {
       placeholderData:
         pageIndex == 0
-          ? isMainnet
-            ? { data: props.data.data.slice(0, pageSize) }
-            : undefined
+          ? isMainnet && { data: props.data.data.slice(0, pageSize) }
           : undefined, // * for testnet we don't have data in the props
       staleTime: 1000 * 60, // * 1 min
     }
