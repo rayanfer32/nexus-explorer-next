@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import classes from '../Basic/Basic.module.scss';
 import styles from './Market.module.scss';
-import { Card_Watermark, Card_Header, Card_Footer } from '..';
+import { Card_Watermark, Card_Header, Card_Footer, ValueUnit } from '..';
 import { AiOutlineFall, AiOutlineRise } from 'react-icons/ai';
 import TYPES from 'types';
-import { cls } from 'utils';
+import { cls, isNullOrUndefined } from 'utils';
+import { toFixedDigit } from 'utils/common';
 
 const MarketIconValue = ({ label, value }) => {
+  if (isNullOrUndefined(value)) return null;
+
   return (
     <span className={cls(styles.market__price)}>
       {value.match(/[-]/g) != '-' ? (
@@ -43,12 +46,9 @@ const Card_Body = ({
   <div className={cls(classes.body)}>
     {/* Card main value */}
     <div className={classes.body__text}>
-      <p className={classes.body__text__value} title={text}>
-        {text}
-      </p>
-      <sub className={classes.body__text__unit} title={unit}>
-        {unit}
-      </sub>
+      <ValueUnit value={'1'} unit={'NXS'} />
+      <ValueUnit value={' = '} />
+      <ValueUnit value={toFixedDigit(Number(text), 6)} unit={unit} />
       {reserve && <MarketIconValue label={reserveLabel} value={reserve} />}{' '}
     </div>
     <div className={classes.txn__block}>

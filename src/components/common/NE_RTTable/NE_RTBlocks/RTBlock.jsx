@@ -53,7 +53,6 @@ function RTTRowBlock(props) {
 RTTRowBlock.propTypes = {
   block: PropTypes.string,
   channel: PropTypes.string,
-  utc: PropTypes.string,
   date: PropTypes.string,
   mint: PropTypes.string,
   mintUnit: PropTypes.string,
@@ -63,7 +62,6 @@ RTTRowBlock.propTypes = {
   txnsUnit: PropTypes.string,
   type: PropTypes.string,
   timeUnit: PropTypes.string,
-  link: PropTypes.string,
   onClick: PropTypes.func,
 };
 

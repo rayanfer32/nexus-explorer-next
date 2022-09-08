@@ -52,9 +52,11 @@ export default function Metrics() {
   }
 
   if (error) {
-    <div>
-      <ErrorCard />
-    </div>;
+    return (
+      <div>
+        <ErrorCard />
+      </div>
+    );
   }
 
   return (

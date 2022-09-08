@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
 import Rail from 'components/common/Rail';
 import Shimmer from 'components/common/NE_Shimmer';
-// import { useQuery } from 'react-query';
 import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
@@ -25,9 +24,9 @@ function Panel2(props) {
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
 
-  const marketData = marketRQ?.data?.data?.market_data;
-  const miningData = miningRQ?.data?.data?.result;
-  const metricsData = metricsRQ?.data?.data?.result;
+  const marketData = marketRQ.data?.data?.market_data;
+  const miningData = miningRQ.data?.data?.result;
+  const metricsData = metricsRQ.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
     if (marketRQ.data) {
@@ -35,7 +34,7 @@ function Panel2(props) {
         ...prev,
         price: {
           sublabel: marketData?.current_price.btc,
-          text: marketData?.current_price.usd.toFixed(2),
+          text: marketData?.current_price.usd,
           reserve: marketData?.price_change_percentage_24h.toFixed(2),
           reward: marketData?.total_volume.usd,
           footer: (
@@ -137,7 +136,8 @@ function Panel2(props) {
           icon={<GiTwoCoins color="white" size="2.25rem" />}
           label="Price"
           sublabel={`${state.price?.sublabel} BTC`}
-          text={`1 NXS = ${state.price?.text} $`}
+          text={`${state.price?.text}`}
+          unit={'$'}
           reserveLabel="Change 24h"
           reserve={`${state.price?.reserve} %`}
           rewardLabel="Total Volume"

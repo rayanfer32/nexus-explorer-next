@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import styles from './richlist.module.scss';
 import Loader from 'components/common/NE_Loader';
 import { intlNum } from 'utils/converter';
-import ApexPie from 'components/Chart/ApexPie';
+import ApexPie from 'components/common/NE_Chart/ChartApexPie';
 import TYPES from 'types';
 import CopyText from 'components/common/NE_CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
@@ -93,7 +93,7 @@ export default function Richlist(props) {
     },
   };
 
-  // * effect to calculate and load piechart data when the richlist111 data is loaded  
+  // * effect to calculate and load piechart data when the richlist111 data is loaded
   useEffect(() => {
     if (richlist111.data) {
       const sortedData = richlist111.data.data;
@@ -115,7 +115,7 @@ export default function Richlist(props) {
   }, [richlist111.data]);
 
   if (error) {
-    return <ErrorMessage error={error?.message} />;
+    return <ErrorMessage error={error.message} />;
   }
 
   return (
