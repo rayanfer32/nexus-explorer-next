@@ -1,4 +1,4 @@
-import { Log, Warn } from 'utils/customLog';
+import { Warn } from 'utils/customLog';
 
 /**
  * Get fixed number of digits in the number
@@ -20,6 +20,5 @@ export function toFixedDigit(num, maxLen = 6) {
   const _mNum = Number.parseFloat(num).toFixed(
     Number(maxLen) - Number(numLen[0].length)
   );
-  Log('toFixedDigit', _mNum);
   return Number(_mNum);
 }
