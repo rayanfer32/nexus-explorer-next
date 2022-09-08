@@ -11,7 +11,7 @@ jobs:
 
       - name: Update changelog
         run: |
-          yarn install github-release-notes
+          yarn add github-release-notes -D
           export GREN_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           yarn run overrideChangelog
       - name: Create Pull Request

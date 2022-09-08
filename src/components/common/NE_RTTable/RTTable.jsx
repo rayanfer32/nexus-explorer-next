@@ -7,7 +7,7 @@ function RTTable(props) {
     <div className={styles.rttable}>
       <div className={styles.header}>
         <div className={styles.label}>{label}</div>
-        <button className={styles.button} onClick={props?.onClick}>
+        <button className={styles.button} onClick={props.onClick}>
           {btnTxt}
         </button>
       </div>

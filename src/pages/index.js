@@ -9,6 +9,7 @@ import {
 
 import PageHeader from 'components/Header/PageHeader';
 import HomeView from 'components/Views/Home';
+import Layout from 'components/Layout';
 
 // * SSG with initial data
 // * https://react-query.tanstack.com/guides/ssr
@@ -43,9 +44,9 @@ export async function getStaticProps() {
 
 export default function Home(props) {
   return (
-    <>
+    <Layout>
       <PageHeader title={TYPES.PAGEMETA.TITLE} />
       <HomeView {...props} />
-    </>
+    </Layout>
   );
 }

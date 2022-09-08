@@ -14,6 +14,7 @@ import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useRouter } from 'next/router';
+import Layout from 'components/Layout';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -113,7 +114,7 @@ function Scan({ addr }) {
     );
   }
 
-  if (data.error) {
+  if (data?.error) {
     return <ErrorMessage error={data.error} />;
   }
 
@@ -133,7 +134,7 @@ function Scan({ addr }) {
   );
 
   return (
-    <>
+    <Layout>
       <PageHeader page={cardType} />
       <div>
         {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
@@ -150,7 +151,7 @@ function Scan({ addr }) {
         )}
         {isDev && rawInfo}
       </div>
-    </>
+    </Layout>
   );
 }
 

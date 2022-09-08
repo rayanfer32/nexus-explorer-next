@@ -81,7 +81,6 @@ export const TransactionDetails = ({ type, data }) => {
           ['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)
         ) {
           cellColor = TYPES.COLORS.MARKET_GREEN;
-          sign = '+';
         } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
           cellColor = TYPES.COLORS.MARKET_RED;
           sign = '-';
@@ -97,7 +96,7 @@ export const TransactionDetails = ({ type, data }) => {
 
   useEffect(() => {
     if (accountTransactionsRQ.data) {
-      let _tableData = accountTransactionsRQ.data?.result?.map((txn) => {
+      let _tableData = accountTransactionsRQ.data.result?.map((txn) => {
         return {
           txid: txn.txid,
           timestamp: txn.timestamp,

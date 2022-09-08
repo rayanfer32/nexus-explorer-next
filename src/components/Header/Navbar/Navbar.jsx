@@ -11,8 +11,7 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element}
  */
 const Navbar = ({ isMobile = false, ...props }) => {
-  if (isMobile) <MobileMenu {...props} />;
-  return <DesktopNavbar {...props} />;
+  return isMobile ? <MobileMenu {...props} /> : <DesktopNavbar {...props} />;
 };
 
 export default Navbar;

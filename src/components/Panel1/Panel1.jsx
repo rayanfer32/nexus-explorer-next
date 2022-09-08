@@ -1,6 +1,6 @@
 import { NE_SmallCard } from '../common/NE_Card/NE_SmallCard';
 import styles from 'components/Panel1/Panel1.module.scss';
-import ChartsApex from 'components/Chart/ChartsApex';
+import ChartsApex from 'components/common/NE_Chart/ChartApexArea';
 import { useState, useEffect } from 'react';
 import Shimmer from 'components/common/NE_Shimmer';
 import { GrStackOverflow } from 'react-icons/gr';

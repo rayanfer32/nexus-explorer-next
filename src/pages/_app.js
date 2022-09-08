@@ -1,4 +1,3 @@
-import Layout from 'components/Layout';
 import 'styles/globals.scss';
 import { ContextWrapper } from 'contexts/AppContext';
 import { QueryClientProvider, QueryClient } from 'react-query';
@@ -12,7 +11,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-})
+});
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -24,9 +23,7 @@ function MyApp({ Component, pageProps }) {
           style: { verticalAlign: 'middle' },
         }}>
         <QueryClientProvider client={queryClient}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
           <ReactQueryDevtools position="bottom-right" />
         </QueryClientProvider>
       </IconContext.Provider>

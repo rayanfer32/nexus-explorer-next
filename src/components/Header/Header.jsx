@@ -40,7 +40,7 @@ const Header = () => {
   useEffect(() => {
     const el = headerRef.current;
 
-    const previousValue = window.pageYOffset;
+    let previousValue = window.pageYOffset;
 
     function onScroll() {
       if (window.pageYOffset > previousValue) {
