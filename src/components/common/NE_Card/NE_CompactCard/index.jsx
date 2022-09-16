@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './CompactCard.module.scss';
 import { Nexus_SVG_Icon } from 'assets/icons';
 import TYPES from 'types';
+import { cls } from 'utils';
 
 /**
  * Compact card component with icon
@@ -24,7 +25,7 @@ export const NE_CompactCard = (props) => {
         <div className={styles['card-body-upper-part']}>
           <h4
             onClick={props.onClickLabel}
-            className={!!props.onClickLabel && styles['hover']}
+            className={cls(!!props.onClickLabel && styles['hover'])}
             title={`${props.label}`}>
             {props.label}
           </h4>
@@ -35,7 +36,7 @@ export const NE_CompactCard = (props) => {
           onClick={props.onClick}>
           {props.text && <label data-right>{props.text}</label>}
           <h3
-            className={!!props.onClick && styles['hover']}
+            className={cls(!!props.onClick && styles['hover'])}
             title={`Value is ${props.value}`}>
             {props.value}
           </h3>
