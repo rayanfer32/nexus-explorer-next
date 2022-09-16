@@ -9,7 +9,6 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
 import { Log } from 'utils/customLog';
-import ErrorCard from 'components/common/NE_ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
@@ -98,26 +97,6 @@ function Scan({ addr }) {
     }
   );
 
-  if (isLoading) {
-    return (
-      <div className={'center-loader'}>
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        <ErrorCard />
-      </div>
-    );
-  }
-
-  if (data?.error) {
-    return <ErrorMessage error={data.error} />;
-  }
-
   const rawInfo = (
     <div style={{ margin: '1rem' }}>
       <Button
@@ -137,16 +116,29 @@ function Scan({ addr }) {
     <Layout>
       <PageHeader page={cardType} />
       <div>
-        {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
-          <InfoCard type={cardType} data={data?.result} />
+        {isLoading && (
+          <div className={'center-loader'}>
+            <Loader type="circle" size="5rem" />
+          </div>
         )}
-        {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
-          <UserAccount type={cardType} data={data?.result} />
+        {error?.response.data && (
+          <ErrorMessage error={error.response.data.error} />
         )}
-        {cardType === CARD_TYPES.INVOICE && (
+        {data?.result && (
           <>
-            {/* <InfoCard type={cardType} data={data?.result} /> */}
-            <InvoiceWithData data={data?.result} onBack={router.back} isPage />
+            {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
+              <InfoCard type={cardType} data={data?.result} />
+            )}
+            {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
+              <UserAccount type={cardType} data={data?.result} />
+            )}
+            {cardType === CARD_TYPES.INVOICE && (
+              <InvoiceWithData
+                data={data?.result}
+                onBack={router.back}
+                isPage
+              />
+            )}
           </>
         )}
         {isDev && rawInfo}
