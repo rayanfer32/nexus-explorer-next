@@ -2,7 +2,7 @@ import axios from 'axios';
 import { InfoCard } from 'components/common/InfoCard';
 import Button from 'components/common/NE_Button';
 import Loader from 'components/common/NE_Loader';
-import ErrorMessage from 'components/common/ErrorMessage';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
