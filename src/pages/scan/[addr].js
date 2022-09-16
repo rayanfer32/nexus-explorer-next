@@ -121,9 +121,7 @@ function Scan({ addr }) {
             <Loader type="circle" size="5rem" />
           </div>
         )}
-        {error?.response.data && (
-          <ErrorMessage error={error.response.data.error} />
-        )}
+        {data?.error && <ErrorMessage error={data.error} />}
         {data?.result && (
           <>
             {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
