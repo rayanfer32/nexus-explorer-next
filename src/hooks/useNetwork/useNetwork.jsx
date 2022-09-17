@@ -56,7 +56,7 @@ export function useNetwork() {
         order: 'desc',
       },
     });
-    return res;
+    return res.data;
   };
 
   const getRichlist = async (page = 0, limit = 111) => {

@@ -12,7 +12,7 @@ import TYPES from 'types';
 import NE_Pagination from 'components/common/NE_Pagination';
 import { InvoiceModal } from '../InvoiceModal';
 import { FiInfo } from 'react-icons/fi';
-import ErrorMessage from 'components/common/ErrorMessage';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 
 function InvoicesView({ username }) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -53,7 +53,7 @@ function InvoicesView({ username }) {
   }
 
   if (error) {
-    return <ErrorMessage error={error.message}></ErrorMessage>;
+    return <ErrorMessage error={error?.response?.data?.error}></ErrorMessage>;
   }
 
   const dynamicPageControls = {

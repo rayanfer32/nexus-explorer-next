@@ -1,6 +1,5 @@
-import ErrorMessage from 'components/common/ErrorMessage';
-import ErrorCard from 'components/common/NE_ErrorCard';
 import Loader from 'components/common/NE_Loader';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 import Layout from 'components/Layout';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
@@ -17,31 +16,17 @@ export default function Index() {
     () => getInvoice(router.query.invoice)
   );
 
-  if (isLoading) {
-    return (
-      <div className="center-loader">
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        <ErrorCard />
-      </div>
-    );
-  }
-
-  if (data.error) {
-    return <ErrorMessage error={data.error} />;
-  }
-
   return (
     <Layout>
-      <InvoiceWithData data={data} onBack={router.back} isPage />
+      {isLoading && (
+        <div className={'center-loader'}>
+          <Loader type="circle" size="5rem" />
+        </div>
+      )}
+      {error?.response.data && (
+        <ErrorMessage error={error.response.data.error} />
+      )}
+      {data && <InvoiceWithData data={data} onBack={router.back} isPage />}
     </Layout>
   );
-
-  // return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

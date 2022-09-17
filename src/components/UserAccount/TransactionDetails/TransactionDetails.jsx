@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
 import DynamicPagination from 'components/common/NE_Pagination';
-import ErrorMessage from 'components/common/ErrorMessage';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 import { intlNum } from 'utils';
 
 export const TransactionDetails = ({ type, data }) => {
@@ -18,18 +18,6 @@ export const TransactionDetails = ({ type, data }) => {
   const [tableData, setTableData] = useState([]);
   const { network, getAccountTransactions, getTrustTransactions } =
     useNetwork();
-
-  const LoaderDiv = () => (
-    <div
-      style={{
-        display: 'grid',
-        placeItems: 'center',
-        minHeight: '200px',
-        margin: 'auto',
-      }}>
-      <Loader type="circle" size="5rem" />
-    </div>
-  );
 
   const accountTransactionsRQ = useQuery(
     [
@@ -136,14 +124,18 @@ export const TransactionDetails = ({ type, data }) => {
   };
 
   if (accountTransactionsRQ.isLoading) {
-    return <LoaderDiv />;
+    return (
+      <div className={'center-loader'}>
+        <Loader type="circle" size="5rem" />
+      </div>
+    );
   }
 
   return (
     <div className={styles.page} style={{ marginBottom: '1rem' }}>
       <Table
         columns={columns}
-        data={accountTransactionsRQ.data?.error ? [] : tableData}
+        data={accountTransactionsRQ?.error ? [] : tableData}
         paginate={false}
       />
       <div style={{ marginBottom: '1rem' }}>
@@ -152,8 +144,10 @@ export const TransactionDetails = ({ type, data }) => {
           isStaticPanination={false}
         />
       </div>
-      {accountTransactionsRQ.data?.error && (
-        <ErrorMessage error={accountTransactionsRQ.data.error} />
+      {accountTransactionsRQ?.error && (
+        <ErrorMessage
+          error={accountTransactionsRQ?.error?.response?.data?.error}
+        />
       )}
     </div>
   );

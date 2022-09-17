@@ -10,7 +10,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/common/NE_Pagination';
 import { NETWORKS } from 'types/ConstantsTypes';
-import ErrorMessage from 'components/common/ErrorMessage';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 
 export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -113,7 +113,7 @@ export default function Richlist(props) {
   }, [richlist111.data]);
 
   if (error) {
-    return <ErrorMessage error={error.message} />;
+    return <ErrorMessage error={error?.response?.data?.error} />;
   }
 
   return (
@@ -127,13 +127,7 @@ export default function Richlist(props) {
 
         {/* // * Table with dual pagination */}
         {isLoading ? (
-          <div
-            style={{
-              display: 'grid',
-              placeItems: 'center',
-              minHeight: '200px',
-              margin: 'auto',
-            }}>
+          <div className={'center-loader'}>
             <Loader type="circle" size="5rem" />
           </div>
         ) : (
