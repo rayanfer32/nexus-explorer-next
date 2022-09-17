@@ -135,7 +135,7 @@ export const TransactionDetails = ({ type, data }) => {
     <div className={styles.page} style={{ marginBottom: '1rem' }}>
       <Table
         columns={columns}
-        data={accountTransactionsRQ?.error ? [] : tableData}
+        data={accountTransactionsRQ.error ? [] : tableData}
         paginate={false}
       />
       <div style={{ marginBottom: '1rem' }}>
@@ -146,7 +146,7 @@ export const TransactionDetails = ({ type, data }) => {
       </div>
       {accountTransactionsRQ.error && (
         <ErrorMessage
-          error={accountTransactionsRQ.error?.response?.data?.error}
+          error={accountTransactionsRQ.error.response?.data?.error}
         />
       )}
     </div>
