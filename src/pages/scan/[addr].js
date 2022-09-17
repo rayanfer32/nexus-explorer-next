@@ -106,7 +106,7 @@ function Scan({ addr }) {
       </Button>
       {showRawResponse && (
         <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
-          {JSON.stringify(data, null, 2)}
+          {JSON.stringify(data || error, null, 2)}
         </pre>
       )}
     </div>

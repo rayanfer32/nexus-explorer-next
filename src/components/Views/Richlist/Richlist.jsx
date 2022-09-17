@@ -115,17 +115,17 @@ export default function Richlist(props) {
   return (
     <>
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        {/* // * Pie chart */}
-        <div className={styles.chartContainer}>
-          <h3>NXS Distrubution</h3>
-          {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
-        </div>
-
         <PromiseLayout
           isLoading={isLoading}
           isError={isError}
           error={pathOr({}, ['response', 'data', 'error'], error)}
           loaderType={TYPES.LOADER.CIRCLE}>
+          {/* // * Pie chart */}
+          <div className={styles.chartContainer}>
+            <h3>NXS Distrubution</h3>
+            {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
+          </div>
+
           {/* // * Table with dual pagination */}
           <div>
             <div className={styles.top_pagination}>
