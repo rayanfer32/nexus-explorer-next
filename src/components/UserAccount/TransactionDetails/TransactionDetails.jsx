@@ -1,14 +1,13 @@
 import Table from 'components/Table/Table';
 import styles from './TransactionDetails.module.scss';
-import Loader from 'components/common/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
 import DynamicPagination from 'components/common/NE_Pagination';
-import ErrorMessage from 'components/common/NE_ErrorMessage';
-import { intlNum } from 'utils';
+import { intlNum, pathOr } from 'utils';
+import PromiseLayout from 'components/HOC/PromiseLayout';
 
 export const TransactionDetails = ({ type, data }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -123,32 +122,28 @@ export const TransactionDetails = ({ type, data }) => {
     },
   };
 
-  if (accountTransactionsRQ.isLoading) {
-    return (
-      <div className={'center-loader'}>
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  }
-
   return (
     <div className={styles.page} style={{ marginBottom: '1rem' }}>
-      <Table
-        columns={columns}
-        data={accountTransactionsRQ.error ? [] : tableData}
-        paginate={false}
-      />
-      <div style={{ marginBottom: '1rem' }}>
-        <DynamicPagination
-          controls={dynamicPageControls}
-          isStaticPanination={false}
+      <PromiseLayout
+        isLoading={pathOr(false, ['isLoading'], accountTransactionsRQ)}
+        isError={pathOr(false, ['error'], accountTransactionsRQ)}
+        error={pathOr(
+          {},
+          ['error', 'response', 'data', 'error'],
+          accountTransactionsRQ
+        )}>
+        <Table
+          columns={columns}
+          data={accountTransactionsRQ.error ? [] : tableData}
+          paginate={false}
         />
-      </div>
-      {accountTransactionsRQ.error && (
-        <ErrorMessage
-          error={accountTransactionsRQ.error.response?.data?.error}
-        />
-      )}
+        <div style={{ marginBottom: '1rem' }}>
+          <DynamicPagination
+            controls={dynamicPageControls}
+            isStaticPanination={false}
+          />
+        </div>
+      </PromiseLayout>
     </div>
   );
 };

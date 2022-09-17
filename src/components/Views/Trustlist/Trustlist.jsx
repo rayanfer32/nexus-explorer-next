@@ -2,13 +2,13 @@ import Table from 'components/Table/Table';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import styles from './trustlist.module.scss';
-import Loader from 'components/common/NE_Loader';
-import { intlNum } from 'utils/converter';
 import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import PageHeader from 'components/Header/PageHeader';
 import DynamicPagination from 'components/common/NE_Pagination';
-import ErrorMessage from 'components/common/NE_ErrorMessage';
+import PromiseLayout from 'components/HOC/PromiseLayout';
+import { intlNum, pathOr } from 'utils';
+import TYPES from 'types';
 
 export default function Trustlist() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -16,7 +16,7 @@ export default function Trustlist() {
   const [pageCount] = useState(Infinity);
 
   const { network, getTrustlist } = useNetwork();
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['trustlist', pageIndex, pageSize, network.name],
     getTrustlist
   );
@@ -82,27 +82,25 @@ export default function Trustlist() {
     <>
       <PageHeader page={'trustlist'} />
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        {isLoading && (
-          <div className={'center-loader'}>
-            <Loader type="circle" size="5rem" />
+        <PromiseLayout
+          isLoading={isLoading}
+          isError={isError}
+          error={pathOr({}, ['response', 'data', 'error'], error)}
+          loaderType={TYPES.LOADER.CIRCLE}>
+          {data && (
+            <Table
+              columns={columns}
+              data={error?.response?.data ? [] : data.result}
+              paginate={false}
+            />
+          )}
+          <div style={{ marginBottom: '1rem' }}>
+            <DynamicPagination
+              controls={dynamicPageControls}
+              isStaticPanination={false}
+            />
           </div>
-        )}
-        {data && (
-          <Table
-            columns={columns}
-            data={error?.response?.data ? [] : data.result}
-            paginate={false}
-          />
-        )}
-        <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination
-            controls={dynamicPageControls}
-            isStaticPanination={false}
-          />
-        </div>
-        {error?.response?.data && (
-          <ErrorMessage error={error.response.data.error} />
-        )}
+        </PromiseLayout>
       </div>
     </>
   );

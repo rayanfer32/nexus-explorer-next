@@ -1,7 +1,6 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import styles from './richlist.module.scss';
-import Loader from 'components/common/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/common/NE_Chart/ChartApexPie';
 import TYPES from 'types';
@@ -10,7 +9,8 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/common/NE_Pagination';
 import { NETWORKS } from 'types/ConstantsTypes';
-import ErrorMessage from 'components/common/NE_ErrorMessage';
+import PromiseLayout from 'components/HOC/PromiseLayout';
+import { pathOr } from 'utils';
 
 export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -22,7 +22,7 @@ export default function Richlist(props) {
   // * api calls
   const { network, getRichlist, getMetrics } = useNetwork();
   const isMainnet = network.name === NETWORKS.MAINNET.name;
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['richlist', pageIndex, pageSize, network.name],
     () => getRichlist(pageIndex, pageSize),
     {
@@ -112,10 +112,6 @@ export default function Richlist(props) {
     }
   }, [richlist111.data]);
 
-  if (error) {
-    return <ErrorMessage error={error.response?.data?.error} />;
-  }
-
   return (
     <>
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
@@ -125,12 +121,12 @@ export default function Richlist(props) {
           {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
         </div>
 
-        {/* // * Table with dual pagination */}
-        {isLoading ? (
-          <div className={'center-loader'}>
-            <Loader type="circle" size="5rem" />
-          </div>
-        ) : (
+        <PromiseLayout
+          isLoading={isLoading}
+          isError={isError}
+          error={pathOr({}, ['response', 'data', 'error'], error)}
+          loaderType={TYPES.LOADER.CIRCLE}>
+          {/* // * Table with dual pagination */}
           <div>
             <div className={styles.top_pagination}>
               {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
@@ -138,7 +134,7 @@ export default function Richlist(props) {
             <Table columns={columns} data={data.data || []} paginate={false} />
             <Pagination controls={dynamicPageControls} />
           </div>
-        )}
+        </PromiseLayout>
       </div>
     </>
   );
