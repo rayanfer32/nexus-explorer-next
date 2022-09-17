@@ -90,7 +90,7 @@ export default function Trustlist() {
         {data && (
           <Table
             columns={columns}
-            data={error?.response?.data ? [] : data?.result}
+            data={error?.response?.data ? [] : data.result}
             paginate={false}
           />
         )}

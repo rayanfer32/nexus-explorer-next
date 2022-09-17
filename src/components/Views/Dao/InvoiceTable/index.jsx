@@ -53,7 +53,7 @@ function InvoicesView({ username }) {
   }
 
   if (error) {
-    return <ErrorMessage error={error?.response?.data?.error}></ErrorMessage>;
+    return <ErrorMessage error={error.response?.data?.error}></ErrorMessage>;
   }
 
   const dynamicPageControls = {

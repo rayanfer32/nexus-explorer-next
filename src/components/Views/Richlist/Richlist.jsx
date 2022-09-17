@@ -113,7 +113,7 @@ export default function Richlist(props) {
   }, [richlist111.data]);
 
   if (error) {
-    return <ErrorMessage error={error?.response?.data?.error} />;
+    return <ErrorMessage error={error.response?.data?.error} />;
   }
 
   return (

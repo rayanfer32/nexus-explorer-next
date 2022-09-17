@@ -144,9 +144,9 @@ export const TransactionDetails = ({ type, data }) => {
           isStaticPanination={false}
         />
       </div>
-      {accountTransactionsRQ?.error && (
+      {accountTransactionsRQ.error && (
         <ErrorMessage
-          error={accountTransactionsRQ?.error?.response?.data?.error}
+          error={accountTransactionsRQ.error?.response?.data?.error}
         />
       )}
     </div>
