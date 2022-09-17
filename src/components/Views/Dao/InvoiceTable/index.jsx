@@ -79,7 +79,8 @@ function InvoicesView({ username }) {
       isLoading={isLoading}
       isError={isError}
       error={pathOr({}, ['response', 'data', 'error'], error)}
-      loaderType={TYPES.LOADER.DOT}>
+      loaderType={TYPES.LOADER.DOT}
+      loaderSize={'2.5rem'}>
       <div className={cls(styles.header)}>
         <BsBoxArrowLeft className={styles.backIcon} onClick={router.back} />
         <p>
