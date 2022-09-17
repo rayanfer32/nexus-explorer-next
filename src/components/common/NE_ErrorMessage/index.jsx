@@ -10,11 +10,12 @@ export default function ErrorMessage({ error }) {
   return (
     <div className={cls(styles['error-container'])}>
       <Image src={Billy} alt={code} loading="lazy" />
-      <div>
+      <div className={styles['error-detail']}>
+        <h3>Oops!, Something's not right </h3>
+        <p className={styles['error-message']}>{message}</p>
         <p className={styles['error-code']}>
           code: <span>{code}</span>
         </p>
-        <p className={styles['error-message']}>{message}</p>
       </div>
     </div>
   );
