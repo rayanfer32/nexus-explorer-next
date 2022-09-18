@@ -1,31 +1,36 @@
 name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
+
 categories:
+  - title: '⚠️Breaking Changes'
+    labels:
+      - 'breaking-changes'
+      - 'BREAKING CHANGES'
   - title: '🚀 Features'
     labels:
       - 'feat'
-      - 'feature'
       - 'enhancement'
-      - 'chore:pages'
       - 'styles'
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
-      - 'bugfix'
       - 'bug'
   - title: '🧰 Maintenance'
     labels:
       - 'chore'
       - 'styles:global'
-      - 'source'
+      - 'refactor'
+      - 'workflow'
   - title: '🧺 Miscellaneous' #Everything except ABAP
     labels:
       - 'misc'
       - 'utils'
       - 'assests'
-      - 'workflow'
+    collapse-after: 3
+
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+
 version-resolver:
   major:
     labels:
@@ -37,10 +42,17 @@ version-resolver:
     labels:
       - 'patch'
   default: patch
+
+exclude-labels:
+  - 'release:changelog'
+  - 'skip'
+
 template: |
-  ## Changes
+  ## What's Changed
 
   $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 
 autolabeler:
   - label: 'bug'
@@ -48,8 +60,41 @@ autolabeler:
       - '/fix\/.+/'
     title:
       - '/fix/i'
+
+  - label: 'chore'
+    branch:
+      - '/chore\/.+/'
+      - '/ci\/.+/'
+    title:
+      - '/chore/i'
+      - '/ci/i'
+
   - label: 'feat'
+    title:
+      - '/feat/i'
     branch:
       - '/feat\/.+/'
-    body:
-      - '/\/issues\//'
+
+  - label: 'refactor'
+    branch:
+      - '/refactor\/.+/'
+    title:
+      - '/refactor:/i'
+
+  - label: 'style'
+    branch:
+      - '/style\/.+/'
+    title:
+      - '/style:/i'
+
+  - label: 'test'
+    branch:
+      - '/test\/.+/'
+    title:
+      - '/test/i'
+
+  - label: 'workflow'
+    branch:
+      - '/ci\/.+/'
+    title:
+      - '/ci:/i'
