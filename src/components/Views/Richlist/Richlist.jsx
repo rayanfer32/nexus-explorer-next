@@ -131,7 +131,7 @@ export default function Richlist(props) {
             <div className={styles.top_pagination}>
               {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
             </div>
-            <Table columns={columns} data={data.data || []} paginate={false} />
+            <Table columns={columns} data={data?.data || []} paginate={false} />
             <Pagination controls={dynamicPageControls} />
           </div>
         </PromiseLayout>
