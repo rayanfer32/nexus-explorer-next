@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.0.4 (18/09/2022)
+## What's Changed
+
+## ⚠️Breaking Changes
+
+- fix: scan page not showing error @rayanfer32 (#260)
+
+## 🚀 Features
+
+- feat: merge isLoading, isError to single component @shrivatsabhat (#264)
+- feat: add new error message card @shrivatsabhat (#261)
+
+## 🐛 Bug Fixes
+
+- fix: scan page not showing error @rayanfer32 (#260)
+- fix: scan layout not showing @rayanfer32 (#259)
+- fix: passing boolean to class methods @shrivatsabhat (#258)
+
+## 🧰 Maintenance
+
+- feat: merge isLoading, isError to single component @shrivatsabhat (#264)
+- ci: improve the template and labeller @shrivatsabhat (#263)
+- chore: update next, react and react-dom @shrivatsabhat (#257)
+- style: remove unused styles and rearrange @shrivatsabhat (#262)
+
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.0.3...v1.0.4
+
+---
+
 ## v1.0.3 (08/09/2022)
 ## Changes
 
