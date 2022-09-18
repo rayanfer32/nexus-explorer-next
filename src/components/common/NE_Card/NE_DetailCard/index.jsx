@@ -51,7 +51,7 @@ const Card_Footer = ({ footerLabel, footerValue }) => (
 
 const ValueUnit = ({ value, unit }) => (
   <span className={styles.value__unit} title={`${value}${unit}`}>
-    <p className={styles.value}>{value.toString()}</p>
+    <p className={styles.value}>{value}</p>
     <sub className={styles.unit}>{unit}</sub>
   </span>
 );

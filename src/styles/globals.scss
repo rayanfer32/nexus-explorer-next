@@ -40,6 +40,33 @@
   all: unset;
 }
 
+#infoCard {
+  margin-top: 10px;
+  color: #333;
+}
+
+#navbarComponent {
+  animation: slideDown 2s;
+}
+
+#richlist {
+  animation: slideDown 3s;
+  overflow: hidden;
+  scrollbar-width: 1px;
+}
+
+#trustlist {
+  animation: slideDown 3s;
+}
+
+#chartLeft {
+  animation: slideRight 3s;
+}
+
+#chartRight {
+  animation: slideLeft 3s;
+}
+
 .center-loader {
   display: flex;
   justify-content: center;

@@ -57,10 +57,6 @@ function Panel3({ blocks }) {
     try {
       let newRows = [];
       for (let txidx = 0; txidx < newRowData.length; txidx++) {
-        if (!newRowData[txidx].contracts?.length) {
-          Warn('there is no contract for newRowData[txidx]');
-          continue;
-        }
         for (let cidx = 0; cidx < newRowData[txidx].contracts.length; cidx++) {
           newRows.push(
             <RTTRowTransactions

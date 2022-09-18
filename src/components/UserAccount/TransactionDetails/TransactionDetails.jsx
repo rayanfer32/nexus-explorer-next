@@ -1,13 +1,14 @@
 import Table from 'components/Table/Table';
 import styles from './TransactionDetails.module.scss';
+import Loader from 'components/common/NE_Loader';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useEffect, useState } from 'react';
 import DynamicPagination from 'components/common/NE_Pagination';
-import { intlNum, pathOr } from 'utils';
-import PromiseLayout from 'components/HOC/PromiseLayout';
+import ErrorMessage from 'components/common/ErrorMessage';
+import { intlNum } from 'utils';
 
 export const TransactionDetails = ({ type, data }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -17,6 +18,18 @@ export const TransactionDetails = ({ type, data }) => {
   const [tableData, setTableData] = useState([]);
   const { network, getAccountTransactions, getTrustTransactions } =
     useNetwork();
+
+  const LoaderDiv = () => (
+    <div
+      style={{
+        display: 'grid',
+        placeItems: 'center',
+        minHeight: '200px',
+        margin: 'auto',
+      }}>
+      <Loader type="circle" size="5rem" />
+    </div>
+  );
 
   const accountTransactionsRQ = useQuery(
     [
@@ -122,28 +135,26 @@ export const TransactionDetails = ({ type, data }) => {
     },
   };
 
+  if (accountTransactionsRQ.isLoading) {
+    return <LoaderDiv />;
+  }
+
   return (
     <div className={styles.page} style={{ marginBottom: '1rem' }}>
-      <PromiseLayout
-        isLoading={pathOr(false, ['isLoading'], accountTransactionsRQ)}
-        isError={pathOr(false, ['error'], accountTransactionsRQ)}
-        error={pathOr(
-          {},
-          ['error', 'response', 'data', 'error'],
-          accountTransactionsRQ
-        )}>
-        <Table
-          columns={columns}
-          data={accountTransactionsRQ.error ? [] : tableData}
-          paginate={false}
+      <Table
+        columns={columns}
+        data={accountTransactionsRQ.data?.error ? [] : tableData}
+        paginate={false}
+      />
+      <div style={{ marginBottom: '1rem' }}>
+        <DynamicPagination
+          controls={dynamicPageControls}
+          isStaticPanination={false}
         />
-        <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination
-            controls={dynamicPageControls}
-            isStaticPanination={false}
-          />
-        </div>
-      </PromiseLayout>
+      </div>
+      {accountTransactionsRQ.data?.error && (
+        <ErrorMessage error={accountTransactionsRQ.data.error} />
+      )}
     </div>
   );
 };
