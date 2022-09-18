@@ -1,16 +1,14 @@
 import Table from 'components/Table/Table';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import styles from './trustlist.module.scss';
-import Loader from 'components/common/NE_Loader';
-import { intlNum } from 'utils/converter';
 import CopyText from 'components/common/NE_CopyText/CopyText';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/common/NE_ErrorCard';
 import PageHeader from 'components/Header/PageHeader';
 import DynamicPagination from 'components/common/NE_Pagination';
-// import DynamicPagination from 'components/Table/DynamicPagination';
-import { useState } from 'react';
-import ErrorMessage from 'components/common/ErrorMessage';
+import PromiseLayout from 'components/HOC/PromiseLayout';
+import { intlNum, pathOr } from 'utils';
+import TYPES from 'types';
 
 export default function Trustlist() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -18,7 +16,7 @@ export default function Trustlist() {
   const [pageCount] = useState(Infinity);
 
   const { network, getTrustlist } = useNetwork();
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['trustlist', pageIndex, pageSize, network.name],
     getTrustlist
   );
@@ -56,35 +54,6 @@ export default function Trustlist() {
     },
   ];
 
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          display: 'grid',
-          placeItems: 'center',
-          minHeight: '200px',
-          margin: 'auto',
-        }}>
-        <Loader type="circle" size="5rem" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        <ErrorCard />
-      </div>
-    );
-  }
-
-  const newData = data.data?.result?.map((item, index) => ({
-    key: index,
-    ...item,
-    stake: item.stake,
-    balance: item.balance,
-  }));
-
   const dynamicPageControls = {
     canPreviousPage: pageIndex > 0,
     canNextPage: pageIndex < pageCount - 1,
@@ -113,18 +82,25 @@ export default function Trustlist() {
     <>
       <PageHeader page={'trustlist'} />
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        <Table
-          columns={columns}
-          data={data.data?.error ? [] : newData}
-          paginate={false}
-        />
-        <div style={{ marginBottom: '1rem' }}>
-          <DynamicPagination
-            controls={dynamicPageControls}
-            isStaticPanination={false}
-          />
-        </div>
-        {data.data?.error && <ErrorMessage error={data.data.error} />}
+        <PromiseLayout
+          isLoading={isLoading}
+          isError={isError}
+          error={pathOr({}, ['response', 'data', 'error'], error)}
+          loaderType={TYPES.LOADER.CIRCLE}>
+          {data && (
+            <Table
+              columns={columns}
+              data={error?.response?.data ? [] : data.result}
+              paginate={false}
+            />
+          )}
+          <div style={{ marginBottom: '1rem' }}>
+            <DynamicPagination
+              controls={dynamicPageControls}
+              isStaticPanination={false}
+            />
+          </div>
+        </PromiseLayout>
       </div>
     </>
   );

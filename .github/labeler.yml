@@ -1,16 +1,16 @@
-'📝documentation':
-  - README.md
-  - CONTRIBUTING.md
-  - '*.md'
+documentation:
+  - any: ['docs/**/*', '*.md']
+
+workflow:
+  - any:
+      ['.github/**/*', '.husky/**/*', '.vscode/**/*', '.github/workflow/**/*']
 
 # Chore
 'chore':
   - dependencies/**/*
   - public/**/*
   - package.json
-  - .github/**/*
-  - .vscode/**/*
   - '*'
 
-'⚠️BREAKING CHANGES!!!':
+'BREAKING CHANGES':
   - src/assets/**/*
