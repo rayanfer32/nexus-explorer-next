@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { InfoCard } from 'components/common/InfoCard';
 import Button from 'components/common/NE_Button';
-import Loader from 'components/common/NE_Loader';
-import ErrorMessage from 'components/common/NE_ErrorMessage';
 import UserAccount from 'components/UserAccount';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
@@ -14,6 +12,8 @@ import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
 import { useRouter } from 'next/router';
 import Layout from 'components/Layout';
+import PromiseLayout from 'components/HOC/PromiseLayout';
+import { pathOr } from 'utils';
 
 export const getServerSideProps = async (context) => {
   let address = context.params.addr;
@@ -87,7 +87,7 @@ function Scan({ addr }) {
     return { endpoint, params, type };
   }
 
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['scan', addr, network.name],
     async () => {
       const { endpoint, params, type } = await getAPI(addr);
@@ -106,7 +106,7 @@ function Scan({ addr }) {
       </Button>
       {showRawResponse && (
         <pre style={{ overflow: 'scroll', color: 'var(--theme-page-text)' }}>
-          {JSON.stringify(data, null, 2)}
+          {JSON.stringify(data || error, null, 2)}
         </pre>
       )}
     </div>
@@ -116,31 +116,28 @@ function Scan({ addr }) {
     <Layout>
       <PageHeader page={cardType} />
       <div>
-        {isLoading && (
-          <div className={'center-loader'}>
-            <Loader type="circle" size="5rem" />
-          </div>
-        )}
-        {error?.response.data && (
-          <ErrorMessage error={error.response.data.error} />
-        )}
-        {data?.result && (
-          <>
-            {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(cardType) && (
-              <InfoCard type={cardType} data={data?.result} />
-            )}
-            {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
-              <UserAccount type={cardType} data={data?.result} />
-            )}
-            {cardType === CARD_TYPES.INVOICE && (
-              <InvoiceWithData
-                data={data?.result}
-                onBack={router.back}
-                isPage
-              />
-            )}
-          </>
-        )}
+        <PromiseLayout
+          isLoading={isLoading}
+          isError={isError}
+          error={pathOr({}, ['response', 'data', 'error'], error)}>
+          {data?.result && (
+            <>
+              {[CARD_TYPES.BLOCK, CARD_TYPES.TRANSACTION].includes(
+                cardType
+              ) && <InfoCard type={cardType} data={data?.result} />}
+              {[CARD_TYPES.TRUST, CARD_TYPES.USER].includes(cardType) && (
+                <UserAccount type={cardType} data={data?.result} />
+              )}
+              {cardType === CARD_TYPES.INVOICE && (
+                <InvoiceWithData
+                  data={data?.result}
+                  onBack={router.back}
+                  isPage
+                />
+              )}
+            </>
+          )}
+        </PromiseLayout>
         {isDev && rawInfo}
       </div>
     </Layout>

@@ -10,8 +10,7 @@
     "lint": "next lint",
     "format": "prettier -w ./src",
     "prepare": "husky install",
-    "clean:cache": "rimraf .next",
-    "clean": "rimraf node_modules",
+    "clean": "rimraf .next && rimraf dist",
     "clean:deep": "rimraf .next && rimraf dist && rimraf node_modules",
     "overrideChangelog": "gren changelog --override"
   },
