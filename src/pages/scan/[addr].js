@@ -6,7 +6,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
-import Logger, { Log } from 'utils/customLog';
+import { Log } from 'utils/customLog';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
