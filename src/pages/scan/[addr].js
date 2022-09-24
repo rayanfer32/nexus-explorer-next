@@ -6,7 +6,7 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { isDev } from 'utils/middleware';
-import { Log } from 'utils/customLog';
+import Logger, { Log } from 'utils/customLog';
 import PageHeader from 'components/Header/PageHeader';
 import { CARD_TYPES } from 'types/ConstantsTypes';
 import { InvoiceWithData } from 'components/Views/Dao/InvoiceModal';
@@ -60,12 +60,25 @@ function Scan({ addr }) {
       type = 'invoice';
     } else if (addr.length === 51) {
       // ? might be trust acc or user acc address, so query for both and identify which one is correct
-      endpoint = 'finance/get/account';
+      Log('Checking if the addr is trust / account');
+
       params = { address: addr };
-      const res = await axios.get(`${network.url}/${endpoint}`, {
+      endpoint = 'finance/get/trust';
+      const trustResponsePromise = axios.get(`${network.url}/${endpoint}`, {
         params: params,
       });
-      if (res.data.error) {
+
+      endpoint = 'finance/get/account';
+      const accountResponsePromise = axios.get(`${network.url}/${endpoint}`, {
+        params: params,
+      });
+
+      const resolvedAccountTypeResponse = await Promise.any([
+        accountResponsePromise,
+        trustResponsePromise,
+      ]);
+
+      if (resolvedAccountTypeResponse.data.result.trust) {
         endpoint = 'finance/get/trust';
         type = 'trust';
       } else {
