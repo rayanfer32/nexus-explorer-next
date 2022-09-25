@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.0.5 (25/09/2022)
+## What's Changed
+
+## 🐛 Bug Fixes
+* fix: trust address scan error by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/274
+
+
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.0.4...v1.0.5
+---
+
 ## v1.0.4 (18/09/2022)
 ## What's Changed
 
