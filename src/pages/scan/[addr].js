@@ -59,19 +59,25 @@ function Scan({ addr }) {
       };
       type = 'invoice';
     } else if (addr.length === 51) {
-      // ? might be trust acc or user acc address, so query for both and identify which one is correct
+      // * address might be trust acc or user acc address, so query for both and identify which one is correct
       Log('Checking if the addr is trust / account');
 
       params = { address: addr };
-      endpoint = 'finance/get/trust';
-      const trustResponsePromise = axios.get(`${network.url}/${endpoint}`, {
-        params: params,
-      });
+      const trustEndpoint = 'finance/get/trust';
+      const trustResponsePromise = axios.get(
+        `${network.url}/${trustEndpoint}`,
+        {
+          params: params,
+        }
+      );
 
-      endpoint = 'finance/get/account';
-      const accountResponsePromise = axios.get(`${network.url}/${endpoint}`, {
-        params: params,
-      });
+      const accountEndpoint = 'finance/get/account';
+      const accountResponsePromise = axios.get(
+        `${network.url}/${accountEndpoint}`,
+        {
+          params: params,
+        }
+      );
 
       const resolvedAccountTypeResponse = await Promise.any([
         accountResponsePromise,
@@ -79,9 +85,10 @@ function Scan({ addr }) {
       ]);
 
       if (resolvedAccountTypeResponse.data.result.trust) {
-        endpoint = 'finance/get/trust';
+        endpoint = trustEndpoint;
         type = 'trust';
       } else {
+        endpoint = accountEndpoint;
         type = 'user';
       }
     } else if (addr.length === 128) {
