@@ -30,6 +30,9 @@ jobs:
     name: release-drafter
     runs-on: ubuntu-latest
     if: ${{github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'}}
+    permissions:
+      contents: write # for release-drafter/release-drafter to create a github release
+      pull-requests: write # for release-drafter/release-drafter to add label to PR
     steps:
       # Drafts your next Release notes as Pull Requests are merged into "main"
       - uses: release-drafter/release-drafter@v5
