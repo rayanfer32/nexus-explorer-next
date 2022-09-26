@@ -84,7 +84,7 @@ function Scan({ addr }) {
         trustResponsePromise,
       ]);
 
-      if (resolvedAccountTypeResponse.data.result.trust) {
+      if (resolvedAccountTypeResponse.data.result.trust >= 0) {
         endpoint = trustEndpoint;
         type = 'trust';
       } else {
