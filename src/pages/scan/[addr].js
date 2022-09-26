@@ -62,29 +62,22 @@ function Scan({ addr }) {
       // * address might be trust acc or user acc address, so query for both and identify which one is correct
       Log('Checking if the addr is trust / account');
 
-      params = { address: addr };
       const trustEndpoint = 'finance/get/trust';
-      const trustResponsePromise = axios.get(
-        `${network.url}/${trustEndpoint}`,
-        {
-          params: params,
-        }
-      );
-
       const accountEndpoint = 'finance/get/account';
-      const accountResponsePromise = axios.get(
-        `${network.url}/${accountEndpoint}`,
-        {
-          params: params,
-        }
-      );
 
+      params = { address: addr };
       const resolvedAccountTypeResponse = await Promise.any([
-        accountResponsePromise,
-        trustResponsePromise,
+        axios.get(`${network.url}/${accountEndpoint}`, {
+          params: params,
+        }),
+        axios.get(`${network.url}/${trustEndpoint}`, {
+          params: params,
+        }),
       ]);
 
-      if (resolvedAccountTypeResponse.data.result.trust >= 0) {
+      Log('[RESOLVED]:', resolvedAccountTypeResponse);
+
+      if (resolvedAccountTypeResponse.data.result.hasOwnProperty('trust')) {
         endpoint = trustEndpoint;
         type = 'trust';
       } else {
