@@ -9,11 +9,17 @@ import { AiOutlineStock } from 'react-icons/ai';
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import ErrorCard from 'components/common/NE_ErrorCard';
+import { intlNum } from 'utils';
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, miningRQ } = props;
   const router = useRouter();
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    blocks: '',
+    totalSupply: '',
+    sigChains: '',
+    inflationRate: '',
+  });
 
   useEffect(() => {
     if (metricsRQ.data) {
@@ -64,7 +70,7 @@ function Panel1(props) {
         <NE_SmallCard
           label="Chain Height"
           sublabel="Blocks"
-          value={new Intl.NumberFormat('en-US').format(state.blocks)}
+          value={intlNum(state.blocks)}
           unit="^"
           onClick={() => {
             router.push(`/scan/${state.blocks}`);
@@ -73,19 +79,18 @@ function Panel1(props) {
         />
         <NE_SmallCard
           label="Total Supply"
-          value={new Intl.NumberFormat('en-US').format(state.totalSupply)}
+          value={intlNum(state.totalSupply)}
           unit="NXS"
           icon={<FaCoins />}
         />
         <NE_SmallCard
           label="Signature Chains"
           sublabel="Users"
-          value={new Intl.NumberFormat().format(state.sigChains)}
+          value={intlNum(state.sigChains)}
           icon={<BsPersonCheckFill />}
         />
         <NE_SmallCard
           label="Inflation Rate"
-          sublabel="Annual"
           value={state.inflationRate}
           unit="%"
           icon={<AiOutlineStock />}
