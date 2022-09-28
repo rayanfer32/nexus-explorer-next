@@ -4,15 +4,14 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { columns } from './columns';
 import { BsBoxArrowLeft } from 'react-icons/bs';
-import { cls } from 'utils';
+import { cls, pathOr } from 'utils';
 import styles from './invoices.module.scss';
 import { useRouter } from 'next/router';
-import Loader from 'components/common/NE_Loader';
 import TYPES from 'types';
 import NE_Pagination from 'components/common/NE_Pagination';
 import { InvoiceModal } from '../InvoiceModal';
 import { FiInfo } from 'react-icons/fi';
-import ErrorMessage from 'components/common/ErrorMessage';
+import PromiseLayout from 'components/HOC/PromiseLayout';
 
 function InvoicesView({ username }) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -24,7 +23,7 @@ function InvoicesView({ username }) {
   const [modalData, setModalData] = useState({});
 
   const { getInvoices } = useNetwork();
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['invoices', username, pageIndex, pageSize],
     () => getInvoices(username, pageIndex, pageSize)
   );
@@ -43,18 +42,6 @@ function InvoicesView({ username }) {
     },
     ...columns,
   ];
-
-  if (isLoading) {
-    return (
-      <div className={'center-loader'}>
-        <Loader type={TYPES.LOADER.DOT} />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <ErrorMessage error={error.message}></ErrorMessage>;
-  }
 
   const dynamicPageControls = {
     canPreviousPage: pageIndex > 0,
@@ -88,7 +75,12 @@ function InvoicesView({ username }) {
   };
 
   return (
-    <>
+    <PromiseLayout
+      isLoading={isLoading}
+      isError={isError}
+      error={pathOr({}, ['response', 'data', 'error'], error)}
+      loaderType={TYPES.LOADER.DOT}
+      loaderSize={'2.5rem'}>
       <div className={cls(styles.header)}>
         <BsBoxArrowLeft className={styles.backIcon} onClick={router.back} />
         <p>
@@ -102,7 +94,7 @@ function InvoicesView({ username }) {
           data={modalData}
           onClose={handleModalClose}></InvoiceModal>
       )}
-    </>
+    </PromiseLayout>
   );
 }
 

@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "plugin:storybook/recommended",
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
     "no-unused-vars": "warn",
     "no-undef": "warn",
@@ -13,15 +9,5 @@
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off",
     "no-duplicate-imports": ["error", { "includeExports": true }]
-  },
-  "overrides": [
-    {
-      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
-      "rules": {
-        "storybook/hierarchy-separator": "error",
-        "storybook/default-exports": "off",
-        "import/no-anonymous-default-export": "off"
-      }
-    }
-  ]
+  }
 }

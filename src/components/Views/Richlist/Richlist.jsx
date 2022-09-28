@@ -1,7 +1,6 @@
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import styles from './richlist.module.scss';
-import Loader from 'components/common/NE_Loader';
 import { intlNum } from 'utils/converter';
 import ApexPie from 'components/common/NE_Chart/ChartApexPie';
 import TYPES from 'types';
@@ -10,7 +9,8 @@ import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/common/NE_Pagination';
 import { NETWORKS } from 'types/ConstantsTypes';
-import ErrorMessage from 'components/common/ErrorMessage';
+import PromiseLayout from 'components/HOC/PromiseLayout';
+import { pathOr } from 'utils';
 
 export default function Richlist(props) {
   const [pageIndex, setPageIndex] = useState(0);
@@ -22,15 +22,13 @@ export default function Richlist(props) {
   // * api calls
   const { network, getRichlist, getMetrics } = useNetwork();
   const isMainnet = network.name === NETWORKS.MAINNET.name;
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data, error, isError } = useQuery(
     ['richlist', pageIndex, pageSize, network.name],
     () => getRichlist(pageIndex, pageSize),
     {
       placeholderData:
         pageIndex == 0
-          ? isMainnet
-            ? { data: props.data.data.slice(0, pageSize) }
-            : undefined
+          ? isMainnet && { data: props.data.data.slice(0, pageSize) }
           : undefined, // * for testnet we don't have data in the props
       staleTime: 1000 * 60, // * 1 min
     }
@@ -114,39 +112,29 @@ export default function Richlist(props) {
     }
   }, [richlist111.data]);
 
-  if (error) {
-    return <ErrorMessage error={error.message} />;
-  }
-
   return (
     <>
       <div className={styles.page} style={{ marginBottom: '1rem' }}>
-        {/* // * Pie chart */}
-        <div className={styles.chartContainer}>
-          <h3>NXS Distrubution</h3>
-          {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
-        </div>
-
-        {/* // * Table with dual pagination */}
-        {isLoading ? (
-          <div
-            style={{
-              display: 'grid',
-              placeItems: 'center',
-              minHeight: '200px',
-              margin: 'auto',
-            }}>
-            <Loader type="circle" size="5rem" />
+        <PromiseLayout
+          isLoading={isLoading}
+          isError={isError}
+          error={pathOr({}, ['response', 'data', 'error'], error)}
+          loaderType={TYPES.LOADER.CIRCLE}>
+          {/* // * Pie chart */}
+          <div className={styles.chartContainer}>
+            <h3>NXS Distrubution</h3>
+            {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
           </div>
-        ) : (
+
+          {/* // * Table with dual pagination */}
           <div>
             <div className={styles.top_pagination}>
               {pageSize > 10 && <Pagination controls={dynamicPageControls} />}
             </div>
-            <Table columns={columns} data={data.data || []} paginate={false} />
+            <Table columns={columns} data={data?.data || []} paginate={false} />
             <Pagination controls={dynamicPageControls} />
           </div>
-        )}
+        </PromiseLayout>
       </div>
     </>
   );

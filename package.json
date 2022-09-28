@@ -1,7 +1,7 @@
 {
   "name": "nexus-explorer-next",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.6",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,11 +10,8 @@
     "lint": "next lint",
     "format": "prettier -w ./src",
     "prepare": "husky install",
-    "clean:cache": "rimraf .next",
-    "clean": "rimraf node_modules",
+    "clean": "rimraf .next && rimraf dist",
     "clean:deep": "rimraf .next && rimraf dist && rimraf node_modules",
-    "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook -s public",
     "overrideChangelog": "gren changelog --override"
   },
   "dependencies": {
@@ -22,12 +19,12 @@
     "axios": "^0.27.2",
     "http-proxy-middleware": "^2.0.6",
     "js-cookie": "^3.0.1",
-    "next": "12.1.5",
+    "next": "12.3.0",
     "next-pwa": "^5.5.2",
     "prop-types": "^15.8.1",
-    "react": "18.1.0",
+    "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
-    "react-dom": "18.1.0",
+    "react-dom": "18.2.0",
     "react-icons": "^4.3.1",
     "react-qr-code": "^2.0.7",
     "react-query": "^3.38.0",
@@ -36,30 +33,15 @@
     "sharp": "^0.30.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@storybook/addon-actions": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-links": "^6.4.22",
-    "@storybook/addons": "^6.4.22",
-    "@storybook/builder-webpack5": "^6.4.22",
-    "@storybook/manager-webpack5": "^6.4.22",
-    "@storybook/preset-scss": "^1.0.3",
-    "@storybook/react": "^6.4.22",
-    "@storybook/theming": "^6.4.22",
-    "babel-loader": "^8.2.5",
-    "css-loader": "^6.7.1",
     "danger": "^11.1.1",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-storybook": "^0.5.11",
+    "github-release-notes": "^0.17.3",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
     "prettier": "2.6.2",
-    "rimraf": "^3.0.2",
-    "sass-loader": "^12.6.0",
-    "storybook-theme-toggle": "file:dependencies/storybook-theme-toggle",
-    "style-loader": "^3.3.1"
+    "rimraf": "^3.0.2"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

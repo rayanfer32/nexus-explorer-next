@@ -1,0 +1,27 @@
+.error-container {
+  background: var(--theme-tab-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  // align-items: center;
+  gap: 2vw;
+
+  .error-detail {
+    flex-basis: 90%;
+    margin-top: 2vmin;
+    h3 {
+      font-size: var(--font-xxl);
+      font-size: clamp(var(--font-normal), 5vw, var(--font-xxl));
+    }
+  }
+  .error-code {
+    font-size: var(--font-normal);
+    text-transform: capitalize;
+    color: var(--theme-page-text-secondary);
+  }
+  .error-message {
+    font-size: var(--font-l);
+    text-transform: capitalize;
+    color: var(--theme-page-text);
+  }
+}

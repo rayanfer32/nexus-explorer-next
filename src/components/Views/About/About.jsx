@@ -52,9 +52,8 @@ const About = ({ data }) => {
           <p className={styles.contributer}>
             {Array.isArray(data) &&
               data.map((item) => {
-                if (item.author.type === 'Bot') {
-                  return;
-                }
+                if (item.author.type === 'Bot') return;
+                if (item.author.login === 'web-flow') return;
                 return (
                   <span key={item.author.login} className={styles.links}>
                     <a
