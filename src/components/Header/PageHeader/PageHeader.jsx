@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import TYPES from 'types';
 
 /**
@@ -8,6 +9,7 @@ import TYPES from 'types';
  * @param {string} description Description of the page
  */
 const PageHeader = ({ page = 'HOME', title, description }) => {
+  const router = useRouter();
   const _title =
     title || TYPES.PAGEMETA[page.toUpperCase()]?.TITLE || TYPES.PAGEMETA.TITLE;
   const _description =
@@ -15,6 +17,11 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
     TYPES.PAGEMETA[page.toUpperCase()]?.DESCRIPTION ||
     TYPES.PAGEMETA.DESCRIPTION;
   const _explorer_domain = process.env.NEXT_PUBLIC_DOMAIN_BASE_URL || '';
+
+  const block = router.pathname;
+  const _og_image_url = !!block
+    ? `${_explorer_domain}/api/static/og?block=${block}`
+    : `${_explorer_domain}/og_meta_image.jpg`;
 
   return (
     <Head>
@@ -26,32 +33,22 @@ const PageHeader = ({ page = 'HOME', title, description }) => {
         name="keywords"
         content="nexus, explorer, nxs, search, blockchain, nexplorer, quantum resistance"
       />
+
       <meta property="og:locale" content="en_IN" />
       <meta property="og:type" content="website" />
       <meta property="og:description" content={_description} />
       <meta property="og:url" content={_explorer_domain} />
-      <meta
-        property="og:image"
-        content={`${_explorer_domain}/og_meta_image.jpg`}
-      />
-      <meta
-        property="og:image:url"
-        content={`${_explorer_domain}/og_meta_image.jpg`}
-      />
-      <meta
-        property="og:image:secure_url"
-        content={`${_explorer_domain}/og_meta_image.jpg`}
-      />
+      <meta property="og:image" content={_og_image_url} />
+      <meta property="og:image:url" content={_og_image_url} />
+      <meta property="og:image:secure_url" content={_og_image_url} />
       <meta property="og:image:alt" content="Visit nexus.io" />
       <meta property="og:title" content={_title} />
       <meta property="og:site_name" content="Nexus (NXS) Blockchain Explorer" />
+
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:description" content={_description} />
       <meta name="twitter:title" content={_title} />
-      <meta
-        name="twitter:image"
-        content={`${_explorer_domain}/og_meta_image.jpg`}
-      />
+      <meta name="twitter:image" content={_og_image_url} />
     </Head>
   );
 };
