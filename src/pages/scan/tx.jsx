@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
-import { Log } from 'utils';
 
 export async function getServerSideProps({ query }) {
-  Log('[query]', query);
   const { txid, cid } = query ?? {};
 
   return {
@@ -12,7 +10,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function OG({ txid, cid }) {
-  const imgUrl = `http://localhost:3000/api/alert-bot-og?txid=${txid}&cid=${cid}`;
+  const imgUrl = `http://localhost:3000/api/static/og-alert?txid=${txid}&cid=${cid}`;
 
   return (
     <div>
