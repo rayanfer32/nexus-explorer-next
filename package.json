@@ -15,6 +15,7 @@
     "overrideChangelog": "gren changelog --override"
   },
   "dependencies": {
+    "@vercel/og": "^0.0.18",
     "apexcharts": "^3.35.0",
     "axios": "^0.27.2",
     "http-proxy-middleware": "^2.0.6",
