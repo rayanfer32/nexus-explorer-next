@@ -12,7 +12,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function OG({ txid, cid }) {
-  const imgUrl = `http://localhost:3000/api/og?txid=${txid}&cid=${cid}`;
+  const imgUrl = `http://localhost:3000/api/alert-bot-og?txid=${txid}&cid=${cid}`;
 
   return (
     <div>
