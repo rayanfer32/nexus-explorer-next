@@ -1,16 +1,10 @@
 import { ImageResponse } from '@vercel/og';
+import { OGBotImage } from 'components/Header/PageHeader/Og-Bot';
+import { fetchTransaction } from 'utils/common/fetch';
 
 export const config = {
   runtime: 'experimental-edge',
 };
-
-async function fetchTransaction(txid) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/transaction?hash=${txid}`
-  );
-  const resp = await res.json();
-  return resp.result;
-}
 
 const emojis = {
   blue_whale: '🐳',
@@ -78,43 +72,6 @@ export default async function handler(req) {
   const [fishEmoji, fishName] = getFishnameAndEmoji(contract.amount);
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'hsla(202, 97%, 52%, 1)',
-        }}>
-        <div
-          style={{
-            display: 'flex',
-            background: 'hsla(200, 10%, 12%, 1)',
-          }}>
-          <div
-            style={{
-              display: 'flex',
-              padding: '2rem',
-              paddingLeft: '1rem',
-              paddingRight: '1rem',
-              paddingTop: '3rem',
-              paddingBottom: '3rem',
-              flexDirection: 'column',
-              color: '#fff',
-              justifyContent: 'space-between',
-              width: '100%',
-            }}>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <p>{fishEmoji}</p>
-              <p>{fishName}</p>
-            </div>
-            <pre>{JSON.stringify(contract, null, 2)}</pre>
-          </div>
-        </div>
-      </div>
-    )
+    <OGBotImage contract={contract} fishEmoji={fishEmoji} fishName={fishName} />
   );
 }
