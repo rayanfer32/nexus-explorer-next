@@ -1,4 +1,4 @@
-import { intlNum } from 'utils';
+import { intlNum } from 'utils/converter';
 
 export const OGBotImage = ({ contract, fishName, fishEmoji }) => {
   const bg = `${process.env.NEXT_PUBLIC_DOMAIN_BASE_URL}/og_meta_image_bot.jpg`;
