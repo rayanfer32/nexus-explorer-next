@@ -1,4 +1,4 @@
-import { intlNum } from 'utils';
+// import { intlNum } from 'utils';
 
 export const OGBotImage = ({ contract, fishName, fishEmoji }) => {
   const bg = `${process.env.NEXT_PUBLIC_DOMAIN_BASE_URL}/og_meta_image_bot.jpg`;
@@ -30,7 +30,8 @@ export const OGBotImage = ({ contract, fishName, fishEmoji }) => {
       <span style={{ fontSize: 48 }}>{fishName}</span>
       <span style={{ fontSize: 96 }}>{fishEmoji}</span>
       <h1 style={{ fontSize: 72 }}>
-        {intlNum(contract.amount)} {contract.ticker}
+        {contract.amount} {contract.ticker}
+        {/* {intlNum(contract.amount)} {contract.ticker} */}
       </h1>
       <div
         style={{
