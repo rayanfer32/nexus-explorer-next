@@ -1,6 +1,5 @@
 import { ImageResponse } from '@vercel/og';
 import { OGBotImage } from 'components/Header/PageHeader/Og-Bot';
-import { Log } from 'utils';
 import { fetchTransaction } from 'utils/common/fetch';
 
 export const config = {
@@ -69,7 +68,6 @@ export default async function handler(req) {
   // ledger/get/transaction
   const resp = await fetchTransaction(txid);
   const contract = resp.contracts[cid];
-  Log('[OG Contract Data:]', contract);
 
   const [fishEmoji, fishName] = getFishnameAndEmoji(contract.amount);
 
