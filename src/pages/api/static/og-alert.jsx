@@ -1,10 +1,16 @@
 import { ImageResponse } from '@vercel/og';
-import { intlNum, Log } from 'utils';
-import { fetchTransaction } from 'utils/common/fetch';
 
 export const config = {
   runtime: 'experimental-edge',
 };
+
+async function fetchTransaction(txid) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/transaction?hash=${txid}`
+  );
+  const resp = await res.json();
+  return resp.result;
+}
 
 const emojis = {
   blue_whale: '🐳',
@@ -68,14 +74,11 @@ export default async function handler(req) {
   // ledger/get/transaction
   const resp = await fetchTransaction(txid);
   const contract = resp.contracts[cid];
-  Log('[OG Contract Data:]', contract);
 
   const [fishEmoji, fishName] = getFishnameAndEmoji(contract.amount);
 
   return new ImageResponse(
     (
-      // Modified based on https://tailwindui.com/components/marketing/sections/cta-sections
-
       <div
         style={{
           height: '100%',
@@ -101,10 +104,13 @@ export default async function handler(req) {
               paddingBottom: '3rem',
               flexDirection: 'column',
               color: '#fff',
-              scale: '2',
               justifyContent: 'space-between',
               width: '100%',
             }}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <p>{fishEmoji}</p>
+              <p>{fishName}</p>
+            </div>
             <pre>{JSON.stringify(contract, null, 2)}</pre>
           </div>
         </div>
