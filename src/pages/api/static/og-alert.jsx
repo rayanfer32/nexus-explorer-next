@@ -5,7 +5,10 @@ import { fetchTransaction } from 'utils/common/fetch';
 export const config = {
   runtime: 'experimental-edge',
 };
-
+const properties = {
+  width: 1200,
+  height: 630,
+};
 const emojis = {
   blue_whale: '🐳',
   whale: '🐋',
@@ -72,6 +75,13 @@ export default async function handler(req) {
   const [fishEmoji, fishName] = getFishnameAndEmoji(contract.amount);
 
   return new ImageResponse(
-    <OGBotImage contract={contract} fishEmoji={fishEmoji} fishName={fishName} />
+    (
+      <OGBotImage
+        contract={contract}
+        fishEmoji={fishEmoji}
+        fishName={fishName}
+      />
+    ),
+    properties
   );
 }
