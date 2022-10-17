@@ -32,6 +32,7 @@ export default function OG({ txid, cid }) {
       <Head>
         <title>{txid}</title>
         <meta property="og:image" content={imgUrl}></meta>
+        <meta property="og:type" content="website" />
       </Head>
       <PromiseLayout
         isLoading={isLoading}
