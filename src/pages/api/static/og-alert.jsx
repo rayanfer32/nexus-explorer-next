@@ -1,13 +1,6 @@
 import { ImageResponse } from '@vercel/og';
 import { OGBotImage } from 'components/Header/PageHeader/Og-Bot';
-
-async function fetchTransaction(txid) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/transaction?hash=${txid}`
-  );
-  const resp = await res.json();
-  return resp.result;
-}
+import { fetchTransaction } from 'utils/common/fetch';
 
 export const config = {
   runtime: 'experimental-edge',
