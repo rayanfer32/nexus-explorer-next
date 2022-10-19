@@ -1,4 +1,5 @@
 import InfoCard from 'components/common/InfoCard';
+import PageHeader from 'components/Header/PageHeader';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import Layout from 'components/Layout';
 import { useNetwork } from 'hooks';
@@ -29,11 +30,7 @@ export default function OG({ txid, cid }) {
 
   return (
     <Layout>
-      <Head>
-        <title>{txid}</title>
-        <meta property="og:image" content={imgUrl}></meta>
-        <meta property="og:type" content="website" />
-      </Head>
+      <PageHeader title={txid} ogImage={imgUrl} />
       <PromiseLayout
         isLoading={isLoading}
         isError={isError}
