@@ -3,7 +3,6 @@ import PageHeader from 'components/Header/PageHeader';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import Layout from 'components/Layout';
 import { useNetwork } from 'hooks';
-import Head from 'next/head';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { pathOr } from 'utils';
