@@ -26,10 +26,18 @@ export default function OG({ txid, cid }) {
       return getScanResults('ledger/get/transaction', { hash: txid });
     }
   );
+  const contracts = data?.result?.contracts ?? [];
 
+  const _data = contracts.length && contracts[contracts.length - 1];
+  const _title = `Transaction ID = ${txid}`;
+  const _description = `
+  Amount: ${_data?.amount} ${_data?.ticker}
+  Operation Type: ${_data?.OP}
+  Proof: ${_data?.proof}
+  `;
   return (
     <Layout>
-      <PageHeader title={txid} ogImage={imgUrl} />
+      <PageHeader title={_title} description={_description} ogImage={imgUrl} />
       <PromiseLayout
         isLoading={isLoading}
         isError={isError}
