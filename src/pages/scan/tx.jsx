@@ -1,8 +1,8 @@
 import InfoCard from 'components/common/InfoCard';
+import PageHeader from 'components/Header/PageHeader';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import Layout from 'components/Layout';
 import { useNetwork } from 'hooks';
-import Head from 'next/head';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { pathOr } from 'utils';
@@ -26,14 +26,18 @@ export default function OG({ txid, cid }) {
       return getScanResults('ledger/get/transaction', { hash: txid });
     }
   );
+  const contracts = data?.result?.contracts ?? [];
 
+  const _data = contracts.length && contracts[contracts.length - 1];
+  const _title = `Transaction ID = ${txid}`;
+  const _description = `
+  Amount: ${_data?.amount} ${_data?.ticker}
+  Operation Type: ${_data?.OP}
+  Proof: ${_data?.proof}
+  `;
   return (
     <Layout>
-      <Head>
-        <title>{txid}</title>
-        <meta property="og:image" content={imgUrl}></meta>
-        <meta property="og:type" content="website" />
-      </Head>
+      <PageHeader title={_title} description={_description} ogImage={imgUrl} />
       <PromiseLayout
         isLoading={isLoading}
         isError={isError}
