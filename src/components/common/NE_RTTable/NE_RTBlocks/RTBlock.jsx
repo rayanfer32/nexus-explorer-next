@@ -22,6 +22,7 @@ function RTTRowBlock(props) {
     txnsUnit = 'txns',
     type = 'BLOCK',
     onClick,
+    href,
   } = props;
 
   return (
@@ -37,11 +38,11 @@ function RTTRowBlock(props) {
           {/* time */}
           <DateTime date={date} time={time} timeFormat={timeUnit} />
           {/* mint  */}
-          <BlockData data={mint} dataUnit={mintUnit} />
+          <BlockData data={mint} dataUnit={mintUnit} href={href} />
           {/* size of txns */}
-          <BlockData data={size} dataUnit={sizeUnit} />
+          <BlockData data={size} dataUnit={sizeUnit} href={href} />
           {/* txns */}
-          <BlockData data={txns} dataUnit={txnsUnit} />
+          <BlockData data={txns} dataUnit={txnsUnit} href={href} />
         </div>
         {/* end bottom container */}
       </div>
@@ -61,6 +62,7 @@ RTTRowBlock.propTypes = {
   txns: PropTypes.number,
   txnsUnit: PropTypes.string,
   type: PropTypes.string,
+  href: PropTypes.string,
   timeUnit: PropTypes.string,
   onClick: PropTypes.func,
 };
