@@ -51,7 +51,7 @@ export function useNetwork() {
   }
 
   const getTrustlist = async ({ queryKey }) => {
-    const res = await axios.get(`${url}/register/list/trust`, {
+    const res = await axios.get(`${url}/register/list/finance:trust`, {
       headers: { 'Cache-Control': 'max-age=300' },
       params: {
         page: queryKey[1],
@@ -68,7 +68,7 @@ export function useNetwork() {
   };
 
   const getGlobalNames = async () => {
-    const res = await fetch(`${url}/register/list/names`, {
+    const res = await fetch(`${url}/register/list/names:global`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -84,15 +84,18 @@ export function useNetwork() {
   };
 
   const getNamespaces = () => {
-    return axios.get(`${url}/register/list/namespaces?limit=1000`, {
+    return axios.get(`${url}/register/list/names:namespaces?limit=1000`, {
       headers: { 'Cache-Control': 'max-age=300' },
     });
   };
 
   const getTokens = () => {
-    return axios.get(`${url}/register/list/tokens?sort=maxsupply&limit=1000`, {
-      headers: { 'Cache-Control': 'max-age=300' },
-    });
+    return axios.get(
+      `${url}/register/list/finance:tokens?sort=maxsupply&limit=1000`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
   };
 
   const getBlocks = async ({ queryKey }) => {
@@ -117,12 +120,16 @@ export function useNetwork() {
 
   // todo: add suppprt for adresses also
   const getAccount = async (username) => {
-    const res = await axios.get(`${url}/finance/get/account?name=${username}`);
+    const res = await axios.get(
+      `${url}/register/get/finance:account?name=${username}`
+    );
     return res.data.result;
   };
 
   const getTrust = async (username) => {
-    const res = await axios.get(`${url}/finance/get/trust?name=${username}`);
+    const res = await axios.get(
+      `${url}/register/get/finance:trust?name=${username}`
+    );
     return res.data.result;
   };
 
@@ -149,13 +156,19 @@ export function useNetwork() {
   };
 
   const getInvoices = async (username, page, limit) => {
-    const res = await axios.get(`${url}/invoices/list/invoices`, {
+    // example command
+    // ./nexus register/list/invoices:invoice limit=20 where='results.owner=username(`US:Interactions`);'
+
+    const params = {
+      limit,
+      page,
+      where: `results.owner=username(\`${username}\`);`,
+    };
+    // const jsonBody = JSON.stringify(params);
+
+    const res = await axios.get(`${url}/register/list/invoices:invoice`, {
       headers: { 'Cache-Control': 'max-age=120' },
-      params: {
-        username: username,
-        page: page,
-        limit: limit,
-      },
+      params,
     });
     return res.data.result;
   };
@@ -167,7 +180,7 @@ export function useNetwork() {
    */
   const getInvoice = async (address) => {
     const res = await axios.get(
-      `${url}/invoices/get/invoice?address=${address}`
+      `${url}/register/get/invoices:invoice?address=${address}`
     );
     return res.data.result;
   };

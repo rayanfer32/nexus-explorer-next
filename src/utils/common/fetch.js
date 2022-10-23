@@ -53,12 +53,16 @@ export async function fetchRichlist(
     where: 'object.token=0',
   });
 
-  const page0 = await axios.post(`${url}/register/list/trust,accounts`, json, {
-    headers: {
-      'Cache-Control': 'max-age=300',
-      'Content-Type': 'application/json',
-    },
-  });
+  const page0 = await axios.post(
+    `${url}/register/list/finance:accounts,finance:trust`,
+    json,
+    {
+      headers: {
+        'Cache-Control': 'max-age=300',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   return { data: [...page0.data.result] };
 }
