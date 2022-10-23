@@ -26,6 +26,10 @@ const navDropdowns = {
   ],
 };
 
+export const OptionalNavbar = {
+  OPTNAV: ['DAO'],
+};
+
 export const NavbarTypes = {
   NAVBAR: {
     NAVLIST: [...navList],

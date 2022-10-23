@@ -29,15 +29,6 @@
     display: flex;
     align-items: center;
     gap: var(--space-xxxxs);
-    color: var(--theme-page-text);
-    font-weight: normal;
-    &__value {
-      margin: 0;
-      font-size: var(--font-xxl);
-    }
-    &__unit {
-      font-size: var(--font-normal);
-    }
   }
   .txn {
     &__block {

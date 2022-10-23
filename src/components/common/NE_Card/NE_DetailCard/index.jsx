@@ -37,7 +37,7 @@ const Card_Header = ({ label, sublabel, ticker }) => (
       <label className={styles.label__sub}>{sublabel}</label>
     </span>
     {/* delay timestamp/ticker */}
-    {!!ticker && <label className={styles.ticker}>{ticker}</label>}
+    {!!ticker && <label className={styles.ticker} data-ticker={ticker}></label>}
   </div>
 );
 
@@ -49,6 +49,13 @@ const Card_Footer = ({ footerLabel, footerValue }) => (
   </div>
 );
 
+const ValueUnit = ({ value, unit }) => (
+  <span className={styles.value__unit} title={`${value}${unit}`}>
+    <p className={styles.value}>{value.toString()}</p>
+    <sub className={styles.unit}>{unit}</sub>
+  </span>
+);
+
 export default NE_DetailCard;
 
 export {
@@ -58,4 +65,5 @@ export {
   Card_Footer,
   Basic,
   Market,
+  ValueUnit,
 };

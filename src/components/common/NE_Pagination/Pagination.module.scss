@@ -41,6 +41,9 @@
     &__page {
       margin: 0 1rem;
       color: var(--theme-page-text);
+      label {
+        margin-inline-end: var(--space-xxxs);
+      }
     }
   }
 

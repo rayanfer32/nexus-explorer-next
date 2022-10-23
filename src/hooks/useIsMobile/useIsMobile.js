@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
  * @returns {boolean}
  */
 const getIsMobile = () =>
-  window.innerWidth <= 768 || !!window?.navigator?.userAgentData?.mobile;
+  window?.innerWidth <= 768 || !!window?.navigator?.userAgentData?.mobile;
 
 /**
  * useIsMobile
