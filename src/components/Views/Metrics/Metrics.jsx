@@ -18,12 +18,13 @@ export default function Metrics() {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
 
-  const metricsData = metricsRQ?.data?.data?.result;
+  // const metricsData = metricsRQ?.data?.data?.result;
+  const metricsData = pathOr({}, ['data', 'data', 'result'], metricsRQ);
 
   const miningRQ = useQuery(['mining', network.name], getMining, {
     refetchInterval: TYPES.REFETCH_INTERVALS.MINING,
   });
-  const miningData = miningRQ?.data?.data?.result;
+  const miningData = miningRQ.data?.data?.result;
 
   const SmallCards = ({ object, type }) => {
     return Object.entries(object).map(([k, v]) => {
@@ -49,7 +50,7 @@ export default function Metrics() {
         isError={metricsRQ.isError || miningRQ.isError}
         error={pathOr({}, ['response', 'data', 'error'], metricsRQ.error)}
         loaderType={TYPES.LOADER.CIRCLE}>
-        {metricsRQ?.data && miningRQ?.data && (
+        {metricsRQ.data && miningRQ.data && (
           <div className={styles.container}>
             <h3>Registers</h3>
             <div className={styles.cardGroup}>
@@ -114,7 +115,7 @@ export default function Metrics() {
                 label={METRICS_META.trust.staked_percentage.label}
                 unit={METRICS_META.trust.staked_percentage.ticker}
                 value={(
-                  (metricsData?.trust?.stake / miningData?.supply?.total) *
+                  (metricsData.trust.stake / miningData.supply.total) *
                   100
                 ).toFixed(2)}
                 icon={METRICS_META.trust.staked_percentage.icon}
