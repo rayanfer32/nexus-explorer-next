@@ -17,7 +17,7 @@ export default function LedgerMetrics() {
     getLedgerMetrics
   );
 
-  const ledgerData = ledgerMetricsRQ?.data?.data?.result;
+  const ledgerData = ledgerMetricsRQ.data?.data?.result;
 
   const [selectedDuration, setSelectedDuration] = useState('daily');
 

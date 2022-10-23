@@ -125,7 +125,7 @@ export default function Metrics() {
 
             <h3>Supply</h3>
             <div className={styles.cardGroup}>
-              <SmallCards type="supply" object={miningData?.supply} />
+              <SmallCards type="supply" object={miningData.supply} />
             </div>
 
             <h3>Reserves</h3>
