@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { NE_CompactCard as SmallCard } from 'components/common/NE_Card/NE_CompactCard';
@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import { intlNum, toTitleCase } from 'utils/converter';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { METRICS_META } from 'types/StringsTypes';
-import { Log, pathOr } from 'utils';
+import { pathOr } from 'utils';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import LedgerMetrics from './LedgerMetrics';
 
@@ -25,10 +25,7 @@ export default function Metrics() {
   });
   const miningData = miningRQ?.data?.data?.result;
 
-  const [isLedgerMetricsPage, setIsLedgerMetricsPage] = useState(true);
-
   const SmallCards = ({ object, type }) => {
-    Log('[obj]:', object);
     return Object.entries(object).map(([k, v]) => {
       if (typeof v != 'object') {
         return (
@@ -137,7 +134,7 @@ export default function Metrics() {
           </div>
         )}
       </PromiseLayout>
-      {isLedgerMetricsPage && <LedgerMetrics />}
+      <LedgerMetrics />
     </div>
   );
 }
