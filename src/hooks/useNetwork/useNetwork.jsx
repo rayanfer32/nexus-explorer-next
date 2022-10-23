@@ -39,6 +39,10 @@ export function useNetwork() {
     return axios.get(`${url}/ledger/get/info`);
   }
 
+  function getLedgerMetrics() {
+    return axios.get(`${url}/ledger/get/metrics`);
+  }
+
   async function getRecentBlocks(MAX_ROWS = 6) {
     const res = await axios.get(
       `${url}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
@@ -186,6 +190,7 @@ export function useNetwork() {
     getGlobalNames,
     getRecentBlocks,
     getTransactions,
+    getLedgerMetrics,
     getTrustTransactions,
     getAccountTransactions,
   };
