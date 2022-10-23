@@ -16,13 +16,12 @@ function Panel1(props) {
   const [state, setState] = useState({});
 
   useEffect(() => {
-    if (metricsRQ.data) {
+    if (miningRQ.data) {
       setState((prev) => ({
         ...prev,
-        totalSupply: metricsRQ.data.data.result?.supply?.total?.toFixed(0),
-        sigChains: metricsRQ.data.data.result?.sig_chains,
-        inflationRate:
-          metricsRQ.data.data.result?.supply?.inflationrate?.toFixed(2),
+        totalSupply: miningRQ.data.data.result?.supply?.total?.toFixed(0),
+        sigChains: metricsRQ.data.data.result?.sigchains,
+        inflationRate: miningRQ.data.data.result?.supply?.inflation?.toFixed(2),
       }));
     }
 
@@ -34,7 +33,7 @@ function Panel1(props) {
     }
   }, [metricsRQ.data, infoRQ.data]);
 
-  //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
+  //  * majority of data is coming from miningRQ , hence we use loader state of metrics for this panel
   if (miningRQ.isLoading)
     return (
       <article className={styles.container}>
