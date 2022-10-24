@@ -134,7 +134,7 @@ export function useNetwork() {
   };
 
   const getTrustTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/trust`, {
+    const res = await axios.get(`${url}/register/transactions/finance:trust`, {
       params: {
         address: address,
         page: page,
@@ -145,13 +145,16 @@ export function useNetwork() {
   };
 
   const getAccountTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/account`, {
-      params: {
-        address: address,
-        page: page,
-        limit: limit,
-      },
-    });
+    const res = await axios.get(
+      `${url}/register/transactions/finance:account`,
+      {
+        params: {
+          address: address,
+          page: page,
+          limit: limit,
+        },
+      }
+    );
     return res.data;
   };
 

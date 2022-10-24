@@ -98,7 +98,6 @@ const Header = () => {
               placeholder={TYPES.PLACE_HOLDER.SEARCH}
               onSearch={() => {
                 router.push(`/scan/${searchInput}`);
-                setTimeout(() => setSearchInput(''), 3000);
               }}
             />
           </div>
