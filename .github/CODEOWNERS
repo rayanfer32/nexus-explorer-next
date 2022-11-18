@@ -1,0 +1,8 @@
+# This file is used to automatically request reviews on PRs.
+# To learn more please visit https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in
+# the repo, unless a match on a later line takes precedence.
+
+* @rayanfer32 @shrivatsabhat
