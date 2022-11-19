@@ -3,8 +3,14 @@ import { useTable, useSortBy, usePagination } from 'react-table';
 import styles from './Table.module.scss';
 import Pagination from 'components/common/NE_Pagination';
 
-export default function Table({ columns, data = [], paginate = true }) {
-  const tableInstance = useTable({ data, columns }, useSortBy, usePagination);
+// ! never initialize default value while accepting parameters in react , this causes new value to be passed everytime and results in a infinite loop
+export default function Table({ columns, data, paginate }) {
+  if (!data) {
+    return <div>No Data</div>;
+  }
+
+  const tableHook = useTable;
+  const tableInstance = tableHook({ data, columns }, useSortBy, usePagination);
 
   const {
     getTableProps,
@@ -40,10 +46,6 @@ export default function Table({ columns, data = [], paginate = true }) {
     handleNextPageClick: () => nextPage(),
     handleEndOfPageClick: () => gotoPage(pageCount - 1),
   };
-
-  // if (data?.length === 0) {
-  //   return <div className={styles.tableContainer}>No Records</div>;
-  // }
 
   return (
     // apply the table props
