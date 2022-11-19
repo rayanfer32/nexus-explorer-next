@@ -9,6 +9,10 @@ export default function Table({ columns, data, paginate }) {
     return <div>No Data</div>;
   }
 
+  if (paginate == undefined) {
+    paginate = true;
+  }
+
   const tableHook = useTable;
   const tableInstance = tableHook({ data, columns }, useSortBy, usePagination);
 

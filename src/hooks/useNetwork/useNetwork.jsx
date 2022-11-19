@@ -76,7 +76,6 @@ export function useNetwork() {
         'Cache-Control': 'max-age=300',
       },
       data: {
-        where: 'object.namespace=*GLOBAL*',
         limit: 1000,
         page: 0,
       },
