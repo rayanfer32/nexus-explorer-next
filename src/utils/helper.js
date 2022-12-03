@@ -43,3 +43,14 @@ export function totalPages(totalRows, pageSize) {
   // * use floor instead of round as the api isnt flexible to handle last page where limit is more than the rows.
   return Math.floor(totalRows / pageSize);
 }
+
+/**
+ *
+ * @param {string} date
+ * @returns {DateObject} Date
+ */
+export function getDateObject(date) {
+  // * fix invalid date issue in firefox
+  // * https://stackoverflow.com/questions/21984406/error-while-converting-date-string-to-date-object-in-firefox/21984717#21984717
+  return new Date(date.replace(/-/g, '/'));
+}
