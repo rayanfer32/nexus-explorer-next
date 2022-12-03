@@ -10,7 +10,7 @@ import RTTable, {
 import { useQuery } from 'react-query';
 import TYPES from 'types';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import { Warn } from 'utils';
+import { getDateObject, Warn } from 'utils';
 
 function Panel3({ blocks }) {
   const router = useRouter();
@@ -35,7 +35,7 @@ function Panel3({ blocks }) {
       <RTTRowBlock
         key={newRowData.height}
         block={intlNum(newRowData.height)}
-        date={new Date(newRowData.date).toLocaleTimeString()}
+        date={getDateObject(newRowData.date).toLocaleTimeString()}
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}
