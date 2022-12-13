@@ -50,7 +50,7 @@ export async function fetchRichlist(
     sort: 'total',
     order: 'desc',
     limit: limit,
-    where: 'object.token=0',
+    where: 'results.token=0',
   });
 
   const page0 = await axios.post(

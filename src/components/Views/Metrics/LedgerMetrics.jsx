@@ -39,7 +39,7 @@ export default function LedgerMetrics() {
           <h3>Transaction Volumes</h3>
           <div className={styles.cardGroup}>
             <SmallCard
-              label="Transcations"
+              label="Transactions"
               sublabel=""
               value={intlNum(ledgerData.volumes.transactions[selectedDuration])}
               unit=""

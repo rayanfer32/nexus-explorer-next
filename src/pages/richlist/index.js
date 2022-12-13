@@ -6,10 +6,10 @@ import TYPES from 'types';
 
 import { fetchRichlist } from 'utils/common/fetch';
 export async function getStaticProps() {
-  const richlistData = await fetchRichlist();
+  const resp = await fetchRichlist();
   return {
     props: {
-      richlistData,
+      richlistData: resp || null,
     },
     revalidate: TYPES.REFETCH_INTERVALS.REGENERATE_SSG_INTERVAL,
   };
