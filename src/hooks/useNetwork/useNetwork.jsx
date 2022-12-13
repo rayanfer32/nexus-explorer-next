@@ -165,7 +165,7 @@ export function useNetwork() {
     const params = {
       limit,
       page,
-      where: `results.owner=username(\`${username}\`);`,
+      where: `results.json.recipient=username(\`${username}\`);`,
     };
     // const jsonBody = JSON.stringify(params);
 
