@@ -1,6 +1,6 @@
 import { ImageResponse } from '@vercel/og';
 import { OGBotImage } from 'components/Header/PageHeader/Og-Bot';
-import { fetchTransaction } from 'utils/common/fetch';
+import { fetchBlock } from 'utils/common/fetch';
 
 export const config = {
   runtime: 'experimental-edge',
@@ -65,12 +65,10 @@ function getFishnameAndEmoji(amount) {
 
 export default async function handler(req) {
   const { searchParams } = new URL(req.url);
-  const txid = searchParams.get('txid') ?? '';
-  const cid = searchParams.get('cid') ?? 0; // contract id
-
-  // ledger/get/transaction
-  const resp = await fetchTransaction(txid);
-  const contract = resp.contracts[cid];
+  const block = await fetchBlock(searchParams.get('block'));
+  const tidx = searchParams.get('tidx') ?? 0;
+  const cidx = searchParams.get('cidx') ?? 0; // contract id
+  const contract = block.tx[tidx].contracts[cidx];
 
   const [fishEmoji, fishName] = getFishnameAndEmoji(contract.amount);
 
