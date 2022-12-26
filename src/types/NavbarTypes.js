@@ -21,6 +21,7 @@ const navDropdowns = {
     { title: 'Tokens', path: '/tokens' },
   ],
   DAO: [
+    { title: 'Embassy', path: '/dao/embassy' },
     { title: 'Ambassador', path: '/dao/ambassador' },
     { title: 'Developer', path: '/dao/developer' },
   ],

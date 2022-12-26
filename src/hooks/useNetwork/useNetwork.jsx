@@ -67,20 +67,20 @@ export function useNetwork() {
     return fetchRichlist(url, page, limit);
   };
 
+  // ! fetch doesnt return rejected promise by default which is required by react-query to correctly handle error scenarios, hence use axios library th
   const getGlobalNames = async () => {
-    const res = await fetch(`${url}/register/list/names:global`, {
+    const res = await axios(`${url}/register/list/names:global`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'max-age=300',
       },
-      body: JSON.stringify({
-        where: 'object.namespace=*GLOBAL*',
+      data: {
         limit: 1000,
         page: 0,
-      }),
+      },
     });
-    return res.json();
+    return res.data;
   };
 
   const getNamespaces = () => {
@@ -134,7 +134,7 @@ export function useNetwork() {
   };
 
   const getTrustTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/trust`, {
+    const res = await axios.get(`${url}/register/transactions/finance:trust`, {
       params: {
         address: address,
         page: page,
@@ -145,13 +145,16 @@ export function useNetwork() {
   };
 
   const getAccountTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/account`, {
-      params: {
-        address: address,
-        page: page,
-        limit: limit,
-      },
-    });
+    const res = await axios.get(
+      `${url}/register/transactions/finance:account`,
+      {
+        params: {
+          address: address,
+          page: page,
+          limit: limit,
+        },
+      }
+    );
     return res.data;
   };
 
@@ -162,9 +165,8 @@ export function useNetwork() {
     const params = {
       limit,
       page,
-      where: `results.owner=username(\`${username}\`);`,
+      where: `results.json.recipient=username(\`${username}\`);`,
     };
-    // const jsonBody = JSON.stringify(params);
 
     const res = await axios.get(`${url}/register/list/invoices:invoice`, {
       headers: { 'Cache-Control': 'max-age=120' },

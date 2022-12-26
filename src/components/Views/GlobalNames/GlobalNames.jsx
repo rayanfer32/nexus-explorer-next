@@ -3,7 +3,7 @@ import Loader from 'components/common/NE_Loader';
 import Table from 'components/Table/Table';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
-import ErrorCard from 'components/common/NE_ErrorCard';
+import ErrorMessage from 'components/common/NE_ErrorMessage';
 
 export default function GlobalNames() {
   const { network, getGlobalNames } = useNetwork();
@@ -50,7 +50,7 @@ export default function GlobalNames() {
   if (error) {
     return (
       <div>
-        <ErrorCard />
+        <ErrorMessage error={error} />
       </div>
     );
   }
