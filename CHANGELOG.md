@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.1.0 (26/12/2022)
+## What's Changed
+
+## ⚠️Breaking Changes
+
+- refactor: remove unused asset file @shrivatsabhat (#292)
+
+## 🚀 Features
+
+- feat: new svg loader implementation  @shrivatsabhat (#295)
+- feat: Tritium API upgrades, New Network / Ledger info added to metrics page, Embassy DAO page.  @rayanfer32 (#294)
+- feat: use indexes to create og images of contracts @rayanfer32 (#299)
+- feat: og image properties and tx scan page @rayanfer32 (#290)
+- feat: generate OG image for contract on /scan/tx @rayanfer32 (#289)
+
+## 🐛 Bug Fixes
+
+- fix: invalid date issue with firefox @rayanfer32 (#298)
+- fix: spacing between page and number #273 @shrivatsabhat (#287)
+- fix: add missing href to Rtt table #224 @shrivatsabhat (#288)
+
+## 🧰 Maintenance
+
+- ci: create CODEOWNERS @shrivatsabhat (#296)
+- refactor: remove unused asset file @shrivatsabhat (#292)
+- refactor: reuse page header for meta data @shrivatsabhat (#291)
+
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.0.6...v1.0.7
+
+---
+
 ## v1.0.6 (26/09/2022)
 ## What's Changed
 
