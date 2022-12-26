@@ -45,6 +45,10 @@ export const PageMetaTypes = {
       DESCRIPTION: 'Nexus Blockchain Explorer provides User Statistics',
     },
     DAO: {
+      EMBASSY: {
+        TITLE: 'Embassy DAO | Nexus Blockchain Explorer V2',
+        DESCRIPTION: 'Nexus Blockchain Explorer ',
+      },
       AMBASSADOR: {
         TITLE: 'Ambassador DAO | Nexus Blockchain Explorer V2',
         DESCRIPTION: 'Nexus Blockchain Explorer ',
