@@ -18,7 +18,9 @@ export default function TestComponents() {
           }}
         />
         <hr></hr>
-        <CircleLoaderSvg size={100} />
+        <CircleLoaderSvg size={52} primary={false} />
+        <hr></hr>
+        <CircleLoaderSvg size={62} primary={true} />
         <hr></hr>
         <DotLoaderSvg />
         <hr></hr>
