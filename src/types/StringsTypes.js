@@ -24,31 +24,75 @@ export const StringsTypes = {
 
 export const METRICS_META = {
   registers: {
-    account: { label: 'Account Registers', icon: <MdSupervisorAccount /> },
-    append: { label: 'Append Registers', icon: <AiOutlineCodeSandbox /> },
-    crypto: { label: 'Crypto Registers', icon: <AiOutlineCodeSandbox /> },
-    name: { label: 'Total Name Registers', icon: <AiOutlineCodeSandbox /> },
-    name_global: {
-      label: 'Global Name Registers',
-      icon: <AiOutlineCodeSandbox />,
-    },
-    name_namespaced: {
-      label: 'Namespaced Name Registers',
-      icon: <AiOutlineCodeSandbox />,
-    },
-    namespace: { label: 'Namespace Registers', icon: <AiOutlineCodeSandbox /> },
-    object: {
-      label: 'Non-Standard Object Registers',
-      icon: <AiOutlineCodeSandbox />,
-    },
-    object_tokenized: {
-      label: 'Tokenized Object Registers',
-      icon: <AiOutlineCodeSandbox />,
-    },
-    raw: { label: 'Raw Registers', icon: <AiOutlineCodeSandbox /> },
-    readonly: { label: 'Read-Only Registers', icon: <AiOutlineCodeSandbox /> },
-    token: { label: 'Token Registers', icon: <AiOutlineCodeSandbox /> },
     total: { label: 'Total Registers', icon: <AiOutlineCodeSandbox /> },
+    namespaces: {
+      label: 'Namespace Registers',
+      icon: <AiOutlineCodeSandbox />,
+    },
+
+    names: {
+      global: {
+        label: 'Global Name Registers',
+        icon: <AiOutlineCodeSandbox />,
+      },
+      local: {
+        label: 'Local Name Registers',
+        icon: <AiOutlineCodeSandbox />,
+      },
+      namespaced: {
+        label: 'Namespaced Name Registers',
+        icon: <AiOutlineCodeSandbox />,
+      },
+    },
+    objects: {
+      accounts: { label: 'Account Registers', icon: <MdSupervisorAccount /> },
+      assets: { label: 'Asset Registers', icon: <AiOutlineCodeSandbox /> },
+      crypto: { label: 'Crypto Registers', icon: <AiOutlineCodeSandbox /> },
+      tokenized: {
+        label: 'Tokenized Object Registers',
+        icon: <AiOutlineCodeSandbox />,
+      },
+      tokens: { label: 'Token Registers', icon: <AiOutlineCodeSandbox /> },
+    },
+    state: {
+      raw: { label: 'Raw Registers', icon: <AiOutlineCodeSandbox /> },
+      readonly: {
+        label: 'Read-Only Registers',
+        icon: <AiOutlineCodeSandbox />,
+      },
+    },
+  },
+
+  sigchains: {
+    label: 'Signature Chains',
+    sublabel: 'Users',
+    icon: <BiUser />,
+  },
+  supply: {
+    total: { label: 'Total Supply' },
+    target: {},
+    inflation: {
+      label: 'Inflation Rate',
+      sublabel: 'Annual',
+      ticker: '%',
+      icon: <AiOutlineStock />,
+    },
+    minute: { label: 'Per Minute', ticker: 'NXS' },
+    hour: { label: 'Hourly', ticker: 'NXS' },
+    day: { label: 'Daily', ticker: 'NXS' },
+    week: { label: 'Weekly', ticker: 'NXS' },
+    month: { label: 'Monthly', ticker: 'NXS' },
+  },
+  trust: {
+    //! staked precentage calculated on Metrics page
+    staked_percentage: {
+      label: 'Staked Percentage',
+      ticker: '%',
+      icon: <BiLock />,
+    },
+    total: { label: 'Staking Accounts', icon: <FaUserLock /> },
+    stake: { label: 'Total Staked', ticker: 'NXS', icon: <BiLock /> },
+    trust: { label: 'Trust score', icon: <AiOutlineCodeSandbox /> },
   },
   reserves: {
     ambassador: { ticker: 'NXS' },
@@ -56,35 +100,5 @@ export const METRICS_META = {
     fee: { ticker: 'NXS' },
     hash: { ticker: 'NXS' },
     prime: { ticker: 'NXS' },
-  },
-  sig_chains: {
-    label: 'Signature Chains',
-    sublabel: 'Users',
-    icon: <BiUser />,
-  },
-  supply: {
-    day: { label: 'Daily', ticker: 'NXS' },
-    hour: { label: 'Hourly', ticker: 'NXS' },
-    inflationrate: {
-      label: 'Inflation Rate',
-      sublabel: 'Annual',
-      ticker: '%',
-      icon: <AiOutlineStock />,
-    },
-    minute: { label: 'Per Minute', ticker: 'NXS' },
-    month: { label: 'Monthly', ticker: 'NXS' },
-    target: {},
-    total: { label: 'Total Supply' },
-    week: { label:"Weekly", ticker: 'NXS' },
-  },
-  trust: {
-    staked_percentage: {
-      label: 'Staked Percentage',
-      ticker: '%',
-      icon: <BiLock />,
-    },
-    stake: { label: 'Total Staked', ticker: 'NXS', icon: <BiLock /> },
-    total: { label: 'Staking Accounts', icon: <FaUserLock /> },
-    trust: { label: 'Trust score', icon: <AiOutlineCodeSandbox /> },
   },
 };

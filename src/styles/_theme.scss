@@ -23,6 +23,7 @@
   --theme-invert: brightness(70%) sepia(100) saturate(60) hue-rotate(190deg);
   --theme-detail-card: var(--linear-nexus-sky);
   --theme-tab-bg: var(--frost-white);
+  --theme-tab-highlight: var(--nexus-blue);
   --theme-tab-text: var(--dark-grey);
   --theme-toast-bg: hsl(220, 10%, 16%);
   --theme-icon-color: var(--dark-grey);
@@ -62,6 +63,7 @@
   --theme-detail-card: var(--radial-ocean-midnight);
   --theme-tab-text: var(--frost-white);
   --theme-tab-bg: var(--ocean-blue);
+  --theme-tab-highlight: var(--midnight-blue);
   --theme-toast-bg: hsl(220, 10%, 16%);
   --theme-icon-color: var(--sky-blue);
   --theme-hover-bg: var(--ocean-blue);

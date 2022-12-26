@@ -1,0 +1,31 @@
+.tab {
+  &_container {
+    position: relative;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    background-color: var(--theme-tab-bg);
+    border-radius: 16vmax;
+    width: fit-content;
+    color: var(--theme-tab-text);
+    transition: all 0.25ms ease;
+  }
+
+  &_element {
+    padding-block: var(--space-xs);
+    padding-inline: var(--space-xl);
+    height: 100%;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.99;
+      scale: 1.01;
+    }
+  }
+}
+
+.active {
+  background-color: var(--theme-tab-highlight);
+  border-radius: 16vmax;
+  height: 100%;
+}

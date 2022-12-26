@@ -19,7 +19,7 @@ export const Pagination = ({ controls, isStaticPanination }) => {
   } = controls;
 
   const currentPage = isStaticPanination
-    ? ` ${pageIndex + 1} of ${pageCount}`
+    ? `${pageIndex + 1} of ${pageCount}`
     : `${pageIndex + 1} ${pageCount != Infinity ? `of ${pageCount}` : ''}`;
   const defaultPageNumber = pageIndex + 1;
   const totalPages = pageCount;
@@ -70,7 +70,7 @@ export const Pagination = ({ controls, isStaticPanination }) => {
             <BiChevronLeft color="inherit" />
           </button>
           <span className={styles.pagination__btn__page}>
-            Page
+            <label>Page</label>
             <strong>{currentPage}</strong>
           </span>
           <button
