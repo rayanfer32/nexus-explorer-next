@@ -38,6 +38,14 @@ export async function fetchTransaction(txid) {
   return resp.result;
 }
 
+export async function fetchBlock(height) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/block?verbose=summary&height=${height}`
+  );
+  const resp = await res.json();
+  return resp.result;
+}
+
 export async function fetchRichlist(
   url = process.env.NEXT_PUBLIC_NEXUS_BASE_URL,
   page = 0,
