@@ -163,7 +163,9 @@ export const FooterTypes = {
           {
             href: null,
             target: '_blank',
-            label: 'Copyright © 2014-2022 www.nexus.io',
+            label: `Copyright © 2014-${
+              new Date().getFullYear() ?? 2023
+            } www.nexus.io`,
             icon: undefined,
           },
         ],
