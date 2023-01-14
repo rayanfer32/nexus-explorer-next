@@ -15,40 +15,48 @@ export const DaoInfo = (props) => {
   const multiQuery = useQuery;
   const daoInfoArr = Object.entries(daoObject);
   const accountQuerys = daoInfoArr.map(([, v]) =>
-    multiQuery([v.audit, 'account'], () => getAccount(v.audit))
+    multiQuery([v.audit, 'account'], () =>
+      getAccount(v.auditBalance ?? v.audit)
+    )
   );
 
   return (
     <section className={cls(styles.container)}>
       <h1>{title}</h1>
-      {daoInfoArr.map(([daoKey, daoInfo], index) => (
-        <div key={daoKey} className={cls(styles.block)}>
-          <div className={styles.block__details}>
-            <h3>
-              <Link href={`/scan/${daoInfo.audit}`}>{daoInfo.audit}</Link>
-            </h3>
+      {daoInfoArr.map(([daoKey, daoInfo], index) => {
+        const link = `/scan/${daoInfo.auditBalance ?? daoInfo.audit}`;
+        return (
+          <div key={daoKey} className={cls(styles.block)}>
+            <div className={styles.block__details}>
+              <h3>
+                <Link href={link}>{daoInfo.auditBalance ?? daoInfo.audit}</Link>
+              </h3>
 
-            <h4>{daoInfo.desc} </h4>
-            <Link href={`/scan/${daoInfo.audit}`} passHref>
-              <a>
-                Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
-                {accountQuerys[index]?.data?.ticker}
-                <CgExternal />
+              <h4>{daoInfo.desc} </h4>
+              <Link href={link} passHref>
+                <a>
+                  Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
+                  {accountQuerys[index]?.data?.ticker}
+                  <CgExternal />
+                </a>
+              </Link>
+              <div>
+                {daoInfo.audit == 'US' ? 'Directors' : 'Chair'} :{' '}
+                {daoInfo.chair}
+              </div>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={daoInfo.social.replace('@', 'https://t.me/')}>
+                Social : {daoInfo.social} <CgExternal />
               </a>
+            </div>
+            <Link href={`/dao/invoices/${daoInfo.audit}`} passHref>
+              <Button type="primary"> Check Invoices</Button>
             </Link>
-            <div>Chair : {daoInfo.chair} </div>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={daoInfo.social.replace('@', 'https://t.me/')}>
-              Social : {daoInfo.social} <CgExternal />
-            </a>
           </div>
-          <Link href={`/dao/invoices/${daoInfo.audit}`} passHref>
-            <Button type="primary"> Check Invoices</Button>
-          </Link>
-        </div>
-      ))}
+        );
+      })}
     </section>
   );
 };

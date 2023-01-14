@@ -38,6 +38,14 @@ export async function fetchTransaction(txid) {
   return resp.result;
 }
 
+export async function fetchBlock(height) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_NEXUS_BASE_URL}/ledger/get/block?verbose=summary&height=${height}`
+  );
+  const resp = await res.json();
+  return resp.result;
+}
+
 export async function fetchRichlist(
   url = process.env.NEXT_PUBLIC_NEXUS_BASE_URL,
   page = 0,
@@ -50,15 +58,19 @@ export async function fetchRichlist(
     sort: 'total',
     order: 'desc',
     limit: limit,
-    where: 'object.token=0',
+    where: 'results.token=0',
   });
 
-  const page0 = await axios.post(`${url}/register/list/trust,accounts`, json, {
-    headers: {
-      'Cache-Control': 'max-age=300',
-      'Content-Type': 'application/json',
-    },
-  });
+  const page0 = await axios.post(
+    `${url}/register/list/finance:accounts,finance:trust`,
+    json,
+    {
+      headers: {
+        'Cache-Control': 'max-age=300',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   return { data: [...page0.data.result] };
 }

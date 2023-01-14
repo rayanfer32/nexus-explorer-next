@@ -39,6 +39,10 @@ export function useNetwork() {
     return axios.get(`${url}/ledger/get/info`);
   }
 
+  function getLedgerMetrics() {
+    return axios.get(`${url}/ledger/get/metrics`);
+  }
+
   async function getRecentBlocks(MAX_ROWS = 6) {
     const res = await axios.get(
       `${url}/ledger/list/blocks?verbose=summary&limit=${MAX_ROWS}`
@@ -47,7 +51,7 @@ export function useNetwork() {
   }
 
   const getTrustlist = async ({ queryKey }) => {
-    const res = await axios.get(`${url}/register/list/trust`, {
+    const res = await axios.get(`${url}/register/list/finance:trust`, {
       headers: { 'Cache-Control': 'max-age=300' },
       params: {
         page: queryKey[1],
@@ -63,32 +67,35 @@ export function useNetwork() {
     return fetchRichlist(url, page, limit);
   };
 
+  // ! fetch doesnt return rejected promise by default which is required by react-query to correctly handle error scenarios, hence use axios library th
   const getGlobalNames = async () => {
-    const res = await fetch(`${url}/register/list/names`, {
+    const res = await axios(`${url}/register/list/names:global`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'max-age=300',
       },
-      body: JSON.stringify({
-        where: 'object.namespace=*GLOBAL*',
+      data: {
         limit: 1000,
         page: 0,
-      }),
+      },
     });
-    return res.json();
+    return res.data;
   };
 
   const getNamespaces = () => {
-    return axios.get(`${url}/register/list/namespaces?limit=1000`, {
+    return axios.get(`${url}/register/list/names:namespaces?limit=1000`, {
       headers: { 'Cache-Control': 'max-age=300' },
     });
   };
 
   const getTokens = () => {
-    return axios.get(`${url}/register/list/tokens?sort=maxsupply&limit=1000`, {
-      headers: { 'Cache-Control': 'max-age=300' },
-    });
+    return axios.get(
+      `${url}/register/list/finance:tokens?sort=maxsupply&limit=1000`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
   };
 
   const getBlocks = async ({ queryKey }) => {
@@ -113,17 +120,21 @@ export function useNetwork() {
 
   // todo: add suppprt for adresses also
   const getAccount = async (username) => {
-    const res = await axios.get(`${url}/finance/get/account?name=${username}`);
+    const res = await axios.get(
+      `${url}/register/get/finance:account?name=${username}`
+    );
     return res.data.result;
   };
 
   const getTrust = async (username) => {
-    const res = await axios.get(`${url}/finance/get/trust?name=${username}`);
+    const res = await axios.get(
+      `${url}/register/get/finance:trust?name=${username}`
+    );
     return res.data.result;
   };
 
   const getTrustTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/trust`, {
+    const res = await axios.get(`${url}/register/transactions/finance:trust`, {
       params: {
         address: address,
         page: page,
@@ -134,24 +145,32 @@ export function useNetwork() {
   };
 
   const getAccountTransactions = async (address, page, limit) => {
-    const res = await axios.get(`${url}/finance/transactions/account`, {
-      params: {
-        address: address,
-        page: page,
-        limit: limit,
-      },
-    });
+    const res = await axios.get(
+      `${url}/register/transactions/finance:account`,
+      {
+        params: {
+          address: address,
+          page: page,
+          limit: limit,
+        },
+      }
+    );
     return res.data;
   };
 
   const getInvoices = async (username, page, limit) => {
-    const res = await axios.get(`${url}/invoices/list/invoices`, {
+    // example command
+    // ./nexus register/list/invoices:invoice limit=20 where='results.owner=username(`US:Interactions`);'
+
+    const params = {
+      limit,
+      page,
+      where: `results.json.recipient=username(\`${username}\`);`,
+    };
+
+    const res = await axios.get(`${url}/register/list/invoices:invoice`, {
       headers: { 'Cache-Control': 'max-age=120' },
-      params: {
-        username: username,
-        page: page,
-        limit: limit,
-      },
+      params,
     });
     return res.data.result;
   };
@@ -163,7 +182,7 @@ export function useNetwork() {
    */
   const getInvoice = async (address) => {
     const res = await axios.get(
-      `${url}/invoices/get/invoice?address=${address}`
+      `${url}/register/get/invoices:invoice?address=${address}`
     );
     return res.data.result;
   };
@@ -186,6 +205,7 @@ export function useNetwork() {
     getGlobalNames,
     getRecentBlocks,
     getTransactions,
+    getLedgerMetrics,
     getTrustTransactions,
     getAccountTransactions,
   };

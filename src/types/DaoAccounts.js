@@ -13,7 +13,7 @@ export const DAO_KEYS = [
   'US:TAO',
 ];
 
-// * done: first try to load this info from the env
+// * Below settings are Ignored if defined in the env
 let DAO_AMBASSADORS = {
   interactions: {
     chair: 'Arun Pais',
@@ -74,6 +74,16 @@ let DAO_DEVELOPERS = {
   },
 };
 
+const DAO_EMBASSY = {
+  embassy: {
+    chair: 'Carolyn Sechler & Colin Cantrell',
+    social: '@NexusOfficial',
+    desc: 'US Embassy',
+    audit: 'US',
+    auditBalance: 'US:default',
+  },
+};
+
 try {
   DAO_DEVELOPERS = JSON.parse(process.env.NEXT_PUBLIC_DAO_DEVELOPERS);
   Logger.error('Using DAO DEVELOPERS from .env.local');
@@ -88,4 +98,4 @@ try {
   Logger.error(error, 'Using DAO AMBASSADORS from Types/DaoAccounts.js');
 }
 
-export { DAO_DEVELOPERS, DAO_AMBASSADORS };
+export { DAO_DEVELOPERS, DAO_AMBASSADORS, DAO_EMBASSY };

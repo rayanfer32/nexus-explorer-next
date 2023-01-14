@@ -38,7 +38,7 @@ function Panel2(props) {
           reserve: marketData?.price_change_percentage_24h.toFixed(2),
           reward: marketData?.total_volume.usd,
           footer: (
-            marketData?.current_price.usd * metricsData?.supply.total
+            marketData?.current_price.usd * miningData?.supply.total
           ).toFixed(2),
         },
       }));
