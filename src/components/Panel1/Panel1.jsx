@@ -33,8 +33,8 @@ function Panel1(props) {
     }
   }, [metricsRQ.data, infoRQ.data]);
 
-  //  * majority of data is coming from miningRQ , hence we use loader state of metrics for this panel
-  if (miningRQ.isLoading)
+  //  * majority of data is coming from miningRQ , hence we use loader state of miningRQ for this panel
+  if (miningRQ.isLoading || isNaN(state.blocks)) {
     return (
       <article className={styles.container}>
         <section className={styles.cardsContainer}>
@@ -47,6 +47,7 @@ function Panel1(props) {
         </section>
       </article>
     );
+  }
 
   if (metricsRQ.isError)
     return (
