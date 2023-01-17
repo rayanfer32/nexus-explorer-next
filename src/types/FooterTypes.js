@@ -18,6 +18,8 @@ import {
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
 import { SiGitbook } from 'react-icons/si';
 
+const currentYear = new Date().getFullYear() || 2023;
+
 export const FooterTypes = {
   FOOTER_ITEMS: {
     PRIMARY: {
@@ -163,9 +165,7 @@ export const FooterTypes = {
           {
             href: null,
             target: '_blank',
-            label: `Copyright © 2014-${
-              new Date().getFullYear() ?? 2023
-            } www.nexus.io`,
+            label: `Copyright © 2014-${currentYear} www.nexus.io`,
             icon: undefined,
           },
         ],
