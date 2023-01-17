@@ -10,13 +10,13 @@ import { initialOptions } from './essentials';
 function PieChart({ series, options, labels, ...rest }) {
   const windowSize = useWindowSize();
 
-  const [isDarkMode] = useDarkMode();
+  const [, , isGlobalDarkMode] = useDarkMode();
   const [_series, setSeries] = useState(series);
   const [_options, setOptions] = useState(
     options ||
       initialOptions({
         labels,
-        theme: isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
+        theme: isGlobalDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT,
       })
   );
 
@@ -31,14 +31,16 @@ function PieChart({ series, options, labels, ...rest }) {
   // * updates the chart when dark mode changes
   function updateChart() {
     let newOptions = { ..._options };
-    newOptions.theme.mode = isDarkMode ? TYPES.THEME.DARK : TYPES.THEME.LIGHT;
+    newOptions.theme.mode = isGlobalDarkMode
+      ? TYPES.THEME.DARK
+      : TYPES.THEME.LIGHT;
     setOptions(newOptions);
   }
 
   // * update chart on theme change
   useEffect(() => {
     updateChart();
-  }, [isDarkMode]);
+  }, [isGlobalDarkMode]);
 
   return (
     <Chart

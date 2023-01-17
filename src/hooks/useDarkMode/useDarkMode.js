@@ -10,11 +10,13 @@ import { useMediaQuery } from '../useMediaQuery/useMediaQuery';
 export function useDarkMode() {
   const { appContext: sharedState, setAppContext: setState } = useAppContext();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const isGlobalDarkMode = sharedState.theme === TYPES.THEME.DARK;
+
   const [darkMode, setDarkMode] = useState(() => {
     if (sharedState.theme == null) {
       return prefersDarkMode;
     } else {
-      return sharedState.theme === TYPES.THEME.DARK;
+      return;
     }
   });
 
@@ -27,5 +29,5 @@ export function useDarkMode() {
     setGlobalDarkMode(darkMode);
   }, [darkMode]);
 
-  return [darkMode, setDarkMode];
+  return [darkMode, setDarkMode, isGlobalDarkMode];
 }
