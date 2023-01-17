@@ -14,6 +14,10 @@ import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/common/NE_ErrorCard';
 
+function ShimmerFallback({ children, hasValue }) {
+  return hasValue ? children : <Shimmer minWidth="17.5rem" height="10.75rem" />;
+}
+
 function Panel2(props) {
   const { network } = useNetwork();
   const { metricsRQ, marketRQ, miningRQ } = props;
@@ -131,68 +135,75 @@ function Panel2(props) {
   return (
     <section className={styles.panelTwoContainer}>
       {network.name === NETWORKS.MAINNET.name && (
+        <ShimmerFallback hasValue={state.price?.text}>
+          <DetailCard
+            type="market"
+            icon={<GiTwoCoins color="white" size="2.25rem" />}
+            label="Price"
+            sublabel={`${state.price?.sublabel} BTC`}
+            text={`${state.price?.text}`}
+            unit={'$'}
+            reserveLabel="Change 24h"
+            reserve={`${state.price?.reserve} %`}
+            rewardLabel="Total Volume"
+            reward={`${intlNum(state.price?.reward)} $`}
+            footerLabel="Market Cap "
+            footerValue={`${intlNum(state.price?.footer)} $`}
+            delayTime={`${cardRefreshTimeout}s`}
+          />
+        </ShimmerFallback>
+      )}
+      <ShimmerFallback hasValue={state.stake?.text}>
         <DetailCard
-          type="market"
-          icon={<GiTwoCoins color="white" size="2.25rem" />}
-          label="Price"
-          sublabel={`${state.price?.sublabel} BTC`}
-          text={`${state.price?.text}`}
-          unit={'$'}
-          reserveLabel="Change 24h"
-          reserve={`${state.price?.reserve} %`}
-          rewardLabel="Total Volume"
-          reward={`${intlNum(state.price?.reward)} $`}
-          footerLabel="Market Cap "
-          footerValue={`${intlNum(state.price?.footer)} $`}
+          type="basic"
+          icon={<AiFillBank color="white" size="2.25rem" />}
+          label={StringsTypes.CHANNELS[0]}
+          sublabel={`Difficulty : ${state.stake?.sublabel}`}
+          text={`${intlNum(state.stake?.text)}`}
+          unit="NXS"
+          reserveLabel="Height"
+          reserve={`${intlNum(state.stake?.reserve)}`}
+          reward={`${state.stake?.reward}`}
+          rewardLabel="Total"
+          footerLabel="Fees "
+          footerValue={`${intlNum(state.stake?.footer)} NXS`}
           delayTime={`${cardRefreshTimeout}s`}
         />
-      )}
-      <DetailCard
-        type="basic"
-        icon={<AiFillBank color="white" size="2.25rem" />}
-        label={StringsTypes.CHANNELS[0]}
-        sublabel={`Difficulty : ${state.stake?.sublabel}`}
-        text={`${intlNum(state.stake?.text)}`}
-        unit="NXS"
-        reserveLabel="Height"
-        reserve={`${intlNum(state.stake?.reserve)}`}
-        reward={`${state.stake?.reward}`}
-        rewardLabel="Total"
-        footerLabel="Fees "
-        footerValue={`${intlNum(state.stake?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
-
-      <DetailCard
-        type="basic"
-        icon={<BsFillCpuFill color="white" size="2.25rem" />}
-        label={StringsTypes.CHANNELS[1]}
-        sublabel={`Difficulty : ${state.prime?.sublabel}`}
-        text={`${abbreviateNumber(state.prime?.text)}`}
-        unit="P/s"
-        reserveLabel="Reserve"
-        reserve={`${state.prime?.reserve} NXS`}
-        rewardLabel="Reward"
-        reward={`${state.prime?.reward} NXS`}
-        footerLabel="Fees"
-        footerValue={`${intlNum(state.prime?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
-      <DetailCard
-        type="basic"
-        icon={<MdSpeed color="white" size="2.5rem" />}
-        label={StringsTypes.CHANNELS[2]}
-        sublabel={`Difficulty : ${state.hash?.sublabel}`}
-        text={`${abbreviateNumber(state.hash?.text)}`}
-        unit="H/s"
-        reserveLabel="Reserve"
-        reserve={`${intlNum(state.hash?.reserve)} NXS`}
-        rewardLabel="Reward"
-        reward={`${state.hash?.reward} NXS`}
-        footerLabel="Fees"
-        footerValue={`${intlNum(state.hash?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-      />
+      </ShimmerFallback>
+      <ShimmerFallback hasValue={state.prime?.text}>
+        <DetailCard
+          type="basic"
+          icon={<BsFillCpuFill color="white" size="2.25rem" />}
+          label={StringsTypes.CHANNELS[1]}
+          sublabel={`Difficulty : ${state.prime?.sublabel}`}
+          text={`${abbreviateNumber(state.prime?.text)}`}
+          unit="P/s"
+          reserveLabel="Reserve"
+          reserve={`${state.prime?.reserve} NXS`}
+          rewardLabel="Reward"
+          reward={`${state.prime?.reward} NXS`}
+          footerLabel="Fees"
+          footerValue={`${intlNum(state.prime?.footer)} NXS`}
+          delayTime={`${cardRefreshTimeout}s`}
+        />
+      </ShimmerFallback>
+      <ShimmerFallback hasValue={state.hash?.text}>
+        <DetailCard
+          type="basic"
+          icon={<MdSpeed color="white" size="2.5rem" />}
+          label={StringsTypes.CHANNELS[2]}
+          sublabel={`Difficulty : ${state.hash?.sublabel}`}
+          text={`${abbreviateNumber(state.hash?.text)}`}
+          unit="H/s"
+          reserveLabel="Reserve"
+          reserve={`${intlNum(state.hash?.reserve)} NXS`}
+          rewardLabel="Reward"
+          reward={`${state.hash?.reward} NXS`}
+          footerLabel="Fees"
+          footerValue={`${intlNum(state.hash?.footer)} NXS`}
+          delayTime={`${cardRefreshTimeout}s`}
+        />
+      </ShimmerFallback>
     </section>
   );
 }
