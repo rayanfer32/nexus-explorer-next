@@ -74,7 +74,7 @@ let DAO_DEVELOPERS = {
   },
 };
 
-const DAO_EMBASSY = {
+let DAO_EMBASSY = {
   embassy: {
     chair: 'Carolyn Sechler & Colin Cantrell',
     social: '@NexusOfficial',
@@ -96,6 +96,13 @@ try {
   Logger.error('Using DAO AMBASSADORS from .env.local');
 } catch (error) {
   Logger.error(error, 'Using DAO AMBASSADORS from Types/DaoAccounts.js');
+}
+
+try {
+  DAO_EMBASSY = JSON.parse(process.env.NEXT_PUBLIC_DAO_EMBASSY);
+  Logger.error('Using DAO EMBASSY from .env.local');
+} catch (error) {
+  Logger.error(error, 'Using DAO EMBASSY from Types/DaoAccounts.js');
 }
 
 export { DAO_DEVELOPERS, DAO_AMBASSADORS, DAO_EMBASSY };
