@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import { cls, intlNum } from 'utils';
 import styles from './dao.module.scss';
 import { CgExternal } from 'react-icons/cg';
+import Loader from 'components/common/NE_Loader';
 
 export const DaoInfo = (props) => {
   const { title, daoObject } = props;
@@ -33,13 +34,22 @@ export const DaoInfo = (props) => {
               </h3>
 
               <h4>{daoInfo.desc} </h4>
-              <Link href={link} passHref>
-                <a>
-                  Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
-                  {accountQuerys[index]?.data?.ticker}
-                  <CgExternal />
-                </a>
-              </Link>
+              {accountQuerys[index]?.isLoading ? (
+                <div className={styles.block__loading}>
+                  <div>Balance :</div>
+                  <div>
+                    <Loader type="dot" />
+                  </div>
+                </div>
+              ) : (
+                <Link href={link} passHref>
+                  <a>
+                    Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
+                    {accountQuerys[index]?.data?.ticker}
+                    <CgExternal />
+                  </a>
+                </Link>
+              )}
               <div>
                 {daoInfo.audit == 'US' ? 'Directors' : 'Chair'} :{' '}
                 {daoInfo.chair}
