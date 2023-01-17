@@ -8,6 +8,28 @@ import styles from './dao.module.scss';
 import { CgExternal } from 'react-icons/cg';
 import Loader from 'components/common/NE_Loader';
 
+function BalanceWithLoader({ isLoading, balance, link }) {
+  if (isLoading) {
+    return (
+      <div className={styles.block__loading}>
+        <div>Balance :</div>
+        <div>
+          <Loader type="dot" />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Link href={link} passHref>
+      <a>
+        Balance : {balance}
+        <CgExternal />
+      </a>
+    </Link>
+  );
+}
+
 export const DaoInfo = (props) => {
   const { title, daoObject } = props;
   const { getAccount } = useNetwork();
@@ -25,7 +47,12 @@ export const DaoInfo = (props) => {
     <section className={cls(styles.container)}>
       <h1>{title}</h1>
       {daoInfoArr.map(([daoKey, daoInfo], index) => {
+        const accountRQ = accountQuerys[index];
         const link = `/scan/${daoInfo.auditBalance ?? daoInfo.audit}`;
+        const isLoading = accountRQ?.isLoading;
+        const balance = `${intlNum(accountRQ?.data?.balance)} ${
+          accountRQ?.data?.ticker
+        }`;
         return (
           <div key={daoKey} className={cls(styles.block)}>
             <div className={styles.block__details}>
@@ -34,22 +61,11 @@ export const DaoInfo = (props) => {
               </h3>
 
               <h4>{daoInfo.desc} </h4>
-              {accountQuerys[index]?.isLoading ? (
-                <div className={styles.block__loading}>
-                  <div>Balance :</div>
-                  <div>
-                    <Loader type="dot" />
-                  </div>
-                </div>
-              ) : (
-                <Link href={link} passHref>
-                  <a>
-                    Balance : {intlNum(accountQuerys[index]?.data?.balance)}{' '}
-                    {accountQuerys[index]?.data?.ticker}
-                    <CgExternal />
-                  </a>
-                </Link>
-              )}
+              <BalanceWithLoader
+                isLoading={isLoading}
+                balance={balance}
+                link={link}
+              />
               <div>
                 {daoInfo.audit == 'US' ? 'Directors' : 'Chair'} :{' '}
                 {daoInfo.chair}
