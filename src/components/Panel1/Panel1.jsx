@@ -53,21 +53,21 @@ function Panel1(props) {
             router.push(`/scan/${state.blocks}`);
           }}
           icon={<GrStackOverflow />}
-          isLoading={miningRQ.isLoading}
+          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
         />
         <NE_SmallCard
           label="Total Supply"
           value={new Intl.NumberFormat('en-US').format(state.totalSupply)}
           unit="NXS"
           icon={<FaCoins />}
-          isLoading={miningRQ.isLoading}
+          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
         />
         <NE_SmallCard
           label="Signature Chains"
           sublabel="Users"
           value={new Intl.NumberFormat().format(state.sigChains)}
           icon={<BsPersonCheckFill />}
-          isLoading={miningRQ.isLoading}
+          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
         />
         <NE_SmallCard
           label="Inflation Rate"
@@ -75,7 +75,7 @@ function Panel1(props) {
           value={state.inflationRate}
           unit="%"
           icon={<AiOutlineStock />}
-          isLoading={miningRQ.isLoading}
+          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
         />
       </section>
       <section title="chart container" className={styles.chartContainer}>
