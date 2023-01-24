@@ -20,6 +20,7 @@ categories:
       - 'chore'
       - 'styles'
       - 'styles:global'
+      - 'ui'
       - 'refactor'
       - 'workflow'
   - title: '🧺 Miscellaneous' #Everything except ABAP
