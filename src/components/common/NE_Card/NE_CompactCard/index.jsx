@@ -20,7 +20,7 @@ import { cls } from 'utils';
 export const NE_CompactCard = (props) => {
   const Icon = (data) => props.icon || <Nexus_SVG_Icon {...data} />;
   return (
-    <Card className={styles['card-compact']}>
+    <Card className={styles['card-compact']} isloading={props.isLoading}>
       <div className={styles['card-body']}>
         <div className={styles['card-body-upper-part']}>
           <h4

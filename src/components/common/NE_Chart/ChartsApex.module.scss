@@ -25,4 +25,24 @@
       min-height: 30rem;
     }
   }
+
+  &__line,
+  &__donut {
+    &.loading {
+      animation: loadingShimer 3s infinite alternate;
+    }
+
+    &.loading > * {
+      visibility: hidden;
+    }
+  }
+
+  @keyframes loadingShimer {
+    from {
+      background-color: rgba(107, 115, 120, 0.1);
+    }
+    to {
+      background-color: var(--theme-page-background);
+    }
+  }
 }

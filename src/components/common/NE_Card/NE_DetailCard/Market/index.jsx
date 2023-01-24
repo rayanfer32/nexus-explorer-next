@@ -76,10 +76,11 @@ export const Market = ({
   rewardLabel = '',
   footerLabel = '',
   footerValue = '',
+  isLoading = false,
   ...props
 }) => {
   return (
-    <section className={classes.detailcard}>
+    <section className={cls(classes.detailcard, isLoading && classes.loading)}>
       <Card_Watermark {...props} />
       <Card_Header
         label={label}
@@ -120,4 +121,5 @@ Market.propTypes = {
   footerLabel: PropTypes.string,
   footerValue: PropTypes.string,
   icon: PropTypes.element,
+  isLoading: PropTypes.bool,
 };
