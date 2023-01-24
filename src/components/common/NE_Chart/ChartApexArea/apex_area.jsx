@@ -5,7 +5,6 @@ import styles from '../ChartsApex.module.scss';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
-import Shimmer from 'components/common/NE_Shimmer';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
