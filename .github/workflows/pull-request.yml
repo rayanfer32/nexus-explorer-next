@@ -45,7 +45,7 @@ jobs:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main' }}
+    if: ${{github.event.pull_request.base.ref != 'main' && github.event.pull_request.head.ref != 'develop' }}
     steps:
       - name: 'Pull request labeler'
         uses: actions/labeler@v4
@@ -56,7 +56,7 @@ jobs:
     needs: labeler
     name: auto-label
     runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main' }}
+    if: ${{github.event.pull_request.base.ref != 'main' && github.event.pull_request.head.ref != 'develop' }}
     permissions:
       contents: read
       pull-requests: write # for release-drafter/release-drafter to add label to PR

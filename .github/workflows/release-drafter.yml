@@ -13,7 +13,8 @@ jobs:
   update_release_draft:
     name: release-drafter
     runs-on: ubuntu-latest
-    if: ${{github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'}}
+    # check pull request from develop to main
+    if: ${{github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'develop' }}
     permissions:
       contents: write # for release-drafter/release-drafter to create a github release
       pull-requests: write # for release-drafter/release-drafter to add label to PR
