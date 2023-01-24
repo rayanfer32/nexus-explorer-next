@@ -133,7 +133,7 @@ function Panel2(props) {
           footerLabel="Market Cap "
           footerValue={`${intlNum(state.price?.footer)} $`}
           delayTime={`${cardRefreshTimeout}s`}
-          isLoading={miningRQ.isLoading}
+          isLoading={marketData.isLoading || !state.price?.text}
         />
       )}
       <DetailCard
@@ -150,9 +150,8 @@ function Panel2(props) {
         footerLabel="Fees "
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={miningRQ.isLoading}
+        isLoading={miningRQ.isLoading || !state.stake?.text}
       />
-
       <DetailCard
         type="basic"
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
@@ -167,7 +166,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.prime?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={miningRQ.isLoading}
+        isLoading={!state.prime?.text}
       />
       <DetailCard
         type="basic"
@@ -183,7 +182,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.hash?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={miningRQ.isLoading}
+        isLoading={!state.hash?.text}
       />
     </section>
   );
