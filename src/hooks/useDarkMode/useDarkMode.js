@@ -16,7 +16,7 @@ export function useDarkMode() {
     if (sharedState.theme == null) {
       return prefersDarkMode;
     } else {
-      return;
+      return isGlobalDarkMode;
     }
   });
 
