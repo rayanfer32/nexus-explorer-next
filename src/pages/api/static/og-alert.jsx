@@ -5,10 +5,10 @@ import { fetchBlock } from 'utils/common/fetch';
 export const config = {
   runtime: 'experimental-edge',
 };
-const properties = {
-  width: 1200,
-  height: 630,
-};
+const monoFont = fetch(
+  new URL('../../../assets/fonts/RobotoMono__.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
+
 const emojis = {
   blue_whale: '🐳',
   whale: '🐋',
@@ -80,6 +80,17 @@ export default async function handler(req) {
         fishName={fishName}
       />
     ),
-    properties
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: 'Roboto Mono',
+          data: await monoFont,
+          style: 'normal',
+        },
+      ],
+      // emoji: 'fluent', // * 'twemoji', 'blobmoji', 'noto', 'openmoji', 'fluent' and 'fluentFlat'
+    }
   );
 }
