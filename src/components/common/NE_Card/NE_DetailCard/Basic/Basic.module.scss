@@ -1,5 +1,9 @@
+@use 'styles/mixins' as *;
+
 /* Default style to card */
 .detailcard {
+  @include shimmer-flash;
+
   position: relative;
   width: 100%;
   min-width: 17.5rem; /* 280px */
@@ -68,24 +72,5 @@
   }
   100% {
     transform: rotateY(0deg);
-  }
-}
-
-.detailcard {
-  &.loading {
-    animation: loadingShimer 3s infinite alternate;
-  }
-
-  &.loading > * {
-    visibility: hidden;
-  }
-}
-
-@keyframes loadingShimer {
-  from {
-    background-color: rgba(107, 115, 120, 0.1);
-  }
-  to {
-    background-color: var(--theme-page-background);
   }
 }

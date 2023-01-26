@@ -1,5 +1,9 @@
+@use 'styles/mixins' as *;
+
 .chart {
   &__line {
+    @include shimmer-flash;
+
     display: flex;
     width: 100%;
     min-width: 16rem; /* 256px */
@@ -10,6 +14,8 @@
   }
 
   &__donut {
+    @include shimmer-flash;
+
     display: flex;
     justify-items: center;
     align-items: center;
@@ -23,26 +29,6 @@
     @media (max-width: 768px) {
       // min-width: 30rem; // this causes appearnce of scrollbar on mobile
       min-height: 30rem;
-    }
-  }
-
-  &__line,
-  &__donut {
-    &.loading {
-      animation: loadingShimer 3s infinite alternate;
-    }
-
-    &.loading > * {
-      visibility: hidden;
-    }
-  }
-
-  @keyframes loadingShimer {
-    from {
-      background-color: rgba(107, 115, 120, 0.1);
-    }
-    to {
-      background-color: var(--theme-page-background);
     }
   }
 }
