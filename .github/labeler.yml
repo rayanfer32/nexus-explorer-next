@@ -9,7 +9,7 @@ workflow:
 'chore':
   - dependencies/**/*
   - public/**/*
-  - package.json
+  - '*.lock'
   - '*'
 
 'BREAKING CHANGES':

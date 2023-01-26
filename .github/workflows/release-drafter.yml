@@ -5,31 +5,16 @@ on:
     # branches to consider in the event; optional, defaults to all
     branches:
       - main
-  # pull_request event is required only for autolabeler
-  pull_request:
-    # Only following types are handled by the action, but one can default to all as well
-    types: [opened, reopened, synchronize]
 
 permissions:
   contents: read
 
 jobs:
-  auto_labeler:
-    name: auto-label
-    runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main' }}
-    permissions:
-      contents: write # for release-drafter/release-drafter to create a github release
-      pull-requests: write # for release-drafter/release-drafter to add label to PR
-    steps:
-      - uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   update_release_draft:
     name: release-drafter
     runs-on: ubuntu-latest
-    if: ${{github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'}}
+    # check pull request from develop to main
+    if: ${{github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'develop' }}
     permissions:
       contents: write # for release-drafter/release-drafter to create a github release
       pull-requests: write # for release-drafter/release-drafter to add label to PR
