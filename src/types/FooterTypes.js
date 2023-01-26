@@ -15,6 +15,7 @@ import {
   BsWallet2,
   BsYoutube,
 } from 'react-icons/bs';
+import { CgNotes } from 'react-icons/cg';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
 import { SiGitbook } from 'react-icons/si';
 
@@ -33,13 +34,19 @@ export const FooterTypes = {
             icon: (props) => <BsGlobe2 {...props} />,
           },
           {
-            href: 'https://devdocs.nexus-interactions.io/',
+            href: 'https://wiki.nexus.io/en/tritium++',
+            label: 'Nexus Wiki',
+            target: '_blank',
+            icon: (props) => <CgNotes {...props} />,
+          },
+          {
+            href: 'https://devdocs.interactions-nexus.io/',
             label: 'API Documentation',
             target: '_blank',
             icon: (props) => <BsFileEarmarkText {...props} />,
           },
           {
-            href: 'https://docs.nexus-interactions.io/',
+            href: 'https://docs.interactions-nexus.io/',
             label: 'Nexus Docs',
             target: '_blank',
             icon: (props) => <SiGitbook {...props} />,
