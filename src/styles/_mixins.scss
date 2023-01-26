@@ -18,3 +18,39 @@
   justify-content: center;
   align-items: center;
 }
+
+// TOUSE: to use this mixin "loading" class should add to parent element
+@mixin shimmer-flash {
+  &.loading {
+    --animate: 1600ms;
+    --degree: 21deg;
+    padding: 0;
+    &:before {
+      position: absolute;
+      width: 50%;
+      height: 200%;
+      content: '';
+      background-color: var(--theme-shimmer, rgba(195, 204, 208, 0.1));
+      box-shadow: 0 0 3vmax 3vmax var(--theme-shimmer, rgba(195, 204, 208, 0.1));
+
+      animation-duration: var(--animate, 1s);
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: flashingBlock;
+      animation-timing-function: Cubic;
+    }
+  }
+
+  &.loading > * {
+    visibility: hidden;
+  }
+
+  @keyframes flashingBlock {
+    from {
+      transform: translateX(-150%) rotate(var(--degree, 18deg));
+    }
+    to {
+      transform: translateX(250%) rotate(var(--degree, 18deg));
+    }
+  }
+}

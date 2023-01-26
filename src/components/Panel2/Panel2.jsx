@@ -3,8 +3,6 @@ import styles from './Panel2.module.scss';
 import DetailCard from 'components/common/NE_Card';
 import React, { useState, useEffect } from 'react';
 import { abbreviateNumber, intlNum } from 'utils/converter';
-import Rail from 'components/common/Rail';
-import Shimmer from 'components/common/NE_Shimmer';
 import { GiTwoCoins } from 'react-icons/gi';
 import { BsFillCpuFill } from 'react-icons/bs';
 import { AiFillBank } from 'react-icons/ai';
@@ -111,16 +109,6 @@ function Panel2(props) {
     return () => clearInterval(interval);
   }, []);
 
-  //  * majority of data is coming from metricsRQ , hence we use loader state of metrics for this panel
-  if (miningRQ.isLoading)
-    return (
-      <Rail className={styles.panelTwoContainer}>
-        {[...'four'].map((_, idx) => (
-          <Shimmer key={idx} minWidth="17.5rem" height="10.75rem" />
-        ))}
-      </Rail>
-    );
-
   if (marketRQ.isError)
     return (
       <p>
@@ -145,6 +133,7 @@ function Panel2(props) {
           footerLabel="Market Cap "
           footerValue={`${intlNum(state.price?.footer)} $`}
           delayTime={`${cardRefreshTimeout}s`}
+          isLoading={marketData.isLoading || !state.price?.text}
         />
       )}
       <DetailCard
@@ -161,8 +150,8 @@ function Panel2(props) {
         footerLabel="Fees "
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
+        isLoading={miningRQ.isLoading || !state.stake?.text}
       />
-
       <DetailCard
         type="basic"
         icon={<BsFillCpuFill color="white" size="2.25rem" />}
@@ -177,6 +166,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.prime?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
+        isLoading={!state.prime?.text}
       />
       <DetailCard
         type="basic"
@@ -192,6 +182,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.hash?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
+        isLoading={!state.hash?.text}
       />
     </section>
   );

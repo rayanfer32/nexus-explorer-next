@@ -50,10 +50,11 @@ export const Basic = ({
   rewardLabel = '',
   footerLabel = '',
   footerValue = '',
+  isLoading = false,
   ...props
 }) => {
   return (
-    <section className={styles.detailcard}>
+    <section className={cls(styles.detailcard, isLoading && styles.loading)}>
       <Card_Watermark {...props} />
       <Card_Header
         label={label}
@@ -94,4 +95,5 @@ Basic.propTypes = {
   footerLabel: PropTypes.string,
   footerValue: PropTypes.string,
   icon: PropTypes.element,
+  isLoading: PropTypes.bool,
 };

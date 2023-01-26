@@ -1,5 +1,9 @@
+@use 'styles/mixins' as *;
+
 /* Default style to card */
 .detailcard {
+  @include shimmer-flash;
+
   position: relative;
   width: 100%;
   min-width: 17.5rem; /* 280px */
