@@ -30,7 +30,13 @@ export const OGBotImage = ({ contract, fishName, fishEmoji }) => {
             // backgroundColor: '#fff',
             display: 'flex',
           }}>
-          <img src={faviconSvg} />
+          <img
+            style={{
+              height: '6rem',
+              width: '6rem',
+            }}
+            src={faviconSvg}
+          />
         </div>
         <div
           style={{

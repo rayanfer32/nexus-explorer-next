@@ -90,7 +90,7 @@ export default async function handler(req) {
           style: 'normal',
         },
       ],
-      // emoji: 'fluent', // * 'twemoji', 'blobmoji', 'noto', 'openmoji', 'fluent' and 'fluentFlat'
+      emoji: 'fluent', // * 'twemoji', 'blobmoji', 'noto', 'openmoji', 'fluent' and 'fluentFlat'
     }
   );
 }
