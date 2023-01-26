@@ -1,5 +1,9 @@
+@use 'styles/mixins' as *;
+
 .chart {
   &__line {
+    @include shimmer-flash;
+
     display: flex;
     width: 100%;
     min-width: 16rem; /* 256px */
@@ -10,6 +14,8 @@
   }
 
   &__donut {
+    @include shimmer-flash;
+
     display: flex;
     justify-items: center;
     align-items: center;

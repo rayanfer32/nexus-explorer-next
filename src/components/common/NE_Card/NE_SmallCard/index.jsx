@@ -19,7 +19,7 @@ import TYPES from 'types';
 export const NE_SmallCard = (props) => {
   const Icon = (data) => props.icon || <Nexus_SVG_Icon {...data} />;
   return (
-    <Card className={styles['card-small']}>
+    <Card className={styles['card-small']} isloading={props.isLoading}>
       <div className={styles['card-body']}>
         <div className={styles['card-body-upper-part']}>
           <h4

@@ -5,13 +5,13 @@ import styles from '../ChartsApex.module.scss';
 import dynamic from 'next/dynamic';
 import { useDarkMode } from 'hooks';
 import { useAppContext } from 'contexts/AppContext';
-import Shimmer from 'components/common/NE_Shimmer';
 import useWindowSize from 'hooks/useWindowSize/useWindowSize';
 import { useQuery } from 'react-query';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import TYPES from 'types';
 import { NETWORKS } from 'types/ConstantsTypes';
 import { initialEssentials } from './essentials';
+import { cls } from 'utils';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 function AreaChart({ initialData }) {
@@ -162,13 +162,11 @@ function AreaChart({ initialData }) {
     });
   }, [sharedState.theme, windowSize]);
 
-  if (isLoading) return <Shimmer width="100%" height="12.6rem" />;
-
   // Bug tribute: chart not updating when updating state (fixed with adding random key)
   // https://github.com/reactchartjs/react-chartjs-2/issues/90
   return (
     <Chart
-      className={styles.chart__line}
+      className={cls(styles.chart__line, isLoading && styles.loading)}
       key={chartState.options.theme.mode}
       options={chartState.options}
       series={chartState.series}
