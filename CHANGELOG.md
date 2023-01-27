@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.1.1 (27/01/2023)
+## What's Changed
+* Update Changelog by @github-actions in https://github.com/rayanfer32/nexus-explorer-next/pull/302
+* feat: shimmer-fallback by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/306
+* fix: make footer year dynamic   by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/304
+* feat: show loading indicator for dao balances, fix: richlist theme toggle by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/307
+* Main by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/303
+* refactor: merge single type action by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/308
+* fix: global theme not set by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/311
+* fix: footer links by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/312
+* feat: new og image for Nexus Alerts  by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/313
+* feat: create loading shimmer for panel 1 and 2 by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/310
+* package version bump by @github-actions in https://github.com/rayanfer32/nexus-explorer-next/pull/315
+
+
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.1.0...v1.1.1
+---
+
 ## v1.1.0 (26/12/2022)
 ## What's Changed
 
@@ -24,10 +42,9 @@
 ## 🧰 Maintenance
 
 - ci: create CODEOWNERS @shrivatsabhat (#296)
-- refactor: remove unused asset file @shrivatsabhat (#292)
 - refactor: reuse page header for meta data @shrivatsabhat (#291)
 
-**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.0.6...v1.0.7
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.0.6...v1.1.0
 
 ---
 
