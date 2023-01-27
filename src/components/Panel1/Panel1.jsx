@@ -5,9 +5,14 @@ import { useState, useEffect } from 'react';
 import { GrStackOverflow } from 'react-icons/gr';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
+isInvalid;
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import ErrorCard from 'components/common/NE_ErrorCard';
+
+function isInvalid(value) {
+  return value == null || value == undefined || value == '';
+}
 
 function Panel1(props) {
   const { metricsRQ, infoRQ, miningRQ } = props;
@@ -53,21 +58,21 @@ function Panel1(props) {
             router.push(`/scan/${state.blocks}`);
           }}
           icon={<GrStackOverflow />}
-          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
+          isLoading={isInvalid(state.blocks)}
         />
         <NE_SmallCard
           label="Total Supply"
           value={new Intl.NumberFormat('en-US').format(state.totalSupply)}
           unit="NXS"
           icon={<FaCoins />}
-          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
+          isLoading={isInvalid(state.blocks)}
         />
         <NE_SmallCard
           label="Signature Chains"
           sublabel="Users"
           value={new Intl.NumberFormat().format(state.sigChains)}
           icon={<BsPersonCheckFill />}
-          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
+          isLoading={isInvalid(state.blocks)}
         />
         <NE_SmallCard
           label="Inflation Rate"
@@ -75,7 +80,7 @@ function Panel1(props) {
           value={state.inflationRate}
           unit="%"
           icon={<AiOutlineStock />}
-          isLoading={miningRQ.isLoading || isNaN(state.blocks)}
+          isLoading={isInvalid(state.blocks)}
         />
       </section>
       <section title="chart container" className={styles.chartContainer}>
