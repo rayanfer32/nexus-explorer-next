@@ -5,13 +5,12 @@ import { useState, useEffect } from 'react';
 import { GrStackOverflow } from 'react-icons/gr';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { AiOutlineStock } from 'react-icons/ai';
-isInvalid;
 import { FaCoins } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import ErrorCard from 'components/common/NE_ErrorCard';
 
 function isInvalid(value) {
-  return value == null || value == undefined || value == '';
+  return value == null || value == '';
 }
 
 function Panel1(props) {
