@@ -1,4 +1,7 @@
+@use 'styles/mixins' as *;
+
 .card {
+  @include shimmer-flash;
   position: relative;
   background-color: var(--theme-page-background);
   padding: var(--space-xs); // 12px

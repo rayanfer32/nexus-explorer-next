@@ -1,3 +1,6 @@
+/**
+ * !! DEPRECATED - Use mixin called shimmer-flash instead
+ */
 import styles from './Shimmer.module.scss';
 import TYPES from 'types';
 

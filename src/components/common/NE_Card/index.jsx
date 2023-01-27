@@ -13,7 +13,13 @@ const Card = ({ type = 'default', ...props }) => {
     return <NE_DetailCard type={type} {...props} />;
 
   return (
-    <section {...props} className={cls(props.className, styles['card'])}>
+    <section
+      {...props}
+      className={cls(
+        props.className,
+        styles['card'],
+        props.isloading && styles['loading']
+      )}>
       {props.children}
       <div className={cls(styles['card-live-state'], 'live-color')}></div>
       <style jsx>{`

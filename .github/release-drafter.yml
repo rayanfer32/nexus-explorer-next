@@ -9,8 +9,8 @@ categories:
   - title: '🚀 Features'
     labels:
       - 'feat'
+      - 'feature'
       - 'enhancement'
-      - 'styles'
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
@@ -18,7 +18,9 @@ categories:
   - title: '🧰 Maintenance'
     labels:
       - 'chore'
+      - 'styles'
       - 'styles:global'
+      - 'ui'
       - 'refactor'
       - 'workflow'
   - title: '🧺 Miscellaneous' #Everything except ABAP
