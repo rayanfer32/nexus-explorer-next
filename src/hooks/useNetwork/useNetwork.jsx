@@ -25,6 +25,7 @@ export function useNetwork() {
     ? TESTNET_PROXY_URL
     : TESTNET_URL;
 
+  // * resource heavy API takes 4 secs to fetch
   function getMetrics() {
     return axios.get(`${url}/system/get/metrics`, {
       headers: { 'Cache-Control': 'max-age=300' },
@@ -35,12 +36,18 @@ export function useNetwork() {
     return axios.get(`${url}/system/get/info`);
   }
 
+  // * resource heavy API takes 6 secs with the exisitng node
   function getMining() {
-    return axios.get(`${url}/ledger/get/info`);
+    return axios.get(`${url}/ledger/get/info`, {
+      headers: { 'Cache-Control': 'max-age=600' }, // * Cache for 10 min
+    });
   }
 
+  // * resource heavy API takes 10 secs with the exisitng node
   function getLedgerMetrics() {
-    return axios.get(`${url}/ledger/get/metrics`);
+    return axios.get(`${url}/ledger/get/metrics`, {
+      headers: { 'Cache-Control': 'max-age=600' }, // * Cache for 10 min
+    });
   }
 
   async function getRecentBlocks(MAX_ROWS = 6) {
