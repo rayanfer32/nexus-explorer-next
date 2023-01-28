@@ -12,21 +12,71 @@ import { ConstantsTypes, NETWORKS } from 'types/ConstantsTypes';
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import ErrorCard from 'components/common/NE_ErrorCard';
 
+function ErrorFallback({ hasError, children }) {
+  if (hasError) {
+    return (
+      <p>
+        <ErrorCard />
+      </p>
+    );
+  }
+
+  return children;
+}
+
+function IsMainnet({ network, children }) {
+  if (network.name === NETWORKS.MAINNET.name) return children;
+}
+
 function Panel2(props) {
   const { network } = useNetwork();
   const { metricsRQ, marketRQ, miningRQ } = props;
 
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    price: {
+      sublabel: null,
+      text: null,
+      reserve: null,
+      reward: null,
+      footer: null,
+    },
+    stake: {
+      sublabel: null,
+      text: null,
+      reserve: null,
+      reward: null,
+      footer: null,
+    },
+    prime: {
+      sublabel: null,
+      text: null,
+      reserve: null,
+      reward: null,
+      footer: null,
+    },
+    hash: {
+      sublabel: null,
+      text: null,
+      reserve: null,
+      reward: null,
+      footer: null,
+    },
+  });
 
   const [cardRefreshTimeout, setCardRefreshTimeout] = useState(
     ConstantsTypes.REFETCH_INTERVALS.MINING / 1000
   );
+
+  function isInvalid(value) {
+    return value == null || value === '';
+  }
 
   const marketData = marketRQ.data?.data?.market_data;
   const miningData = miningRQ.data?.data?.result;
   const metricsData = metricsRQ.data?.data?.result;
   // * initialize state when RQ has data
   useEffect(() => {
+    // * set price data
     if (marketRQ.data) {
       setState((prev) => ({
         ...prev,
@@ -42,6 +92,7 @@ function Panel2(props) {
       }));
     }
 
+    // * set stake data
     if (miningRQ.data) {
       setState((prev) => ({
         ...prev,
@@ -54,6 +105,7 @@ function Panel2(props) {
       }));
     }
 
+    // * set stake data trust values
     if (metricsRQ.data) {
       setState((prev) => ({
         ...prev,
@@ -65,6 +117,7 @@ function Panel2(props) {
       }));
     }
 
+    // * set hash card data
     if (miningRQ.data) {
       const miningData = miningRQ.data.data.result;
       setState((prev) => ({
@@ -79,6 +132,7 @@ function Panel2(props) {
       }));
     }
 
+    // * set prime card data
     if (miningRQ.data) {
       setState((prev) => ({
         ...prev,
@@ -93,14 +147,14 @@ function Panel2(props) {
     }
   }, [marketRQ.data, miningRQ.data, metricsRQ.data]);
 
-  // reset card refresh timeout when RQ gets updated
+  // * reset card refresh timeout when RQ gets updated
   useEffect(() => {
     if (metricsRQ.data) {
       setCardRefreshTimeout(ConstantsTypes.REFETCH_INTERVALS.MINING / 1000);
     }
   }, [metricsRQ.data]);
 
-  // increment the card timeout evry second
+  // * increment the card timeout evry second
   useEffect(() => {
     const interval = setInterval(() => {
       setCardRefreshTimeout((prev) => (prev > 0 ? prev - 1 : 0));
@@ -109,33 +163,28 @@ function Panel2(props) {
     return () => clearInterval(interval);
   }, []);
 
-  if (marketRQ.isError)
-    return (
-      <p>
-        <ErrorCard />
-      </p>
-    );
-
   return (
     <section className={styles.panelTwoContainer}>
-      {network.name === NETWORKS.MAINNET.name && (
-        <DetailCard
-          type="market"
-          icon={<GiTwoCoins color="white" size="2.25rem" />}
-          label="Price"
-          sublabel={`${state.price?.sublabel} BTC`}
-          text={`${state.price?.text}`}
-          unit={'$'}
-          reserveLabel="Change 24h"
-          reserve={`${state.price?.reserve} %`}
-          rewardLabel="Total Volume"
-          reward={`${intlNum(state.price?.reward)} $`}
-          footerLabel="Market Cap "
-          footerValue={`${intlNum(state.price?.footer)} $`}
-          delayTime={`${cardRefreshTimeout}s`}
-          isLoading={marketData.isLoading || !state.price?.text}
-        />
-      )}
+      <IsMainnet network={network}>
+        <ErrorFallback hasError={marketRQ.isError}>
+          <DetailCard
+            type="market"
+            icon={<GiTwoCoins color="white" size="2.25rem" />}
+            label="Price"
+            sublabel={`${state.price?.sublabel} BTC`}
+            text={`${state.price?.text}`}
+            unit={'$'}
+            reserveLabel="Change 24h"
+            reserve={`${state.price?.reserve} %`}
+            rewardLabel="Total Volume"
+            reward={`${intlNum(state.price?.reward)} $`}
+            footerLabel="Market Cap "
+            footerValue={`${intlNum(state.price?.footer)} $`}
+            delayTime={`${cardRefreshTimeout}s`}
+            isLoading={isInvalid(state.price?.text)}
+          />
+        </ErrorFallback>
+      </IsMainnet>
       <DetailCard
         type="basic"
         icon={<AiFillBank color="white" size="2.25rem" />}
@@ -150,7 +199,7 @@ function Panel2(props) {
         footerLabel="Fees "
         footerValue={`${intlNum(state.stake?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={miningRQ.isLoading || !state.stake?.text}
+        isLoading={miningRQ.isLoading || isInvalid(state.stake?.text)}
       />
       <DetailCard
         type="basic"
@@ -166,7 +215,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.prime?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={!state.prime?.text}
+        isLoading={isInvalid(state.prime?.text)}
       />
       <DetailCard
         type="basic"
@@ -182,7 +231,7 @@ function Panel2(props) {
         footerLabel="Fees"
         footerValue={`${intlNum(state.hash?.footer)} NXS`}
         delayTime={`${cardRefreshTimeout}s`}
-        isLoading={!state.hash?.text}
+        isLoading={isInvalid(state.hash?.text)}
       />
     </section>
   );

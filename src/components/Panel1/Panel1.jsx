@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import ErrorCard from 'components/common/NE_ErrorCard';
 
 function isInvalid(value) {
-  return value == null || value == '';
+  return value == null || value === '';
 }
 
 function Panel1({ metricsRQ, infoRQ, miningRQ, blocks }) {
