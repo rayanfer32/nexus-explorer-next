@@ -21,7 +21,9 @@ export default function Tokens() {
     {
       Header: 'Token Register Address',
       accessor: 'token',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => (
+        <CopyText value={value} link={`/scan?token=${value}`} />
+      ),
     },
     {
       Header: 'Token Name',
