@@ -185,54 +185,60 @@ function Panel2(props) {
           />
         </ErrorFallback>
       </IsMainnet>
-      <DetailCard
-        type="basic"
-        icon={<AiFillBank color="white" size="2.25rem" />}
-        label={StringsTypes.CHANNELS[0]}
-        sublabel={`Difficulty : ${state.stake?.sublabel}`}
-        text={`${intlNum(state.stake?.text)}`}
-        unit="NXS"
-        reserveLabel="Height"
-        reserve={`${intlNum(state.stake?.reserve)}`}
-        reward={`${state.stake?.reward}`}
-        rewardLabel="Total"
-        footerLabel="Fees "
-        footerValue={`${intlNum(state.stake?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-        isLoading={miningRQ.isLoading || isInvalid(state.stake?.text)}
-      />
-      <DetailCard
-        type="basic"
-        icon={<BsFillCpuFill color="white" size="2.25rem" />}
-        label={StringsTypes.CHANNELS[1]}
-        sublabel={`Difficulty : ${state.prime?.sublabel}`}
-        text={`${abbreviateNumber(state.prime?.text)}`}
-        unit="P/s"
-        reserveLabel="Reserve"
-        reserve={`${state.prime?.reserve} NXS`}
-        rewardLabel="Reward"
-        reward={`${state.prime?.reward} NXS`}
-        footerLabel="Fees"
-        footerValue={`${intlNum(state.prime?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-        isLoading={isInvalid(state.prime?.text)}
-      />
-      <DetailCard
-        type="basic"
-        icon={<MdSpeed color="white" size="2.5rem" />}
-        label={StringsTypes.CHANNELS[2]}
-        sublabel={`Difficulty : ${state.hash?.sublabel}`}
-        text={`${abbreviateNumber(state.hash?.text)}`}
-        unit="H/s"
-        reserveLabel="Reserve"
-        reserve={`${intlNum(state.hash?.reserve)} NXS`}
-        rewardLabel="Reward"
-        reward={`${state.hash?.reward} NXS`}
-        footerLabel="Fees"
-        footerValue={`${intlNum(state.hash?.footer)} NXS`}
-        delayTime={`${cardRefreshTimeout}s`}
-        isLoading={isInvalid(state.hash?.text)}
-      />
+      <ErrorFallback hasError={miningRQ.isError}>
+        <DetailCard
+          type="basic"
+          icon={<AiFillBank color="white" size="2.25rem" />}
+          label={StringsTypes.CHANNELS[0]}
+          sublabel={`Difficulty : ${state.stake?.sublabel}`}
+          text={`${intlNum(state.stake?.text)}`}
+          unit="NXS"
+          reserveLabel="Height"
+          reserve={`${intlNum(state.stake?.reserve)}`}
+          reward={`${state.stake?.reward}`}
+          rewardLabel="Total"
+          footerLabel="Fees "
+          footerValue={`${intlNum(state.stake?.footer)} NXS`}
+          delayTime={`${cardRefreshTimeout}s`}
+          isLoading={miningRQ.isLoading || isInvalid(state.stake?.text)}
+        />
+      </ErrorFallback>
+      <ErrorFallback hasError={miningRQ.isError}>
+        <DetailCard
+          type="basic"
+          icon={<BsFillCpuFill color="white" size="2.25rem" />}
+          label={StringsTypes.CHANNELS[1]}
+          sublabel={`Difficulty : ${state.prime?.sublabel}`}
+          text={`${abbreviateNumber(state.prime?.text)}`}
+          unit="P/s"
+          reserveLabel="Reserve"
+          reserve={`${state.prime?.reserve} NXS`}
+          rewardLabel="Reward"
+          reward={`${state.prime?.reward} NXS`}
+          footerLabel="Fees"
+          footerValue={`${intlNum(state.prime?.footer)} NXS`}
+          delayTime={`${cardRefreshTimeout}s`}
+          isLoading={isInvalid(state.prime?.text)}
+        />
+      </ErrorFallback>
+      <ErrorFallback hasError={miningRQ.isError}>
+        <DetailCard
+          type="basic"
+          icon={<MdSpeed color="white" size="2.5rem" />}
+          label={StringsTypes.CHANNELS[2]}
+          sublabel={`Difficulty : ${state.hash?.sublabel}`}
+          text={`${abbreviateNumber(state.hash?.text)}`}
+          unit="H/s"
+          reserveLabel="Reserve"
+          reserve={`${intlNum(state.hash?.reserve)} NXS`}
+          rewardLabel="Reward"
+          reward={`${state.hash?.reward} NXS`}
+          footerLabel="Fees"
+          footerValue={`${intlNum(state.hash?.footer)} NXS`}
+          delayTime={`${cardRefreshTimeout}s`}
+          isLoading={isInvalid(state.hash?.text)}
+        />
+      </ErrorFallback>
     </section>
   );
 }
