@@ -83,10 +83,27 @@ export function useNetwork() {
     return res.data;
   };
 
+  const getGlobalName = async (address) => {
+    const res = await axios(`${url}/names/get/global?address=${address}`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+    });
+    return res.data.result;
+  };
+
   const getNamespaces = () => {
     return axios.get(`${url}/register/list/names:namespaces?limit=1000`, {
       headers: { 'Cache-Control': 'max-age=300' },
     });
+  };
+
+  const getNamespace = async (address) => {
+    const res = await axios.get(
+      `${url}/names/get/namespace?address=${address}`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
+    return res.data.result;
   };
 
   const getTokens = () => {
@@ -96,6 +113,16 @@ export function useNetwork() {
         headers: { 'Cache-Control': 'max-age=300' },
       }
     );
+  };
+
+  const getToken = async (address) => {
+    const res = await axios.get(
+      `${url}/register/get/finance:token?address=${address}`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
+    return res.data.result;
   };
 
   const getBlocks = async ({ queryKey }) => {
@@ -192,6 +219,7 @@ export function useNetwork() {
     getInfo,
     getTrust,
     getBlocks,
+    getToken,
     getTokens,
     getMining,
     getAccount,
@@ -200,8 +228,10 @@ export function useNetwork() {
     getRichlist,
     getInvoices,
     getTrustlist,
+    getNamespace,
     getNamespaces,
     getScanResults,
+    getGlobalName,
     getGlobalNames,
     getRecentBlocks,
     getTransactions,
