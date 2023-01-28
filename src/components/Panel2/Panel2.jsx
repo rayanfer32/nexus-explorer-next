@@ -25,7 +25,7 @@ function ErrorFallback({ hasError, children }) {
 }
 
 function IsMainnet({ network, children }) {
-  if (network.name === NETWORKS.MAINNET.name) return children;
+  return network.name === NETWORKS.MAINNET.name ? children : null;
 }
 
 function Panel2(props) {
