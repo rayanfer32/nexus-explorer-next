@@ -30,8 +30,9 @@ export const AccountDetail = ({ type, data }) => {
           <div>Ticker: {data.ticker}</div>
           {type == CARD_TYPES.TRUST && (
             <div>
-              Reward Rate: {((data.stake * data.rate) / 100 / 365).toFixed(2)}{' '}
-              {data.ticker}/Day
+              Average Reward Rate:{' '}
+              {((data.stake * data.rate) / 100 / 365).toFixed(2)} {data.ticker}
+              /Day
             </div>
           )}
         </section>
