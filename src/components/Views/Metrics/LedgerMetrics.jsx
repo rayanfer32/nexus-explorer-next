@@ -9,6 +9,8 @@ import TYPES from 'types';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import NE_TabChanger from 'components/common/NE_TabChanger';
 
+const TAB_CHANGER_OPTIONS = ['daily', 'weekly', 'monthly'];
+
 export default function LedgerMetrics() {
   const { network, getLedgerMetrics } = useNetwork();
 
@@ -19,7 +21,9 @@ export default function LedgerMetrics() {
 
   const ledgerData = ledgerMetricsRQ.data?.data?.result;
 
-  const [selectedDuration, setSelectedDuration] = useState('daily');
+  const [selectedDuration, setSelectedDuration] = useState(
+    TAB_CHANGER_OPTIONS[0]
+  );
 
   return (
     <PromiseLayout
@@ -31,7 +35,7 @@ export default function LedgerMetrics() {
         <div className={styles.container}>
           <h2>Network Ledger Metrics</h2>
           <NE_TabChanger
-            options={['daily', 'weekly', 'monthly']}
+            options={TAB_CHANGER_OPTIONS}
             onSelect={(_, val) => {
               setSelectedDuration(val);
             }}
