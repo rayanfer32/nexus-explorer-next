@@ -25,6 +25,7 @@ export function useNetwork() {
     ? TESTNET_PROXY_URL
     : TESTNET_URL;
 
+  // * resource heavy API takes 4 secs to fetch
   function getMetrics() {
     return axios.get(`${url}/system/get/metrics`, {
       headers: { 'Cache-Control': 'max-age=300' },
@@ -35,12 +36,18 @@ export function useNetwork() {
     return axios.get(`${url}/system/get/info`);
   }
 
+  // * resource heavy API takes 6 secs with the exisitng node
   function getMining() {
-    return axios.get(`${url}/ledger/get/info`);
+    return axios.get(`${url}/ledger/get/info`, {
+      headers: { 'Cache-Control': 'max-age=600' }, // * Cache for 10 min
+    });
   }
 
+  // * resource heavy API takes 10 secs with the exisitng node
   function getLedgerMetrics() {
-    return axios.get(`${url}/ledger/get/metrics`);
+    return axios.get(`${url}/ledger/get/metrics`, {
+      headers: { 'Cache-Control': 'max-age=600' }, // * Cache for 10 min
+    });
   }
 
   async function getRecentBlocks(MAX_ROWS = 6) {
@@ -83,10 +90,27 @@ export function useNetwork() {
     return res.data;
   };
 
+  const getGlobalName = async (address) => {
+    const res = await axios(`${url}/names/get/global?address=${address}`, {
+      headers: { 'Cache-Control': 'max-age=300' },
+    });
+    return res.data.result;
+  };
+
   const getNamespaces = () => {
     return axios.get(`${url}/register/list/names:namespaces?limit=1000`, {
       headers: { 'Cache-Control': 'max-age=300' },
     });
+  };
+
+  const getNamespace = async (address) => {
+    const res = await axios.get(
+      `${url}/names/get/namespace?address=${address}`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
+    return res.data.result;
   };
 
   const getTokens = () => {
@@ -96,6 +120,16 @@ export function useNetwork() {
         headers: { 'Cache-Control': 'max-age=300' },
       }
     );
+  };
+
+  const getToken = async (address) => {
+    const res = await axios.get(
+      `${url}/register/get/finance:token?address=${address}`,
+      {
+        headers: { 'Cache-Control': 'max-age=300' },
+      }
+    );
+    return res.data.result;
   };
 
   const getBlocks = async ({ queryKey }) => {
@@ -192,6 +226,7 @@ export function useNetwork() {
     getInfo,
     getTrust,
     getBlocks,
+    getToken,
     getTokens,
     getMining,
     getAccount,
@@ -200,8 +235,10 @@ export function useNetwork() {
     getRichlist,
     getInvoices,
     getTrustlist,
+    getNamespace,
     getNamespaces,
     getScanResults,
+    getGlobalName,
     getGlobalNames,
     getRecentBlocks,
     getTransactions,

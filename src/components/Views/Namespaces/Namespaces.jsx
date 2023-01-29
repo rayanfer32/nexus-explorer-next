@@ -21,7 +21,9 @@ export default function Namespaces() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => (
+        <CopyText value={value} link={`/scan?namespace=${value}`} />
+      ),
     },
     {
       Header: 'Namespace',
