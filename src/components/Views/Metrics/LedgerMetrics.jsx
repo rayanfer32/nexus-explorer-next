@@ -89,7 +89,7 @@ export default function LedgerMetrics() {
               icon={<FaExchangeAlt />}
             />
             <SmallCard
-              label="Minting"
+              label="Mining"
               sublabel="(mint)"
               value={intlNum(ledgerData.network.mint.mining[selectedDuration])}
               unit="NXS"
