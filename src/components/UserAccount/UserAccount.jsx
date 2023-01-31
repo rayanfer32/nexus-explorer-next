@@ -13,7 +13,7 @@ export default function UserAccount({ type, data }) {
 
       {/* Account detials */}
       <h3>{toTitleCase(type)} Details</h3>
-      <AccountDetail data={data} />
+      <AccountDetail type={type} data={data} />
 
       {/* Transection detail table */}
       <h3>Transaction Details</h3>
