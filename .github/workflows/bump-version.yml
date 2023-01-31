@@ -1,91 +1,91 @@
-name: 'Update the package version'
-on:
-  pull_request:
-    types: [opened, reopened]
-    branches:
-      - main
-jobs:
-  release_label:
-    name: Prepare version update
-    runs-on: ubuntu-latest
-    outputs:
-      version_type: ${{steps.version_label_check.outputs.is_version}}
-    steps:
-      - name: Set major release
-        id: version_label_check
-        run: |
-          echo "::set-output name=is_version::${{ github.event.label.name }}"
+# name: 'Update the package version'
+# on:
+#   pull_request:
+#     types: [opened, reopened]
+#     branches:
+#       - main
+# jobs:
+#   release_label:
+#     name: Prepare version update
+#     runs-on: ubuntu-latest
+#     outputs:
+#       version_type: ${{steps.version_label_check.outputs.is_version}}
+#     steps:
+#       - name: Set major release
+#         id: version_label_check
+#         run: |
+#           echo "::set-output name=is_version::${{ github.event.label.name }}"
 
-  package_bump_scripts:
-    runs-on: ubuntu-latest
-    needs: release_label
-    steps:
-      - name: Checkout local repository
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Create release branch
-        run: |
-          git branch -f auto-release-branch
-          git checkout auto-release-branch
-      - name: Initialize mandatory git config
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email noreply@github.com  
-          
-      - name: Set major release
-        if: ${{ needs.release_label.outputs.version_type == 'major' }}
-        run: |
-          chmod +x ./scripts/incrementMajor.js
-          ./scripts/incrementMajor.js
-      - name: Set minor release
-        if: ${{ needs.release_label.outputs.version_type == 'minor' }}
-        run: |
-          chmod +x ./scripts/incrementMinor.js
-          ./scripts/incrementMinor.js
-      - name: Set patch release
-        if: ${{ needs.release_label.outputs.version_type == 'patch' || needs.release_label.outputs.version_type == '' }}
-        run: |
-          chmod +x ./scripts/incrementPatch.js
-          ./scripts/incrementPatch.js
+#   package_bump_scripts:
+#     runs-on: ubuntu-latest
+#     needs: release_label
+#     steps:
+#       - name: Checkout local repository
+#         uses: actions/checkout@v3
+#         with:
+#           ref: ${{ github.head_ref }}
+#       - name: Create release branch
+#         run: |
+#           git branch -f auto-release-branch
+#           git checkout auto-release-branch
+#       - name: Initialize mandatory git config
+#         run: |
+#           git config user.name "GitHub Actions"
+#           git config user.email noreply@github.com
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'ci: automated version bump on merge to main'
-      
-      - name: Push new branch
-        run: git push origin auto-release-branch --force
+#       - name: Set major release
+#         if: ${{ needs.release_label.outputs.version_type == 'major' }}
+#         run: |
+#           chmod +x ./scripts/incrementMajor.js
+#           ./scripts/incrementMajor.js
+#       - name: Set minor release
+#         if: ${{ needs.release_label.outputs.version_type == 'minor' }}
+#         run: |
+#           chmod +x ./scripts/incrementMinor.js
+#           ./scripts/incrementMinor.js
+#       - name: Set patch release
+#         if: ${{ needs.release_label.outputs.version_type == 'patch' || needs.release_label.outputs.version_type == '' }}
+#         run: |
+#           chmod +x ./scripts/incrementPatch.js
+#           ./scripts/incrementPatch.js
 
-      - name: Create pull request to develop
-        uses: thomaseizinger/create-pull-request@1.0.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          head: auto-release-branch
-          base: develop
-          title: package version bump 
-          reviewers: ${{ github.event.pull_request.user.login }}
-          body: |
-              ## Reminder: delete after merge!!!
-              > # This PR was created in response workflow running.
-              
-      - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@v1
-        id: find-pull-request
-        with:
-          branch: auto-release-branch
-      - run: echo "Pull Request ${number} (${sha})"
-        env:
-          number: ${{ steps.find-pull-request.outputs.number }}
-          sha: ${{ steps.find-pull-request.outputs.head-sha }}
+#       - uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: 'ci: automated version bump on merge to main'
 
-      - name: Comment on PR 
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: "Merge pull request #${{ steps.find-pull-request.outputs.number }} first, before merging this!!"
-            })
+#       - name: Push new branch
+#         run: git push origin auto-release-branch --force
+
+#       - name: Create pull request to develop
+#         uses: thomaseizinger/create-pull-request@1.0.0
+#         with:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           head: auto-release-branch
+#           base: develop
+#           title: package version bump
+#           reviewers: ${{ github.event.pull_request.user.login }}
+#           body: |
+#               ## Reminder: delete after merge!!!
+#               > # This PR was created in response workflow running.
+
+#       - name: Find Pull Request
+#         uses: juliangruber/find-pull-request-action@v1
+#         id: find-pull-request
+#         with:
+#           branch: auto-release-branch
+#       - run: echo "Pull Request ${number} (${sha})"
+#         env:
+#           number: ${{ steps.find-pull-request.outputs.number }}
+#           sha: ${{ steps.find-pull-request.outputs.head-sha }}
+
+#       - name: Comment on PR
+#         uses: actions/github-script@v3
+#         with:
+#           github-token: ${{secrets.GITHUB_TOKEN}}
+#           script: |
+#             github.issues.createComment({
+#             issue_number: context.issue.number,
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             body: "Merge pull request #${{ steps.find-pull-request.outputs.number }} first, before merging this!!"
+#             })
