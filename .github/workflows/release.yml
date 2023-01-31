@@ -1,0 +1,75 @@
+name: 'Release: Bump Version | Automation'
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        type: choice
+        description: Choose release type
+        options:
+          - major-release
+          - minor-release
+          - patch-release
+        default: minor-release
+        required: true
+
+jobs:
+  increment_version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Config git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Get release type
+        run: |
+          echo "Release type : ${{ github.event.inputs.release-type }}"
+
+      - name: Increment patch version
+        if: contains(github.event.inputs.release-type, 'patch-release')
+        run: npm version patch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Increment minor version
+        if: contains(github.event.inputs.release-type, 'minor-release')
+        run: npm version minor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Increment major version
+        if: contains(github.event.inputs.release-type, 'major-release')
+        run: npm version major
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Package version
+        run: |
+          version=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')
+          echo "Package version: $version"
+          echo "PACKAGE_VERSION=$version" >> $GITHUB_ENV
+
+      - name: Create new release branch
+        run: |
+          echo "git checkout -b release/v$(cat package.json | jq -r .version)"
+
+      - name: Push new branch
+        run: echo "git push origin release/v${{ env.RELEASE_BRANCH }} --force"
+
+      - name: Create pull request
+        id: create_pull_request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: bump version ${{ env.PACKAGE_VERSION }}'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: 'Release: ${{ github.event.inputs.release-type }} of v${{ env.PACKAGE_VERSION }} '
+          body: 'This is an automatic release pull request created by GitHub Actions'
+          branch: release/v${{ env.PACKAGE_VERSION }}
+          base: main
+          labels: |
+            release:bump-version
