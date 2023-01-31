@@ -30,7 +30,7 @@ jobs:
           author: GitHub Action <action@github.com>
           title: 'Update Changelog ${{ env.PACKAGE_VERSION }}'
           body: 'Updated changelog for v${{ env.PACKAGE_VERSION }}, release changes refelct on ${{ github.event.repository.name }}'
-          branch: update-changelog
-          base: develop
+          branch: develop
+          base: main
           labels: |
             release:changelog
