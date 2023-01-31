@@ -8,18 +8,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Package version
+        run: |
+          version=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')
+          echo "Package version: $version"
+          echo "PACKAGE_VERSION=$version" >> $GITHUB_ENV
 
       - name: Update changelog
         run: |
           yarn add github-release-notes -D
           export GREN_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           yarn run overrideChangelog
+
       - name: Create Pull Request
+        id: create_pull_request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: 'build: update changelog'
-          title: Update Changelog
-          body: Update changelog to reflect release changes
+          token: ${{ secrets.GITHUB_TOKEN }}
+          committer: GitHub <noreply@github.com>
+          commit-message: 'build: update changelog for v${{ env.PACKAGE_VERSION }}'
+          author: GitHub Action <action@github.com>
+          title: 'Update Changelog ${{ env.PACKAGE_VERSION }}'
+          body: 'Updated changelog for v${{ env.PACKAGE_VERSION }}, release changes refelct on ${{ github.event.repository.name }}'
           branch: update-changelog
-          base: main
-          labels: release:changelog
+          base: develop
+          labels: |
+            release:changelog
