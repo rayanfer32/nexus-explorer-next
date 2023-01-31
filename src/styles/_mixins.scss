@@ -24,7 +24,9 @@
   &.loading {
     --animate: 1600ms;
     --degree: 21deg;
+    position: relative;
     padding: 0;
+
     &:before {
       position: absolute;
       width: 50%;
