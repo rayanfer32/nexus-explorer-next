@@ -83,7 +83,9 @@ export const TransactionDetails = ({ type, data }) => {
           ['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)
         ) {
           cellBgColor = TYPES.COLORS.MARKET_GREEN;
-        } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
+        } else if (
+          ['DEBIT', 'FEE', 'LEGACY'].includes(props.row.values.operation)
+        ) {
           cellBgColor = TYPES.COLORS.MARKET_RED;
           sign = '-';
         }
