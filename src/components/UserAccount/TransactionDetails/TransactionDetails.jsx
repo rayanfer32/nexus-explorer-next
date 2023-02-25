@@ -66,7 +66,7 @@ export const TransactionDetails = ({ type, data }) => {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <CopyText className="monofonts" value={props.value} />;
+        return <CopyText link={`/scan/${props.value}`} value={props.value} />;
       },
     },
     {
