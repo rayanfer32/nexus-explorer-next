@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps, router }) {
         }}>
         <QueryClientProvider client={queryClient}>
           <AnimatePresence
-            mode="popLayout"
+            mode="wait"
             initial={false}
             onExitComplete={() => window.scrollTo(0, 0)}>
             <Component {...pageProps} key={router.asPath} />
