@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { IconContext } from 'react-icons';
 import TYPES from 'types';
+import { AnimatePresence } from 'framer-motion';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,7 +14,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <ContextWrapper>
       <IconContext.Provider
@@ -23,7 +24,12 @@ function MyApp({ Component, pageProps }) {
           style: { verticalAlign: 'middle' },
         }}>
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <AnimatePresence
+            mode="popLayout"
+            initial={false}
+            onExitComplete={() => window.scrollTo(0, 0)}>
+            <Component {...pageProps} key={router.asPath} />
+          </AnimatePresence>
           <ReactQueryDevtools position="bottom-right" />
         </QueryClientProvider>
       </IconContext.Provider>
