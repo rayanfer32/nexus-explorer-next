@@ -57,7 +57,8 @@ export default function Richlist(props) {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => (value ? <CopyText value={value} /> : '-'),
+      Cell: ({ value }) =>
+        value ? <CopyText link={`/scan/${value}`} value={value} /> : '-',
     },
     {
       Header: 'Balance',

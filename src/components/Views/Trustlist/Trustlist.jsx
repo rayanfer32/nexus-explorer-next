@@ -31,7 +31,7 @@ export default function Trustlist() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => <CopyText link={`/scan/${value}`} value={value} />,
     },
     {
       Header: 'Balance',
