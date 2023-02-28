@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps, router }) {
         }}>
         <QueryClientProvider client={queryClient}>
           <AnimatePresence
-            mode="wait"
+            mode="popLayout"
             initial={false}
             onExitComplete={() => {
               window.scrollTo(0, 0);

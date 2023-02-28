@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 function MotionDiv({ children }) {
   return (
     <motion.div
-      className={styles.container}
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 200, opacity: 0 }}
@@ -32,9 +31,9 @@ function Layout({ children }) {
       {/* Need second opinion on section tag is it required or not */}
       <section className={styles.main}>
         <Header />
-        <MotionDiv>
-          <main>{children}</main>
-        </MotionDiv>
+        <main className={styles.container}>
+          <MotionDiv>{children}</MotionDiv>
+        </main>
         <Footer />
       </section>
       <ScrollToTop />
