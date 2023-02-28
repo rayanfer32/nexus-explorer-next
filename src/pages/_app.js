@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { IconContext } from 'react-icons';
 import TYPES from 'types';
 import { AnimatePresence } from 'framer-motion';
-import { fixTimeoutTransition } from './page_anim_hotfix';
+import { fixTimeoutTransition } from '../utils/page_anim_hotfix';
 
 const queryClient = new QueryClient({
   defaultOptions: {
