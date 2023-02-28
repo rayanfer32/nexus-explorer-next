@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { IconContext } from 'react-icons';
 import TYPES from 'types';
 import { AnimatePresence } from 'framer-motion';
+import { fixTimeoutTransition } from './page_anim_hotfix';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,6 +14,9 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// * hotfix for retaining module css until animations complete
+fixTimeoutTransition(2000);
 
 function MyApp({ Component, pageProps, router }) {
   return (
@@ -27,7 +31,9 @@ function MyApp({ Component, pageProps, router }) {
           <AnimatePresence
             mode="wait"
             initial={false}
-            onExitComplete={() => window.scrollTo(0, 0)}>
+            onExitComplete={() => {
+              window.scrollTo(0, 0);
+            }}>
             <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>
           <ReactQueryDevtools position="bottom-right" />
