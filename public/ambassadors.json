@@ -1,0 +1,32 @@
+{
+  "interactions": {
+    "chair": "Katarzyna Ochnio",
+    "social": "@ochajo",
+    "desc": "Wallet Support, Developer support, Social Media, and Promotions",
+    "audit": "US:Interactions"
+  },
+  "impressions": {
+    "chair": "Christophe Verheyen",
+    "social": "@christophe1982",
+    "desc": "Website, Landing Pages, and Ads",
+    "audit": "US:Impressions"
+  },
+  "relationships": {
+    "chair": "Sohaan",
+    "social": "@Sohaan0077 ",
+    "desc": "Outreach, Use-Cases, and Exchanges",
+    "audit": "US:Relationships"
+  },
+  "media": {
+    "chair": "Stijn Ottevaere",
+    "social": "@MrWoXIV",
+    "desc": "Graphics, Videos, and Animations",
+    "audit": "US:Media"
+  },
+  "communications": {
+    "chair": "Gaia Tomas",
+    "social": "@Tomas_SWE",
+    "desc": "Content, Translations",
+    "audit": "US:Communications"
+  }
+}

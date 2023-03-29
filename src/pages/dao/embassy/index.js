@@ -3,15 +3,27 @@ import Layout from 'components/Layout';
 import { DaoInfo } from 'components/Views/Dao';
 import React from 'react';
 import TYPES from 'types';
-import { DAO_EMBASSY } from 'types/DaoAccounts';
 
-function EmbassyDAOPage() {
+function EmbassyDAOPage({ daoObject }) {
   return (
     <Layout>
       <PageHeader title={TYPES.PAGEMETA.DAO.EMBASSY.TITLE} />
-      <DaoInfo title={'Embassy DAO'} daoObject={DAO_EMBASSY} />
+      <DaoInfo title={'Embassy DAO'} daoObject={daoObject} />
     </Layout>
   );
 }
+
+export const getServerSideProps = async () => {
+  const resp = await fetch(
+    `${process.env.NEXT_PUBLIC_DOMAIN_BASE_URL}/embassy.json`
+  );
+  const data = await resp.json();
+
+  return {
+    props: {
+      daoObject: data,
+    },
+  };
+};
 
 export default EmbassyDAOPage;
