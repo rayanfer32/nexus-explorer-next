@@ -16,7 +16,7 @@ function Panel3({ blocks }) {
   const router = useRouter();
   const [tableBlockRowElements, setTableBlockRowElements] = useState([]);
   const [tableTxRowElements, setTableTxRowElements] = useState([]);
-  const BLOCK_SPEED = 30 * 1000; // in seconds
+  const BLOCK_POLLING_DELAY = 30 * 1000; // in seconds
   const MAX_ROWS = 6;
   const { network, getRecentBlocks } = useNetwork();
 
@@ -26,7 +26,7 @@ function Panel3({ blocks }) {
     () => getRecentBlocks(MAX_ROWS),
     {
       initialData: blocks,
-      refetchInterval: BLOCK_SPEED,
+      refetchInterval: BLOCK_POLLING_DELAY,
     }
   );
 
@@ -48,12 +48,11 @@ function Panel3({ blocks }) {
   }
 
   function addNewTxRows(newRowData) {
-    // TODO:
-    // DONE: (Main logic ) Iterate over the txns and inside the txn iterate over the contracts
-    // Ignore the txs with type=tritium base ( currently not ignored, for filling up the table.)
-    // If type=legacy user , then show the input field as from and output as to
-    // If type=tritium user, then show
-    // If the tx has from and to fields in the contracts and then display if they exist , otherwise ignore
+    // * Main logic - Iterate over the txns and inside the txn iterate over the contracts
+    // * Ignore the txs with type=tritium base ( currently not ignored, for filling up the table.)
+    // * If type=legacy user , then show the input field as from and output as to
+    // * If type=tritium user, then show
+    // * If the tx has from and to fields in the contracts and then display if they exist , otherwise ignore
 
     try {
       let newRows = [];
@@ -66,8 +65,8 @@ function Panel3({ blocks }) {
           newRows.push(
             <RTTRowTransactions
               key={`${newRowData[txidx].txid}${txidx}${cidx}`}
-              fromId={newRowData[txidx]?.contracts[cidx]?.from}
-              toId={newRowData[txidx]?.contracts[cidx]?.to}
+              fromId={newRowData[txidx]?.contracts[cidx]?.from?.address ?? ''}
+              toId={newRowData[txidx]?.contracts[cidx]?.to?.address ?? ''}
               txnId={newRowData[txidx]?.txid}
               operation={newRowData[txidx]?.contracts[cidx]?.OP}
               txType={toTitleCase(newRowData[txidx]?.type)}
