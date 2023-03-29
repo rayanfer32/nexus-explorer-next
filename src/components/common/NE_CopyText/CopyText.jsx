@@ -36,7 +36,7 @@ export default function CopyText({ value, ellipsisAfter, link, className }) {
 
   return (
     <>
-      <div style={{ display: 'flex' }} className={className}>
+      <div style={{ display: 'flex' }} className={className || 'monospace'}>
         <span>
           <Link href={link} data-copy={value}>
             {value &&
