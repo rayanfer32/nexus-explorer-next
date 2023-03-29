@@ -13,6 +13,7 @@ function AmbassadorDAOPage({ daoObject }) {
   );
 }
 
+// todo: implemenmt ISR for this page
 export const getServerSideProps = async () => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_DOMAIN_BASE_URL}/ambassadors.json`
