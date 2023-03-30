@@ -2,6 +2,23 @@ import styles from './Layout.module.scss';
 import Header from '../Header';
 import Footer from '../Footer';
 import ScrollToTop from 'components/common/NE_ScrollToTop';
+import { motion } from 'framer-motion';
+
+function MotionDiv({ children }) {
+  return (
+    <motion.div
+      initial={{ x: 200, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 200, opacity: 0 }}
+      transition={{
+        type: 'spring',
+        stiffness: 500,
+        damping: 50,
+      }}>
+      {children}
+    </motion.div>
+  );
+}
 
 /**
  * Common layout for the nexplorer website
@@ -14,7 +31,9 @@ function Layout({ children }) {
       {/* Need second opinion on section tag is it required or not */}
       <section className={styles.main}>
         <Header />
-        <main className={styles.container}>{children}</main>
+        <main className={styles.container}>
+          <MotionDiv>{children}</MotionDiv>
+        </main>
         <Footer />
       </section>
       <ScrollToTop />
