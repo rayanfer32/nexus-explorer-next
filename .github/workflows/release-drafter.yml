@@ -34,7 +34,7 @@ jobs:
     needs: branch_validation
     runs-on: ubuntu-latest
     # check pull request from release/v*.*.* to main
-    if: ${{ github.event.pull_request.base.ref == 'main' && needs.branch_validation.outputs.validate_branch == 'true'}}
+#     if: ${{ github.event.pull_request.base.ref == 'main' && needs.branch_validation.outputs.validate_branch == 'true'}}
     permissions:
       contents: write # for release-drafter/release-drafter to create a github release
       pull-requests: write # for release-drafter/release-drafter to add label to PR
