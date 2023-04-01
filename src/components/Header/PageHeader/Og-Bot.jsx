@@ -76,8 +76,8 @@ export const OGBotImage = ({ contract, fishName, fishEmoji }) => {
           padding: 10,
           fontSize: 24,
         }}>
-        {contract.from && <span>From - {contract.from}</span>}
-        {contract.proof && <span>Proof - {contract.proof}</span>}
+        {contract.from && <span>From - {contract.from.address}</span>}
+        {contract.proof && <span>Proof - {contract.proof.address}</span>}
         {contract.to && <span>To - {contract.to}</span>}
       </div>
     </div>
