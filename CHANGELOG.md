@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.2.0 (31/01/2023)
+## What's Changed
+* fix: check if value isInvalid instead of isNaN by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/321
+* feat: show token , globalname and namespace details by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/322
+* fix: increase cache duration for ledger APIs by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/323
+* fix: create draft release tag by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/316
+* fix: expanded width for testnet by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/327
+* fix: Typo in Mining by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/326
+* feat: show calculated reward rate by @rayanfer32 in https://github.com/rayanfer32/nexus-explorer-next/pull/324
+* ci: bump version and release automation v2 by @shrivatsabhat in https://github.com/rayanfer32/nexus-explorer-next/pull/328
+
+
+**Full Changelog**: https://github.com/rayanfer32/nexus-explorer-next/compare/v1.1.1...v1.2.0
+---
+
 ## v1.1.1 (27/01/2023)
 ## What's Changed
 * Update Changelog by @github-actions in https://github.com/rayanfer32/nexus-explorer-next/pull/302

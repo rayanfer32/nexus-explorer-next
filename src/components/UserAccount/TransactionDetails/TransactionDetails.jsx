@@ -9,6 +9,21 @@ import DynamicPagination from 'components/common/NE_Pagination';
 import { intlNum, pathOr } from 'utils';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 
+function getAmount(contracts) {
+  // * return the first contract amount when there is only one contract
+  if (contracts.length == 1) {
+    return `${intlNum(contracts[0].amount || 0)} ${contracts[0].ticker || ''}`;
+  }
+  // * sum up all the contracts amount if op: credit and for: coinbase
+  let sum = 0;
+  contracts.forEach((c) => {
+    if (c.OP == 'CREDIT' && c.for == 'COINBASE') {
+      sum += c.amount;
+    }
+  });
+  return `${intlNum(sum)} NXS`;
+}
+
 export const TransactionDetails = ({ type, data }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
@@ -51,7 +66,7 @@ export const TransactionDetails = ({ type, data }) => {
       Header: 'TXID',
       accessor: 'txid',
       Cell: (props) => {
-        return <CopyText value={props.value} />;
+        return <CopyText link={`/scan/${props.value}`} value={props.value} />;
       },
     },
     {
@@ -62,18 +77,20 @@ export const TransactionDetails = ({ type, data }) => {
       Header: 'Amount',
       accessor: 'amount',
       Cell: (props) => {
-        let cellColor = 'var(--theme-page-text)';
+        let cellBgColor = 'var(--theme-page-background)';
         let sign = '+';
         if (
           ['CREDIT', 'CREATE', 'TRUST'].includes(props.row.values.operation)
         ) {
-          cellColor = TYPES.COLORS.MARKET_GREEN;
-        } else if (['DEBIT', 'FEE'].includes(props.row.values.operation)) {
-          cellColor = TYPES.COLORS.MARKET_RED;
+          cellBgColor = TYPES.COLORS.MARKET_GREEN;
+        } else if (
+          ['DEBIT', 'FEE', 'LEGACY'].includes(props.row.values.operation)
+        ) {
+          cellBgColor = TYPES.COLORS.MARKET_RED;
           sign = '-';
         }
         return (
-          <div className={styles.amount} style={{ background: cellColor }}>
+          <div className={styles.amount} style={{ background: cellBgColor }}>
             {sign} {props.value}
           </div>
         );
@@ -88,9 +105,7 @@ export const TransactionDetails = ({ type, data }) => {
           txid: txn.txid,
           timestamp: txn.timestamp,
           operation: txn.contracts[0].OP,
-          amount: `${intlNum(txn.contracts[0].amount || 0)} ${
-            txn.contracts[0].ticker || ''
-          }`,
+          amount: getAmount(txn.contracts),
         };
       });
 
