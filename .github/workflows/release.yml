@@ -27,6 +27,9 @@ jobs:
           git config --local user.name "GitHub Action"
           git checkout -f develop
 
+          echo "git branch" 
+          git branch
+
       - name: Get release type
         run: |
           echo "Release type : ${{ github.event.inputs.release-type }}"
@@ -60,7 +63,7 @@ jobs:
       - name: Push new branch
         run: echo "git push origin release/v${{ env.RELEASE_BRANCH }} --force"
 
-      - name: Create pull request
+      - name: Create pull request to main
         id: create_pull_request
         uses: peter-evans/create-pull-request@v4
         with:
@@ -68,9 +71,24 @@ jobs:
           commit-message: 'chore: bump version ${{ env.PACKAGE_VERSION }}'
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          title: 'Release: ${{ github.event.inputs.release-type }} of v${{ env.PACKAGE_VERSION }} '
+          title: 'release: ${{ github.event.inputs.release-type }} of v${{ env.PACKAGE_VERSION }} '
           body: 'This is an automatic release pull request created by GitHub Actions'
           branch: release/v${{ env.PACKAGE_VERSION }}
           base: main
+          labels: |
+            release:bump-version
+
+      - name: Create pull request to develop
+        id: create_pull_request_to_develop
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: bump version ${{ env.PACKAGE_VERSION }}'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: 'chore: bump to v${{ env.PACKAGE_VERSION }} '
+          body: 'This is an automatic release pull request created by GitHub Actions'
+          branch: release/v${{ env.PACKAGE_VERSION }}
+          base: develop
           labels: |
             release:bump-version
