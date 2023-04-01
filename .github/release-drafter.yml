@@ -47,6 +47,7 @@ version-resolver:
 
 exclude-labels:
   - 'release:changelog'
+  - 'release:bump-version'
   - 'skip'
 
 template: |

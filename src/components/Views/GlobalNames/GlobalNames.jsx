@@ -20,7 +20,9 @@ export default function GlobalNames() {
     {
       Header: 'Address',
       accessor: 'address',
-      Cell: ({ value }) => <CopyText value={value} />,
+      Cell: ({ value }) => (
+        <CopyText value={value} link={`/scan?globalname=${value}`} />
+      ),
     },
     {
       Header: 'Name',
