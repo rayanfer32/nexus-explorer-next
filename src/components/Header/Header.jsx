@@ -9,11 +9,12 @@ import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
 import { throttle } from 'utils/common';
 
+/// PROGRESS: REVAMP HEADER
 /**
  * Header component for the website
  * @returns {JSX.Element}
  */
-const Header = () => {
+export const Header = () => {
   const [toggleMobileMenu, setToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const router = useRouter();
