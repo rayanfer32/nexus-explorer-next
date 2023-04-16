@@ -113,7 +113,7 @@ const NavLinks = ({ activePathname, isMobile, onClick, network }) => {
 
   return (
     <nav className={cls(isMobile ? styles.mlinks : styles.links)}>
-      {TYPES.NAVBAR.NEW_NAVLIST.map((navItem, index) => {
+      {TYPES.NAVBAR.NAVLIST.map((navItem, index) => {
         if (
           shouldHideNavOnSomeNetwork({
             network,

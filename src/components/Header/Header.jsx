@@ -9,7 +9,6 @@ import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
 import { throttle } from 'utils/common';
 import { cls } from 'utils';
-// import headerBg from '../../../public/header-bg.svg';
 
 /// PROGRESS: REVAMP HEADER
 /**
