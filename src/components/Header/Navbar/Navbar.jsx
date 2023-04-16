@@ -32,7 +32,7 @@ export const DesktopNavbar = ({
   return (
     <>
       <div className={styles.desktopNavbar}>
-        <NavLinks activePathname={activePathname} />
+        <NavLinks activePathname={activePathname} network={network} />
         <SelectInput
           options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
           value={network}
@@ -71,7 +71,6 @@ export const MobileMenu = ({
   network = '',
   onClose = () => null,
   onNetworkChange = () => null,
-  setClose = () => null,
 }) => {
   return (
     <>
@@ -97,7 +96,8 @@ export const MobileMenu = ({
             activePathname={activePathname}
             isMobile={true}
             toggleMobileMenu={isOpen}
-            setToggle={setClose}
+            onClick={onClose}
+            network={network}
           />
         </div>
       </div>
@@ -117,7 +117,6 @@ MobileMenu.propTypes = {
   ...DesktopNavbar.propTypes,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
-  setClose: PropTypes.func,
 };
 
 Navbar.propTypes = {

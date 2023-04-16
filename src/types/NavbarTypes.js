@@ -1,4 +1,5 @@
 import ASSESTS from 'assets';
+import { NETWORKS } from './ConstantsTypes';
 
 // removed id , used array index instead
 const navList = [
@@ -68,6 +69,7 @@ export const navLinksNew = [
       { title: 'Ambassador', path: '/dao/ambassador' },
       { title: 'Developer', path: '/dao/developer' },
     ],
+    disabledNets: [NETWORKS.TESTNET.name],
   },
 ];
 

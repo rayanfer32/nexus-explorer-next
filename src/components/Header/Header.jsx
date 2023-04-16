@@ -116,7 +116,6 @@ export const Header = () => {
         activePathname={router.pathname}
         onNetworkChange={handleNetworkChange}
         onClose={handleMenuToggle}
-        setClose={handleMenuToggle}
       />
     </>
   );
