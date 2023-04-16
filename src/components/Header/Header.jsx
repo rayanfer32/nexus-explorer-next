@@ -9,7 +9,7 @@ import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
 import { throttle } from 'utils/common';
 import { cls } from 'utils';
-import headerBg from '../../../public/header-bg.svg';
+// import headerBg from '../../../public/header-bg.svg';
 
 /// PROGRESS: REVAMP HEADER
 /**
@@ -110,16 +110,14 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      {toggleMobileMenu && (
-        <MobileMenu
-          isOpen={toggleMobileMenu}
-          network={appContext.network.name}
-          activePathname={router.pathname}
-          onNetworkChange={handleNetworkChange}
-          onClose={handleMenuToggle}
-          setClose={handleMenuToggle}
-        />
-      )}
+      <MobileMenu
+        isOpen={toggleMobileMenu}
+        network={appContext.network.name}
+        activePathname={router.pathname}
+        onNetworkChange={handleNetworkChange}
+        onClose={handleMenuToggle}
+        setClose={handleMenuToggle}
+      />
     </>
   );
 };

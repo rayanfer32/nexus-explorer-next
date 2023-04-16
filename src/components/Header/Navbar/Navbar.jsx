@@ -4,6 +4,7 @@ import { NETWORKS } from 'types/ConstantsTypes';
 import styles from './Navbar.module.scss';
 import NavLinks from '../Navlinks';
 import PropTypes from 'prop-types';
+import { cls } from 'utils';
 
 /**
  * Single component for navbar
@@ -66,7 +67,7 @@ export const Hamburger = ({ onClick = () => null }) => {
  */
 export const MobileMenu = ({
   activePathname = '',
-  isOpen = true,
+  isOpen = false,
   network = '',
   onClose = () => null,
   onNetworkChange = () => null,
@@ -74,8 +75,14 @@ export const MobileMenu = ({
 }) => {
   return (
     <>
-      <div className={styles.MobileView__mask} onClick={onClose} />
-      <div className={styles.MobileView}>
+      <div
+        className={cls(
+          styles.MobileView__mask,
+          !isOpen && styles.collapseView__mask
+        )}
+        onClick={onClose}
+      />
+      <div className={cls(styles.MobileView, !isOpen && styles.collapseView)}>
         <div className={styles.MobileView__header}>
           <ThemeMode />
           <SelectInput
