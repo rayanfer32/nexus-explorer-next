@@ -33,10 +33,10 @@
     border-radius: var(--space-xxxs);
     box-shadow: 0rem var(--space-xxxs) var(--space-s) 0rem rgba(0, 0, 0, 0.3);
     max-height: 0;
-    min-width: 8rem;
     z-index: 10;
     transition: all 0.3s ease;
     overflow: auto;
+    opacity: 0;
 
     &__item {
       display: block;
@@ -44,6 +44,7 @@
       font-size: var(--font-normal);
       font-family: inherit;
       transition: all 0.25s ease;
+      margin: var(--space-xxxs);
       cursor: pointer;
 
       &:hover,
@@ -60,5 +61,6 @@
   &:focus &__content {
     max-height: 14rem;
     margin-top: 0.25rem;
+    opacity: 1;
   }
 }

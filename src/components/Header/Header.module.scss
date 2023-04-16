@@ -9,7 +9,7 @@
   margin-bottom: var(--space-xs);
   box-shadow: 0 0.25rem 0.25rem #0002;
   color: var(--theme-page-text);
-  background: var(--theme-nav-bg);
+  background-image: var(--theme-nav-bg);
   position: sticky;
   top: 0;
   left: 0;
@@ -39,6 +39,14 @@
       font-size: var(--font-normal);
       font-weight: 500;
     }
+  }
+
+  &.imgBg {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
   }
 }
 

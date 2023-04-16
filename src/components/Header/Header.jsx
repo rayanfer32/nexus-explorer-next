@@ -8,6 +8,8 @@ import { useAppContext } from 'contexts/AppContext';
 import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
 import { throttle } from 'utils/common';
+import { cls } from 'utils';
+import headerBg from '../../../public/header-bg.svg';
 
 /// PROGRESS: REVAMP HEADER
 /**
@@ -77,7 +79,11 @@ export const Header = () => {
 
   return (
     <>
-      <header ref={headerRef} className={styles.container}>
+      <header
+        ref={headerRef}
+        className={cls(styles.imgBg, styles.container)}
+        // style={{ backgroundImage: `url(${headerBg.src})` }}
+      >
         <div className={styles.header}>
           <div className={styles.nav}>
             <Brand
