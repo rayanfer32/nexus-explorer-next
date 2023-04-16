@@ -4,7 +4,6 @@ import {
   BsBook,
   BsChatLeftText,
   BsDiscord,
-  BsFileEarmarkText,
   BsGithub,
   BsGlobe2,
   BsMedium,
@@ -17,7 +16,6 @@ import {
 } from 'react-icons/bs';
 import { CgNotes } from 'react-icons/cg';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
-import { SiGitbook } from 'react-icons/si';
 
 const currentYear = new Date().getFullYear() || 2023;
 
