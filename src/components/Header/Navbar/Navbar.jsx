@@ -7,17 +7,6 @@ import PropTypes from 'prop-types';
 import { cls } from 'utils';
 
 /**
- * Single component for navbar
- * @param {boolean} param0 filter device type
- * @returns {JSX.Element}
- */
-const Navbar = ({ isMobile = false, ...props }) => {
-  return isMobile ? <MobileMenu {...props} /> : <DesktopNavbar {...props} />;
-};
-
-export default Navbar;
-
-/**
  * Component to display navigation links
  * @param {string} activePathname get active pathname of page
  * @param {boolean} isDark get theme status
@@ -51,7 +40,7 @@ export const DesktopNavbar = ({
  */
 export const Hamburger = ({ onClick = () => null }) => {
   return (
-    <div className={styles.Mobile__hamburger} onClick={onClick}>
+    <div className={styles.mobile__hamburger} onClick={onClick}>
       <div className={styles.hamIcon} />
     </div>
   );
@@ -76,13 +65,13 @@ export const MobileMenu = ({
     <>
       <div
         className={cls(
-          styles.MobileView__mask,
+          styles.mobileView__mask,
           !isOpen && styles.collapseView__mask
         )}
         onClick={onClose}
       />
-      <div className={cls(styles.MobileView, !isOpen && styles.collapseView)}>
-        <div className={styles.MobileView__header}>
+      <aside className={cls(styles.mobileView, !isOpen && styles.collapseView)}>
+        <div className={styles.mobileView__header}>
           <ThemeMode />
           <SelectInput
             options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
@@ -91,7 +80,7 @@ export const MobileMenu = ({
           />
           <div className={styles.closeHamIcon} onClick={onClose} />
         </div>
-        <div className={styles.MobileView__content}>
+        <div className={styles.mobileView__content}>
           <NavLinks
             activePathname={activePathname}
             isMobile={true}
@@ -100,7 +89,7 @@ export const MobileMenu = ({
             network={network}
           />
         </div>
-      </div>
+      </aside>
     </>
   );
 };
@@ -117,8 +106,4 @@ MobileMenu.propTypes = {
   ...DesktopNavbar.propTypes,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
-};
-
-Navbar.propTypes = {
-  ...MobileMenu.propTypes,
 };

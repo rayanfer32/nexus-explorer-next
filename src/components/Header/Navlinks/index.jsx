@@ -2,7 +2,7 @@ import styles from './Navlinks.module.scss';
 import TYPES from 'types';
 import { NavDropdown } from 'components/Header/NavDropdown';
 import Link from 'next/link';
-import { Fragment, useId } from 'react';
+import { useId, useState } from 'react';
 import { cls } from 'utils';
 
 const isRouteEqual = (r1, r2) => r1 === r2;
@@ -29,7 +29,9 @@ export const StaticNavLinks = ({
 
   if (isMobile) {
     return (
-      <span className={cls(isActivePath && styles.mactive)} onClick={onClick}>
+      <span
+        className={cls(styles.mNav, isActivePath && styles.mactive)}
+        onClick={onClick}>
         <Link href={pathname}>{label}</Link>
       </span>
     );
@@ -65,23 +67,40 @@ export const NestedNavLinks = ({
   isMobile = false,
   onClick = () => null,
 }) => {
+  const [isExpand, setExpand] = useState(false);
+
   if (isMobile) {
     return (
-      <Fragment>
-        {options.map((item, index) => {
-          return (
-            <Link key={item.path + index} href={item.path} passHref>
-              <span
-                className={cls(
-                  isRouteEqual(activePathname, item.path) && styles.mactive
-                )}
-                onClick={onClick}>
-                {item.title}
-              </span>
-            </Link>
-          );
-        })}
-      </Fragment>
+      <div
+        className={cls(styles.mNestedNav, isExpand && styles.mNavTitleActive)}>
+        <span
+          className={cls(
+            styles.mTitle,
+            isExpand && styles.expanded,
+            options.some((item) => activePathname === item.path) &&
+              styles.active
+          )}
+          onClick={() => setExpand((o) => !o)}>
+          {title}
+        </span>
+        <div
+          className={cls(styles.mNestedNavlist, isExpand && styles.expanded)}>
+          {options.map((item, index) => {
+            return (
+              <Link key={item.path + index} href={item.path} passHref>
+                <span
+                  className={cls(
+                    styles.mNav,
+                    isRouteEqual(activePathname, item.path) && styles.mactive
+                  )}
+                  onClick={onClick}>
+                  {item.title}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     );
   }
 

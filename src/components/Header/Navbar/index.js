@@ -1,2 +1,1 @@
-export * from './Navbar';
-export { default } from './Navbar';
+export { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';

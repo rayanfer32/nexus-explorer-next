@@ -42,21 +42,60 @@
   padding: var(--space-xs);
   color: white;
   font-size: larger;
-  overflow: auto;
 
-  span {
+  .mNav,
+  .mTitle {
     padding: 1rem;
     width: 100%;
-    display: grid;
-    display: -ms-grid;
-    justify-items: center;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
     border-radius: var(--space-xxxs);
     cursor: pointer;
+    &:hover {
+      font-weight: bold;
+    }
   }
 
   .mactive {
     background-color: var(--ocean-blue);
     font-weight: bold;
+  }
+
+  .mNestedNav {
+    $bgClr: hsla(202, 97%, 29%, 0.3);
+    transition: all 300ms ease;
+    width: 100%;
+    border-radius: var(--space-xxs);
+    &.mNavTitleActive {
+      border: 1px solid $bgClr;
+    }
+
+    .mTitle {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      &::after {
+        content: '\003E';
+        padding-left: var(--space-xxs);
+      }
+      &.expanded {
+        border-bottom: 1px solid $bgClr;
+      }
+      &.active {
+        background-color: $bgClr;
+      }
+    }
+
+    &list {
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+      transition: all 0.3s ease;
+      &.expanded {
+        opacity: 1;
+        visibility: visible;
+        height: max-content;
+      }
+    }
   }
 }
