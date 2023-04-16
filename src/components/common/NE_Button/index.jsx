@@ -2,8 +2,9 @@ import { Keyboard_arrow } from 'assets/icons';
 import PropTypes from 'prop-types';
 import { cls } from 'utils';
 import styles from './Button.module.scss';
+import { forwardRef } from 'react';
 
-const Button = (props) => {
+const Button = forwardRef(function CustomButton(props, ref) {
   return (
     <button
       {...props}
@@ -11,14 +12,15 @@ const Button = (props) => {
         props.className,
         styles['button'],
         styles[`${props.type}`]
-      )}>
+      )}
+      ref={ref}>
       <span className={styles.body}>{props.children}</span>
       {(!!props.icon || props.type === 'tertiary') && (
         <span className={styles.icon}>{props.icon || <Keyboard_arrow />}</span>
       )}
     </button>
   );
-};
+});
 
 export default Button;
 

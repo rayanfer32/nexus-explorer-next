@@ -78,11 +78,7 @@ export const Header = () => {
 
   return (
     <>
-      <header
-        ref={headerRef}
-        className={cls(styles.imgBg, styles.container)}
-        // style={{ backgroundImage: `url(${headerBg.src})` }}
-      >
+      <header ref={headerRef} className={cls(styles.imgBg, styles.container)}>
         <div className={styles.header}>
           <div className={styles.nav}>
             <Brand
