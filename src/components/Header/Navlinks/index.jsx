@@ -120,7 +120,7 @@ const NavLinks = ({ activePathname, isMobile, onClick, network }) => {
             disabledNets: navItem?.disabledNets ?? [],
           })
         ) {
-          return <></>;
+          return null;
         }
 
         if (navItem.children) {
