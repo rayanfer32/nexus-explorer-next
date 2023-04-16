@@ -26,5 +26,8 @@
     "titleBar.inactiveBackground": "#01233799",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#012337"
+  "peacock.color": "#012337",
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

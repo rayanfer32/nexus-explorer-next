@@ -1,7 +1,6 @@
 import PageHeader from 'components/Header/PageHeader';
 import Layout from 'components/Layout';
 import { DaoInfo } from 'components/Views/Dao';
-import React from 'react';
 import TYPES from 'types';
 
 function EmbassyDAOPage({ daoObject }) {

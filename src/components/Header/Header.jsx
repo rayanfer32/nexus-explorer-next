@@ -8,12 +8,14 @@ import { useAppContext } from 'contexts/AppContext';
 import Brand from './Brand';
 import { DesktopNavbar, Hamburger, MobileMenu } from './Navbar';
 import { throttle } from 'utils/common';
+import { cls } from 'utils';
 
+/// PROGRESS: REVAMP HEADER
 /**
  * Header component for the website
  * @returns {JSX.Element}
  */
-const Header = () => {
+export const Header = () => {
   const [toggleMobileMenu, setToggle] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const router = useRouter();
@@ -76,7 +78,7 @@ const Header = () => {
 
   return (
     <>
-      <header ref={headerRef} className={styles.container}>
+      <header ref={headerRef} className={cls(styles.imgBg, styles.container)}>
         <div className={styles.header}>
           <div className={styles.nav}>
             <Brand
@@ -103,16 +105,13 @@ const Header = () => {
           </div>
         </div>
       </header>
-      {toggleMobileMenu && (
-        <MobileMenu
-          isOpen={toggleMobileMenu}
-          network={appContext.network.name}
-          activePathname={router.pathname}
-          onNetworkChange={handleNetworkChange}
-          onClose={handleMenuToggle}
-          setClose={handleMenuToggle}
-        />
-      )}
+      <MobileMenu
+        isOpen={toggleMobileMenu}
+        network={appContext.network.name}
+        activePathname={router.pathname}
+        onNetworkChange={handleNetworkChange}
+        onClose={handleMenuToggle}
+      />
     </>
   );
 };
