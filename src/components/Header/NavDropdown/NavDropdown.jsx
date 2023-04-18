@@ -1,9 +1,9 @@
-import styles from './Dropdown.module.scss';
+import styles from './NavDropdown.module.scss';
 import { FiChevronDown } from 'react-icons/fi';
 import { Children } from 'react';
 import { cls } from 'utils';
 
-const Dropdown = ({ title = 'Dropdown', children, selected = false }) => {
+export const NavDropdown = ({ title = ' ', children, selected = false }) => {
   return (
     <div className={styles.dropDown}>
       <button className={cls(styles.dropDown__btn, 'btn__selected')}>
@@ -30,5 +30,3 @@ const Dropdown = ({ title = 'Dropdown', children, selected = false }) => {
     </div>
   );
 };
-
-export default Dropdown;
