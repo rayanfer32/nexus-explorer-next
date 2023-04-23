@@ -13,7 +13,7 @@ import LedgerMetrics from './LedgerMetrics';
 export default function Metrics() {
   //* fetchMetrics should be created from a custom hook which
   //* updates along with the change of network in appContext
-  const { network, getMetrics, getMining } = useNetwork();
+  const { network, getMetrics, getMining, getTotalNXS } = useNetwork();
   const metricsRQ = useQuery(['metrics', network.name], getMetrics, {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
@@ -24,6 +24,9 @@ export default function Metrics() {
   const miningRQ = useQuery(['mining', network.name], getMining, {
     refetchInterval: TYPES.REFETCH_INTERVALS.MINING,
   });
+
+  const totalNXSRQ = useQuery(['totalNXSRQ', network.name], getTotalNXS);
+
   const miningData = miningRQ.data?.data?.result;
 
   const SmallCards = ({ object, type }) => {
@@ -124,7 +127,14 @@ export default function Metrics() {
             </div>
 
             <h3>Supply</h3>
+
             <div className={styles.cardGroup}>
+              <SmallCard
+                label={'Total NXS'}
+                unit={'NXS'}
+                value={totalNXSRQ.data}
+                icon={METRICS_META.trust.staked_percentage.icon}
+              />
               <SmallCards type="supply" object={miningData.supply} />
             </div>
 
