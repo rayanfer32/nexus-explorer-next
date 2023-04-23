@@ -32,7 +32,7 @@ export const Header = () => {
   useEffect(() => {
     // Toggle class to body to change theme mode depending on network
     document.body.classList.toggle(
-      'testnet-filter',
+      'testnet-logo',
       appContext.network.name == NETWORKS.TESTNET.name
     );
   }, [appContext.network]);
@@ -84,6 +84,7 @@ export const Header = () => {
             <Brand
               isDarkMode={appContext.theme === TYPES.THEME.DARK}
               onClick={onClickBrand}
+              network={appContext.network.name}
             />
             <DesktopNavbar
               activePathname={router.pathname}
