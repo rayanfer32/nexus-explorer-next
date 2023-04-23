@@ -2,9 +2,7 @@ import Image from 'next/image';
 import styles from './Brand.module.scss';
 import TYPES from 'types';
 import { NETWORKS } from 'types/ConstantsTypes';
-import { RiTestTubeLine } from 'react-icons/ri';
 import { BiTestTube } from 'react-icons/bi';
-import { GrTest } from 'react-icons/gr';
 
 const TestnetIndicator = () => {
   return <BiTestTube />;
