@@ -9,6 +9,7 @@ import { METRICS_META } from 'types/StringsTypes';
 import { pathOr } from 'utils';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import LedgerMetrics from './LedgerMetrics';
+import { CircleLoaderSvg } from 'components/common/NE_Loader/CircularLoader';
 
 export default function Metrics() {
   //* fetchMetrics should be created from a custom hook which
@@ -129,12 +130,20 @@ export default function Metrics() {
             <h3>Supply</h3>
 
             <div className={styles.cardGroup}>
-              <SmallCard
-                label={'Total NXS'}
-                unit={'NXS'}
-                value={totalNXSRQ.data}
-                icon={METRICS_META.trust.staked_percentage.icon}
-              />
+              {
+                <SmallCard
+                  label={'Total NXS'}
+                  sublabel={'On Tritium '}
+                  unit={'NXS'}
+                  value={
+                    totalNXSRQ.data?.total ? (
+                      intlNum(totalNXSRQ.data.total.toFixed(2))
+                    ) : (
+                      <CircleLoaderSvg size={24} primary={true} />
+                    )
+                  }
+                />
+              }
               <SmallCards type="supply" object={miningData.supply} />
             </div>
 
