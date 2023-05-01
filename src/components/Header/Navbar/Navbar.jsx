@@ -4,17 +4,7 @@ import { NETWORKS } from 'types/ConstantsTypes';
 import styles from './Navbar.module.scss';
 import NavLinks from '../Navlinks';
 import PropTypes from 'prop-types';
-
-/**
- * Single component for navbar
- * @param {boolean} param0 filter device type
- * @returns {JSX.Element}
- */
-const Navbar = ({ isMobile = false, ...props }) => {
-  return isMobile ? <MobileMenu {...props} /> : <DesktopNavbar {...props} />;
-};
-
-export default Navbar;
+import { cls } from 'utils';
 
 /**
  * Component to display navigation links
@@ -31,7 +21,7 @@ export const DesktopNavbar = ({
   return (
     <>
       <div className={styles.desktopNavbar}>
-        <NavLinks activePathname={activePathname} />
+        <NavLinks activePathname={activePathname} network={network} />
         <SelectInput
           options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
           value={network}
@@ -50,7 +40,7 @@ export const DesktopNavbar = ({
  */
 export const Hamburger = ({ onClick = () => null }) => {
   return (
-    <div className={styles.Mobile__hamburger} onClick={onClick}>
+    <div className={styles.mobile__hamburger} onClick={onClick}>
       <div className={styles.hamIcon} />
     </div>
   );
@@ -66,17 +56,22 @@ export const Hamburger = ({ onClick = () => null }) => {
  */
 export const MobileMenu = ({
   activePathname = '',
-  isOpen = true,
+  isOpen = false,
   network = '',
   onClose = () => null,
   onNetworkChange = () => null,
-  setClose = () => null,
 }) => {
   return (
     <>
-      <div className={styles.MobileView__mask} onClick={onClose} />
-      <div className={styles.MobileView}>
-        <div className={styles.MobileView__header}>
+      <div
+        className={cls(
+          styles.mobileView__mask,
+          !isOpen && styles.collapseView__mask
+        )}
+        onClick={onClose}
+      />
+      <aside className={cls(styles.mobileView, !isOpen && styles.collapseView)}>
+        <div className={styles.mobileView__header}>
           <ThemeMode />
           <SelectInput
             options={[NETWORKS.MAINNET.name, NETWORKS.TESTNET.name]}
@@ -85,15 +80,16 @@ export const MobileMenu = ({
           />
           <div className={styles.closeHamIcon} onClick={onClose} />
         </div>
-        <div className={styles.MobileView__content}>
+        <div className={styles.mobileView__content}>
           <NavLinks
             activePathname={activePathname}
             isMobile={true}
             toggleMobileMenu={isOpen}
-            setToggle={setClose}
+            onClick={onClose}
+            network={network}
           />
         </div>
-      </div>
+      </aside>
     </>
   );
 };
@@ -110,9 +106,4 @@ MobileMenu.propTypes = {
   ...DesktopNavbar.propTypes,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
-  setClose: PropTypes.func,
-};
-
-Navbar.propTypes = {
-  ...MobileMenu.propTypes,
 };

@@ -14,10 +14,10 @@ function getAmount(contracts) {
   if (contracts.length == 1) {
     return `${intlNum(contracts[0].amount || 0)} ${contracts[0].ticker || ''}`;
   }
-  // * sum up all the contracts amount if op: credit and for: coinbase
+  // * sum up all the contracts amount if op: credit
   let sum = 0;
   contracts.forEach((c) => {
-    if (c.OP == 'CREDIT' && c.for == 'COINBASE') {
+    if (c.OP == 'CREDIT') {
       sum += c.amount;
     }
   });
