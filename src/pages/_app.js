@@ -7,6 +7,11 @@ import TYPES from 'types';
 import { AnimatePresence } from 'framer-motion';
 import { fixTimeoutTransition } from '../utils/page_anim_hotfix';
 
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
+TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(en);
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
