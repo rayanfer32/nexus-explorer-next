@@ -49,10 +49,11 @@ export default function Home(props) {
         miningRQ={miningRQ}
         metricsRQ={metricsRQ}
       />
+
+      <Panel3 blocks={props.blocks} />
       <div className={styles.worldContainer}>
         <WorldNodes />
       </div>
-      <Panel3 blocks={props.blocks} />
     </Fragment>
   );
 }

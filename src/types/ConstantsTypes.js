@@ -9,6 +9,7 @@ export const REFETCH_INTERVALS = {
   MARKET: 1000 * 60 * 5, // 5 minutes
   INFO: 1000 * 30, // 30 sec
   REGENERATE_SSG_INTERVAL: 1000 * 60 * 5, // 5 min
+  WORLD_NODES: 1000 * 60 * 60, // 1 hour
 };
 
 export const CARD_TYPES = {

@@ -7,3 +7,4 @@ export * from './useMediaQuery/useMediaQuery';
 export * from './useNetwork/useNetwork';
 export * from './useStorage/useStorage';
 export * from './useWindowSize/useWindowSize';
+export * from './useDebounce/useDebounce';
