@@ -7,6 +7,8 @@ import { fetchMarket } from 'utils/common/fetch';
 
 import { useNetwork } from 'hooks/useNetwork/useNetwork';
 import { Fragment } from 'react';
+import WorldNodes from 'components/WorldNodes/WorldNodes';
+import styles from './styles.module.scss';
 
 export default function Home(props) {
   // all the data will be available in the respective queries
@@ -47,7 +49,11 @@ export default function Home(props) {
         miningRQ={miningRQ}
         metricsRQ={metricsRQ}
       />
+
       <Panel3 blocks={props.blocks} />
+      <div className={styles.worldContainer}>
+        <WorldNodes />
+      </div>
     </Fragment>
   );
 }
