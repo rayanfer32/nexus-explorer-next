@@ -221,6 +221,14 @@ export function useNetwork() {
     return res.data.result;
   };
 
+  // /register/list/accounts,trust/total/sum?sort=total&order=desc&limit=none&where=object.token=0
+  const getTotalNXS = async () => {
+    const res = await axios.get(
+      `${url}/register/list/finance:accounts,finance:trust/total/sum?sort=total&order=desc&limit=none&where=results.token=0`
+    );
+    return res.data.result;
+  };
+
   return {
     network: { name: appContext.network.name, url },
     getInfo,
@@ -233,6 +241,7 @@ export function useNetwork() {
     getInvoice,
     getMetrics,
     getRichlist,
+    getTotalNXS,
     getInvoices,
     getTrustlist,
     getNamespace,
