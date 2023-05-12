@@ -65,7 +65,7 @@ export default function LedgerMetrics() {
             />
           </div>
 
-          <h3>Exchange Operations</h3>
+          <h3>Legacy Transactions</h3>
           <div className={styles.cardGroup}>
             <SmallCard
               label="Deposits"
