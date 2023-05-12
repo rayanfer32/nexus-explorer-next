@@ -9,11 +9,12 @@ import { METRICS_META } from 'types/StringsTypes';
 import { pathOr } from 'utils';
 import PromiseLayout from 'components/HOC/PromiseLayout';
 import LedgerMetrics from './LedgerMetrics';
+import { CircleLoaderSvg } from 'components/common/NE_Loader/CircularLoader';
 
 export default function Metrics() {
   //* fetchMetrics should be created from a custom hook which
   //* updates along with the change of network in appContext
-  const { network, getMetrics, getMining } = useNetwork();
+  const { network, getMetrics, getMining, getTotalNXS } = useNetwork();
   const metricsRQ = useQuery(['metrics', network.name], getMetrics, {
     refetchInterval: TYPES.REFETCH_INTERVALS.METRICS,
   });
@@ -24,6 +25,9 @@ export default function Metrics() {
   const miningRQ = useQuery(['mining', network.name], getMining, {
     refetchInterval: TYPES.REFETCH_INTERVALS.MINING,
   });
+
+  const totalNXSRQ = useQuery(['totalNXSRQ', network.name], getTotalNXS);
+
   const miningData = miningRQ.data?.data?.result;
 
   const SmallCards = ({ object, type }) => {
@@ -124,7 +128,22 @@ export default function Metrics() {
             </div>
 
             <h3>Supply</h3>
+
             <div className={styles.cardGroup}>
+              {
+                <SmallCard
+                  label={'Total NXS'}
+                  sublabel={'On Tritium '}
+                  unit={'NXS'}
+                  value={
+                    totalNXSRQ.data?.total ? (
+                      intlNum(totalNXSRQ.data.total.toFixed(2))
+                    ) : (
+                      <CircleLoaderSvg size={24} primary={true} />
+                    )
+                  }
+                />
+              }
               <SmallCards type="supply" object={miningData.supply} />
             </div>
 

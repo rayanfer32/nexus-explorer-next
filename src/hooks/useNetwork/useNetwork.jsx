@@ -241,6 +241,13 @@ export function useNetwork() {
       headers: { 'Cache-Control': `max-age=${60 * 1}` }, // * Cache for 1 min
     });
   }
+  // /register/list/accounts,trust/total/sum?sort=total&order=desc&limit=none&where=object.token=0
+  const getTotalNXS = async () => {
+    const res = await axios.get(
+      `${url}/register/list/finance:accounts,finance:trust/total/sum?sort=total&order=desc&limit=none&where=results.token=0`
+    );
+    return res.data.result;
+  };
 
   return {
     network: { name: appContext.network.name, url },
@@ -254,6 +261,7 @@ export function useNetwork() {
     getInvoice,
     getMetrics,
     getRichlist,
+    getTotalNXS,
     getInvoices,
     getTrustlist,
     getNamespace,
