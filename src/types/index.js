@@ -3,7 +3,7 @@ import { ColorsTypes } from './ColorsTypes';
 import { ConstantsTypes } from './ConstantsTypes';
 import { FooterTypes } from './FooterTypes';
 import { LinksTypes } from './LinksTypes';
-import { NavbarTypes, OptionalNavbar } from './NavbarTypes';
+import { NavbarTypes } from './NavbarTypes';
 import { PageMetaTypes } from './PageMetaTypes';
 import { QueryKeys } from './QueryKeys';
 import { StringsTypes } from './StringsTypes';
@@ -17,7 +17,6 @@ export const TYPES = {
   ...FooterTypes,
   ...LinksTypes,
   ...NavbarTypes,
-  ...OptionalNavbar,
   ...QueryKeys,
   ...PageMetaTypes,
   ...StringsTypes,

@@ -29,9 +29,13 @@ export const InfoCard = (props) => {
         }}
         className={styles.container}>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <h3>{toTitleCase(props.type)}</h3>
+          <h3>{`${toTitleCase(props.type)} ${
+            props.data?.length ? `(${props.data?.length})` : ''
+          }`}</h3>
           {props.collapse && (
-            <span onClick={() => setIsCollapsed((prev) => !prev)}>
+            <span
+              className={styles.collapseBtn}
+              onClick={() => setIsCollapsed((prev) => !prev)}>
               {isCollapsed ? <FaCaretDown /> : <FaCaretUp />}
             </span>
           )}

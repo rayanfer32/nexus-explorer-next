@@ -35,7 +35,7 @@ function Panel3({ blocks }) {
       <RTTRowBlock
         key={newRowData.height}
         block={intlNum(newRowData.height)}
-        date={getDateObject(newRowData.date).toLocaleTimeString()}
+        date={getDateObject(newRowData.date)}
         mint={intlNum(newRowData.mint.toFixed(2))}
         txns={newRowData.tx.length}
         size={newRowData.size}

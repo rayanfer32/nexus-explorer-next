@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.worldContainer {
+  display: flex;
+  width: 100%;
+}
+
+.worldSvg {
+  width: inherit;
+}
+
+.marker {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 0.5;
+  fill: rgba(77, 145, 201, 0.383);
+}
+
+.mapMarkers {
+  position: absolute;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  color: var(--theme-page-text);
+  background-color: var(--theme-page-background);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1rem;
+
+  .left {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: var(--space-xxxs);
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: var(--space-xxxs);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 0;
+  }
+  .controls {
+    font-size: small;
+    position: unset;
+    bottom: unset;
+    padding: 0.25rem;
+  }
+  .worldContainer {
+    padding: 0rem;
+  }
+}

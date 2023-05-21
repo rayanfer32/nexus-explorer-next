@@ -4,7 +4,6 @@ import {
   BsBook,
   BsChatLeftText,
   BsDiscord,
-  BsFileEarmarkText,
   BsGithub,
   BsGlobe2,
   BsMedium,
@@ -17,7 +16,6 @@ import {
 } from 'react-icons/bs';
 import { CgNotes } from 'react-icons/cg';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
-import { SiGitbook } from 'react-icons/si';
 
 const currentYear = new Date().getFullYear() || 2023;
 
@@ -34,26 +32,14 @@ export const FooterTypes = {
             icon: (props) => <BsGlobe2 {...props} />,
           },
           {
-            href: 'https://wiki.nexus.io/en/tritium++',
+            href: 'https://wiki.nexus.io',
             label: 'Nexus Wiki',
             target: '_blank',
             icon: (props) => <CgNotes {...props} />,
           },
           {
-            href: 'https://devdocs.interactions-nexus.io/',
-            label: 'API Documentation',
-            target: '_blank',
-            icon: (props) => <BsFileEarmarkText {...props} />,
-          },
-          {
-            href: 'https://docs.interactions-nexus.io/',
-            label: 'Nexus Docs',
-            target: '_blank',
-            icon: (props) => <SiGitbook {...props} />,
-          },
-          {
-            href: 'https://nexus.io/ResourceHub/',
-            label: 'Resource Hub',
+            href: 'https://wiki.nexus.io/en/tritium++',
+            label: 'Nexus API Docs',
             target: '_blank',
             icon: (props) => <BsBook {...props} />,
           },

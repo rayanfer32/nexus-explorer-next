@@ -1,3 +1,4 @@
+import ReactTimeAgo from 'react-time-ago';
 import styles from './DateTime.module.scss';
 import PropTypes from 'prop-types';
 
@@ -16,7 +17,9 @@ export const DateTime = ({ date, time, timeFormat }) => {
         <small className={styles.timeFormat}>{timeFormat}</small>
         <span>{time}</span>
       </div>
-      <div className={styles.date}>{date}</div>
+      <div className={styles.date}>
+        <ReactTimeAgo date={date} />
+      </div>
     </div>
   );
 };

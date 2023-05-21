@@ -221,6 +221,34 @@ export function useNetwork() {
     return res.data.result;
   };
 
+  function getNetworkListNodes(url, limit, hours, extraParams) {
+    const params = {
+      limit,
+      sort: 'lastseen',
+      order: 'desc',
+      where: `results.lastseen>=since(\`${hours} hours\`);`,
+      ...extraParams,
+    };
+
+    return axios.get(`${url}`, {
+      headers: { 'Cache-Control': `max-age=${60 * 60}` }, // * Cache for 60 min
+      params,
+    });
+  }
+
+  function getNetworkCountNodes() {
+    return axios.get(`${url}/network/list/nodes/address/count?limit=none`, {
+      headers: { 'Cache-Control': `max-age=${60 * 1}` }, // * Cache for 1 min
+    });
+  }
+  // /register/list/accounts,trust/total/sum?sort=total&order=desc&limit=none&where=object.token=0
+  const getTotalNXS = async () => {
+    const res = await axios.get(
+      `${url}/register/list/finance:accounts,finance:trust/total/sum?sort=total&order=desc&limit=none&where=results.token=0`
+    );
+    return res.data.result;
+  };
+
   return {
     network: { name: appContext.network.name, url },
     getInfo,
@@ -233,6 +261,7 @@ export function useNetwork() {
     getInvoice,
     getMetrics,
     getRichlist,
+    getTotalNXS,
     getInvoices,
     getTrustlist,
     getNamespace,
@@ -243,6 +272,8 @@ export function useNetwork() {
     getRecentBlocks,
     getTransactions,
     getLedgerMetrics,
+    getNetworkListNodes,
+    getNetworkCountNodes,
     getTrustTransactions,
     getAccountTransactions,
   };
