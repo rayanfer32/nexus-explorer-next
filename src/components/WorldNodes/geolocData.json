@@ -1,0 +1,216 @@
+[
+  {
+    "accuracyRadius": 100,
+    "latitude": 33.4413,
+    "longitude": -112.0421,
+    "metroCode": 753,
+    "timeZone": "America/Phoenix",
+    "address": "107.127.26.1",
+    "lastseen": 1680989810,
+    "latency": 68
+  },
+  {
+    "accuracyRadius": 5,
+    "latitude": 4.6115,
+    "longitude": -74.0833,
+    "timeZone": "America/Bogota",
+    "address": "186.155.171.44",
+    "lastseen": 1680805716,
+    "latency": 263
+  },
+  {
+    "accuracyRadius": 100,
+    "latitude": 53.3379,
+    "longitude": -6.2591,
+    "timeZone": "Europe/Dublin",
+    "address": "212.129.74.21",
+    "lastseen": 1680896668,
+    "latency": 4294967295
+  },
+  {
+    "accuracyRadius": 200,
+    "latitude": 48.1535,
+    "longitude": 16.3855,
+    "timeZone": "Europe/Vienna",
+    "address": "77.119.160.192",
+    "lastseen": 1681365794,
+    "latency": 161
+  },
+  {
+    "accuracyRadius": 5,
+    "latitude": 41.3499,
+    "longitude": -83.1131,
+    "metroCode": 547,
+    "timeZone": "America/New_York",
+    "address": "76.181.92.74",
+    "lastseen": 1681231045,
+    "latency": 141
+  },
+  {
+    "accuracyRadius": 500,
+    "latitude": 47.9394,
+    "longitude": 2.6345,
+    "timeZone": "Europe/Paris",
+    "address": "37.72.196.134",
+    "lastseen": 1681330268,
+    "latency": 3435
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": 4.6115,
+    "longitude": -74.0833,
+    "timeZone": "America/Bogota",
+    "address": "154.47.16.39",
+    "lastseen": 1681286598,
+    "latency": 479
+  },
+  {
+    "accuracyRadius": 500,
+    "latitude": -34.9274,
+    "longitude": 138.6005,
+    "timeZone": "Australia/Adelaide",
+    "address": "1.125.31.190",
+    "lastseen": 1681001208,
+    "latency": 4294967295
+  },
+  {
+    "accuracyRadius": 200,
+    "latitude": 52.2296,
+    "longitude": 21.0067,
+    "timeZone": "Europe/Warsaw",
+    "address": "31.0.94.202",
+    "lastseen": 1681312655,
+    "latency": 4294967295
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": 51.5164,
+    "longitude": -0.093,
+    "timeZone": "Europe/London",
+    "address": "181.215.176.117",
+    "lastseen": 1681359809,
+    "latency": 117
+  },
+  {
+    "accuracyRadius": 500,
+    "latitude": 29.5689,
+    "longitude": 106.5577,
+    "timeZone": "Asia/Shanghai",
+    "address": "123.144.11.37",
+    "lastseen": 1681367768,
+    "latency": 212
+  },
+  {
+    "accuracyRadius": 10,
+    "latitude": 41.2884,
+    "longitude": -95.9972,
+    "metroCode": 652,
+    "timeZone": "America/Chicago",
+    "address": "97.119.171.103",
+    "lastseen": 1681338267,
+    "latency": 33
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": 42.3514,
+    "longitude": -71.0421,
+    "metroCode": 506,
+    "timeZone": "America/New_York",
+    "address": "38.97.116.244",
+    "lastseen": 1680896708,
+    "latency": 253
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": -34.9055,
+    "longitude": -56.1944,
+    "timeZone": "America/Montevideo",
+    "address": "128.90.119.20",
+    "lastseen": 1680948051,
+    "latency": 103
+  },
+  {
+    "accuracyRadius": 10,
+    "latitude": 51.5564,
+    "longitude": 0.0714,
+    "timeZone": "Europe/London",
+    "address": "90.217.209.26",
+    "lastseen": 1680968398,
+    "latency": 106
+  },
+  {
+    "accuracyRadius": 50,
+    "latitude": 12.9187,
+    "longitude": 74.8598,
+    "timeZone": "Asia/Kolkata",
+    "address": "117.192.115.133",
+    "lastseen": 1681042370,
+    "latency": 379
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": 39.9528,
+    "longitude": -75.1646,
+    "metroCode": 504,
+    "timeZone": "America/New_York",
+    "address": "154.16.159.55",
+    "lastseen": 1681367523,
+    "latency": 61
+  },
+  {
+    "accuracyRadius": 20,
+    "latitude": 52.2005,
+    "longitude": 20.9236,
+    "timeZone": "Europe/Warsaw",
+    "address": "45.128.38.142",
+    "lastseen": 1681066076,
+    "latency": 255
+  },
+  {
+    "accuracyRadius": 100,
+    "latitude": 45.4804,
+    "longitude": -122.5891,
+    "metroCode": 820,
+    "timeZone": "America/Los_Angeles",
+    "address": "172.56.152.11",
+    "lastseen": 1681091753,
+    "latency": 4294967295
+  },
+  {
+    "accuracyRadius": 500,
+    "latitude": 40.4172,
+    "longitude": -3.684,
+    "timeZone": "Europe/Madrid",
+    "address": "178.139.170.141",
+    "lastseen": 1681159629,
+    "latency": 274
+  },
+  {
+    "accuracyRadius": 200,
+    "latitude": 34.8127,
+    "longitude": 137.4,
+    "timeZone": "Asia/Tokyo",
+    "address": "202.215.93.117",
+    "lastseen": 1681365774,
+    "latency": 158
+  },
+  {
+    "accuracyRadius": 100,
+    "latitude": 51.202,
+    "longitude": 22.6468,
+    "timeZone": "Europe/Warsaw",
+    "address": "31.135.26.29",
+    "lastseen": 1681305622,
+    "latency": 124
+  },
+  {
+    "accuracyRadius": 5,
+    "latitude": 33.6268,
+    "longitude": -117.8718,
+    "metroCode": 803,
+    "timeZone": "America/Los_Angeles",
+    "address": "76.95.70.104",
+    "lastseen": 1681148390,
+    "latency": 124
+  }
+]

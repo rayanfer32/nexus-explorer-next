@@ -29,6 +29,10 @@
   word-break: break-all;
 }
 
+.collapseBtn {
+  cursor: pointer;
+}
+
 /* mobile screen classes */
 @media (max-width: 768px) {
   .container {

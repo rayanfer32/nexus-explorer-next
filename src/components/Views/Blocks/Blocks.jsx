@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { totalPages } from 'utils/helper';
 import DynamicPagination from 'components/common/NE_Pagination';
 import { useNetwork } from 'hooks';
-import Logger from 'utils/customLog';
 
 export default function Blocks() {
   // wrap these states in the specific network's state
@@ -73,9 +72,8 @@ export default function Blocks() {
 
   // * set pagecount based on total rows
   useEffect(() => {
-    Logger.log('setting total pages');
     setPageCount(totalPages(totalRows, pageSize));
-  }, [totalRows, pageSize, network]);
+  }, [totalRows, pageSize, network.name]);
 
   if (isLoading)
     return (
