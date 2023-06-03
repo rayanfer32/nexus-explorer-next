@@ -123,7 +123,7 @@ export default function Richlist(props) {
           loaderType={TYPES.LOADER.CIRCLE}>
           {/* // * Pie chart */}
           <div className={styles.chartContainer}>
-            <h3>NXS Distrubution</h3>
+            <h3>NXS Distribution</h3>
             {pieData && <ApexPie series={pieData} labels={PIE_LABELS} />}
           </div>
 
