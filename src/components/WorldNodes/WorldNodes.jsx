@@ -57,7 +57,7 @@ export default function WorldNodes() {
   const windowSize = useWindowSize();
   const [, , isGlobalDarkMode] = useDarkMode();
   const opacityControlRef = useRef();
-  const [hours, setHours] = useState(1);
+  const [hours, setHours] = useState(24);
   const [limit, setLimit] = useState('none');
 
   const debouncedHours = useDebounce(hours, 500);
