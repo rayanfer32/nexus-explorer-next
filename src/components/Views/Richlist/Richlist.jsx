@@ -99,9 +99,13 @@ export default function Richlist(props) {
       const top1 = sortedData.slice(0, 1);
       const top10 = sortedData.slice(1, 11);
       const top100 = sortedData.slice(11, 111);
-      const sumTop1 = top1.reduce((acc, cur) => acc + cur.total, 0);
-      const sumTop10 = top10.reduce((acc, cur) => acc + cur.total, 0);
-      const sumTop100 = top100.reduce((acc, cur) => acc + cur.total, 0);
+      const sumTop1 = top1.reduce((acc, cur) => acc + cur.total, 0)?.toFixed(2);
+      const sumTop10 = top10
+        .reduce((acc, cur) => acc + cur.total, 0)
+        ?.toFixed(2);
+      const sumTop100 = top100
+        .reduce((acc, cur) => acc + cur.total, 0)
+        ?.toFixed(2);
 
       setPieData([
         sumTop1,
